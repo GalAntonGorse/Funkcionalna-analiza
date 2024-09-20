@@ -286,6 +286,7 @@
 \DeclareMathOperator{\linspan}{span}
 \DeclareMathOperator{\bh}{\mathcal{B} (\mathcal{H})}
 \DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\inte}{Int}
 
 
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace\hspace{0pt}}m{#1}}
@@ -589,9 +590,9 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
   Then 
   \begin{align*}
     p(\alpha x) &= \inf \{t \geq 0\ |\ \alpha x \in t\cdot V\}\\
-    &= \inf \{t \geq 0\ |\ x \in \frac{t}{\alpha}\cdot V\}\\
-    &= \inf \{t \geq 0\ |\ x \in \frac{t}{|\alpha|}\cdot V\}\\
-    &= \inf |\alpha| \{\frac{t}{|\alpha|} \geq 0\ |\ x \in \frac{t}{|\alpha|}\cdot V\}\\
+    &= \inf \left\lbrace t \geq 0\ |\ x \in \frac{t}{\alpha}\cdot V \right\rbrace\\
+    &= \inf \left\lbrace t \geq 0\ |\ x \in \frac{t}{|\alpha|}\cdot V \right\rbrace\\
+    &= \inf |\alpha| \left\lbrace \frac{t}{|\alpha|} \geq 0\ |\ x \in \frac{t}{|\alpha|}\cdot V \right\rbrace\\
     &= |\alpha| p(x).
   \end{align*}
   Now we do the same for triangle inequality:
@@ -604,10 +605,10 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
   Then $$x + y \in (\alpha + \delta) \cdot V + (\beta + \delta) \cdot V \subseteq (\alpha + \beta + 2 \delta) \cdot V$$
   and by definition $p(x + y) \leq \alpha + \beta + 2 \delta$.
   Since $\delta > 0$ was arbitrary, we have $p(x + y) \leq \alpha + \beta = p(x) + p(y)$.
-  Now that we proved that $p$ is a seminorm we can show that 
+  Now that we proved that $p$ is a seminorm, we can show that 
   $$V = \{x \in X\ |\ p(x) < 1\}.$$
-  The right incluion $(\supseteq)$ is easy: if $p(x) < 1$, then $x \in (p(x) + \varepsilon) \cdot V$
-  for all $\varepsilon > 0$. By choosing $\varepsilon = 1 - p(x) > 0$ we get $x \in V$.
+  The right inclusion $(\supseteq)$ is easy: if $p(x) < 1$, then $x \in (p(x) + \varepsilon) \cdot V$
+  for all $\varepsilon > 0$. By choosing $\varepsilon = 1 - p(x) > 0$, we get $x \in V$.
   Now we prove the other inclusion $(\subseteq)$. Let $x \in V$.
   Since $V$ is absorbing in $x$, there exists an $\varepsilon > 0$ such that 
   $y = x + tx \in V$ for all $t \in (0, \varepsilon)$. This means that $x = \frac{1}{t + 1} y$, where $y \in V$.
@@ -616,7 +617,7 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
   which proves the equality. Lastly, we prove the $p$ is unique.
   Suppose there is some other seminorm $q$ such that 
   $$\{x \in X\ |\ p(x) < 1\} = \{x \in X\ |\ q(x) < 1\}.$$
-  Suppose $p \neq q$. WLOG exists an $x \neq 0$ such that $p(x) > q(x)$.
+  Suppose $p \neq q$. WLOG there exists an $x \neq 0$ such that $p(x) > q(x)$.
   By homogeneity, we can assume that $p(x) = 1 > q(x)$, contradicting our assumption.
 \end{myproof}
 
@@ -647,12 +648,12 @@ is a sublinear functional if $$p(x + y) \leq p(x) + p(y),\ \forall x, y \in X$$ 
 
 \begin{corollary}[The extension theorem]
   Let $X$ be a normed space, $f \in X^*$ and $Y \leq X$.
-  then there exists $F \in X^*$ such that $F\big|_Y = f$ and $\|F\| = \| f\|$.
+  Then there exists an $F \in X^*$ such that $F\big|_Y = f$ and $\|F\| = \| f\|$.
 \end{corollary}
 
 \begin{corollary}[The separation theorem]
   Suppose $X$ is a LCS and $A, B \subseteq X$ are disjoint closed convex sets.
-  If $B$ is compact then there exists $f \in X^*$ that seperates $A$ from $B$:
+  If $B$ is compact then there exists an $f \in X^*$ that seperates $A$ from $B$:
   $$\exists \alpha, \beta \in \R:\ \forall a, b \in B:\ \real f(a) \leq \alpha < \beta \leq \real f(b).$$
 \end{corollary}
 
@@ -702,9 +703,9 @@ is a sublinear functional if $$p(x + y) \leq p(x) + p(y),\ \forall x, y \in X$$ 
   $$0 \leq |f(x_i)| \leq \sum_{k = 1} ^n \alpha_k p_k(x_i) \xrightarrow[i \in I]{} 0.$$
   This implies that $f(x_i) \xrightarrow[i \in I]{} 0$, proving the implication.
   Now the opposite: $(2) \Rightarrow (6)$.
-  We know that $f^{-1} (B_1 ^\circ (0)) = \{x \in X\ |\ |f(x)| < 1\}$
-  is an open neighborhhod of $0$ in $X$. Then there exist $p_1, \dots, p_r \in \mathcal{P}$
-  and a $\varepsilon > 0$ such that 
+  We know that $f^{-1} (\inte B_1 (0)) = \{x \in X\ |\ |f(x)| < 1\}$
+  is an open neighborhood of $0$ in $X$. Then there exist $p_1, \dots, p_r \in \mathcal{P}$
+  and an $\varepsilon > 0$ such that 
   $$0 \in \bigcap_{i = 1} ^r U(0, p_i, \varepsilon) \subseteq f^{-1} (B_1 ^\circ (0)).$$
   If $p_i(x) < \varepsilon$ for all $i \leq r$, then $|f(x)| < 1.$ Pick any $\delta > 0$.
   Then $$p_i \left(x \cdot \frac{\varepsilon}{\sum p_i (x) + \delta}\right) = \frac{\varepsilon}{\delta + \sum p_i (x)} \cdot p_i (x) < \varepsilon,$$
@@ -718,14 +719,7 @@ is a sublinear functional if $$p(x + y) \leq p(x) + p(y),\ \forall x, y \in X$$ 
   \end{equation*}
 \end{myproof}
 
-\begin{proposition}
-  Let $X$ be completely regular. Endow $C(X)$ with a topology induced by its seminorms.
-  If $L \in C(X)^{*}$ then there exists a compact $K \subseteq X$ and a regular Borel measure on $K$ such that 
-  $$L(f) = \int_{K} f\, d\mu,\ \forall f \in C(X).$$
-  Conversely, every such pair $(K, \mu)$ defines $L \in C^* (K)$ with the above map.
-\end{proposition}
-
-Recall the following theorem.
+Recall the following theorem from measure theory.
 
 \begin{theorem}[Riesz-Markoff theorem]
   Let $X$ be a compact $T_2$ space, $\Phi \in C(X)^*$.
@@ -738,6 +732,15 @@ Recall the following theorem.
   The above also works if $K$ is locally compact and $\Phi \in C_0(X)^*$.
 \end{remark}
 
+As a corollary, we get the following proposition.
+
+\begin{proposition}
+  Let $X$ be completely regular. Endow $C(X)$ with a topology induced by its seminorms.
+  If $L \in C(X)^{*}$ then there exists a compact $K \subseteq X$ and a regular Borel measure on $K$ such that 
+  $$L(f) = \int_{K} f\, d\mu,\ \forall f \in C(X).$$
+  Conversely, every such pair $(K, \mu)$ defines $L \in C^* (K)$ with the above map.
+\end{proposition}
+
 \begin{myproof}
   Begin with the implication $(\Leftarrow)$. Given $(K, \mu)$, we just need to prove that the induced 
   functional $L$ is continuous on $X$. We have 
@@ -746,16 +749,17 @@ Recall the following theorem.
   Let $L \in C(X)$. By the previous proposition, there exist compact sets 
   $K_1, \dots, K_p \subseteq X$ and $\alpha_1, \dots, \alpha_p > 0$ such that 
   $$|L(f)| \leq \sum_{j = 1} ^p \alpha_j p_{K_j} (f).$$
-  let $K = \bigcup_{j = 1} ^p K_j$ and $\alpha = \max \{\alpha_1, \dots, \alpha_p\}$.
+  Let $K = \bigcup_{j = 1} ^p K_j$ and $\alpha = \max \{\alpha_1, \dots, \alpha_p\}$.
   Then $\|f\| \leq \alpha p_K (f)$ for all $f \in C(X)$.
   Observe that if $f \in C(X)$ and $f \big|_K = 0$, then $L(f) = 0$.
-  We now define a map $F: C(K) \to \F$. For each $g \in C(K)$
-  we can find an extension $\widetilde{g} \in C(X)$ due to $X$ being completely regular\footnote{https://dantopology.wordpress.com/2014/01/22/tietze-urysohn-like-theorems-for-completely-regular-spaces/}. 
+  We now define a map $F: C(K) \to \F$. 
+  Since $X$ is completely regular, we have a Tietze-like extension theorem: for any compact $K \subseteq X$ and a continuous function $g \in C(K)$,
+  there exists an extension $\widetilde{g} \in C(X)$.
   Define $F(g) := L(\widetilde{g})$.
   First we need to check if $F$ is even well defined. Suppose we have two extensions $\widetilde{g}$ and $\widetilde{\widetilde{g}}$
   of $g \in C(K)$. Since $\widetilde{g} - \widetilde{\widetilde{g}}$ is evidently zero on $K$, we have 
   $$L(\widetilde{g}) - L(\widetilde{\widetilde{g}}) = L(\widetilde{g} - \widetilde{\widetilde{g}}) = 0$$
-  and $F$ really is well defined. Clearly is it also linear, so we just need to check continuity:
+  and $F$ really is well defined. It is also clearly linear, so we just need to check continuity:
   $$|F(g)| = |L(\widetilde{g})| \leq \alpha \cdot p_K (\widetilde{g}) = \alpha \cdot \|g\|_{\infty, K},$$
   therefore $\|F\| \leq \alpha$ and $F$ is continuous. Lastly we apply Riesz-Markoff: there exists a regular Borel Measure $\mu$
   so that $F(g) = \int_K g\, d\mu.$ If $f \in C(X)$, then $g := f\big|_K \in C(K)$
@@ -770,37 +774,44 @@ Recall the following theorem.
 \begin{definition}
   Let $X$ be a vector space and $C \subseteq X$ its convex subset.
   \begin{itemize}
-    \item[(a)] A nonempty convex subset $F \subseteq C$ is a face if for $x, y \in C$ we have
-    $$t \in (0, 1),\ tx + (1 - t)y \in F \Rightarrow x, y \in F.$$
+    \item[(a)] A nonempty convex subset $F \subseteq C$ is a face if for any $x, y \in C$ we have
+    $$(\exists t \in (0, 1):\ tx + (1 - t)y \in F) \Rightarrow x, y \in F.$$
     \item[(b)] A point $x \in C$ is a called an extreme point if $\{x\} \subseteq C$ is a face.  
   \end{itemize}
   We use the notation $\ext (C)$ for a set of all extreme points of $C$.
 \end{definition}
 
 \begin{example}
-  If we take spaces of real sequences, we have 
-  $$\ext ((\ell^\infty)_1) = \{(\pm 1, \pm 1, \dots)\},\quad \ext ((\ell^1)_1) = \{(0, 0, \dots, \pm 1, \dots)\}.$$
+  If we take spaces of real sequences, we have
+  \begin{itemize}
+    \item $\ext ((\ell^\infty)_1) = \{(\pm 1, \pm 1, \dots)\}$;
+    \item $\ext ((\ell^1)_1) = \{(0, 0, \dots, \pm 1, \dots)\}$;
+    \item $\ext (c_0)_1 = \emptyset$.
+  \end{itemize} 
 \end{example}
 
 \begin{example}
-  Let's consider some more examples: 
-  \begin{enumerate}
-    \item $\ext (c_0)_1 = \emptyset$;
-    \item $\ext (L^1 ([0, 1]))_1 = \emptyset$;
-    \item $\ext (C[0, 1])_1 = \{\pm 1\}$.
-  \end{enumerate}
+  Let us show that $\ext (L^1 [0, 1])_1 = \emptyset$. Take any $f \in (L^1 [0, 1])_1$.
+  Then $\int _0 ^1 |f(t)| \, dt = 1$, so there must exist an $x \in [0, 1]$ such that 
+  $\int _0 ^x |f(t)| \, dt = 1/2$. Now define 
+  $g := 2 \cdot f \cdot \chi_{[0, x]}$ and $h := 2 \cdot f \cdot \chi_{[x, 1]}$. 
+  Now we have $g, h \in (L^1 [0, 1])_1$ and $f = \frac{1}{2}g + \frac{1}{2} h$, so $f$ cannot be an extreme point.
+\end{example}
+
+\begin{example}
+  Finally, let us prove that $\ext (C[0, 1])_1 = \{\pm 1\}$ for real valued functions.
+  Take any $f \in (C[0, 1])_1$. Then define functions $g(t) = \min \{2f(t) + 1, 1\}$ and $h(t) = \max \{2 f(t) - 1, -1\}$.
+  Clearly $g, h \in (C[0, 1])_1$ and $f = \frac{1}{2} g + \frac{1}{2} h$. If $f$ is an extreme point, then $g = h$, which happens only if $f = \pm 1$.
 \end{example}
 
 \begin{definition}
-  For a vector space $X$ and $A \subseteq X$ define a convex hull 
-  $$\co A = \{\sum_{i = 0}^n \alpha_i x_i\ |\ n \in \N, \alpha_i \geq 0, \sum_{i = 0} ^n \alpha_i = 1, x_i \in A\}.$$
-  If $X$ is a LCS, then $\overline{\co} A = \overline{\co A}$.
+  For a vector space $X$ and $A \subseteq X$ define a convex hull $\co A$ as the intersection of all convex sets in $X$ that contain $A$.
+  If $X$ is a TVS, then define closed convex hull $\overline{co} A$ as the intersection of all closed convex sets that contain $A$.
 \end{definition}
 
-\begin{proposition}
-  Convex hull $\co A$ is the smallest convex set that contains $A$.
-  If $X$ is also a $TVS$, then $\overline{\co} A$ is the smallest closed convex set that contains $A$.
-\end{proposition}
+Convex hull of a set $A$ can be written explicitly:
+$$\co A = \left\lbrace \sum_{i = 0}^n \alpha_i x_i\ |\ n \in \N, \alpha_i \geq 0, \sum_{i = 0} ^n \alpha_i = 1, x_i \in A\right\rbrace.$$
+If $X$ is a TVS, then define $\overline{\co} A = \overline{\co A}$.
 
 \begin{lemma}
   Let $X$ be a TVS and $C \subseteq X$ a nonempty compact convex set.
@@ -838,11 +849,12 @@ Recall the following theorem.
 
 \begin{myproof}
   Let $\mathcal{F} = \{\textrm{closed faces in $C$}\}$ be ordered with $\supset$.
-  Since $C \in \mathcal{F}$, it is nonempty. The set $\mathcal{F}$ is then partially ordered and each 
-  increasing chain in $\mathcal{F}$ has an upper bound (intersection).
-  This tells us that we can apply Zorn's lemma so there exists a maximal element $F_0 \in \mathcal{F}$.
+  Since $C \in \mathcal{F}$, it is nonempty. The set $\mathcal{F}$ is then partially ordered. Since any 
+  increasing chain in $\mathcal{F}$ has finite intersection property, it has a nonempty intersection due to $C$ being compact.
+  As a result, any incresing chain in $\mathcal{C}$ has an upper bound.
+  This tells us that we can apply Zorn's lemma to obtain a maximal element $F_0 \in \mathcal{F}$.
   We prove that $F_0 \in \ext C$. Assume that there are distinct $x, y \in F_0$.
-  By Hahn-Banach, there exists an $\Phi \in X^*$ such that $\Phi(x) \neq \Phi(y)$.
+  By Hahn-Banach, there exists a $\Phi \in X^*$ such that $\Phi(x) \neq \Phi(y)$.
   WLOG we assume that $\real \Phi(x) < \real \Phi(y)$. Define a set 
   $$F_1 = \{z \in F_0\ |\ \real \Phi(z) = \min_{F_0} \real \Phi\}.$$
   Then $F_1 \subsetneq F_0$, since $y \notin F_0$. By the previous lemma,
@@ -911,7 +923,7 @@ Recall the following theorem.
 \end{example}
 
 \begin{example}
-  We prove that $ \ext (L^1 ([0, 1]))_1 = \emptyset$. Take $h \in \ext(L^1 ([0, 1]))_1$. 
+  We prove that $ \ext (L^1 [0, 1])_1 = \emptyset$. Take $h \in \ext(L^1 [0, 1])_1$. 
   We consider two cases: if $h = 0$, then $h = \frac{1}{2} (1_{[0, 1]} - 1_{[0, 1]})$ and $h$ cannot be the extreme point.
   So assume $0 < |h| \leq 1$. Define the function 
   $$\phi (t) = \int_0 ^t |h|\, d\mu.$$
@@ -919,7 +931,7 @@ Recall the following theorem.
   Therefore, thhere must exist $t_0 \in [0, 1]$ such that $\phi(t_0) =\frac{ \|h\|}{2}$
   and we have $$h = \frac{1}{2} 1_{[0, t_0]} h + \frac{1}{2} 1_{(t_0, 1]} h,$$
   so $h$ once again cannot be an extreme point of the unit ball.  
-  As a result, $L^1 ([0, 1])$ is not a dual space.
+  As a result, $L^1 [0, 1]$ is not a dual space.
 \end{example}
 
 \begin{theorem}[Milman]
