@@ -12,6 +12,7 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{enumitem}
 %\usepackage{mdframed}
 %\usepackage{thmbox}
 
@@ -785,9 +786,17 @@ As a corollary, we get the following proposition.
   If we take spaces of real sequences, we have
   \begin{itemize}
     \item $\ext ((\ell^\infty)_1) = \{(\pm 1, \pm 1, \dots)\}$;
-    \item $\ext ((\ell^1)_1) = \{(0, 0, \dots, \pm 1, \dots)\}$;
-    \item $\ext (c_0)_1 = \emptyset$.
+    \item $\ext ((\ell^1)_1) = \{(0, 0, \dots, \pm 1, \dots)\}$.
   \end{itemize} 
+\end{example}
+
+\begin{example}
+  We prove that for $c_0$ (the space of complex sequences that converge to $0$) we have $\ext (c_0)_1 = \emptyset$. 
+  Indeed, let $x = (x_n)_n \in (c_0)_1$.
+  Since $\lim_n x_n = 0$, there exists $N \in \N$ such that $|x_n| < \frac{1}{2}$ for all $n > N$.
+  Now define $y, z \in c_0$ by setting $y_n = z_n = x_n$ for $n \leq N$
+  and $$y_n = x_n + \frac{1}{2^n},\quad z_n = x_n - \frac{1}{2^n}$$ 
+  for $n > N$. Then $y, z \in (c_0)_1$ and $x = \frac{1}{2} (y + z)$, so $x \notin \ext (c_0)_1$.
 \end{example}
 
 \begin{example}
@@ -812,6 +821,36 @@ As a corollary, we get the following proposition.
 Convex hull of a set $A$ can be written explicitly:
 $$\co A = \left\lbrace \sum_{i = 0}^n \alpha_i x_i\ |\ n \in \N, \alpha_i \geq 0, \sum_{i = 0} ^n \alpha_i = 1, x_i \in A\right\rbrace.$$
 If $X$ is a TVS, then define $\overline{\co} A = \overline{\co A}$.
+
+\begin{lemma}
+  If $C \subseteq X$ is a convex subset of a vector space and $a \in C$, then the following is equivalent.
+  \begin{itemize}
+    \item[(a)] $a \in \ext C$.
+    \item[(b)] If $x_1, x_2 \in C$ and $a = \frac{1}{2} (x_1 + x_2)$, then $x_1 = x_2 = a$.
+    \item[(c)] If $x_1, x_2 \in C$, $t \in (0, 1)$ and $a = t x_1 + (1 - t) x_2$, then $x_1 = x_2 = a$.
+    \item[(d)] If $x_1, \dots, x_n \in C$ and $a \in \co \{x_1, \dots, x_n\}$, then $x_1 = \dots = x_n = a$.
+    \item[(e)] $C \setminus \{a\}$ is a convex set.  
+  \end{itemize}
+\end{lemma}
+
+\begin{myproof}
+  Items (a) and (c) are equivalent by definition.
+  \begin{enumerate}[itemindent=36pt]
+    \item[(b) $\Rightarrow$ (c):] Let $a = tx_1 + (1 - t) x_2$. Then $$a = \frac{1}{2} (2t x_1 + (1 - 2t) x_2) + \frac{1}{2} x_2,$$
+    so we get $2t x_1 + (1 - 2t) x_2 = x_2$, which gives us $x_1 = x_2$.
+    \item[(c) $\Rightarrow$ (d):] We prove this by induction on $n$. The base case $n = 2$ is exactly the item (c).
+    Now if the statement is true for $n-1$, it is also true for $n$. Indeed, let $a \in \co \{x_1, \dots, x_n\}$, so 
+    $a = \sum_{i = 1} ^n t_i x_i $ such that all $t_i \in [0, 1]$ and $\sum_{i = 1} ^n t_i = 1$. Then 
+    $$a = t_1 x_1 + (1 - t_1) \underbrace{\frac{\sum_{i = 2} ^n t_i x_i}{1 - t_1}}_{\in \co \{x_2, \dots, x_n\}}.$$
+    By (c), $x_1 = \frac{\sum_{i = 2} ^n t_i x_i}{1 - t_1} = a$. Now we use the induction hypothesis to get $x_2 = \dots = x_n = a$.
+    \item[(c) $\Rightarrow$ (d):] Take any $x_1, x_2 \in C \setminus \{a\}$. Since $C$ is convex, $t x_1 + (1 - t) x_2 \in C$.
+    Now if $a = t x_1 + (1 - t) x_2 \in \co \{x_1, x_2\}$, then $a = x_1 = x_2$, which contradicts our assumption. So $t x_1 + (1 - t) x_2 \in C \setminus \{a\}$
+    and $C \setminus \{a\}$ is convex.
+    \item[(d) $\Rightarrow$ (b):] Suppose $a = \frac{1}{2} (x_1 + x_2)$. If $x_1$ and $x_2$ were both in $C \setminus \{a\}$,
+    then their convex combination would also lie in $C \setminus \{a\}$, so at least one of $x_1, x_2$ is equal to $a$. WLOG suppose $x_1 = a$.
+    Then $a = \frac{1}{2} (a + x_2)$, which also implies $x_2 = a$.
+  \end{enumerate}
+\end{myproof}
 
 \begin{lemma}
   Let $X$ be a TVS and $C \subseteq X$ a nonempty compact convex set.
@@ -851,7 +890,7 @@ If $X$ is a TVS, then define $\overline{\co} A = \overline{\co A}$.
   Let $\mathcal{F} = \{\textrm{closed faces in $C$}\}$ be ordered with $\supset$.
   Since $C \in \mathcal{F}$, it is nonempty. The set $\mathcal{F}$ is then partially ordered. Since any 
   increasing chain in $\mathcal{F}$ has finite intersection property, it has a nonempty intersection due to $C$ being compact.
-  As a result, any incresing chain in $\mathcal{C}$ has an upper bound.
+  As a result, any increasing chain in $\mathcal{C}$ has an upper bound.
   This tells us that we can apply Zorn's lemma to obtain a maximal element $F_0 \in \mathcal{F}$.
   We prove that $F_0 \in \ext C$. Assume that there are distinct $x, y \in F_0$.
   By Hahn-Banach, there exists a $\Phi \in X^*$ such that $\Phi(x) \neq \Phi(y)$.
@@ -867,14 +906,14 @@ If $X$ is a TVS, then define $\overline{\co} A = \overline{\co A}$.
   $$F = \{z \in C\ |\ \real \Psi (z) = \min_C \real \Psi\}$$
   is a closed face in $C$. By the first part of this proof,
   there exists a $z \in \ext F \subseteq \ext C$. Hence 
-  $$\min_C \real \Psi = \Psi (z) = \min_{\overline{\co} (\ext C)} \real \Psi > \real \Psi(x) \geq \min_C \real \Psi,$$
+  $$\min_C \real \Psi = \real \Psi (z) = \min_{\overline{\co} (\ext C)} \real \Psi > \real \Psi(x) \geq \min_C \real \Psi,$$
   which leads to a contradiction. Therefore $\overline{\co} (\ext C) = C$.
 \end{myproof}
 
 \begin{example}
   Let $\mathcal{H}$ be a Hilbert space. Then 
   $$\ext (\mathcal{H})_1 = \{v \in \mathcal{H}\ |\ \|v\| = 1\}.$$
-  We prove the inclusion $(\supseteq)$. Suppose that 
+  First we prove the inclusion $(\supseteq)$. Suppose that 
   $\| v\| = 1$ and $v = tx + (1 - t)y$, where $t \in (0, 1)$ and $x, y \in (\mathcal{H})_1$.
   We have 
   \begin{align*}
@@ -885,6 +924,8 @@ If $X$ is a TVS, then define $\overline{\co} A = \overline{\co A}$.
     &\leq t^2 + (1 - t)^2 + 2t(1 - t) = 1.
   \end{align*}
   We get equality in the Cauchy-Schwartz, so $x, y$ are linearly dependent and therefore equal.
+  For the reverse inclusion, let $v \in \ext (\mathcal{H})_1$. If $\| v\| < 1$, then 
+  $$v = \frac{1}{2} \cdot \frac{v}{\|v\|} + \frac{1}{2} \cdot \left(2{\|v\|} - 1 \right) \frac{v}{\|v\|}$$
 \end{example}
 
 \begin{example}
@@ -909,29 +950,9 @@ If $X$ is a TVS, then define $\overline{\co} A = \overline{\co A}$.
 \end{example}
 
 \begin{example}
-  Let $X$ be a Banach space. Then $(X^*)_1$ is weak-* compact (by Banach-Alaoglu),
-  so Krein-Milman gives us $(X^*)_1 = \overline{\co} (\ext (X^*)_1)$, hence $(X^*)_1$ has a lot of extreme points.
-\end{example}
-
-\begin{example}
-  We prove that $c_0$ is not the dual space of a Banach space.
-  It suffices to show that $\ext (c_0)_1 = \emptyset$. Let $x = (x_n)_n \in (c_0)_1$.
-  then $\lim_n x_n = 0$. Thus there exists $N \in \N$ such that $|x_n| < \frac{1}{2}$ for all $n > N$.
-  Now define $y, z \in c_0$ by setting $y_n = z_n = x_n$ for $n \leq N$
-  and $$y_n = x_n + \frac{1}{2^n},\quad z_n = x_n - \frac{1}{2^n}$$ 
-  for $n > N$. Then $y, z \in (c_0)_1$ and $x = \frac{1}{2} (y + z)$, so $x \notin \ext (c_0)_1$.
-\end{example}
-
-\begin{example}
-  We prove that $ \ext (L^1 [0, 1])_1 = \emptyset$. Take $h \in \ext(L^1 [0, 1])_1$. 
-  We consider two cases: if $h = 0$, then $h = \frac{1}{2} (1_{[0, 1]} - 1_{[0, 1]})$ and $h$ cannot be the extreme point.
-  So assume $0 < |h| \leq 1$. Define the function 
-  $$\phi (t) = \int_0 ^t |h|\, d\mu.$$
-  Then $\phi$ is continuous, $\phi(0) = 0$ and $\| h\| = \phi(1) > 0$.
-  Therefore, thhere must exist $t_0 \in [0, 1]$ such that $\phi(t_0) =\frac{ \|h\|}{2}$
-  and we have $$h = \frac{1}{2} 1_{[0, t_0]} h + \frac{1}{2} 1_{(t_0, 1]} h,$$
-  so $h$ once again cannot be an extreme point of the unit ball.  
-  As a result, $L^1 [0, 1]$ is not a dual space.
+  If $X$ be a Banach space, then $(X^*)_1$ is weak-* compact (by Banach-Alaoglu),
+  so Krein-Milman gives us $(X^*)_1 = \overline{\co} (\ext (X^*)_1)$. Hence $(X^*)_1$ has a lot of extreme points.
+  As a corollary, $c_0$, $L^1 [0, 1]$ and $C[0, 1]$ are not duals of Banach spaces.
 \end{example}
 
 \begin{theorem}[Milman]
@@ -980,7 +1001,7 @@ If $X$ is a TVS, then define $\overline{\co} A = \overline{\co A}$.
 
 \subsection{Spectrum}
 
-Let $a$ be a complex algebra with a unit $1$ and 
+Let $A$ be a complex algebra with a unit $1$ and 
 $$GL (A) = \{a \in A\ |\ \textrm{$a$ is invertible}\}.$$
 If $x \in A$, then we define the spectrum 
 $$\sigma_A (x) = \{\lambda \in \C\ |\ x - \lambda \cdot 1 \notin GL(A)\}.$$
@@ -990,14 +1011,21 @@ $$\sigma_A (x) = \{\lambda \in \C\ |\ x - \lambda \cdot 1 \notin GL(A)\}.$$
 \end{proposition}
 
 \begin{myproof}
-  Suppose $1 - xy \in GL(A)$. Formally, we have 
+  Suppose $1 - xy \in GL(A)$. Formally, we can write 
   $$(1 - xy)^{-1} = 1 + xy + (xy)^2 + \cdots$$
   and $$(1 - yx)^{-1} = 1 + yx + (yx)^2 + \cdots = 1 + y(1 - xy)^{-1} x.$$
-  From that, we claim that indeed $1 - xy \in GL (A)$ and 
-  $$(1 - xy)^{-1} = 1 + y(1 - xy)^{-1} x.$$ We can easily calculate that 
+  From that, we claim that indeed $1 - yx \in GL (A)$ and 
+  $$(1 - yx)^{-1} = 1 + y(1 - xy)^{-1} x.$$ 
+  The proof is straightforward: 
   \begin{equation*}
-    (1 + y(1 - xy)^{-1} x)(1 - xy) = (1 - xy) (1 + y(1 - xy)^{-1} x) = 1. \qedhere
+    (1 + y(1 - xy)^{-1} x)(1 - yx) = (1 - yx) (1 + y(1 - xy)^{-1} x) = 1. 
   \end{equation*}
+  Now the proof of the statement is at hand: if $\lambda \in \sigma_A (xy) \setminus \{0\}$,
+  then \begin{align*}
+    \lambda - xy \notin GL (A) & \Rightarrow 1 - \frac{x}{\lambda} y \notin GL (A) \Rightarrow 1 - y \frac{x}{\lambda} \notin GL (A)\\
+    \lambda - yx \notin GL (A) & \lambda \in \sigma_A (yx).
+  \end{align*}
+  Similarly, if $\lambda \in \sigma_A (yx) \setminus \{0\}$, then $\lambda \in \sigma_A (xy)$.
 \end{myproof}
 
 \begin{example}
@@ -1032,10 +1060,21 @@ The $C^*$-algebras considered here are, for the most part, unital.
   \end{enumerate}
 \end{proposition}
 
-\begin{remark}
-  From the proof of (iii) we get the bound 
-  $$\|x^{-1} - y^{-1}\| \leq \frac{\|y^{-1}\|^2}{1 - \|y^{-1}\| \|x - y\|} \|x - y\|.$$
-\end{remark}
+\begin{myproof}
+  Let us prove the third item. Let $y \in GL (A)$. If $\|x - y\| \leq \frac{1}{\|y^{-1}\|}$, 
+  then $$\| 1 - xy^{-1}\| = \| (y - x) y^{-1}\| \leq \| y - x\| \|y^{-1}\| \leq 1,$$
+  which implies that $xy^{-1} \in GL (A)$ and so $x = xy^{-1} \cdot y \in GL (A)$. We have proved that $GL(A)$ is open.
+  Using the same notation and $(xy^{-1})^{-1} = (1-(1 - xy^{-1}))^{-1}$, we get 
+  $$\|(xy^{-1})^{-1}\| \leq \sum_{n = 0} ^\infty \| (1 - xy^{-1}) \|^n \leq \sum_{n = 0} ^\infty \| y^{-1} \|^n \|x - y \|^n \leq \frac{1}{1 - \|y^{-1}\| \cdot \|x - y\|}.$$
+  Now 
+  \begin{align*}
+    \| x^{-1} - y^{-1}\| &= \| x^{-1} (y - x) y^{-1}\| \\
+    &\leq \| y^{-1} (xy^{-1})^{-1}\| \| y - x\| \| y^{-1}\|\\
+    &\leq \|(xy^{-1})^{-1}\| \| y - x\| \| y^{-1}\|^2\\
+    &\leq \frac{\| y^{-1}\|^2}{1 - \|y^{-1}\| \cdot \|x - y\|} \| y - x\|.
+  \end{align*}
+  Since the function $t \mapsto \frac{\| y^{-1}\|^2}{1 - \|y^{-1}\| \cdot t} t$ is continuous at $t = 0$, the map $x \mapsto x^{-1}$ is continuous.
+\end{myproof}
 
 \begin{theorem}[Gelfand-Mazur]
   If $A$ is Banach algebra that is also a division ring, then $A = \C$.
@@ -1043,7 +1082,7 @@ The $C^*$-algebras considered here are, for the most part, unital.
 
 \begin{myproof}
   Let $x \in A$ and $\lambda \in \sigma_A (x)$. Then $x - \lambda \cdot 1 \notin GL(A) = A \setminus \{0\}$.
-  Then $x - \lambda = 0$ and $x = \lambda \in \C$.
+  So $x - \lambda = 0$ and $x = \lambda \in \C$.
 \end{myproof}
 
 \begin{definition}
