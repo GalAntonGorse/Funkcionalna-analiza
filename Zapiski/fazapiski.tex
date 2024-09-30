@@ -828,8 +828,8 @@ If $X$ is a TVS, then define $\overline{\co} A = \overline{\co A}$.
     \item[(a)] $a \in \ext C$.
     \item[(b)] If $x_1, x_2 \in C$ and $a = \frac{1}{2} (x_1 + x_2)$, then $x_1 = x_2 = a$.
     \item[(c)] If $x_1, x_2 \in C$, $t \in (0, 1)$ and $a = t x_1 + (1 - t) x_2$, then $x_1 = x_2 = a$.
-    \item[(d)] If $x_1, \dots, x_n \in C$ and $a \in \co \{x_1, \dots, x_n\}$, then $x_1 = \dots = x_n = a$.
-    \item[(e)] $C \setminus \{a\}$ is a convex set.  
+    \item[(d)] $C \setminus \{a\}$ is a convex set.  
+    \item[(e)] If $x_1, \dots, x_n \in C$ and $a \in \co \{x_1, \dots, x_n\}$, then $a = x_k$ for some index $k$.
   \end{itemize}
 \end{lemma}
 
@@ -838,17 +838,12 @@ If $X$ is a TVS, then define $\overline{\co} A = \overline{\co A}$.
   \begin{enumerate}[itemindent=36pt]
     \item[(b) $\Rightarrow$ (c):] Let $a = tx_1 + (1 - t) x_2$. Then $$a = \frac{1}{2} (2t x_1 + (1 - 2t) x_2) + \frac{1}{2} x_2,$$
     so we get $2t x_1 + (1 - 2t) x_2 = x_2$, which gives us $x_1 = x_2$.
-    \item[(c) $\Rightarrow$ (d):] We prove this by induction on $n$. The base case $n = 2$ is exactly the item (c).
-    Now if the statement is true for $n-1$, it is also true for $n$. Indeed, let $a \in \co \{x_1, \dots, x_n\}$, so 
-    $a = \sum_{i = 1} ^n t_i x_i $ such that all $t_i \in [0, 1]$ and $\sum_{i = 1} ^n t_i = 1$. Then 
-    $$a = t_1 x_1 + (1 - t_1) \underbrace{\frac{\sum_{i = 2} ^n t_i x_i}{1 - t_1}}_{\in \co \{x_2, \dots, x_n\}}.$$
-    By (c), $x_1 = \frac{\sum_{i = 2} ^n t_i x_i}{1 - t_1} = a$. Now we use the induction hypothesis to get $x_2 = \dots = x_n = a$.
     \item[(c) $\Rightarrow$ (d):] Take any $x_1, x_2 \in C \setminus \{a\}$. Since $C$ is convex, $t x_1 + (1 - t) x_2 \in C$.
     Now if $a = t x_1 + (1 - t) x_2 \in \co \{x_1, x_2\}$, then $a = x_1 = x_2$, which contradicts our assumption. So $t x_1 + (1 - t) x_2 \in C \setminus \{a\}$
     and $C \setminus \{a\}$ is convex.
-    \item[(d) $\Rightarrow$ (b):] Suppose $a = \frac{1}{2} (x_1 + x_2)$. If $x_1$ and $x_2$ were both in $C \setminus \{a\}$,
-    then their convex combination would also lie in $C \setminus \{a\}$, so at least one of $x_1, x_2$ is equal to $a$. WLOG suppose $x_1 = a$.
-    Then $a = \frac{1}{2} (a + x_2)$, which also implies $x_2 = a$.
+    \item[(d) $\Rightarrow$ (e)] If $x_1, \dots, x_n \in C \setminus \{a\}$, then $\co \{x_1, \dots, x_n\} \subseteq C \setminus \{a\}$ by convexity, contradiction. 
+    \item[(e) $\Rightarrow$ (b):] Suppose $a = \frac{1}{2} (x_1 + x_2)$. Then either $x_1 = a$ or $x_2 = a$ by our assumption. WLOG assume $x_1 = a$.
+    Then $a = \frac{1}{2} (a + x_2)$, which implies $a = x_2$.
   \end{enumerate}
 \end{myproof}
 
@@ -1046,7 +1041,7 @@ $$\sigma_A (x) = \{\lambda \in \C\ |\ x - \lambda \cdot 1 \notin GL(A)\}.$$
   \end{itemize}
 \end{definition}
 
-The $C^*$-algebras considered here are, for the most part, unital.
+All algebras in this section are unital.
 
 \begin{proposition}
   We collect some basic properties of $C^*$-algebras.
@@ -1096,13 +1091,15 @@ The $C^*$-algebras considered here are, for the most part, unital.
 \end{theorem}
 
 \begin{myproof}
+  First we prove the inclusion $(\subseteq)$.
   If $\lambda \in \sigma_A (a)$ and $f(x) = \sum_{j = 0} ^n a_j x^j$, then 
   $$f(x) - f(\lambda) = \sum_{j = 1} ^n a_j (x^j - \lambda^j) = (x - \lambda) \cdot \sum_{j = 1} ^n a_j \sum_{k = 0} ^{j -1} x^k \lambda^{j - 1 - k}.$$
   From there we get 
-  $$f(a) - f(\lambda) = (a - \lambda) \sum_{j = 1} ^n a_j \sum_{k = 0} ^{j - 1} a^k \lambda^{j - 1 - k}.$$
-  Since $a - \lambda$ commutes with $\sum_{j = 1} ^n a_j \sum_{k = 0} ^{j - 1} a^k \lambda^{j - 1 - k}$, $f(a) - f(\lambda)$
-  is not invertible and therefore $f(\lambda) \in \sigma_A (f(a))$.
-  Conversely, if $\mu \notin f(\sigma_A (a))$, we factor 
+  $$f(a) - f(\lambda) = (a - \lambda) \left(\sum_{j = 1} ^n a_j \sum_{k = 0} ^{j - 1} a^k \lambda^{j - 1 - k} \right).$$
+  Since $a - \lambda$ commutes with the second factor, $f(a) - f(\lambda)$
+  is not invertible and $f(\lambda) \in \sigma_A (f(a))$.
+  Now for the other inclusion $(\supseteq)$:
+  if $\mu \notin f(\sigma_A (a))$, we factor 
   $$f(x) - \mu = a_n (x - \lambda_1) \cdots (x - \lambda_n).$$
   Since $f(\lambda) - \mu \neq 0$ for any possible $\lambda \in \sigma_A (a)$, we have $\lambda_i \notin \sigma_A (a)$ for every index $i$.
   So we have $f(a) - \mu \in GL(A)$.
@@ -1116,6 +1113,8 @@ The $C^*$-algebras considered here are, for the most part, unital.
 \begin{remark}
   It is trivial to see that $r(xy) = r(yx)$.
 \end{remark}
+
+In UFA course, we proved the following.
 
 \begin{theorem}[Spectral radius formula]
   Let $A$ be a Banach algebra and $x \in A$. Then $\lim_{n \to \infty} \|x^n\|^{\frac{1}{n}}$ exists 
@@ -1136,7 +1135,7 @@ The $C^*$-algebras considered here are, for the most part, unital.
   $$a = \frac{a + a^*}{2} + \frac{a - a^*}{2}.$$
   Alternatively, we can uniquely write it in the form 
   $$\left(\frac{a + a^*}{2} \right) + i \cdot \left(\frac{a - a^*}{2i}\right)$$
-  where both terms in parenthesis are self-adjoint.
+  where both terms in parentheses are self-adjoint.
 \end{remark}
 
 \begin{corollary}
@@ -1181,12 +1180,10 @@ The $C^*$-algebras considered here are, for the most part, unital.
   so $\Phi (GL (A)) \subseteq GL (B)$. This implies $\sigma_B (\Phi(x)) \subseteq \sigma_A (x)$,
   hence $r(\Phi(x)) \leq r(x)$. Then 
   \begin{align*}
-    \| \Phi(x)\|^2 &= \| \Phi(x) \Phi(x)^*\|\\
-    &= \| \Phi(x) \Phi(x^*)\|\\
-    &= \|\Phi(x x^*)\|
+    \| \Phi(x)\|^2 &= \| \Phi(x) \Phi(x)^*\| = \| \Phi(x) \Phi(x^*)\|\\
+    &= \|\Phi(x x^*)\| = r(\Phi(x x^*))\\
+    &\leq r(x x^*) = \| x x^*\| = \|x\|^2.
   \end{align*}
-  and using the previous proposition, we get 
-  $$r(\Phi(x x^*)) \leq r(x x^*) = \| x x^*\| = \|x\|^2.$$
   If $\Phi$ is a $*$-isomorphism, we apply the same logic to its inverse, so it has to be an isometry.
 \end{myproof}
 
@@ -1210,14 +1207,11 @@ The $C^*$-algebras considered here are, for the most part, unital.
   Define $y = x - \alpha + it$ for $t \in \R$. Then $i(\beta + t) \in \sigma_A (y)$ and $y$ is normal.
   Hence 
   \begin{align*}
-    |i(\beta + t)|^2 &= (\beta + t)^2\\
-    &\leq r(y)\\
-    &= \|y\|^2\\
-    &= \|yy^*\|\\
-    &= \| (x - \alpha)^2 + t^2\|\\
-    &\leq \|x - \alpha\|^2 + t^2.
+    |i(\beta + t)|^2 &= (\beta + t)^2 \leq r(y)\\
+    &= \|y\|^2 = \|yy^*\|\\
+    &= \| (x - \alpha)^2 + t^2\| \leq \|x - \alpha\|^2 + t^2.
   \end{align*}
-  We have $\beta^2 + 2 \beta t \leq \| x - \alpha\|^2$ and since $t \in \R$ was arbitrary, we have $\beta = 0$.
+  Simplifying, we get $\beta^2 + 2 \beta t \leq \| x - \alpha\|^2$ and since $t \in \R$ was arbitrary, we have $\beta = 0$.
 \end{myproof}
 
 \begin{lemma}
@@ -1266,7 +1260,7 @@ The $C^*$-algebras considered here are, for the most part, unital.
 
 \begin{example}
   Let $(X, \mu)$ be a measure space.
-  Then $L^\infty (X, \mu)$, a set of essentially bounded functions endowed with the essential supremum, is a unital $C^*$-algebra.
+  Then $L^\infty (X, \mu)$, a set of essentially bounded functions endowed with the essential supremum, is a unital abelian $C^*$-algebra.
 \end{example}
 
 \begin{example}
@@ -1280,7 +1274,30 @@ The $C^*$-algebras considered here are, for the most part, unital.
   We can then introduce the convolution multiplication on $\ell^1 \Gamma$:
   $$(\alpha * \beta)_s = \sum_{t \in \Gamma} \alpha_{st} \beta_{t^{-1}}.$$
   This is a Banach algebra; it is even a Banach $*$-algebra with involution 
-  $(\alpha^*)_s = \overline{\alpha_{s^{-1}}}$. However, it is not a $ C*$-algebra.
+  $(\alpha^*)_s = \overline{\alpha_{s^{-1}}}$. However, it is not a $ C^*$-algebra if the group $\Gamma$ has more than one element. 
+  In that case, there exists $z \in \Gamma$ such that $z \neq 1$. Define $\alpha = (\alpha_s) \in \ell^1 (G)$ such that
+  $$\alpha_s = \begin{cases}
+    1; & s = 1\\
+    i; & s = z, z^{-1}\\
+    0; &  \textrm{otherwise}
+  \end{cases}.$$
+  If $z \neq z^{-1}$, we have
+  \begin{align*}
+    \|\alpha \alpha^*\| &= \sum_{s \in \Gamma} \left| \sum_{t \in \Gamma} \alpha_{st} \overline{\alpha_{t}} \right|\\
+    &= \sum_{s \in \Gamma} (3 \cdot \mathbf{1}_{s = 1} + \mathbf{1}_{s = z^2} + \mathbf{1}_{s = z^{-2}})\\
+    &< \sum_{s \in \Gamma} (3 \cdot \mathbf{1}_{s = 1} + 2\cdot \mathbf{1}_{s = z} + 2\cdot \mathbf{1}_{s = z^{-1}} + \mathbf{1}_{s = z^2} + \mathbf{1}_{s = z^{-2}})\\
+    &= \sum_{s \in \Gamma} \sum_{t \in \Gamma} \left| \alpha_{st} {\alpha_{t}} \right| = \sum_{t \in \Gamma}|{\alpha_{t}}| \cdot \sum_{s \in \Gamma}  \left| \alpha_{st}  \right|\\
+    &= \sum_{t \in \Gamma} \left|  {\alpha_{t}} \right| \cdot \sum_{s \in \Gamma} |\alpha_{s}| = \| \alpha\|^2.
+  \end{align*}
+  Otherwise, we get 
+  \begin{align*}
+    \|\alpha \alpha^*\| &= \sum_{s \in \Gamma} \left| \sum_{t \in \Gamma} \alpha_{st} \overline{\alpha_{t}} \right|\\
+    &= \sum_{s \in \Gamma} (2 \cdot \mathbf{1}_{s = 1})\\
+    &< \sum_{s \in \Gamma} (2 \cdot \mathbf{1}_{s = 1} + 2\cdot \mathbf{1}_{s = z} )\\
+    &= \sum_{s \in \Gamma} \sum_{t \in \Gamma} \left| \alpha_{st} {\alpha_{t}} \right| = \sum_{t \in \Gamma}|{\alpha_{t}}| \cdot \sum_{s \in \Gamma}  \left| \alpha_{st}  \right|\\
+    &= \sum_{t \in \Gamma} \left|  {\alpha_{t}} \right| \cdot \sum_{s \in \Gamma} |\alpha_{s}| = \| \alpha\|^2.
+  \end{align*}
+  So $\ell^1 (G)$ is not a $C^*$-algebra if $G$ has order greater than one.
 \end{example}
 
 \subsection{Gelfand transform}
@@ -1319,7 +1336,7 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, so $\sigma(A)$ is a compact Ha
     \item Let $a = a_1 + i a_2$, where $a_1, a_2$ are self-adjoint. Then $a^* = a_1 - i a_2$ and 
     $$h(a^*) = h(a_1 - i a_2) = h(a_1) - i h(a_2) = \overline{h(a_1) + i h(a_2)} = \overline{h(a)}.$$
     \item Follows from (b).
-    \item If $u$ is unitary, then $|h(u)|^2 = h(u) h(u^*) = h(u u^*) = h(1) = 1$.
+    \item If $u$ is unitary, then $|h(u)|^2 = h(u) h(u^*) = h(u u^*) = h(1) = 1$. \qedhere
   \end{enumerate}
 \end{myproof}
 
@@ -1415,7 +1432,7 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, so $\sigma(A)$ is a compact Ha
 \end{definition}
 
 \begin{theorem}
-  Let $A$ be an abelian algebra. Then $\Gamma$ is a homomorphism, contraction and for 
+  Let $A$ be an abelian Banach algebra. Then $\Gamma$ is a homomorphism, contraction and for 
   $x \in A$ we have $$\Gamma(x) \in GL(C(\sigma (A))) \Leftrightarrow x \in GL(A).$$
 \end{theorem}
 
@@ -1424,7 +1441,7 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, so $\sigma(A)$ is a compact Ha
   \begin{align*}
     \| \Gamma(x)\| = \sup_{\varphi \in \sigma (A)} \| \Gamma(x) \varphi\| = \sup_{\varphi} |\varphi(x)| \leq \|x\|.
   \end{align*}
-  We proceed onto the equivalence. The right implication $(\Rightarrow)$ is trivial, since 
+  Next, we prove the equivalence. The right implication $(\Rightarrow)$ is trivial, since 
   $$\Gamma(x^{-1}) \Gamma(x) = \Gamma(x^{-1} x) = \Gamma(1) = 1.$$
   Now the converse $(\Leftarrow)$: if $x \notin GL(A)$,
   then by the lemma $\exists \varphi \in \sigma(A)$, $\varphi(x) = 0$.
@@ -1456,7 +1473,8 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, so $\sigma(A)$ is a compact Ha
 \end{myproof}
 
 \begin{remark}
-  If $A$ is a $C^*$-algebra and $x \in A$ is normal, then the $C^*$-algebra generated by $x$, $C^*(x)$, is an abelian $C^*$-algebra.
+  Let $A$ be a $C^*$-algebra. If $x \in A$ is normal, then it generates an abelian $C^*$-algebra
+  $$C^* (x) = \overline{\{p(x, x^*)\ |\ p \in \C[x, y]\}}.$$
 \end{remark}
 
 \begin{corollary}
@@ -1488,8 +1506,7 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, so $\sigma(A)$ is a compact Ha
 
 If $\tau$ is defined as in the previous proof, then $$\tau^{\#}: C(\sigma(x)) \to C(\sigma(A)),\quad f \mapsto f \circ \tau$$
 is a $*$-isomorphism and an isometry. We know that $A = C^*(x)$ is closure of $\{p(x, x^*)\ |\ \textrm{$p (z, \overline{z})$ polynomial}\}$
-and $\Gamma (p(x, x^*)) = \tau^{\#} (p)$. We define a map $\rho: C(\sigma(x)) \to C^*(x)$
-so that the following diagram commutes:
+and $\Gamma (p(x, x^*)) = \tau^{\#} (p)$. Define a map $\rho = \Gamma^{-1} \circ \tau^{\#}: C(\sigma(x)) \to C^*(x)$.
 \[\begin{tikzcd}
 	{C^*(x)} && {C(\sigma(A))} \\
 	& {C(\sigma(x))}
@@ -1497,6 +1514,7 @@ so that the following diagram commutes:
 	\arrow["\rho", from=2-2, to=1-1]
 	\arrow["\Gamma", from=1-1, to=1-3]
 \end{tikzcd}\]
+This map is called the continuous functional calculus.
 
 \subsection{Continuous functional theorem}
 
@@ -1514,9 +1532,9 @@ $\rho: C(\sigma(x)) \to C^*(x) \subseteq A$ and use the notation $f(x) := \rho(f
     In particular, if $f = z$ is the identity polynomial, then $f(x) = x$.
     \item For $f \in C(\sigma(x))$, then $\sigma(f(x)) = f(\sigma(x))$.
     \item If $\Phi: A \to B$ is a *-homomorphism, then $\Phi(f(x)) = f(\Phi(x))$.
-    \item If $(x_n)_n$ is a sequence of normal elements of $A$ such that $\|x_n - x\| \to 0$
-    and $\Omega$ is a compact neighborhood of $\sigma(x)$, $f \in C(\Omega)$, then for a 
-    large enough $n$, $\sigma(x_n) \subseteq \Omega$ and $\|f(x_n) - f(x)\| \to 0$.
+    \item Let $(x_n)_n$ be a sequence of normal elements of $A$ that converge to $x$,
+    $\Omega$ a compact neighborhood of $\sigma(x)$ and $f \in C(\Omega)$. Then for a 
+    large enough $n$, we have $\sigma(x_n) \subseteq \Omega$ and $\|f(x_n) - f(x)\| \to 0$.
   \end{enumerate}
 \end{theorem}
 
