@@ -1,0 +1,762 @@
+\section{Bounded operators on Hilbert spaces}
+
+Let $\mathcal{H}$ be a complex Hilbert space. Then $\bh$
+is a $\C$-algebra with norm $\|A\| = \sup_{\mu \in \mathcal{H}, \|\mu\| = 1} \|A\mu\|$.
+
+\begin{remark}
+  Recall that $A \in \bh$ is:
+  \begin{enumerate}
+    \item normal $\Leftrightarrow A^* A = A A^* \Leftrightarrow \|A\mu\| = \|A^* \mu\|,\ \forall \mu \in \mathcal{H}$
+    \item self-adjoint $\Leftrightarrow A^* = A \Leftrightarrow \langle A\mu, \mu\rangle \in \R,\ \forall \mu \in \mathcal{H}$
+    \item positive $\Leftrightarrow \textrm{$A = B^* B$ for some $B \in \mathcal{B}(\mathcal{H})$} \Leftrightarrow \langle A\mu, \mu\rangle \geq 0,\ \forall \mu \in \mathcal{H}$
+    \item isometry $\Leftrightarrow A^* A = I \Leftrightarrow \| A\mu \| = \| \mu\|,\ \forall \| \in \mathcal{H}$
+    \item projection $\Leftrightarrow A^2 = A = A^* \Leftrightarrow \textrm{$A$ is an orthogonal projection onto some closed subspace of $\mathcal{H}$}$
+  \end{enumerate}
+\end{remark}
+
+\begin{lemma}
+  An operator $A \in \bh$ is a partial isometry iff there exists a closed subspace $\mathcal{K} \leq \mathcal{H}$
+  such that $A\big|_{\mathcal{K}}$ is an isometry and $A\big|_{\mathcal{K}^\perp} = 0$.
+\end{lemma}
+
+\begin{myproof}
+  We first prove $(\Leftarrow)$. Obviously, $\mathcal{K}^\perp \subseteq \ker A$.
+  From $Ax = 0$, where $x = y + z$ and $y \in \mathcal{K}, z \in \mathcal{K}^\perp$, we have 
+  $$0 = Ax = A(y + z) = Ay + Az = Ay.$$
+  But since $A\big|_{\mathcal{K}}$ is an isometry, $\| Ay\| = \|y\| = 0$, so $y = 0$ and $x \in \mathcal{K}^\perp$.
+  Now we prove that $P = A^* A$ is a standard projection onto $\mathcal{K}$.
+  For $x \in \mathcal{K}$, we have
+  $$\langle Px, x \rangle = \langle A^* A x, x\rangle = \langle Ax, Ax\rangle = \|Ax\|^2 = \|x\|^2,$$
+  so $$\|P\|  = \|A^* A\| \leq \|A\| \|A^*\| = \|A\|^2 = 1.$$
+  From Cauchy-Schwartz:
+  $$\langle Px, x\rangle \leq \|Px\| \|x\| \leq \|P\| \|x\|^2 \leq \|x\|^2.$$
+  Since we have equality in Cauchy-Schwartz, there exists a $\lambda \in \C$ such that $Px = \lambda x$.
+  But from $\langle Px, x\rangle = \|x\|^2$, it follows that $\lambda = 1$. So $P\big|_{\mathcal{K}} = \id$
+  and for $x \in \mathcal{K}^\perp$, $Px = A^* Ax = 0$. Therefore, $P = A^* A$ is indeed a projection.
+  Now onto the opposite direction $(\Rightarrow)$. Suppose $P = A^* A$ is a projection
+  and denote $\mathcal{K} = \im P$. Since $\mathcal{K} = \ker (I - P)$, it is a closed subspace of $\mathcal{H}$.
+  For $x \in \mathcal{K}$, we have 
+  $$\| Ax\|^2 = \langle Ax , Ax\rangle = \langle Px, x\rangle = \langle x, x\rangle = \|x\|^2.$$
+  But for $x \in \mathcal{K}^\perp$, we use the identity 
+  $$(\im P)^\perp = \ker P^* = \ker P$$
+  to get $Px = 0$, so $\| A x\|^2 = \langle Px, x\rangle = 0$ and $\| Ax\| = 0$.
+\end{myproof}
+
+\begin{theorem}
+  Let $\mathcal{H}$ be a Hilbert space and $x \in \bh$.
+  Then there exists a partial isometry $v$ such that $x = v \cdot |x|$ and 
+  $\ker v = \ker |x| = \ker x$. This decomposition is unique if $x = wy$
+  for $y \geq 0$ and partial isometry $w$ such that $\ker y = \ker w$. Then $w = v$ and $y = |x|$. 
+\end{theorem}
+
+\begin{myproof}
+  First we prove the existence. Define $$v_x : \im |x| \to \im x,\quad |x|y \mapsto xy.$$
+  Since \begin{align*}
+    \| |x| y\|^2 &= \langle |x|y, |x|y \rangle \\
+    &= \langle |x|^2 y, y\rangle\\
+    &= \langle x^* x y, y\rangle\\
+    &= \langle xy, xy\rangle\\
+    &= \| xy\|^2.
+  \end{align*}
+  The above $v_x$ is well defined. It is also linear and isometric.
+  By continuity, extend $v_x$ to a map $\overline{\im |x|} \to \overline{\im x}$.
+  Now $v_0$ can be extended to $v: \mathcal{H} \to \mathcal{H}$ by setting 
+  $v\big|_{(\im |x|)^\perp} = 0.$ By previous lemma, $v$ is a partial isometry.
+  By definition, $x = v \cdot |x|$ and $\ker v = (\im |x|)^\perp = \ker |x| = \ker x$.
+  Next, we prove uniqueness. If $x = wy$ as in the statement, then $\ker w = \ker y = (\im y)^\perp$,
+  so $w$ is a partial isometry on $\overline{\im y}$. From there, we get 
+  $$|x|^2 = (wy)^* (wy) = y^* w^* w y = y^* y = y^2,$$
+  which implies 
+  $$|x| = (|x|^2)^{\frac{1}{2}} = (y^2)^{\frac{1}{2}} = y.$$
+  Now $$w|x| \mu = wy \mu = x\mu$$
+  together with 
+  $$\ker w = (\im y)^\perp = (\im |x|)^\perp$$ implies $w = v$.
+\end{myproof}
+
+\subsection{Trace class operators}
+
+Recall that $A \in \bh$ has finite rank if $\rank A = \dim \overline{\im A} < \infty$.
+We know that 
+$$\im A^* = \im (A^* |_{(\ker A^*)^\perp}) = \im (A^* \big|_{\overline{\im A}}).$$
+So $\rank A < \infty$ iff $\rank A^* < \infty$. Define a set
+$$\mathcal{F} (\mathcal{H}) = \{A \in \bh\ |\ \rank A < \infty\}$$
+of finite rank operators. Now if $\alpha, \beta \in \mathcal{H}$, then we can define 
+$$\alpha \otimes \overline{\beta} : \mathcal{H} \to \mathcal{H},\quad y \mapsto \langle y, \beta \rangle \cdot \alpha.$$
+It is trivial to see that $\rank (\alpha \otimes \overline{\beta}) \leq 1$ and $(\alpha \otimes \overline{\beta})^* = \beta \otimes \overline{\alpha}$.
+If $\| \alpha\| = \| \beta \| = 1$, then $\alpha \otimes \overline{\beta}$
+is a partial isometry with initial space $\C \beta$ and image $\C \alpha$.
+Then $$\mathcal{F} (\mathcal{H}) = \mathrm{span}\ \{\alpha \otimes \overline{\beta}\ |\ \alpha, \beta \in \mathcal{H}\}.$$
+For $x, y \in \bh$ we have $$x (\alpha \otimes \overline{\beta}) y = (x \alpha) \otimes \overline{(y^* \beta)}.$$  
+
+\begin{lemma}
+  Let $x \in \bh$ have the polar decomposition $x = v \cdot |x|$.
+  Then for all $y \in \mathcal{H}$, we have 
+  $$2 \left| \langle xy , y \rangle \right| \leq \langle |x| y, y\rangle + \langle |x|v^* y, v^* y \rangle.$$
+\end{lemma}
+
+\begin{myproof}
+  Let $\lambda \in \mathbb{T}$. Then 
+  \begin{align*}
+    0 &\leq \|(|x|^{\frac{1}{2}} - \lambda |x|^{\frac{1}{2}} v^*) y\|^2\\
+    &= \| |x|^{\frac{1}{2}} y\|^2 - 2 \real \overline{\lambda} \langle |x|^{\frac{1}{2}} y, |x|^{\frac{1}{2}} v^* y\rangle + \||x|^{\frac{1}{2}} v^* y\|^2.
+  \end{align*}
+  Now pick $\lambda$ such that $\overline{\lambda} \langle |x|^{\frac{1}{2}} y, |x|^{\frac{1}{2}} v^* y \rangle \geq 0$ and we are done.
+\end{myproof}
+
+\begin{definition}
+  Let $(e_i)_{i \in I}$ be an orthonormal system for $\mathcal{H}$. For $x \in \mathcal{B}(\mathcal{H})_+$,
+  define the trace 
+  $$\trace (x) = \sum_{i \in I} \langle x e_i, e_i \rangle \in [0, \infty].$$
+  We call $x \in \mathcal{B}(\mathcal{H})$ trace class if 
+  $$\| x\| = \trace (|x|) < \infty.$$
+  The set of trace class operators on $\mathcal{H}$ will be denoted by $L^1 (\bh, \trace)$.
+\end{definition}
+
+\begin{remark}
+  By $\sum_{i \in I} \langle x e_i, e_i \rangle$, we mean the limit of the net $a_F = \sum_{i \in F} \langle x e_i, e_i\rangle$, where $F \subseteq I$ is a finite subset.
+  Indeed, one can check that finite subsets $F \subseteq I$ together with the inclusion relation form a directed set. Furthermore, the above net is monotone,
+  therefore it either converges (if it is above bounded) or it goes to infinity. Therefore, it has a generalized limit. If the sum converges, then $\langle x e_i, e_i\rangle$ is non-zero for at most countable many $e_i$
+  and our definition of the sum coincides with the usual sum of the series.
+\end{remark}
+
+\begin{lemma}
+  For all $x \in \mathcal{B}(\mathcal{H})$ we have $\trace (x^* x) = \trace(x x^*)$.
+\end{lemma}
+
+\begin{myproof}
+  \begin{align*}
+    \trace (x^* x) &= \sum_i \langle x^* x e_i , e_i\rangle = \sum_i \langle x e_i, x e_i \rangle\\
+    &= \sum_i \| x e_i\|^2 = \sum_i \sum_j \langle x e_i, e_j \rangle \overline{\langle x e_i, e_j \rangle}\\
+    &= \sum_j \sum_i \langle e_i, x^* e_j \rangle \overline{\langle e_i, x^* e_j \rangle} = \sum_j \sum_i \langle x^* e_j, e_i\rangle \overline{\langle x^* e_j , e_i\rangle}\\
+    &= \sum_j \| x^* e_j \|^2 = \sum_j \langle x^* e_j, x^* e_j\rangle\\
+    &= \sum_j \langle x x^* e_j, e_j \rangle = \trace(x x^*) \qedhere
+  \end{align*}
+\end{myproof}
+
+\begin{corollary}
+  If $x \in \bh_+$ and $u \in \mathcal{U} (\mathcal{H})$, then 
+  $$\trace (u^* x u) = \trace (x).$$
+  In particular, the trace of a positive operator is independent of the choice of the 
+  orthonormal basis for $\mathcal{H}$.
+\end{corollary}
+
+\begin{myproof}
+  Since $x \in \bh_+$, there exists a $y \in \bh$
+  such that $x = y^* y$. By lemma, we have 
+  \begin{align*}
+    \trace (x) &= \trace (y^* y) = \trace (y y^*)\\
+    &= \trace (u^* y^* y u) = \trace (u^* x u).
+  \end{align*}
+  If $(f_i)$ is another ONB for $\mathcal{H}$, then there exists $u \in \mathcal{U}(\mathcal{H})$ such that $u e_i = f_i$ for all indices $i$:
+  \begin{align*}
+    \sum_i \langle x f_i, f_i \rangle &= \sum_i \langle x u e_i, u e_i\rangle\\
+    &= \sum_i \langle u^* x u e_i, e_i \rangle\\
+    &= \trace (u^* x u) = \trace (x). \qedhere
+  \end{align*}
+\end{myproof}
+
+\begin{definition}
+  If $(e_i)$ is ONB for $\mathcal{H}$ and $x \in L^1 (\bh)$, then its trace is 
+  $$\trace(x) := \sum_{i \in I} \langle x e_i, e_i \rangle.$$
+\end{definition}
+
+By one of the lemmas above, this series is absolutely convergent:
+\begin{align*}
+  2 | \trace(x) | \leq \trace (|x|) + \trace (v |x| v^*) \leq \|x\|_1 + \|x\|_1 = 2\| x\|_1.
+\end{align*}
+This is the result of the following proof.
+
+\begin{theorem}
+  \begin{enumerate}
+    \item $L^1 (\bh)$ is a two-sided ideal in $\mathcal{B}(\mathcal{H})$
+    that is closed under involution. 
+    \item $L^1 (\bh)$ is a linear span of all positive operators of finite trace.
+    \item Trace is independent of the ONB and $\| \cdot \|_1$ is a norm on $L^1 (\bh)$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{myproof}
+  Let $A, B \in L^1 (\bh)$ and satisfy the polar decompositions:
+  $$A + B = U |A + B|,\quad A = V |A|,\quad B = W |B|.$$
+  Let $(e_i)$ be an ONB. Then 
+  \begin{align*}
+    \sum_{i = 1} ^N \langle |A + B| e_i, e_i \rangle &= \sum_{n = 1} ^N |\langle U^* (A + B) e_n, e_n\rangle|\\
+    &\leq \sum_{n = 1} ^N |\langle U^* A e_n, e_n \rangle| + \sum_{n = 1} ^N |\langle U^* B e_n, e_n \rangle| \\
+    &= \sum_{n = 1} ^N |\langle U^* V |A| e_n, e_n \rangle| + \sum_{n = 1} ^N |\langle U^*W |B| e_n, e_n \rangle|.
+  \end{align*}
+  We can bound the first term:
+  \begin{align*}
+    \sum_{n = 1} ^N |\langle U^* V |A| e_n, e_n \rangle| &= \sum_{n = 1} ^N |\langle |A|^{\frac{1}{2}} e_n, |A|^{\frac{1}{2}} V^* U e_n \rangle|\\
+    &\leq \sum_{n = 1} ^N \||A|^{\frac{1}{2}} e_n\| \||A|^{\frac{1}{2}} V^* U e_n\|\\
+    &\leq \left(\sum_{n = 1} ^N \||A|^{\frac{1}{2}} e_n\|^2 \right)^{\frac{1}{2}} \left(\sum_{n = 1} ^N \||A|^{\frac{1}{2}} V^* U e_n\|^2\right)^{\frac{1}{2}}.
+  \end{align*}
+  Since $\| |A|^{\frac{1}{2}} e_n \|^2 = \langle |A|^{\frac{1}{2}} e_n, |A|^{\frac{1}{2}} e_n \rangle = \langle |A| e_n, e_n\rangle$, the expression in the first bracket goes to $\trace |A|$.
+  Next, we prove that the expression in the second bracket is less or equal to $\trace |A|$:
+  $$\sum_{n = 1} ^N \langle |A|^{\frac{1}{2}} V^* U e_n, |A|^{\frac{1}{2}} V^* U e_n \rangle = \sum_{n = 1} ^N \langle U^* V |A| V^* U e_n, e_n \rangle \xrightarrow{N \to \infty} \trace |A|.$$
+  Pick an ONB for $\mathcal{H}$ as follows: each $f_j$ should be in $\ker U$ or $(\ker U)^\perp$.
+  Then $$\trace (U^* V |A| V^* U) \leq \trace (V |A| V^*).$$
+  By similar argument, 
+  $$\trace (V |A| V^*) \leq \trace(|A|)$$
+  and we are done:
+  $$\sum_{n = 1} ^N |\langle U^* V |A| e_n, e_n \rangle| \leq \trace |A|.$$
+  Similarly, 
+  $$\sum_{n = 1} ^N |\langle U^* W |B| e_n, e_n \rangle| \leq \trace |B|,$$
+  which implies 
+  $\trace |A + B| \leq \trace |A| + \trace |B|$.
+  We have proved that $L^1 (\bh)$ is a vector space and $\| \cdot \|_1$ is a norm.
+  Clearly, $L^1 (\bh)$ contains all positive operators with finite trace,
+  so also their linear span. Next we prove that it is a two-sided ideal of $\bh$.
+  Let $A \in L^1 (\bh)$ and $B \in \bh$.
+  Since every operator is a linear combination of four unitaries, we can assume WLOG that $B = U$ is a unitary.
+  Then 
+  $$|UA| = (A^* U^* U A)^{\frac{1}{2}} = (A^* A)^{\frac{1}{2}} = |A|,$$
+  so $BA = UA \in L^1 (\bh)$. Furthermore,
+  $$|AU| = (U^* A^* A U)^{\frac{1}{2}} = U^* |A| U,$$
+  which implies 
+  $$\trace |AU| = \trace (U^* |A| U) = \trace |A|$$
+  and $AB = AU \in L^1 (\bh)$.
+  Now we prove that $L^1 (\bh)$ is closed under involution.
+  Let $A = U |A|$ and $A^* = V |A^*|$ be polar decompositions. Then 
+  $$|A^*| = V^* A^* = V^* (U |A|)^* = V^* |A| U^*.$$
+  If $A \in L^1 (\bh)$, then $|A| \in L^1 (\bh)$, so 
+  $$|A^*| = V^* |A| U^* \in L^1 (\bh).$$ This gives us $A^* \in L^1 (\bh)$.
+  Finally, we prove that $L^1 (\bh)$ is a linear span of all positive operators of finite trace.
+  Let $x \in L^1 (\bh)$ and $a \in \bh$. The following glorization identity holds:
+  $$4 a |x| = \sum_{k = 0} ^3 i^k \underbrace{(a + i^k) |x| (a + i^k)^*}_{\textrm{positive and finite trace}}.$$
+  If $a = v$ partial isometry from the polar decomposition theorem, then 
+  $$x = v |x| = \sum_{k = 0} ^3 \frac{i^k}{4} {(v + i^k) |x| (v + i^k)^*}.$$
+  is a linear combination of four positive operators with finite trace.
+\end{myproof}
+
+As an obvious corollary, the definition of trace is independent of the choice of an ONB of $\mathcal{H}$.
+
+
+\begin{proposition}
+  Let $x \in L^1 (\bh)$ and $a, b \in \bh$. Then 
+  \begin{itemize}
+    \item $\| x\| \leq \|x\|_1$;
+    \item $\| axb\|_1 \leq \| a\| \|b\| \|x\|_1$;
+    \item $\trace (ax) = \trace (xa)$.
+  \end{itemize}
+\end{proposition}
+
+\begin{myproof}
+  \begin{enumerate}
+    \item
+    \begin{align*}
+      \| x\| &= \| |x|\| = \| |x|^{\frac{1}{2}} \|^2\\
+      &= \sup _{\| \alpha\| = 1} \langle |x|^{\frac{1}{2}} \alpha, |x|^{\frac{1}{2}} \alpha \rangle = \sup_{\| \alpha \| = 1} \langle |x| \alpha, \alpha \rangle \\
+      &\leq \trace |x| = \| x\|_1.
+    \end{align*}
+    \item We begin with 
+    \begin{equation*}
+      | a x |^2 = x^* a ^* a  x \leq \| a ^* a \| x^* x = \| a^* a\|\cdot |x|^2 = \|a\|^2\cdot |x|^2
+    \end{equation*}
+    and since $|ax| \leq \| a\| \cdot |x|$ we get $\| ax\|_1 \leq \|a\| \cdot \|x\|_1$.
+    But $\|x\|_1 = \|x^*\|_1$, we also get $\| xb\|_1 \leq \|b\| \cdot \|x\|_1$.
+    \item WLOG $a = u \in \mathcal{U} (\mathcal{H})$. Then 
+    \begin{align*}
+      \trace (xu) &= \sum_i \langle x u e_i, e_i \rangle = \sum_i \langle x u e_i, u^* u e_i\rangle\\
+      &= \sum_i \langle ux ue_i, u e_i \rangle = \trace (ux). \qedhere
+    \end{align*}
+  \end{enumerate}
+\end{myproof}
+
+\begin{remark}
+  We have the following identities:
+  \begin{enumerate}
+    \item $\trace (\alpha \otimes \overline{\beta}) = \langle \alpha, \beta \rangle$;
+    \item $\mathcal{F} (\mathcal{H})$ is dense in $(L^1 (\bh), \| \cdot \|_1)$.
+    Of course, we know that $\mathcal{F} (\mathcal{H})$ is dense in $(\mathcal{K} (\mathcal{H}), \| \cdot \|)$.
+  \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+  $(L^1 (\bh), \| \cdot \|_1)$ is a Banach space.
+\end{theorem}
+
+\begin{myproof}
+  We only have to prove completeness. Let $(x_n)_n$ be a Cauchy sequence in $(L^1 (\bh), \| \|_1)$.
+  Since $\| \cdot\| \leq \| \cdot \|_1$, $(x_n)$ is a Cauchy sequence in $(\mathcal{B}(\mathcal{H}), \| \|)$.
+  But $(\mathcal{B}(\mathcal{H}), \| \|)$ is a Banach space, so there exists $x \in \bh$ such that $x_n \to x$ in $\| \|$-topology.
+  Notice that 
+  $$x^* x - x_n^* x_n = x^* (x - x_n) + (x - x_n)^* x_n.$$
+  By continuity of continuous functional calculus, this implies $|x_n| \to |x|$, meaning $\| |x_n| - |x| \| \to 0$.
+  Next we prove that $x \in L^1 (\bh)$. For any ONB $(e_i)_i$, we have 
+  $$\sum_{i = 1} ^k \langle |x| e_i, e_i \rangle = \lim_{n \to \infty} \sum_{i = 1} ^k \langle |x_n| e_i, e_i \rangle \leq \lim_{n \to \infty} \trace |x_n| = \lim_{n \to \infty} \|x_n\|_1 < \infty.$$
+  Here, we used the fact that $\| x_n - x_k \|_1 \geq \| x_n \|_1 - \|x_k\|_1$, so the sequence $(\| x_n\|_1)_n$ is Cauchy and therefore has a limit.
+  This proves that $x \in L^1 (\bh)$ and $\| x\|_1 \leq \lim_{n \to \infty} \| x_n\|_1$.
+  Finally, we have to show that $\| x_n - x\|_1 \to 0$. Let $\varepsilon > 0$. Pick $N \in \N$ such that for every $n > N$, we get $\| x_n - x_N \|_1 < \frac{\varepsilon}{3}$.
+  Let $\mathcal{H}_0 \subseteq \mathcal{H}$ be a finite dimensional subspace such that 
+  $$\| x_N P_{\mathcal{H}_0 ^\perp} \|_1,\ \| x P_{\mathcal{H}_0 ^\perp} \|_1 < \frac{\varepsilon}{3}.$$
+  Then for every $n > N$, we have 
+  \begin{align*}
+    \| x - x_n \|_1 &\leq \| (x - x_n) P_{\mathcal{H}_0} \|_1 + \| (x - x_n) P_{\mathcal{H}_0 ^\perp} \|_1\\
+    &\leq \| (x - x_n) P_{\mathcal{H}_0} \|_1 + \| x P_{\mathcal{H}_0 ^\perp} - x_N P_{\mathcal{H}_0 ^\perp}\|_1 + \| x_N P_{\mathcal{H}_0 ^\perp} - x_n P_{\mathcal{H}_0 ^\perp}\|_1\\
+    &\leq \| (x - x_n) P_{\mathcal{H}_0 }\|_1 + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \|x_N - x_n\|_1 \| P_{\mathcal{H}_0 ^\perp}\|\\
+    &= \| (x - x_n) P_{\mathcal{H}_0 }\|_1 + \varepsilon\\
+    &\leq \| (x - x_n) \|  \| P_{\mathcal{H}_0 }\|_1 + \varepsilon \xrightarrow[n \to \infty]{} \varepsilon.
+  \end{align*}
+  Since $\varepsilon > 0$ was arbitrary, this shows $x_n \xrightarrow[\| \cdot \|_1]{} x$.
+\end{myproof}
+
+\begin{theorem}
+  The map 
+  $$\Psi: \bh  \to L^1 (\bh)^*,\quad a \mapsto (\psi_a: x \mapsto \trace (ax))$$
+  is an isometric isomorphism of Banach spaces.
+\end{theorem}
+
+\begin{corollary}
+  The map $$\Phi: L^1 (\bh) \to \mathcal{K} (\mathcal{H})^*, \quad x \mapsto (\varphi_x: a \mapsto \trace (ax))$$
+  is an isometric isomorphism of Banach spaces.
+\end{corollary}
+
+\begin{myproof}[Proof of the theorem]
+  We notice that $\Psi$ is linear and a contraction because the norms $\|\cdot \|$
+  and $\| \cdot \|_1$ are comparable. We will first show that $\Psi$ is surjective.
+  Let $\varphi \in L^1 (\bh)^*$. Notice that 
+  $$(\alpha, \beta) \mapsto \varphi(\alpha \otimes \overline{\beta})$$
+  is a bounded sesquilinear form in $\mathcal{H}$. By the introductory course, there exists 
+  an $a \in \bh$ such that 
+  $$\varphi(\alpha \otimes \overline{\beta}) = \langle a \alpha, \beta \rangle = \trace (a\alpha \otimes \overline{\beta}) = \trace (a(\alpha \otimes \overline{\beta})) = \psi_a (\alpha \otimes \overline{\beta}).$$
+  So $\varphi$ and $\psi_a$ agree on $\mathcal{F} (\mathcal{H})$, so by bounded density $\varphi = \psi_a$.
+  Finally, 
+  $$\| a\| = \sup_{\alpha, \beta \in (\mathcal{H})_1} |\langle a \alpha, \beta \rangle| = \sup_{\alpha, \beta \in (\mathcal{H})_1} |\trace (a (\alpha \otimes \overline{\beta})) | \leq \| \psi_a \|_1.$$
+  But since 
+  $$\| \psi_a \|_1 = \sup_{x \in (L^1(\bh))_1} |\trace (ax)| = \sup_{x \in (L^1(\bh))_1} \| ax \|_1 \leq \sup_{x \in (L^1(\bh))_1} \| a \| \|x \|_1 = \| a\|,$$
+  we have $\| a\| = \| \psi_a\|_1$ and $\psi$ is isometric.
+\end{myproof}
+
+Recall that $T \in \bh$ is compact if $T((\mathcal{H})_1)$ is relatively compact.
+Equivalently, image under $T$ of a bounded sequence in $\mathcal{H}$ has a convergent subsequence.
+For Hilbert spaces, this is also equivalent to $T \in \overline{\mathcal{F} (\mathcal{H})}$ in the norm $\| \cdot \|$.
+For compact operators in Hilbert space, we have the singular value decomposition.
+For $K \in \mathcal{K} (\mathcal{H})$, then there exists an orthonormal basis $(e_i)_i$ and $(f_j)_j$ for $\mathcal{H}$
+and $\sigma_1 \geq \sigma_2 \geq \dots \geq 0$ such that 
+$$K x = \sum_{n = 1} ^\infty \sigma_n \langle x, e_n \rangle f_n.$$
+This implies $$|K| x = \sum \sigma_n \langle x, e_n \rangle e_n.$$
+
+\begin{theorem}
+  \begin{enumerate}
+    \item $L^1 (\bh) \subseteq K(\mathcal{H})$.
+    \item $K \in \mathcal{H}$ is a $L^1 (\bh)$ iff $\sum_{k = 1} ^\infty \sigma_n < \infty$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{myproof}
+  \begin{enumerate}
+    \item If $x \in L^1 (\bh) = \mathcal{F}$ then there exists $(x_n)_n$ in $\mathcal{F} (\mathcal{H})$ such that $\|x_n - x\|_1 \to 0$.
+    Since $\| \cdot \| \leq \| \cdot \|_1$, we get $\|x_n - x \| \to 0$ and $x \in \overline{\mathcal{F}}^{\| \cdot \|} = \mathcal{K} (\mathcal{H})$.
+    \item This follows from $\trace |K| = \sum \sigma_n$.
+  \end{enumerate}
+\end{myproof}
+
+\subsection{Hilbert-Schmidt operators}
+
+\begin{definition}
+  An element $x \in \bh$ is a Hilbert-Schmidt operator 
+  if $$|x|^2 = x^* x \in L^1 (\bh).$$
+  The set of all such elements is denoted by $L^2 (\bh, \trace)$. 
+\end{definition}
+
+\begin{proposition}
+  \begin{enumerate}
+    \item $L^2 (\bh) \lhd \bh$ and is closed under $*$.
+    \item If $x, y \in L^2 (\bh)$, then $xy, yx \in L^1 (\bh)$ and $\trace(xy) = \trace (yx)$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{remark}
+  Beware: $\exists a, b \in \bh$ such that $ab \in L^1 (\bh)$
+  and $ba \notin L^1 (\bh)$. However, if $ab, ba \in L^1 (\bh)$,
+  then $\trace (ab) = \trace (ba)$.
+\end{remark}
+
+\begin{myproof}
+  For $\alpha \in \C$ and $x \in \mathcal{B}(\mathcal{H})$, we have $|\alpha x|^2 = |\alpha|^2 |x|^2$.
+  Similarly, $|x + y|^2 \leq |x + y|^2 + |x - y|^2 = 2 (|x|^2 + |y|^2)$, so $L^2 (\bh)$ is a complex vector space.
+  Since $|ax|^2 \leq \| a\|^2 \cdot |x|^2$, we have $L^2 (\bh)$ is a left ideal of $\bh$.
+  From 
+  $$\trace |x|^2 = \trace (x^* x) = \trace (x x^*) = \trace |x^* |^2,$$
+  we deduce that $L^2 (\bh)$ is closed under involution.
+  If $x \in L^2 (\bh)$ and $b \in \bh$,
+  then $x^* \in L^2$, which implies $b^* x^* \in L^2$ and finally $xb = (b^* x^*)^* \in L^2 (\bh)$,
+  so $L^2 (\bh) \lhd \bh$.
+  Next, we use the polarization identity 
+  $$4 y^* x = \sum_{k = 0} ^3 i^k |x + i^k y|^2.$$
+  If $x, y \in L^2 (\bh)$, then this shows $y^* x \in L^1 (\bh)$
+  and 
+  \begin{align*}
+    4 \trace (y^* x) &= \sum_{k = 0} ^3 i^k \trace ((x + i^k y)^*(x + i^k y))\\
+    &= \sum_{k = 0} ^3 i^k \trace ((x + i^k y)(x + i^k y)^*)\\
+    &= 4 \trace (x y^*).
+  \end{align*}
+  On $L^2 (\bh)$ we have the sesquilinear form $\langle x, y\rangle_2 := \trace (y^* x)$.
+  It is well-defined and positive definite, so it is a scalar product. The induced norm is denoted as $\| \cdot \|_2$.
+  For every $y \in L^2 (\bh)$, we have 
+  $$\| y\| = \| y^* y\|^{\frac{1}{2}} \leq \| y^* y\|_1 ^{\frac{1}{2}} = \|y\|_2.$$
+  Similarly, we have $$\| axb\|_2 = \| a\| \cdot \|x\|_2 \cdot \| b\|$$ for all $x \in L^2 (\bh)$
+  and $a, b \in \bh$. As before, $\mathcal{F} (\mathcal{H})$ are dense in $L^2 (\bh)$ with regards to $\| \cdot \|_2$ and $L^2 (\mathcal{B}(\mathcal{H}))$.
+  Using singular values $(\sigma_n)_n$ of compact $K \in \mathcal{K} (\mathcal{H})$, we have $K \in L^2 (\bh)$
+  iff $\sum_{k = 0} ^\infty \sigma_j ^2 < \infty$.
+  For every $x \in L^1 (\bh)$, we have 
+  $$\| x\|_2 = \sup_{y \in L^2 (\mathcal{B}(\mathcal{H})),\ \| y\|_2 = 1} | \trace (y^* x) | \leq \sup_{y \in L^2 (\bh),\ \| y\|_2 = 1} \|y\| \cdot \| x\|_1 \leq \|x\|_1.$$
+  As a result $(L^2 (\bh), \langle \cdot \rangle_2)$ is a Hilbert space.
+\end{myproof}
+
+\begin{theorem}[Hölder inequality]
+  For all $x, y \in L^2 (\bh)$ we have 
+  $$\| xy\|_1 \leq \| x\|_2 \| y\|_2.$$
+\end{theorem}
+
+\begin{myproof}
+  \begin{align*}
+    \| xy\|_1 &= \trace |xy| = |\trace (v^* xy)|\\
+    &= |\langle y, x^* v \rangle_2| \leq \| x^* v\|_2 \| y\|_2\\
+    &\leq \| x^*\|_2 \| v\| \|y\|_2 \leq \| x\|_2 \cdot \|y\|_2. \qedhere
+  \end{align*}
+\end{myproof}
+
+\subsection{Hilbert-Schmidt integral operators}
+
+Let $(X, \mu)$ be a $\sigma$-finite measure space.
+This means that $X$ is a countable union of finite-measure sets:
+$$X = \bigcup_{j = 1} ^\infty A_j,\quad \mu(A_j) < \infty.$$
+For $K \in L^2 (X \times X, \mu \times \mu)$, then we can define a Hilbert-Schmidt integral operator 
+with kernel $K$:
+$$T_K : L^2 (X, \mu) \to L^2 (X, \mu),\quad f \mapsto \left(y \mapsto \int_X K(x, y) f(y)\, d\mu (x)\right).$$
+Suppose $(\varphi_\alpha)_{\alpha}$ is an ONB for $L^2 (K, \mu)$.
+By Fubini, $\left(\overline{\varphi_a (x)} \varphi_\beta (y)\right)_{\alpha, \beta}$
+is an orthonormal basis for $L^2 (X \times X, \mu \times \mu)$.
+Since $K \in L^2 (X \times X, \mu \times \mu)$, there exist $c_{ij} \in \C$ such that 
+$$K(x, y) = \sum_{i,j} c_{ij} \overline{\varphi_i (x)} \varphi_j (y),\quad \| K\|^2 _{L^2 (X \times X)} = \sum |c_{ij}|^2 < \infty.$$
+We show that $T_K$ is well-defined: for $f \in L^2 (X, \mu)$, we have $T_K f \in L^2 (X,\mu)$.
+Indeed,
+$$T_k f (y) = \sum_{i, j} c_{ij} \langle f, \varphi_i \rangle \varphi_j (y),$$
+which implies 
+\begin{align*}
+  \| T_K f\|_{L^2 (X)} ^2 &\leq \sum_{i, j} |c_{ij}|^2 |\langle f, \varphi_j\rangle|^2 \| \varphi_j\|^2 _{L^2 (X)}\\
+  &\leq \| f\|_{L^2} ^2 \sum_{i, j} |c_{ij}|^2 \| \varphi\|^2 _{L^2} \| \varphi_j\|^2 _{L^2}\\
+  &= \| f\|^2 _{L^2} \sum|c_{ij}|^2\\
+  &= \| f\|^2 _{L^2} \|K\|^2 _{L^2 (X \times X)}
+\end{align*}
+and finally $\| T_K\| \leq \|K\|_{L^2}$.
+Suppose that $T_K ^* : L^2 (X, \mu) \to L^2 (X, \mu)$ is the integral operator with kernel 
+$$K^* (y, x) := \overline{K(x, y)}.$$
+Now 
+\begin{align*}
+  \langle T_K f, g \rangle &= \int_Y \left(\int_X K(x, y) f(x) \, d\mu (x)\right) \cdot \overline{g(y)}\, d\mu (y)\\
+  &= \int_X f(x) \cdot \left(\overline{\int_Y \overline{K(x, y)} g(y)\, d\mu(y)}\right)\, d\mu (x)\\ 
+  &= \langle f, T_{K^*} g \rangle.
+\end{align*}
+
+\begin{remark}[Fubini's theorem]
+  If $X, Y$ are measure spaces and $\int_{X \times Y} |f| d(x, y) < \infty$, then 
+  $$\int_{X \times Y} f = \int_Y \left(\int_X f\, dx\right)\, dy = \int_X \left(\int_Y f\, dy\right)\, dx.$$
+\end{remark}
+
+\begin{theorem}
+  \begin{enumerate}
+    \item For $K \in L^2 (X \times X, \mu \times \mu)$ we have $T_K \in L^2 (\mathcal{B} (L^2 (X, \mu)))$.
+    \item The mapping $\Phi: K \mapsto T_K$ is a unitary 
+    $$L^2 (X \times X, \mu \times \mu) \mapsto L^2 (\mathcal{B} (L^2 (X, \mu))).$$
+  \end{enumerate}
+\end{theorem}
+
+\begin{myproof}
+  \begin{enumerate}
+    \item We will prove that $\| T_K\|_2 = \| K\|_{L^2}$.
+    We want to approximate $T_K$ with finite rank operators, so we first approximate $K$:
+    $$K (x, y) = \sum_{i, j = 1} ^\infty c_{ij} \overline{\varphi_{i} (x)} \varphi_j (x)$$
+    for orthonormal basis $(\varphi_\alpha)_{\alpha}$ for $L^2 (X, \mu)$.
+    For $N \in \N$ let $K_{N} (x, y) = \sum_{i, j} ^N c_{ij} \overline{\varphi_i (x)} \varphi_j (x)$.
+    Then 
+    $$T_{K_N} f = \sum_{i, j = 1} ^N c_{ij} \langle f, \varphi_i\rangle \varphi_j \in \mathcal{F} (L^2 (X, \mu)).$$
+    By the above inequality, 
+    $$\| T_K - T_{K_N}\| \leq \| K - K_N\|_{L^2} \to 0,$$
+    so $T_K \in \overline{\mathcal{F}}^{\| \cdot\|} = \mathcal{K} (\mathcal{H})$.
+    Then $$\| T_K \|^2 _2 = \sum_i \| T_K \varphi_i \|_{L^2} ^2 = \sum_{i, j, k} \| c_{jk} \varphi_j (x) \delta_{ik} \|^2 = \sum |c_{ij}|^2 = \|K \|_{L^2} ^2.$$
+    \item It remains to prove surjectivity. Since $\Phi$ is isometric, $\im \Phi$ is closed.
+    So it suffices to show that $\im \Phi$ is dense. In particular, we will show that $\im \Phi \supseteq \mathcal{F} (L^2 (X, \mu))$.
+    Let $A \in \mathcal{F} (L^2 (X, \mu))$, so $\rank A < \infty$. Let $(\psi_1, \dots, \psi_m)$ be an orthonormal basis for $\im A$.
+    Then $A \varphi = c_1 (\varphi) \psi_1 + \dots + c_m (\varphi) \psi_m$ for some bounded linear functionals $c_j$ on $L^2 (X, \mu)$.
+    By Riesz, there exist $\mu_j \in L^2 (X, \mu)$ such that $c_j (\varphi) = \langle \varphi, \mu_j \rangle$.
+    Hence \begin{equation*}
+      A \varphi(x) = \int_X \left(\sum_{j = 1} ^m \psi_j (x) \cdot \overline{\mu_j (y)} \cdot \varphi (y)\right)\, d\mu (y) = T_{\sum_{i = 1} ^m \psi_j (x) \overline{\mu_j (y)}} \in \im \Phi. \qedhere 
+    \end{equation*}
+  \end{enumerate}
+\end{myproof}
+
+Now let $\mathcal{H}, \mathcal{K}$ be Hilbert spaces and $A \in \mathcal{B} (\mathcal{H}, \mathcal{K})$.
+We associate to $A$ the map 
+$$\widetilde{A} \in \mathcal{B} (\mathcal{H} \oplus \mathcal{K}, \mathcal{H} \oplus \mathcal{K}),\quad \alpha \oplus \beta \mapsto 0 \oplus A \alpha$$
+or in matrix form 
+$$\widetilde{A} = \begin{bmatrix}
+  0 & 0\\
+  A & 0
+\end{bmatrix}.$$
+We denote the set of Hilbert-Schmidt operators $\mathcal{H} \mapsto \mathcal{K}$ as 
+$$HS (\mathcal{H}, \C) = \{A \in \mathcal{B} (\mathcal{H}, \mathcal{K})\ |\ \widetilde{A} \in L^2 (\mathcal{B}(\mathcal{H} \oplus \mathcal{K}))\}.$$
+Using this notation, $HS (\mathcal{H}, \C)$ is just the dual of $\mathcal{H}$, so $\mathcal{H}^*$.
+By Riesz, we have a natural anti-isomorphism 
+$$\mathcal{H} \to \mathcal{H}^*,\quad \alpha \mapsto \langle \cdot , \alpha\rangle =: \overline{\alpha}$$
+and a natural anti-linear bijection 
+$$\bh \to \mathcal{B} (\mathcal{H}^*),\quad A \mapsto (\overline{A}: \overline{\alpha} \mapsto \overline{A \alpha}).$$
+We denote the Hilbert space $\mathcal{H} \overline{\otimes} \mathcal{K} := HS (\mathcal{K}^*, \mathcal{H})$.
+This is called the tensor product of Hilbert spaces. If $(e_\alpha)_\alpha$ is an ONB for $\mathcal{H}$ and $(f_\beta)_\beta$ for $\mathcal{K}$, then 
+$(e_\alpha \otimes\overline{f_\beta})_{\alpha, \beta}$ is an ONB for $\mathcal{H} \overline{\otimes} \mathcal{K}$.
+The algebraictensor product $\mathcal{H} \otimes \mathcal{K}$ are exactly the operators in $HS (\mathcal{K}^*, \mathcal{H})$ that are of finite rank, which are 
+$\linspan \{\varphi \otimes \overline{\psi}\ |\ \varphi \in \mathcal{H},\ \psi \in \mathcal{K}\}$.
+
+\subsection{Locally convex topologies on $\bh$}
+
+If $\mathcal{H}$ is a Hilbert space, then $(\bh, \| \cdot\|)$
+is a Banach algebra with its norm topology.
+
+\begin{definition}
+  \begin{enumerate}
+    \item The weak operator topology (WOT) is given by the seminorms 
+    $$T \mapsto |\langle T\alpha, \beta\rangle|,\quad \forall \alpha, \beta \in \mathcal{H}.$$
+    \item The strong operator topology (SOT) is given by the seminorms 
+    $$T \mapsto \|T\alpha\|,\quad \forall \alpha \in \mathcal{H}.$$
+  \end{enumerate}
+\end{definition}
+
+These topologies are comparable: $\mathrm{WOT} \subseteq \mathrm{SOT} \subseteq \mathrm{uniform}$.
+\begin{itemize}
+  \item Uniform topology has the subbasis $$\{S \in \mathcal{B}(\mathcal{H})\ |\ \| S - T\| < \varepsilon \}$$
+for $T \in \mathcal{B}(\mathcal{H})$ and $\varepsilon > 0$. The net $T_i$ converges to $T$ iff $\| T_i - T\|$ converges to $0$.
+  \item WOT topology has the subbasis $$\{S \in \mathcal{B}(\mathcal{H})\ |\ \langle (S - T) \alpha, \beta \rangle < \varepsilon \}$$
+  for $\alpha, \beta \in \mathcal{H}$, $T \in \mathcal{B}(\mathcal{H})$ and $\varepsilon > 0$. The net $T_i$ converges to $T$ iff $\langle T_i \alpha, \beta \rangle$ converges to $\langle T \alpha, \beta \rangle$ for all $\alpha, \beta$.
+  \item SOT topology has the subbasis $$\{S \in \mathcal{B}(\mathcal{H})\ |\ \| (S - T) \alpha\| < \varepsilon \}$$
+  for $\alpha \in \mathcal{H}$, $T \in \mathcal{B}(\mathcal{H})$ and $\varepsilon > 0$. The net $T_i$ converges to $T$ iff $\| (T_i - T)\alpha \|$ converges to $0$ for all $\alpha$.
+\end{itemize}
+
+\begin{example}
+  Let $\mathcal{H} = \ell^2 (\N)$ and denote $T_n = \frac{1}{n} \circ \id$.
+  Then $T_n \to 0$ in the norm topology. Now if we introduce the operator
+  $$S (x_1, x_2, \dots) = (0, 0, \dots, 0, x_{n + 1}, x_{n + 2}, \dots),$$
+  then $S_n \to 0$ in SOT, but not in norm topology, since $\|S_n\| = 1$.
+  Lastly, we define 
+  $$W_n (x_1, x_2, \dots) = (0, 0, \dots, x_1, x_2, \dots).$$
+  We get that $W_n \to 0$ in WOT, but not in SOT and norm topology.
+\end{example}
+
+\begin{example}
+  Let $(y_n)_n$ be a countable dense subset of $\mathcal{H} = \ell^2$.
+  Consider the following metrics on $(\bh)_1$:
+  $$d_S (A, B) = \sum_{n = 1} ^\infty \frac{1}{2^n} \|(A - B) {y_n}\|,\quad d_W (A, B) = \sum_{n = 1} ^\infty \frac{1}{2^n} \left|\langle(A - B) {y_n} , y_n\rangle\right|.$$
+  Then $d_S$ induces SOT and $d_W$ induces WOT on $(\bh)_1$.
+\end{example}
+
+\begin{example}
+  The multiplication 
+  $$\bh \times \bh \to \bh,\quad (A, B) \mapsto A \cdot B$$
+  is not jointly continuous with regards to SOT or WOT. Indeed, if $S: \ell^2 \to \ell^2$ is right shift (and $S^*$ left shift),
+  then $S^n \to 0$ and $(S^*)^n \to 0$ in WOT, but $(S^*)^n S^n = I$. However,
+  multiplication is WOT- and SOT- continuous in each factor separately.
+  Suppose that $(x_\alpha)_\alpha \to x$ in WOT and $y \in \bh$.
+  Then for each $v, w \in \bh$, we have 
+  $$|\langle x_\alpha yv - xyv, w \rangle | \to 0,$$
+  since $x_\alpha \to x$ in WOT. Similarly,
+  $$|\langle y x_\alpha v - yxv, w \rangle | = |\langle  x_\alpha v - xv, y^*w \rangle | \to 0,$$
+  which implies $x_\alpha y \to xy$ and $y x_\alpha \to yx$ in WOT.
+\end{example}
+
+\begin{example}
+  The adjoint is isometric in uniform topology. It is also continuous in WOT:
+  $$|\langle x^* v - y^* v, w \rangle| < \varepsilon \Leftrightarrow |\langle xw - yw, v\rangle| < \varepsilon.$$
+  However, it is not continuous with regards to SOT. If $(e_n)_n$ is an ONB for $\mathcal{H}$, consider $e_1 \otimes \overline{e_n}$.
+  Then for every $x \in \mathcal{H}$, we have 
+  $$\|(e_1 \otimes \overline{e_n}) x \| = |\langle x, e_n \rangle | \xrightarrow[n \to \infty]{} 0,$$
+  so $e_1 \otimes \overline{e_n} \to 0$ in SOT. However,
+  $$\| (e_1 \otimes \overline{e_n})^* x\| = \| (e_n \otimes \overline{e_1}) x\| = |\langle x, e_1 \rangle |$$
+  does not go to $0$ for all $x \in \mathcal{H}$, which proves our statement.
+\end{example}
+
+\begin{remark}
+  If $T:X\to Y$ is continuous, then $T$ remains continuous if $X$ is given a finer topology or $Y$ is given a coarser topology. 
+  But if both topologies are made coarser or both finer, nothing can be said in general. In particular, if $T:X\to X$ is 
+  continuous with respect to a given topology on $X$ in both domain and codomain, you cannot generally conclude anything 
+  about continuity of $T$ when $X$ is given a finer or coarser topology on both domain and codomain. The previous example illustrates this.
+\end{remark}
+
+\begin{lemma}
+  Let $\varphi: \mathcal{B} \to \C$ be linear. The following is equivalent.
+  \begin{enumerate}
+    \item There exist $v_1, \dots, v_n \in \mathcal{H}$ and $w_1, \dots, w_n \in \mathcal{H}$ such that 
+    $$\varphi (T) = \sum_{i = 1} ^n \langle T v_i, w_i \rangle.$$
+    \item $\varphi$ is WOT-continuous.
+    \item $\varphi$ is SOT-continuous.
+  \end{enumerate}
+\end{lemma}
+
+\begin{myproof}
+  The implications $(1) \Rightarrow (2) \Rightarrow (3)$ is obvious. Let us prove $(3) \Rightarrow (1)$.
+  By a proposition in chapter 1 (the application of Hahn-Banach), there exists a $K > 0$ and $v_1, \dots, v_n \in \mathcal{H}$
+  such that 
+  $$|\varphi(T)|^2 \leq K \cdot \sum_{i = 1} ^n \| Tv_i\|^2.$$
+  Define $$\mathcal{H}_0 := \overline{\left\lbrace \bigoplus_{i = 1} ^n Tv_i\ |\ T \in \bh \right\rbrace} \leq \mathcal{H} ^{\bigoplus n}.$$
+  The map 
+  $$\mathcal{H}_0 \ni \bigoplus_{i = 1} ^n T v_i \mapsto \varphi(T) \in \C$$
+  is a well-defined and bounded linear functional, which by continuity extends to $\mathcal{H}_0 \to \C$.
+  By Riesz, there exist $w_1, \dots, w_n \in \mathcal{H}$ such that 
+  $$\varphi(T) = \sum_{i = 1} ^n \langle T v_i, w_i \rangle.$$
+  Recall that $v \otimes \overline{w} \in \mathcal{F} \mathcal{H}$ and $\trace (v \otimes \overline{w}) = \langle v, w \rangle$, so 
+  $$\trace (T (v \otimes \overline{w})) = \langle Tv, w \rangle.$$
+  The previous identity is really 
+  $$\varphi(T) = \sum_{i = 1} ^n \trace (T (v \otimes \overline{w})) = \trace (T \cdot \sum_{i = 1} ^n v_i \otimes \overline{w}_i).$$
+  This means that $\varphi(T) = \trace (T \cdot A)$ for $A \in \mathcal{F} (\mathcal{H})$.
+\end{myproof}
+
+\begin{corollary}
+  If $K \subseteq \bh$ is convex, then 
+  $$\overline{K}^{\mathrm{WOT}} = \overline{K}^{\mathrm{SOT}}.$$
+\end{corollary}
+
+\begin{myproof}
+  \begin{align*}
+    \overline{K}^{\mathrm{WOT}} = \overline{K}^{\mathrm{weak}, WOT} = \overline{K}^{\mathrm{weak}, SOT}  = \overline{K}^{\mathrm{SOT}}. \qedhere
+  \end{align*}
+\end{myproof}
+
+\begin{definition}
+  The $\sigma$-weak operator topology ($\sigma$-WOT or ultra-weak) is the topology in $\bh$
+  given by the seminorms $$x \mapsto \left| \sum_{i = 1} ^\infty \langle x \alpha_i, \alpha_i \rangle\right| $$
+  for $\alpha_j \in \mathcal{H}$ with $\sum_{j = 1} ^\infty \| \alpha_j \|^2 < \infty$.
+  A subbasis of open sets is thus 
+  $$\left\lbrace x \in \bh\ |\ \left| \sum \langle (x - x_0), \alpha_i, \alpha_i \rangle \right| < \varepsilon \right\rbrace$$
+  for $\alpha_j \in \mathcal{H}$ with $\varepsilon > 0$, $x_0 \in \bh$ and $\sum \| \alpha_j\|^2 < \infty$.
+\end{definition}
+
+\begin{definition}
+  The $\sigma$-strong operator topology ($\sigma$-SOT or ultra-strong) is the topology in $\bh$
+  given by the seminorms $$x \mapsto \left( \sum_{i = 1} ^\infty \| x \alpha_i \|^2\right)^{\frac{1}{2}}$$
+  for $\alpha_j \in \mathcal{H}$ with $\sum_{j = 1} ^\infty \| \alpha_j \|^2 < \infty$.
+  A subbasis of open sets is thus 
+  $$\left\lbrace x \in \bh\ |\ \left( \sum \| (x - x_0) \alpha_i\|^2 \right)^{\frac{1}{2}} < \varepsilon \right\rbrace$$
+  for $\alpha_j \in \mathcal{H}$ with $\varepsilon > 0$, $x_0 \in \bh$ and $\sum \| \alpha_j\|^2 < \infty$.
+\end{definition}
+
+\begin{remark}
+  $\sigma$-WOT can also be given by seminorms 
+  $$x \mapsto |\trace (xa) |$$
+  for $a \in L^1 (\bh)$ positive.
+  Let $(f_i)_i$ be an ONB for $\mathcal{H}$ and define 
+  $$b: \mathcal{H} \to \mathcal{H},\quad f_i \mapsto \alpha_i.$$
+  Since $\sum \| \alpha_j \|^2 < \infty$, we can conclude $b \in L^2 (\bh)$.
+  Then:
+  \begin{align*}
+    \sum_i \langle x \alpha_i, \alpha_i \rangle &= \sum_i \langle xb f_i, b f_i\rangle\\
+    &= \sum_i \langle b^* x bf_i, f_i\rangle\\
+    &= \trace (b^* xb)\\
+    &= \trace (xbb^*),
+  \end{align*}
+  where $a := b b^* \in L^1 (\bh)$. Since $\bh = L^1 (\mathcal{B} (\mathcal{H}))^*$,
+  the $\sigma$-WOT is just the weak-* topology (with regards to this pairing).
+\end{remark}
+
+\begin{remark}
+  The map 
+  $$\id \otimes 1: \bh \to \mathcal{B} (\mathcal{H} \overline{\otimes} \ell^2),\quad x \mapsto x \otimes 1$$
+  is an isometric *-isomorphism of $C^*$-algebras. It is neither SOT- nor WOT-continuous.
+  Despite that, $\sigma$-WOT on $\bh$ is induced by WOT on $\mathcal{B} (\mathcal{H} \overline{\otimes} \ell^2)$ 
+  and the $\sigma$-SOT on $\bh$ is induced by SOT on $\mathcal{B} (\mathcal{H} \overline{\otimes} \ell^2)$. 
+  Indeed, if $(e_i)_{i \in \N}$ is an ONB for $\ell^2$, define $\alpha := \sum_{i = 1} ^\infty \alpha_i \otimes e_i \in \mathcal{H} \overline{\otimes} \ell^2$.
+  Then 
+  $$\sum_{i \in \N} \langle x \alpha_i, \alpha_i \rangle_{\mathcal{H}} = \langle (\id \otimes 1)(x) \alpha, \alpha \rangle_{\mathcal{H} \overline{\otimes} \ell^2}$$ 
+  and similarly $$\left(\sum_{i \in \N}  \| x \alpha_i \|^2 _{\mathcal{H}}\right)^{\frac{1}{2}} = \| (\id \otimes 1)(x) \alpha \|_{\mathcal{H} \overline{\otimes} \ell^2}$$ 
+\end{remark}
+
+\begin{lemma}
+  Let $\varphi: \bh \to \C$ be a linear functional operator. Then the following is equivalent.
+  \begin{enumerate}
+    \item $\exists a \in L^1 (\bh)$ such that $\varphi(x) = \trace (a x),\ \forall x \in \bh$;
+    \item $\varphi$ is $\sigma$-WOT continuous;
+    \item $\varphi$ is $\sigma$-SOT continuous.
+  \end{enumerate}
+\end{lemma}
+
+\begin{myproof}
+  As previously, the implication $(1) \Rightarrow (2) \Rightarrow (3)$ is obvious.
+  Let us prove $(3) \Rightarrow (1)$. Assume $\varphi$ is $\sigma$-SOT continuous.
+  By identifying $\bh$ via $\id \otimes 1$ with a subspace in $\mathcal{B} (\mathcal{H} \otimes \ell^2)$,
+  $\varphi$ is SOT-continuous on this subspace. By Hahn-Banach, $\varphi$ extends to a SOT-continuous 
+  linear functional on $\mathcal{B} (\mathcal{H} \otimes \ell^2)$.
+  By the previous lemma, $\exists \alpha_1, \dots, \alpha_n, \beta_1, \dots, \beta_n \in \mathcal{H} \overline{\otimes} \ell^2$.
+  $$\varphi(x) = \sum_{i = 1} ^n \langle (\id \otimes 1) (x) \alpha_i, \beta_i \rangle.$$
+  With 
+  $$\alpha_i \sum_{j = 1} ^\infty \alpha_{ij} \otimes e_j, \quad \sum_j \| \alpha_{ij} \|^2 < \infty$$
+  and 
+  $$\beta_i \sum_{j = 1} ^\infty \beta_{ij} \otimes e_j, \quad \sum_j \| \beta_{ij} \|^2 < \infty.$$
+  Then 
+  \begin{align*}
+    \varphi(x) &= \sum_{i = 1} ^n \langle (x \otimes 1) \sum_{j = 1} ^\infty \alpha_{ij} \otimes e_j, \sum_{k = 1} ^\infty \beta_{ik} \otimes e_k\rangle\\
+    &= \sum_{i = 1} ^n \sum_{j = 1} ^\infty \sum_{k = 1} ^\infty \langle x \alpha_{ij}, \beta_{ik}\rangle \langle e_j, e_k\rangle\\
+    &= \sum_{i = 1} ^n \sum_{j = 1} ^\infty \langle x \alpha_{ij}, \beta_{ij}\rangle.
+  \end{align*}
+  Define $$A_i : \mathcal{H} \to \mathcal{H},\quad A_i f_k = \alpha_{ik}$$
+  and $$B_i : \mathcal{H} \to \mathcal{H},\quad B_i f_k = \beta_{ik}$$
+  for an orthonormal basis $(f_k)_{k \in \N}$. By assumption, $A_i, B_i \in L^2 (\bh)$.
+  As before, this gives $\varphi (x) = \sum_i \trace (B_i ^* x A_i) = \trace (x A_i B_i^*)$.
+\end{myproof}
+
+\begin{corollary}
+  The unit disk $(\bh)_1$ is compact with respect to $\sigma$-WOT topology.
+\end{corollary}
+
+\begin{myproof}
+  $\sigma$-WOT on $\bh$ is the weak-* topology from $L^1 (\bh)^* = \bh$.
+  The statement now follows from Banach-Alaoglu.
+\end{myproof}
+
+\begin{corollary}
+  WOT and $\sigma$-WOT agree on bounded subsets $B \subseteq \bh$.
+\end{corollary}
+
+\begin{myproof}
+  WLOG $B$ is closed. Then the identity $(B, \textrm{$\sigma$-WOT}) \to (B, \textrm{WOT})$
+  is a continuous map from a $T_2$ compact (previous corollary) to a $T_2$ space.
+  Therefore an identity map is a closed continuous bijection, so a homeomorphism.
+\end{myproof}
+
+We use the following notation: if $A$ is vector space and $B \subseteq \mathcal{L} (A, \C)$
+is a set of linear functionals, then $\sigma(A, B)$ is the weakest topology in $A$ such that linear functionals in $B$ are continuous.
+
+\begin{definition}
+  Let $A$ be a vector space and $B \subseteq \mathcal{L} (A, \C)$ a set of some of its linear functionals.
+  Then we define $\sigma(A, B)$ as the weakest topology such that functionals in $B$ are continuous. 
+\end{definition}
+
+\begin{remark}
+  $\sigma$-WOT is $\sigma(\bh, L^1 (\bh))$.
+\end{remark}
+
+\begin{definition}
+  Let us define the following topologies on $\bh$.
+  \begin{enumerate}
+    \item Weak Banach topology is $\sigma(\bh, \bh^*)$.
+    \item Ultrastrong-* topology is the weakest topology stronger than $\sigma$-SOT such that * is continuous.
+    \item Strong-* topology is generated by seminorms $x \mapsto \|x\alpha\|$ and $x \mapsto \|x^* \alpha\|$ for $\alpha \in \mathcal{H}$.
+  \end{enumerate}
+\end{definition}
+
+In the end, we get the following diagram which demonstrates which topologies are comparable.
+
+\[\begin{tikzcd}
+	& {\textrm{norm}} \\
+	{\textrm{weak Banach}} && {\textrm{ultrastrong-*}} \\
+	& {\textrm{$\sigma$-SOT}} & {\textrm{strong-*}} \\
+	{\textrm{$\sigma$-WOT}} && {\textrm{SOT}} \\
+	& {\textrm{WOT}}
+	\arrow[from=1-2, to=2-3]
+	\arrow[from=1-2, to=2-1]
+	\arrow[from=2-3, to=3-2]
+	\arrow[from=2-3, to=3-3]
+	\arrow[from=2-1, to=4-1]
+	\arrow[from=3-2, to=4-1]
+	\arrow[from=3-2, to=4-3]
+	\arrow[from=3-3, to=4-3]
+	\arrow[from=4-1, to=5-2]
+	\arrow[from=4-3, to=5-2]
+\end{tikzcd}\]

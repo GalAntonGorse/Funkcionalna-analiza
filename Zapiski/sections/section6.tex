@@ -1,0 +1,594 @@
+\section{Spectral theorem and Borel functional calculus}
+
+\subsection{Spectral theorem}
+
+Recall the spectral theorem for $\mathcal{K(\mathcal{H})}$.
+Let $T \in \mathcal{K} (\mathcal{H})$ be self-adjoint and for $\lambda \in \sigma_p (T)$, define $E(\lambda)$
+as an orthogonal projection onto the eigenspace $\ker (T - \lambda I)$.
+For $\mu \neq \lambda$, we get $E(\lambda) E(\mu) = 0$ and 
+$$T = \sum_{\lambda \in \sigma_p (T) \setminus \{0\}} \lambda E(\lambda).$$
+Our first goal will be to generalize this to non-compact self-adjoint operator.
+
+\begin{theorem}[Vigier]
+  Let $(u_\lambda)$ be a net of increasing (decreasing) and above (below) bounded self-adjoint operators on $\mathcal{H}$.
+  Then $(u_\lambda)$ converges.
+\end{theorem}
+
+\begin{myproof}
+  We prove the statement for above-bounded increasing net. We can assume $(u_\lambda)$ has a lower bound $m$ by considering a truncated net. 
+  WLOG we can assume $u_\lambda$ are positive (otherwise we can consider $u_\lambda - m$).
+  There exists $M \geq 0$ such that $\|u_\lambda\| \leq M$ for indices $\lambda$. So the net $\langle u_\lambda x, x\rangle$
+  is real and increasing and bounded above by $M \|x\|^2$. Using the polarization identity 
+  $$\langle u_\lambda x, x\rangle = \frac{1}{4} \sum_{k = 0} ^3 i^k \langle u_\lambda (x + i^k y), x + i^k y\rangle,$$
+  we see that $\langle u_\lambda x, y\rangle$ is an convergent net for all $x, y \in \mathcal{H}$.
+  Letting $\sigma(x, y)$ denote its limit, we can eaasily check that $\sigma$ is a bounded sesquilinear form ($|\sigma(x, y)| \leq M\|x\| \|y\|$).
+  By Riesz, there exists an operator $u \in \mathcal{B} (\mathcal{H})$ such that $\langle ux, y\rangle = \sigma(x, y)$.
+  Then $u$ is self-adjoint, $\|u\| \leq M$ and $u_\lambda \leq u$. Note that 
+  \begin{align*}
+    \| (u - u_\lambda)x\|^2 &\leq \| (u - u_\lambda)^{\frac{1}{2}} (u - u_\lambda)^{\frac{1}{2}} x \|^2\\
+    &\leq \| (u - u_\lambda) \| \| (u - u_\lambda)^{\frac{1}{2}} x\|^2\\
+    &\leq 2M \langle (u - u_\lambda)x, x\rangle \to 0,
+  \end{align*}
+  so $u_\lambda$ converge strongly to $u$.
+\end{myproof}
+
+\begin{remark}
+  If $(p_\lambda)$ is a net of projections converging strongly to some operator $u$, then $u$ is also a projection.
+  Clearly, $u$ is self-adjoint and 
+  \begin{align*}
+    \langle ux, y \rangle &= \lim_{\lambda} \langle p_\lambda x, y\rangle = \lim_{\lambda} \langle p_\lambda x, p_\lambda y \rangle\\
+    &= \langle ux, uy\rangle = \langle u^2 x, y\rangle,
+  \end{align*}
+  therefore $u^2 = u$.
+\end{remark}
+
+\begin{corollary}
+  If $(p_n)_{n \in \N}$ is a sequence of pairwise orthogonal orthogonal projections in $\bh$,
+  then $\left(\sum_{n = 1} ^N p_n\right)$ SOT-converges for $N \to \infty$ (we denote the limit by $\sum_{n = 1} ^\infty p_n$). 
+\end{corollary}
+
+\begin{definition}
+  Let $X$ be a set, $\Omega$ a $\sigma$-algebra in $X$ and $\mathcal{H}$ a Hilbert space.
+  Then we define a projection-valued measure (PVM) for $(X, \Omega, \mathcal{H})$ is a map 
+  $E: \Omega \to \bh$ such that 
+  \begin{enumerate}
+    \item $E(S)$ is a projection for all $S \in \Omega$;
+    \item $E(\emptyset) = 0$ and $E(X) = 1$;
+    \item $E(S \cap T) = E(S) E(T)$ for all $S, T \in \Omega$;
+    \item If $(S_n)_{n \in \N} \subseteq \Omega$ is a sequence of pairwise disjoint sets, then 
+    $$E (\bigcup_{n = 1} ^\infty S_n) = \sum_{n = 1} ^\infty E(S_n).$$
+  \end{enumerate}
+\end{definition}
+
+\begin{remark}
+  Projections $E (S)$ commute with each other (follows directly from the third point of the definition).
+\end{remark}
+
+\begin{example}
+  Let $(X, \Omega, \mu)$ be a $\sigma$-finite measure space.
+  Let $\mathcal{H} = L^2 (X, \mu)$ and $S \in \Omega$, then 
+  $\chi_S \in L^\infty (X, \mu) \subseteq \mathcal{B} (L^2 (X, \mu))$ is a projection (with pointwise multiplication in $\bh$).
+  Letting $E(S) := \chi_S \in \mathcal{B} (L^2 (X, \mu))$, we get a PVM $E: \Omega \to \mathcal{B}(L^2 (X, \mu))$.
+\end{example}
+
+\begin{lemma}
+  Let $E$ be a PVM for $(X, \Omega, \mathcal{H})$. Then for all $\alpha, \beta \in \mathcal{H}$ the mapping 
+  $$E_{\alpha, \beta} : \Omega \to \C,\quad S \mapsto \langle E(S) \alpha, \beta\rangle$$
+  is a complex measure in $\Omega$ with total variation $\leq \|\alpha\| \|\beta\|.$
+\end{lemma}
+
+\begin{myproof}
+  Let $\alpha, \beta \in \mathcal{H}$. Then $E_{\alpha, \beta}$ is $\sigma$-additive
+  (countably-additive for disjoint sets) since $E$ is $\sigma$-additive by (4).
+  Total variation of a complex measure is 
+  $$\| E_{\alpha, \beta} \| := \sup \{\sum_{S \in \pi} |E_{\alpha, \beta} (S)|\},$$
+  where the sum is over all partitions of $X$ into finitely many pieces of measurable sets.
+  Let $\pi = \{S_1, \dots, S_n\}$ be a partition of $X$ with $S_j \in \Omega$.
+  For each $j$ pick $\alpha_j \in \C$ such that $|\alpha_j| = 1$ and 
+  $$\alpha_j \cdot E_{\alpha, \beta} (S_j) = \alpha_j \langle E(S_j)\alpha, \beta\rangle = |\langle E(S_j) \alpha, \beta\rangle| = |E_{\alpha, \beta} (S_j)|.$$
+  Then $$\sum_{j = 1} ^n |E_{\alpha, \beta} (S_j)| = \langle \sum \alpha_j E(S_j) \alpha, \beta\rangle| \leq \| \sum \alpha_j E(S_j) \alpha\| \cdot \|\beta\|.$$
+  For $i \neq j$ we have $$E(S_i) E(S_j) = E(S_i \cap S_j) = E(\emptyset) = 0,$$
+  so $E(S_i)$ are pairwise orthogonal. Finally, we can use Pythagoras to get 
+  \begin{align*}
+    \| \sum_{j = 1} ^n \alpha_j E(S_j) \alpha\|^2 &= \sum_{j = 1} ^n \| E(S_j) \alpha\|^2\\
+    &= \| \sum_{j = 1} ^n E(S_j) \alpha\|^2\\
+    &= \| E\left(\bigcup_{j = 1} ^n S_j\right) \alpha\|^2\\
+    &= \| E(X) \alpha\|^2 = \|\alpha \|^2. \qedhere
+  \end{align*}
+\end{myproof}
+
+\begin{remark}
+  Let $E$ be a PVM for $(X, \Omega, \mathcal{H})$, $\alpha \in \mathcal{H}$ and $S \in \Omega$.
+  Then \begin{align*}
+    E_{\alpha, \alpha} (S) &= \langle E(S) \alpha, \alpha\rangle\\
+    &= \langle E(S)^2 \alpha, \alpha\rangle\\
+    &= \langle E(S) \alpha, E(S) \alpha\rangle \geq 0,
+  \end{align*}
+  so $E_{\alpha, \alpha}$ is a positive measure on $X$.
+  Furthermore, if $\|\alpha\| = 1$, then $E_{\alpha, \alpha}$ is a probability measure.
+\end{remark}
+
+Let $$(\alpha, \beta) \mapsto \int_X 1 dE_{\alpha, \beta}.$$ Since 
+$E_{\alpha + \lambda \alpha', \beta} = E_{\alpha, \beta} + \lambda E_{\alpha', \beta}$ and
+$E_{\alpha, \beta + \lambda \beta'} = E_{\alpha, \beta} + \overline{\lambda} E_{\alpha, \beta'}$,
+the above is a sesquilinear form on $\mathcal{H}$. In particular, it is bounded
+$$\| \int_X dE_{\alpha, \beta}\| \leq \| E_{\alpha, \beta}\| \leq \|\alpha\| \|\beta\|.$$
+Suppose $f: X \to \C$ is a bounded $\Omega$-measurable function. Then 
+$$(\alpha, \beta) \mapsto \int_X f dE_{\alpha, \beta}$$
+is a bounded sesquilinear form:
+$$\| \int_X f\, dE_{\alpha, \beta}\| \leq \|f\|_{\infty} \| E_{\alpha, \beta}\| \leq \|f\|_{\infty} \|\alpha\| \|\beta\|.$$
+So there exists an $x \in \bh$ such that $\| x\| \leq \| f\|_\infty$ and 
+$\langle x \alpha, \beta \rangle = \int_X f\, dE_{\alpha, \beta}$.
+If $f = \chi_S$ for $S \in \Omega$, then $x = E(S)$:
+$$\int_X \chi_S\, dE_{\alpha, \beta} = E_{\alpha, \beta} (S) = \langle E(S) \alpha, \beta \rangle.$$
+
+\begin{definition}
+  Let $E$ be a PVM for $(X, \Omega, \mathcal{H})$ and $f: X \to \C$ be a bounded $\Omega$-measurable 
+  function and $x \in \bh$. We call $x$ the integral of $f$ with regards to $E$ if 
+  $$\langle x\alpha, \beta \rangle = \int_X f\, dE_{\alpha, \beta},\quad \forall \alpha, \beta \in \mathcal{H}.$$
+  We denote it by $x := \int_X f\, dE$.
+\end{definition}
+
+\begin{remark}
+  Define $B(X, \Omega)$ as the set of all bounded $\Omega$-measurable complex functions on $X$ and endow it with the sup norm.
+  If $X$ is a topological space and $\Omega = \mathcal{B}_X$ is the Borel $\sigma$-algebra on $X$,
+  then $B(X) = B(X, \mathcal{B}_X)$.
+\end{remark}
+
+\begin{proposition}
+  Let $E$ be a PVM for $(X, \Omega, \mathcal{H})$. Then 
+  $$\rho: B(X, \Omega) \to \bh,\quad f \mapsto \int_X f\, dE.$$
+  is a *-homomorphism and contractive. Furthermore:
+  \begin{enumerate}
+    \item If $(f_n)_n \subseteq B (X, \Omega)$ is an increasing sequence of nonnegative functions 
+    and $f = \sup_n f_n \in B (X, \Omega)$, then $\int_X f_n dE \to \int_X f\, dE$ in SOT.
+    \item If $X$ is compact and $T_2$, then $\rho (B (X)) \subseteq \rho (C(X))''$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{myproof}
+  We already saw that $\|\rho (f)\| \leq \| f\|_{\infty}$, hence $\rho$ is contractive.
+  It is also clear that $\rho$ is linear and $\rho (f)^* = \rho (\overline{f})$.
+  Next, we prove multiplicativity: $\rho (\chi_S) = E(S)$ for $S \in \Omega$.
+  Then $$\rho (\chi_S) \cdot \rho (\chi_T) = E(S) \cdot E(T) = E(S \cap T) = \rho (\chi_{S \cap T}) = \rho (\chi_S \cdot \chi_T).$$
+  Since $\rho$ is linear, it is also multiplicative on simple functions (these are finite linear combinations of characteristic functions). 
+  Since each $f \in B (X, \Omega)$ is a uniform limit of a uniformly bounded sequence of simple functions,
+  we deduce that $\rho (fg) = \rho (f) \rho (g)$ for all $f, g \in B (X, \Omega)$.
+  \begin{enumerate}
+    \item Let $f, f_n$ be as in the statement. Since $\rho$ is a *-homomorphism,
+    $(\rho(f_n))_n$ is an increasing sequence of positive operators and $\sup_n \| \rho (f_n)\| \leq \sup_{n} \|f\|_{\infty} = \|f\|$.
+    By Vigier, there exists $x \in \bh$ such that $\rho(f_n) \xrightarrow{\mathrm{SOT}} x$.
+    This $x$ is a natural candidate for $\rho(f)$. Indeed, for $\alpha, \beta \in \mathcal{H}$, we have 
+    \begin{align*}
+      \langle \rho(f) \alpha, \beta\rangle &= \int_X f\, dE_{\alpha, \beta}\\
+      &= \lim_{n \to \infty} \int_X f_n\, dE_{\alpha, \beta}\\
+      &= \lim_{n \to \infty} \langle \rho(f_n) \alpha, \beta\rangle,
+    \end{align*}
+    so $\rho(f_n) \xrightarrow{\mathrm{WOT}} \rho(f)$ and therefore $\rho(f) = x$.
+    \item Let $X$ be compact Hausdorff and $a \in \rho(C(X))'$. Take $\alpha, \beta \in \mathcal{H}$.
+    Then for all $f \in C(X)$, we have 
+    \begin{align*}
+      0 &= \langle (a \rho(f) - \rho(f) a)\alpha, \beta\rangle\\
+      &= \langle \rho(f) \alpha, a^*\beta\rangle - \langle \rho(f) (a\alpha), \beta\rangle\\
+      &= \int_X f\, dE_{\alpha, a^* \beta} - \int_X f\, dE_{a\alpha, \beta},
+    \end{align*}
+    so by uniqueness from Riesz-Markoff we get $E_{\alpha, a^* \beta} = E_{a\alpha,\beta}$.
+    This same calculation backwards tells us that $a$ commutes with all $\rho(g) = \int_X g\, dE$ for $g \in B(X)$, so 
+    $\rho(B(X)) \subseteq \rho(C(X))''$ \qedhere
+  \end{enumerate}
+\end{myproof}
+
+\begin{remark}
+  The map $\rho$ is not necessarily isometric.
+  However, we can define $E$-null sets 
+  $$\{S \in \Omega\ |\ E(S) = 0\},$$
+  which gives us an equivalence relation on $B(X, \Omega)$ as follows:
+  $f \sim_E g$ if $f(x) = g(s)$ except possibly on some $E$-null set.
+  Then we have 
+  $$\ker \rho = \{f \in B (X, \Omega)\ |\ f \sim_E 0\}$$ and an essential supremum
+  $$\|\rho (f)\| = \| f\|_{\infty} := \inf \{t > 0\ |\ E(\{x \in X\ |\ |f(x)| \geq t\}) = 0\}.$$
+  Define $L^\infty (X, E) = \frac{B(X, \Omega)}{\sim_E}$ with norm induced by an essential supremum above.
+  Then the map $\rho$ from the above proposition induces an isometric *-isomorphism $\widetilde{\rho}: L^\infty (X, E) \to \bh$.
+\end{remark}
+
+Recall that for a commutative $C^*$-algebra $A$ the Gelfand transform 
+$$\Gamma: A \to {C} (\sigma(A))$$
+is an isometric *-isomorphism.
+
+\begin{theorem}[Spectral theorem]\label{thm:1}
+  Let $A \subseteq \bh$ be a commutative $C^*$-algebra and 
+  $\mathcal{B}_{\sigma(A)}$ be the Borel $\sigma$-algebra on $\sigma(A)$.
+  Then there exists a PVM $E$ for $(\sigma(A), \mathcal{B}_{\sigma(A)}, \mathcal{H})$ such that 
+  $$x = \int_{\sigma(A)} \Gamma (x)\, dE$$
+  for all $x \in A$.
+\end{theorem}
+
+\begin{myproof}
+  For all $\alpha, \beta \in \mathcal{H}$ and 
+  $$\varphi: C(\sigma(A)) \to \C,\quad f \mapsto \langle \Gamma^{-1} (f) \alpha, \beta\rangle$$
+  is a bounded linear functional. Indeed, since $\Gamma$ is an isometry we get
+  $$\langle \Gamma^{-1} (f) \alpha, \beta\rangle \leq \| f\|_{\infty} \|  \|\alpha\| \| \beta\|.$$
+  By Riesz-Markoff, there exists a unique regular Borel measure $\mu_{\alpha, \beta}$ such that
+  $$\langle \Gamma^{-1} (f) \alpha, \beta\rangle = \int_{\sigma(A)} f\, d\mu_{\alpha, \beta}.$$
+  We will show that $\mu_{\alpha, \beta} = E_{\alpha, \beta}$ for a PVM $E$.
+  For $f, g \in C(\sigma(A))$ we have 
+  $$\int_{\sigma(A)} fg\, d\mu_{\alpha, \beta} = \langle \Gamma^{-1}(fg) \alpha, \beta\rangle = \langle \Gamma^{-1} (f) \Gamma(g) \alpha, \beta \rangle = \int_{\sigma(A)} f\, d\mu_{\Gamma^{-1} (g) \alpha, \beta}.$$
+  Now we notice that this is equal to 
+  $$\langle \Gamma^{-1} (f) \alpha, \Gamma^{-1} (\overline{g}) \beta \rangle = \int_{\sigma(A)} f\, d\mu_{\alpha, \Gamma^{-1} (\overline{g}) \beta}.$$
+  From the uniqueness of Riesz-Markoff, we get 
+  $$g\, d{\mu_{\alpha, \beta}} = d\mu_{\Gamma^{-1} (g) \alpha, \beta} = d\mu_{\alpha, \Gamma^{-1}(\overline{g})\beta}.$$
+  Finally, we have
+  \begin{align*}
+    \int_{\sigma(A)} f \, d\overline{\mu_{\alpha, \beta}} &= \overline{\int \overline{f}\, d\mu_{\alpha, \beta}}\\
+    &= \overline{\langle \Gamma^{-1} (\overline{f}) \alpha, \beta \rangle}\\
+    &= \overline{\langle \alpha, \Gamma^{-1} (f) \beta \rangle}\\
+    &= \langle \Gamma^{-1} (f) \beta, \alpha\rangle\\
+    &= \int_{\sigma(A)} f\, d\mu_{\beta, \alpha}
+  \end{align*}
+  for all $f \in C(\sigma(A))$, which implies $\overline{\mu_{\alpha, \beta}} = \mu_{\beta, \alpha}$. 
+  To each $S \in \mathcal{B}_{\sigma(A)}$ we assign the sesquilinear form 
+  $$\mathcal{H} \times \mathcal{H} \to \C,\quad (\alpha, \beta) \mapsto \int_{\sigma(A)} \chi_S \, d\mu_{\alpha, \beta}.$$
+  This form is bounded by $\|\alpha\| \|\beta\| = \|\mu_{\alpha, \beta}\|$.
+  Thus there exists $E(S) \in \bh$ such that 
+  $$\int_{\sigma(A)}\chi_S \, d\mu_{\alpha, \beta} = \langle E(S) \alpha, \beta\rangle.$$
+  Now notice that 
+  \begin{align*}
+    \langle E(S)^* \alpha, \beta \rangle &= \langle \alpha, E(S) \beta\rangle\\
+    &= \overline{\langle E(S) \beta, \alpha \rangle}\\
+    &= \overline{\int_{\sigma(A)} \chi_S\, d\mu_{\beta, \alpha}}\\
+    &= \int_{\sigma(A)} \chi_S\, d\overline{\mu_{\beta, \alpha}}\\
+    &= \int_{\sigma(A)} \chi_S d\mu_{\alpha, \beta}\\
+    &= \langle E(S) \alpha, \beta\rangle,
+  \end{align*}
+  so $E(S) = E(S)^*$.
+  For any $f \in C(\sigma(A))$, we get 
+  \begin{align*}
+    \langle \Gamma^{-1} (f) E(S) \alpha, \beta \rangle &= \langle E(S) \alpha, \Gamma^{-1}(\overline{f})\beta\rangle\\
+    &= \int \chi_S\, d\mu_{\alpha, \Gamma^{-1} (\overline{f})}\\
+    &= \int \chi_S f\, d\mu_{\alpha, \beta}.
+  \end{align*}
+  By the lemma below, $C(\sigma(A))$ is weak-* dense in $C(\sigma(A))^{**}$.
+  Furthermore, the latter set contains $B(\sigma(A))$: indeed, given any $\psi \in C(\sigma(A))^*$,
+  we have that $\psi (\cdot) = \int \cdot \, d\mu$ for some measure $\mu$.
+  For any $r \in B(\sigma(A))$, we have $r(\psi) = \int_{\sigma(A)} r\, d\mu$.
+  Hence, $i: C \to C^{**}$ extends to $\widehat{i}: B \to C^{**}$.
+  In particular, for $T \in \mathcal{B}_{\sigma(A)}$, there exists a net $(f_i)_i \subseteq C(\sigma(A))$
+  such that $f_i \xrightarrow{\textrm{weak-*}} \chi_T$. As a result,
+  $\int_{\sigma(A)} f_i\, d\mu_{\alpha, \beta} \to \int_{\sigma(A)} \chi_T \, d\mu_{\alpha, \beta}$ for all $\alpha, \beta \in \mathcal{H}$,
+  so $\Gamma^{-1} (f_i) \xrightarrow{\textrm{WOT}} E(T)$. Now 
+  \begin{align*}
+    \langle E(T) \cdot E(S) \alpha, \beta\rangle &= \lim_{i} \langle \Gamma^{-1} (f_i) E(S)\alpha, \beta\rangle\\
+    &= \lim_i \langle E(S) \alpha, \Gamma^{-1} (\overline{f_i})\beta \rangle\\
+    &= \lim_i \int_{\sigma(A)} \chi_S f_i\, d\mu_{\alpha, \beta}\\
+    &= \int_{\sigma(A)} \chi_S \cdot \chi_T\, d\mu_{\alpha, \beta}\\
+    &= \int_{\sigma(A)} \chi_{S \cap T}\, d\mu_{\alpha, \beta} = \langle E(S \cap T) \alpha, \beta\rangle.
+  \end{align*}
+  Since $\alpha, \beta$ were arbitrary, we get $E(S) \cdot E(T) = E(S \cap T)$ for all $S, T \in \mathcal{B}_{\sigma(A)}$.
+  As a consequence, $E(S)^2 = E(S)$, so $E(S)$ is a projection.
+  Obviously, $E(\emptyset) = 0$. Further, 
+  $$\langle E(\sigma(A)) \alpha, \beta\rangle = \int_{\sigma(A)} 1\, d\mu_{\alpha, \beta} = \langle \Gamma^{-1} (1) \alpha, \beta\rangle = \langle 1 \alpha, \beta\rangle,$$
+  so $E(\sigma(A)) = 1$. Since all $\mu_{\alpha, \beta}$ are $\sigma$-additive, we have 
+  \begin{align*}
+    \langle E\left(\bigcup_{i = 1} ^\infty S_i\right) \alpha, \beta \rangle &= \mu_{\alpha, \beta} \left(\bigcup_{i = 1} ^\infty S_i\right)\\
+    &= \sum_{i = 1} ^\infty \mu_{\alpha, \beta} (S_i)\\
+    &= \langle \sum_{i = 1}^\infty E(S_i)\alpha, \beta \rangle
+  \end{align*}
+  for each sequence $(S_i)_i \subseteq \mathcal{B}_{\sigma(A)}$ of pairwise disjoint sets, so $E\left(\bigcup_{i = 1} ^\infty S_i\right) = \sum_{i = 1}^\infty E(S_i)$.
+  We have proved that $E$ is a PVM for $(\sigma(A), \mathcal{B}_{\sigma(A)}, \mathcal{H})$. For any $\alpha, \beta \in \mathcal{H}$, we get 
+  $$E_{\alpha, \beta} (S) = \langle E(S)\alpha, \beta\rangle = \int \chi_S \, d\mu_{\alpha, \beta} = \mu_{\alpha, \beta} (S),$$
+  so $E_{\alpha, \beta} = \mu_{\alpha, \beta}$ and therefore $\int f\, dE_{\alpha, \beta} = \langle \Gamma^{-1} \alpha, \beta\rangle$.
+  But this proves that $x = \int_{\sigma(A)} \Gamma(x)\, dE$ for all $x \in A$.
+  Uniqueness: suppose that $E'$ is another such PVM. For $\alpha, \beta \in \mathcal{H}$ and $f \in C(\sigma(A))$, we have 
+  $$\int_{\sigma(A)} f\, dE_{\alpha, \beta} = \langle \Gamma^{-1} (f)\alpha, \beta\rangle = \int_{\sigma(A)} f\, dE_{\alpha, \beta}',$$
+  which proves that $E_{\alpha, \beta} = E_{\alpha, \beta} '$ as elements in $C(\sigma(A))^*.$
+  Thus $$\langle E(S)\alpha, \beta\rangle = E_{\alpha, \beta} (S) = E_{\alpha, \beta} '(S) = \langle E'(S) \alpha, \beta \rangle.$$
+  Since $\alpha, \beta$ were arbitrary, $E(S) = E'(S)$. But since $S$ was also arbitrary, $E = E'$.
+\end{myproof}
+
+\begin{lemma}[Goldstine's theorem]
+  Let $X$ be a Banach space. Then the image of 
+  $$\iota: X \to X^{**},\quad x \mapsto (f \mapsto f(x))$$
+  is dense in weak-* topology.
+\end{lemma}
+
+\begin{myproof}
+  Let $\beta \in X^{**}$ and $f_1, \dots, f_r \in X^*$ (WLOG linearly independent).
+  Then 
+  $$U = \{\alpha \in X^{**}\ |\ |(\alpha - \beta) (f_j)| < \varepsilon,\ j = 1, \dots, r\}.$$
+  is a basic open set in weak-* topology in $X^{**}$.
+  WLOG assume $X$ is infinitely-dimensional. Consider the linear map 
+  $$\Phi: X \to \C^r,\quad x \mapsto (f_1 (x),\dots, f_r (x)).$$
+  This map is surjective.
+  In particular, there exists $x_{0} \in X$ such that 
+  $$\Phi(x_j) = (f_1 (x_0), \dots, f_r (x_0)) = (\rho_0 (f_1), \dots, \rho_0 (f_r)),$$
+  hence $\iota (x_0) \in U \cap \iota (X)$.
+\end{myproof}
+
+\subsection{Borel functional calculus}
+
+Let $x \in \bh$ be normal ($x^* x = x x^*$) and $A = C^* (x) \subseteq \mathcal{B}(\mathcal{H})$.
+Then $\sigma(A) \cong \sigma(x)$. By the spectral theorem, there exists a PVM $E$ for $(\sigma(x), \mathcal{B}_{\sigma(x)}, \mathcal{H})$ 
+and $$B (\sigma(x)) \to \bh,\quad f \mapsto \int_{\sigma(x)} f\, dE$$
+is a *-homomorphism and a contraction (proposition above).
+Furthermore, $f \in C(\sigma(x))$ maps into $\int_{\sigma(x)} f\, dE = \Gamma^{-1} (f)$,
+so the above map, when restricted to $C(\sigma(x))$, coincides with $\Gamma^{-1}$.
+Furthermore,
+If $f = \id \in B(\sigma(x))$, meaning $f(z) = z$ for $z \in \sigma(x)$, then 
+$$\int_{\sigma(x)} \id \, dE = \Gamma^{-1} (\id) = x.$$
+For $f \in B (\sigma(x))$, define 
+$$f(x) := \int_{\sigma(x)} f\, dE \in A''  = W^* (x),$$
+which is a vNa generated by $x$.
+
+\begin{definition}
+  Let $x \in \bh$ be normal. The mapping 
+  $$B (\sigma(x)) \to W^* (x),\quad f \mapsto f(x)$$
+  is the Borel functional calculus.
+\end{definition}
+
+\begin{theorem}[Spectral mapping theorem]
+  Let $A \subseteq \bh$ be a vNa and let $x \in A$ be normal.
+  Then the Borel functional calculus has the following properties:
+  \begin{enumerate}
+    \item The map $$B (\sigma(x)) \to A,\quad f \mapsto f(x)$$
+    is a bounded *-homomorphism.
+    \item If $f \in C(\sigma(x))$, then this $f(x)$ is the same $f(x)$ as in continuous functional calculus.
+    \item For $f \in B (\sigma(x))$, we have $\sigma(f(x)) \subseteq f(\sigma(x))$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{myproof}
+  \begin{enumerate}
+    \item This is the above proposition.
+    \item Obvious.
+    \item For $\lambda \notin f(\sigma (x))$, then $f - \lambda \in \mathcal{B} (\sigma(x))$
+    is invertible in $\mathcal{B}(\sigma(x))$, so there exists $g \in \mathcal{B} (\sigma^{-1})$ such that $(f - \lambda) g = \id$.
+    By Borel functional calculus, $(f(x) - \lambda I) \cdot g(x) = I$, so $\lambda \notin \sigma(f(x))$. \qedhere
+  \end{enumerate}
+\end{myproof}
+
+\begin{corollary}
+  Every vNa is the norm-closure of the linear span of the projections.
+\end{corollary}
+
+\begin{myproof}
+  Let $M \subseteq \bh$ be a vNa and $x \in M$. By using $\real x, \imag x \in M_{\sa}$,
+  we may WLOG assume $x \in A_{\sa}$. Hence $x$ is normal and for all $f \in B(\sigma(x))$ we have $f(x) \in M$.
+  For $S \in \mathcal{B}_{\sigma(x)}$, $\chi_S (x) \in M$ is a projection. Now we can uniformly approximate $\id$ 
+  on $\sigma(x)$ by using simple functions. By BFC, $x$ is uniformly approximated by linear combinations of projections.
+\end{myproof}
+
+\begin{remark}
+  There exist $C^*$-algebras without nontrivial projections.
+  For example, for a compact Hausdorff connected $X$, the algebra $C(X)$ only has trivial projections $0$ and $1$.
+  There exist noncommutative examples, too.            
+\end{remark}
+
+\subsection{Commutative von Neumann algebras}
+
+\begin{definition}
+  Let $A \subseteq \mathcal{B}(\mathcal{H})$ be a subalgebra. Vector $\alpha \in \mathcal{H}$ is:
+  \begin{enumerate}
+    \item cyclic if $A$ if $A \alpha$ is dense in $\mathcal{H}$.
+    \item separating for $A$ if $x \alpha = 0$ for $x \in A$ implies $x = 0$.
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  Let $A \subseteq \bh$ be a subalgebra.
+  \begin{enumerate}
+    \item If $\alpha \in \mathcal{H}$ is cyclic for $A$, then it is separating for $A'$.
+    \item Assume $A$ is a *-subalgebra. Then if $\alpha$ is separating for $A'$, it is cyclic for $A$.
+    \item Suppose $W \subseteq \bh$ is a vNa. Then $\alpha$ is cyclic for $M$ iff it is separating for $M'$
+    and separating for $M$ iff it is cyclic for $M'$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{myproof}
+  \begin{enumerate}
+    \item Let $\alpha$ be cyclic for $A$. Let $y \in A'$ satisfy $y \alpha = 0$.
+    Pick any $\beta \in \mathcal{H}$. there exists a sequence $(x_n)_n \subseteq A$ such that $\|x_n \alpha - \beta\| \to 0$.
+    Hence $$y \beta = \lim_{n \to \infty} yx_n \alpha = \lim_{n \to \infty} x_n (y\alpha) = 0$$
+    and $\alpha$ is separating for $A'$.
+    \item Define $\mathcal{K} := (A \alpha)^{\perp} \leq \mathcal{H}$.
+    Let $p: \mathcal{H} \to \mathcal{K}$ be the orthogonal projection.
+    For $x_1, x_2 \in A$ and $\beta \in \mathcal{K}$ we have 
+    $$\langle x_1 \beta, x_2 \alpha\rangle = \langle \beta, x_1 ^* x_2 \alpha \rangle = 0,$$
+    so $x_1 \beta \in \mathcal{K}$ and $\mathcal{K}$ is an invariant subspace for $A$.
+    But since $A$ is *-closed, $\mathcal{K}$ is reducing and by lemma \ref{lem:1} $p \in A'$.
+    Of course, $\alpha \in A \alpha$ and $p\alpha = 0$. Now we use the fact that $\alpha$ is 
+    separating for $A'$ and therefore $p = 0$. This implies $\mathcal{K} = (0)$.
+    \item This follows immediately from $M = M''$ and the previous two points.
+  \end{enumerate}
+\end{myproof}
+
+\begin{example}
+  Recall $VN (\Gamma) := \lambda (\C [\Gamma])'' \subseteq \mathcal{B} (\ell^2 (\Gamma))$.
+  Similarly, we can use the right regular map 
+  $$\rho: \Gamma \to \mathcal{B} (\ell^2 (\Gamma)),\quad g \mapsto (\rho_g: \delta_k \mapsto \delta_{kg^{-1}})$$
+  to define $VN_{\mathrm{right}} (\Gamma) = \rho(\Gamma)'' \subseteq \mathcal{B} (\ell^2 (\Gamma))$.
+  Notice that $\delta_e \in \ell^2 (\Gamma)$ is cyclic for $\lambda (\C [\Gamma])$ as well as $\rho(\C[\Gamma])$.
+  This means that it is cyclic for both $VN(\Gamma)$ and $VN_{\mathrm{right}} (\Gamma)$.
+  It's easy to see that $VN(\Gamma)' = VN_{\mathrm{right}} (\Gamma)$, so $\delta_e$
+  is separating for $VN(\Gamma)$ and $VN_{\mathrm{right}} (\Gamma)$.
+\end{example}
+
+\begin{corollary}
+  If $A \subseteq \bh$ is commutative, then each cyclic vector for $A$ is also separating for $A$.
+\end{corollary}
+
+\begin{myproof}
+  If $\alpha \in \mathcal{H}$ is cyclic for $A$, then it is separating for $A'$, 
+  but since $A \subseteq A'$ it is also separating for $A$.
+\end{myproof}
+
+\begin{theorem}[Classification of commutative vNa's]
+  Let $A \subseteq \mathcal{B}(\mathcal{H})$ be a commutative vNa with a cyclic vector $\alpha \in \mathcal{H}$.
+  Suppose $A_0 \subseteq A$ is a $C^*$-algebra that is SOT-dense. Then there exists a finite regular positive Borel measure 
+  $\mu$ on $\sigma(A_0)$ and an isomorphism $$\widetilde{\Gamma}: A \to L^\infty (\sigma (A_0), \mu) \subseteq \mathcal{B} (L^2 (\sigma(A_0), \mu))$$
+  that extends the Gelfand transform $\Gamma: A_0 \to C(\sigma(A_0))$.
+  Furthermore, $\widetilde{\Gamma}$ is spacial, that is induced by conjugation with a unitary 
+  $U: \mathcal{H} \to L^2 (\sigma(A_0), \mu)$.
+\end{theorem}
+
+\begin{myproof}
+  Since $A_0$ is a commutative $C^*$-algebra, the Gelfand transform $\Gamma: A_0 \to C(\sigma(A_0))$
+  is an isometric *-isomorphism. Define $\varphi_0: A \to \C$ by $x \mapsto \langle x \alpha_0, \alpha_0\rangle$.
+  Then $\varphi_0 \Gamma^{-1} : C(\sigma(A_0)) \to \C$ is a bounded linear functional, so by Riesz-Markoff 
+  there exists a regular Borel measure $\mu$ on $\sigma(A_0)$ such that 
+  $$\varphi_0 \Gamma^{-1} (f) = \int_{\sigma(A_0)} f\, d\mu.$$
+  For every positive function $f \in C(\sigma(A_0))$ we have 
+  \begin{align*}
+    \int_{\sigma(A_0)} f\, d\mu &= \int \sqrt{f}^2\, d\mu = \varphi_0 \Gamma^{-1} (\sqrt{f}^2) = \langle \Gamma^{-1} (\sqrt{f}^2) \alpha_0, \alpha_0 \rangle\\
+    &= \langle \Gamma^{-1} (\sqrt{f}) ^2 \alpha_0, \alpha_0\rangle = \langle \Gamma^{-1} (\sqrt{f}) \alpha_0, \Gamma^{-1} (\sqrt{f}) \alpha_0\rangle\\
+    &= \| \Gamma^{-1} (\sqrt{f}) \alpha_0\|^2 \geq 0
+  \end{align*}
+  and $\mu$ is a positive measure. Furthermore, $\mu$ is finite, since 
+  $$\mu(\sigma(A_0)) = \varphi(1) = \|\alpha_0\|^2 < \infty.$$
+  Now we prove that $\mathrm{supp}\, \mu = \sigma(A_0)$.
+  If $\mathrm{supp}\, \mu \subsetneqq \sigma(A_0)$, then there exists $\emptyset \neq S^{\mathrm{open}} \subseteq \sigma(A_0)$
+  with $\mu (S) = 0$. Consider a nonnegative $f \in C(\sigma(A_0)) \setminus (0)$ with $f\big|_{\stcomp{S}} = 0$.
+  Then $$\| \Gamma^{-1} (\sqrt{f}) \alpha_0 \|^2 = \int_{\sigma(A_0)} f\, d\mu = \int_S f\, d\mu = 0.$$
+  We get $\Gamma^{-1} (\sqrt{f}) \alpha_0 = 0$, which by cyclicity of $\alpha_0$ implies $\Gamma^{-1} (\sqrt{f}) = 0$,
+  $\sqrt{f} = 0$ and $f = 0$, a contradiction. Define 
+  $$U_0 : A_0 \alpha_0 \to C(\sigma(A_0)) \subseteq L^2 (\sigma(A_0), \mu),\quad x \alpha_0 \mapsto \Gamma(x).$$
+  Since $\alpha_0$ is separating for $A_0$, this $U_0$ is a well-defined linear map.
+  For $x, y \in A_0$, we have 
+  \begin{align*}
+    \langle U_0 (x \alpha_0), U_0 (y \alpha_0) \rangle &= \langle \Gamma(x), \Gamma(y)\rangle_2 \\
+    &= \int_{\sigma (A_0)}  \overline{\Gamma(y)} \Gamma(x)\, d\mu\\
+    &= \int_{\sigma (A_0)} \Gamma(y^* x)\, d\mu\\
+    &= \varphi(y^* x) = \langle y^* x \alpha_0, \alpha_0 \rangle = \langle x \alpha_0, y \alpha_0\rangle
+  \end{align*}
+  and so $U_0$ is an isometry! Since $\alpha_0$ is cyclic for $A$ and $A_0$
+  is SOT-dense in $A$, $\alpha_0$ is cyclic for $A_0$.
+  So $A_0 \alpha_0$ is dense in $\mathcal{H}$ and the image of $U_0$ is the entire $C(\sigma(A_0))$.
+  By continuity, $U_0$ extends to a surjective isometry 
+  $$U : \mathcal{H} \to L^2 (\sigma(A_0), \mu) = \overline{C(\sigma(A_0), \mu)}^{\langle \cdot, \cdot \rangle_2},$$
+  where $U$ is unitary. Next, define 
+  $$\widetilde{\Gamma} : A \to \mathcal{B} (L^2 (\sigma(A_0), \mu)),\quad x \mapsto UxU^*.$$
+  We claim that $\widetilde{\Gamma}$ is an isometric *-homomorphism. Since $U$ is unitary, the isometric part is obvious and the homomorphism soon follows.
+  Now we claim that $\widetilde{\Gamma} (A) = M(L^\infty (\sigma(A_0), \mu))$.
+  For $x \in A_0$ and $g \in C(\sigma(A_0))$, we have 
+  \begin{align*}
+    \widetilde{\Gamma} (x) g &= UxU^* g = U x U^{-1} (\Gamma (\Gamma^{-1} (g)))\\
+    &= U x (\Gamma^{-1} (g)\alpha_0)= \Gamma (x \Gamma^{-1} (g))\\ 
+    &= \Gamma(x) g = M_{\Gamma(x)} g
+  \end{align*}
+  and since $C(\sigma (A_0))$ is dense in $L^2 (\sigma(A_0), \mu)$, we get $\widetilde{\Gamma}(x) = M_{\Gamma(x)}$.
+  It follows that 
+  $$\widetilde{\Gamma} (A_0) = M(C(\sigma (A_0))) \subseteq M(L^\infty (\sigma(A_0), \mu)).$$
+  Then we use the fact that $\widetilde{\Gamma}$ is SOT-continuous (by definition) and $M(L^\infty)$ is a vNa (example \ref{ex:1}) to get
+  $$\widetilde{\Gamma} (A) = \widetilde{\Gamma} (\overline{A_0} ^{\mathrm{SOT}}) \subseteq \overline{\widetilde{\Gamma} (A_0)}^{\mathrm{SOT}} \subseteq \overline{M(L^\infty (\sigma(A_0), \mu))}^{\mathrm{SOT}} = M(L^\infty (\sigma(A_0), \mu)).$$
+  The reverse inclusion is done by nets. Suppose $(\widetilde{\Gamma} (x_i))_i \subseteq \widetilde{\Gamma} (A_0)$
+  WOT-converges to $T \in B(L^2 (\sigma(A_0), \mu))$. Then for all $\beta \mu \in \mathcal{H}$ we have 
+  \begin{align*}
+    \langle TU \beta, U\mu\rangle &= \lim_{i} \langle \widetilde{\Gamma} (x_i) U\beta, U\mu\rangle\\
+    &= \lim_i \langle Ux_i U^* U \beta, U\mu \rangle\\
+    &= \lim_i \langle x_i \beta, \mu \rangle
+  \end{align*} 
+  and $(x_i)_i \xrightarrow{\mathrm{WOT}} U^* T U \in \bh$.
+  Since $\overline{A_0} ^{\mathrm{WOT}} = A$, we get $x = U^* T U \in A$ and $\widetilde{\Gamma}(x) = T$, so $\overline{\widetilde{\Gamma} (A_0)}^{\mathrm{WOT}} \subseteq \widetilde{\Gamma} (A)$.
+  Finally, we ask what is $\overline{M(C(\sigma(A_0)))}^{\mathrm{WOT}}$?
+  WOT on that set is generated by seminorms $$|\langle M_g \alpha, \beta\rangle| = \left| \int_{\sigma(A_0)} g \alpha \beta\, d\mu \right|,$$
+  where $g \in C(\sigma(A_0))$ and $\alpha, \beta \in L^2 (\sigma(A_0), \mu)$.
+  Accordingly, weak-* topology on $L^\infty (\sigma(A_0), \mu)$ is generated by 
+  seminorms 
+  $$\left| \int_{\sigma(A_0)} g \gamma\, d\mu \right|,$$
+  where $\mu \in L^1 (\sigma(A_0), \mu)$ (this is because for a $\sigma$-finite $X$, $(L^1(X))^* = L^\infty (X)$).
+  By Hölder, $L^1$ function is a product of two $L^2$ functions,
+  so these two topologies coincide.
+  By Goldstine's theorem, $C(\sigma(A_0))$ are weak-* dense in $L^\infty (\sigma(A_0), \mu)$.
+  Then we have 
+  $$M(L^\infty (\sigma(A_0), \mu)) = \overline{M(C(\sigma(A_0)))}^{\mathrm{WOT}} = \overline{\widetilde{\Gamma} (A_0)}^{\mathrm{WOT}} \subseteq \widetilde{\Gamma} (A)$$
+  and finally $\widetilde{\Gamma} (A) = M(L^\infty (\sigma(A_0), \mu))$.
+\end{myproof}
+
+\begin{remark}
+  Applying this theorem to $A_0 = A$ we get 
+  $$ M(L^{\infty} (\sigma(A), \mu)) = \widetilde{\Gamma} (A) = M(C(\sigma(A))).$$
+\end{remark}
+
+The following statement from the above proof is important in its own right.
+
+\begin{lemma}
+  $C(\sigma(A_0))$ are weak-* dense in $L^{\infty} (\sigma(A_0), \mu)$.
+\end{lemma}
+
+\begin{myproof}
+  For any bounded measurable function $f \in B(\sigma(A_0))$, there exists a net $(f_i)_i \subseteq C(\sigma(A_0))$
+  such that $f_i \xrightarrow{\mathrm{weak-*}} f$ by Goldstine (see the proof for theorem \ref{thm:1}).
+\end{myproof}
+
+In the proof, we used the following theorem.
+
+\begin{theorem}
+  Suppose $1 \leq p < \infty$ and $\mu$ is a $\sigma$-finite positive measure on $X$,
+  and $\Phi$ is a bounded linear functional on $L^p(X, \mu)$.
+  Then there is a unique $g \in L^q (X, \mu)$, where $\frac{1}{p} + \frac{1}{q} = 1$, such that 
+  $$\Phi (f) = \int_X fg\, d\mu.$$ Moreover, $\| \Phi\| = \|g\|_{q}$.
+\end{theorem}
+
+The theorem tells us that under these conditions, $L^q (X, \mu)$ is isometrically isomorphic to the dual space of $L^{q} (X, \mu)$.
+In particular, we used the fact that $(L^1 (X, \mu))^* = L^\infty (X, \mu)$. This is theorem 6.16 in W.Rudin's \emph{Real and complex analysis}.
+
+
+How crucial is the cyclicity assumption?
+Let $A \subseteq \bh$  be a commutative vNa. Pick $0 \neq \alpha \in \mathcal{H}$.
+Define $\mathcal{K}:= \overline{A\alpha}$ and let $p: \mathcal{H} \to \mathcal{K}$ be an orthogonal 
+projection, so by reducibility of $\mathcal{K}$ we get $p \in A'$. Therefore $pAp = Ap \subseteq \mathcal{B}(\mathcal{H})$
+is a commutative vNa with a cyclic vector $\alpha \in \mathcal{K}$.
+Then, again by theorem, $Ap \cong L^\infty (X, \mu)$ for some $(X, \mu)$.
+By Zorn's lemma, $A \cong L^\infty (Y, \nu)$ for some disjoint union of measure spaces $(Y, \nu)$.
+
+
+\begin{proposition}
+  Let $\mathcal{H}$ be a separable Hilbert space and $A \subseteq \bh$
+  a commutative vNa. Then there exists a separating vector for $A$.
+\end{proposition}
+
+\begin{myproof}
+  By Zorn, there exists a maximal set of unit vectors $(\alpha_k)_k$ such that $A \alpha_k \perp A \alpha_l$
+  for $k \neq l$. By maximality, $\sum_k A \alpha_k$ is dense in $\mathcal{H}$.
+  Define $\alpha = \sum_{n = 1} ^\infty \frac{1}{2^n} \alpha_n$. We claim that $\alpha$ is separating for $A$.
+  Indeed, let $x \in A$ such that $x \alpha = 0$. Then $\sum_{n = 1} ^\infty \frac{1}{2^n} x \alpha_n = 0$.
+  By orthogonality, $x\alpha_n = 0$ for all indices $n$. For all $y \in A$, we get 
+  $xy \alpha_n = y x \alpha_n = 0$, so $x\big|_{A\alpha_n} = 0$ for all $n$. But since $\sum_n A \alpha_n$ is dense in $A$, we get $x = 0$.
+\end{myproof}
+
+\begin{corollary}
+  Let $\mathcal{H}$ be a separable Hilbert space and $A \subseteq \bh$
+  is a maximal commutative vNa. Then there exists a cyclic vector for $A$.
+\end{corollary}
+
+\begin{myproof}
+  By the proposition, there exists a separating vector $\alpha$ for $A$, which is then cyclic for 
+  $A'$. But since $A$ is maximal, we get $A = A'$.
+\end{myproof}
+
+\begin{theorem}
+  Let $\mathcal{H}$ be a separable Hilbert space and $A \subseteq \bh$ a commutative 
+  vNa. Then there exists a compact Hausdorff space $X$ and a finite regular Borel measure $\mu$ on $X$ such that $A \cong L^\infty (X, \mu)$.
+\end{theorem}
+
+\begin{myproof}
+  By proposition, there exists a separating vector $\alpha \in \mathcal{H}$ for $A$. 
+  Form $\mathcal{K} := \overline{A \alpha}$. Then the algebra $\{x\big|_{\mathcal{K}} \ |\ x \in A\} \subseteq \mathcal{B}(\mathcal{K})$
+  is *-isomorphic to $A$, has cyclic vector $\alpha$ and the above theorem applies.
+\end{myproof}
+
+\begin{example}
+  Let $\Gamma = \quot{\Z}{n\Z}.$ Then the spectrum is $\sigma(VN(\Gamma)) = \{e^{\frac{2k \pi i}{n}}\ |\ 0 \leq k < n\}$
+  and $\mu(e^{\frac{2k\pi i}{n}}) = \frac{1}{n}$. Then $$VN(\Gamma) = L^\infty (\sigma(VN(\Gamma)), \mu) \cong \C^n$$
+  as an algebra. The generator for $VN(\Gamma)$ is the matrix 
+  $$\begin{pmatrix}
+    0 & 1 &  & \\
+     & \ddots & \ddots &\\
+     & & \ddots & 1\\
+    1 & &  &0
+  \end{pmatrix}.$$
+\end{example}
+
+\begin{example}
+  Let $\Gamma = \Z$. Then $\mathbb{T}$ is the Pontryagin dual of $\Gamma$,
+  so $C^* (\Gamma) = C(\mathbb{T})$ and $VN(\Gamma) = L^\infty (\mathbb{T}, m)$, where $m$ is the normalized Lebesgue measure.
+\end{example}

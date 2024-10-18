@@ -1,0 +1,727 @@
+\section{Representations of $C^*$-algebras and states}
+
+\subsection{States}
+
+Let $A$ be a $C^*$-algebra, then $A^*$ can be given an $A$-bimodule 
+structure: if $\psi \in A^*$ and $a, b \in A$, then 
+$$(a \cdot \psi \cdot b)(x) = \psi(bxa),\quad \forall x \in A.$$
+We have 
+\begin{align*}
+  \| a \cdot \psi \cdot b\| = \sup_{x \in (A)_1} \| \psi (bxa)\| \leq \sup_{x \in (A)_1} \| \psi \| \|bxa\| \leq \| \psi\| \| a\| \|b\|.
+\end{align*}
+
+\begin{definition}
+  Let $A$ be a $C^*$-algebra and $\varphi \in A^*$.
+  \begin{itemize}
+    \item We say that $\varphi$ is positive if $\varphi(x) \geq 0$, $\forall x \in A_+$.
+    If $\varphi$ is positive and $a \in A$, then $a \varphi a^*$ is also positive.
+    \item A positive element $\varphi \in A^*$ is faithful if $\varphi(x) \neq 0$, $\forall x \in A_+ \setminus \{0\}$.
+    \item An element $\varphi \in A^*$ is a state if it is positive and $\| \varphi \| = 1$.
+    The set of states is denoted $S(A) \subseteq (A^*)_1$.
+  \end{itemize}
+\end{definition}
+
+\begin{remark}
+  The set $S(A)$ is compact Hausdorff in the weak-* topology.
+\end{remark}
+
+We notice that if $\varphi \in A^*$ is positive and $x \in A_{\sa}$,
+then $$\varphi(x) = \varphi(x_+ - x_-) = \varphi (x_+) - \varphi(x_-) \in \R.$$
+If $y \in A$, then $y = y_1 + i y_2$, where $y_1, y_2$ are self-adjoint.
+Then \begin{align*}
+  \varphi(y^*) &= \varphi((y_1 + i y_2)^*) = \varphi (y_1 - i y_2)\\
+  &= \varphi (y_1) - i \varphi(y_2) = \overline{\varphi(y_1) + i \varphi (y_2)}\\
+  &= \overline{\varphi (y_1 + i y_2)} = \overline{\varphi(y)}
+\end{align*}
+Such a functional $\varphi \in A^*$ is called hermitian.
+For any $\varphi \in A^*$, define $\varphi^* (y) = \overline{\varphi(y^*)}$.
+Then $\varphi + \varphi^*$ and $i(\varphi - \varphi^*)$ are hermitian.
+One can, of course, define these notions for unbounded linear functionals.
+However, positivity implies continuity: for every $a \in A_{\sa}$ we have 
+$-\| a\| \cdot 1 \leq a \leq \| a\| \cdot 1$, which implies
+$$-\| a\| \varphi(1) \leq \varphi(a) \leq \| a\| \varphi(1)$$
+and $\varphi$ is bounded.
+For $a \in A$, we can of course write $a = b + ic$ for $b, c \in A_{\sa}$.
+Here, $\|b\| \leq \|a\|$ and $\|c\| \leq \|a\|$. Let $\varphi(1) = C$.
+Then 
+$$|\varphi(a)|^2 = |\varphi(b) + i\varphi(c)|^2 = \varphi(b)^2 + \varphi(c)^2 \leq C^2 (\|b\|^2 + \|c\|^2) \leq 2 C^2 \|a\|^2.$$
+
+\begin{lemma}
+  Let $\varphi \in A^*$ be positive. Then $\forall x, y \in A$:
+  $$|\varphi(y^* x)|^2 \leq \varphi (y^* y) \cdot \varphi(x^* x).$$
+\end{lemma}
+
+\begin{myproof}
+  Consider the sesquilinear form
+  $\langle x, y \rangle = \varphi (y^* x)$.
+  Since $\varphi$ is positive, this is a positive sesquilinear form and we can apply Cauchy-Schwartz. 
+\end{myproof}
+
+\begin{theorem}
+  An element $\varphi \in A^*$ is positive iff $\| \varphi \| = \varphi(1).$
+\end{theorem}
+
+\begin{remark}
+  This implies that the set of states $S(A)$ is convex.
+\end{remark}
+
+\begin{myproof}
+  First we prove the right implication $(\Rightarrow)$. We know that $x^* x \leq \|x^* x\|$, so 
+  \begin{align*}
+    |\varphi(x)|^2 &\leq \varphi(1) \varphi(x^* x)\\
+    &\leq \varphi(1) \varphi(\| x^* x\|)\\
+    &= \varphi(1)^2 \|x^* x\|\\
+    &= \varphi(1)^2 \|x\|^2,
+  \end{align*}
+  so $|\varphi(x)| \leq \varphi(1) \|x\|$. From there we get $\| \varphi \| \leq \varphi(1) \leq \|\varphi\|$,
+  so $\varphi(1) = \| \varphi \|$. Now the converse $(\Leftarrow)$. Suppose $x \in A_+$ and $\varphi (x) = \alpha + i \beta.$
+  For each $t \in \R$, we have 
+  \begin{align*}
+    \alpha^2 + (\beta + t \|\varphi\|)^2 &= |\alpha + i (\beta + t \varphi(1))|^2\\
+    &= |\varphi (x + it)|^2\\
+    &= \| x + it\|^2 \cdot \|\varphi\|^2 \\
+    &\leq \left( \|x\|^2 + t^2 \right) \|\varphi\|^2. 
+  \end{align*}
+  From this it directly follows $2 \beta t \|\varphi\| \leq \|x\|^2 \cdot \|\varphi\|^2$.
+  Since $t \in \R$ was arbitrary, we have $\beta = 0$ and $\varphi(x) = \alpha \in \R$.
+  Lastly, we derive 
+  \begin{align*}
+    \| x\| \cdot \|\varphi\| - \varphi(x) &= \varphi(\|x\| - x)\\
+    &\leq \|\|x\| - x\| \cdot \|\varphi\|\\
+    &\leq \| x\| \cdot \| \varphi \|,
+  \end{align*}
+  so $\varphi(x) \geq 0$.
+\end{myproof}
+
+\begin{proposition}
+  Let $A$ be a $C^*$-algebra and $x \in A$. Then $\forall \lambda \in \sigma(x)$ there exists a $\varphi \in S(A)$
+  such that $\varphi(x) = \lambda$.
+\end{proposition}
+
+\begin{myproof}
+  We know that $\C x + \C \cdot 1 \subseteq A$.
+  Define $$\varphi_0 : \C x+ \C 1 \to \C,\quad \alpha x + \beta \mapsto \alpha \cdot \lambda + \beta.$$
+  Since $\varphi_0 (\alpha x + \beta) \in \sigma(\alpha x + \beta)$, we have
+  $$\|\varphi_0 \| \leq 1 = \varphi_0 (1),$$
+  therefore $\|\varphi_0\| = 1$. Now we apply Hahn-Banach to get an extension $\varphi \in A^*$
+  such that $\varphi\big|_{\C x + \C 1} = \varphi_0$ and $\| \varphi \| = 1 = \varphi(1)$,
+  so $\varphi \in S(A)$.
+\end{myproof}
+
+\begin{proposition}\label{prop:2}
+  Let $A$ be a $C^*$-algebra and $x \in A$.
+  \begin{enumerate}
+    \item $x = 0$ iff $\varphi (x) = 0,\ \forall \varphi \in S(A)$.
+    \item $x \in A_{\sa}$ iff $\varphi (x) \in \R,\ \forall \varphi \in S(A)$.
+    \item $x \in A_+$ iff $\varphi (x) \geq 0,\ \forall \varphi \in S(A)$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{myproof}
+  \begin{enumerate}
+    \item If $\varphi x = 0$ for all $\varphi \in S(A)$, then writing $x = x_1 + i x_2$
+    for self-adjoint $x_1, x_2$ gives us 
+    $$0 = \varphi(x) = \varphi(x_1) + i \varphi(x_2),$$
+    which implies $\varphi(x_1) = \varphi(x_2) = 0$. For the converse implication,
+    use the previous proposition to get $\sigma(x) = \{0\}$, which can only imply $x = 0$.
+    \item If $\varphi(x) \in \R$ for all $\varphi \in S(A)$, then 
+    $$\varphi(x - x^*) = \varphi(x) - \varphi(x^*) = \varphi(x) - \overline{\varphi(x)} = 0$$
+    and we use the previous item to show that $x - x^*$. The converse implication follows from positiveness.
+    \item If $\varphi(x) \geq 0$ for all $\varphi \in S(A)$, then $x \in A_{\sa}$
+    by previous item and $\sigma(x) \subseteq [0, \infty)$, so $x \in A_+$.
+    The converse once again follows from positiveness. \qedhere
+  \end{enumerate}
+\end{myproof}
+
+\subsection{Gelfand-Naimark-Segal (GNS) construction}
+
+\begin{definition}
+  \begin{itemize}
+    \item A representation of a $C^*$-algebra is a *-homomorphism $\pi: A \to \mathcal{B}(\mathcal{H})$
+  for some Hilbert space $\mathcal{H}$. 
+    \item If $\mathcal{K}^{\mathrm{closed}} \leq \mathcal{H}$ and $\pi(x) \mathcal{K} \subseteq \mathcal{K},\ \forall x \in A$ ($\mathcal{K}$ is invariant for $\pi$),
+  then the restriction of $\pi$ to $\mathcal{K}$ is a subrepresentation.
+    \item   If a representation has no other representations besides $\mathcal{K} = (0)$ and $\mathcal{K} = \mathcal{H}$
+  (equivalently, $\pi(A)$ only has $(0)$ and $\mathcal{H}$ as closed invariant subspaces),
+  then $\pi$ is called irreducible.
+    \item Representations $\pi: A \to \bh$ and $\rho: A \to \mathcal{B} (\mathcal{K})$
+  are equivalent if there exists a unitary $U: \mathcal{H} \to \mathcal{K}$ such that $$U \pi(x) = \rho(x) U,\quad \forall x \in A.$$
+    \item Vector $\mu \in \mathcal{H}$ is cyclic (for a representation $\pi: A \to \bh$) if 
+    $$\pi (A) \mu := \{\pi(a) \mu\ |\ a \in A\}$$
+    is dense in $\mathcal{H}$ (this means that $\overline{\pi (A) \mu} = \mathcal{H}$).
+  \end{itemize}
+   
+\end{definition}
+
+\begin{example}
+  Each $w \in \mathcal{H}$ define a subrepresentation in $K := \overline{\pi (A) w}$.
+\end{example}
+
+\begin{example}
+  Let $\pi: A \to \bh$ be a representation and $\mu \in \mathcal{H}$, $\| \mu \| = 1$.
+  Then $$\varphi_\mu : A \to \C,\quad x \mapsto \langle \pi (x) \mu, \mu \rangle$$
+  is a state. Indeed, 
+  $$\varphi_\mu (1) = \langle 1 \cdot \mu, \mu \rangle = \| \mu \|^2 = 1$$
+  and 
+  \begin{align*}
+    \varphi_\mu (x^* x) &= \langle \pi(x^* x) \mu, \mu \rangle\\
+    &= \langle \pi (x^*) \pi (x) \mu, \mu \rangle\\
+    &= \langle \pi (x)^* \pi (x) \mu, \mu\rangle \\
+    &= \langle \pi (x) \mu, \pi(x) \mu \rangle\\
+    &= \| \pi(x) \mu \|^2 \geq 0.
+  \end{align*}
+\end{example}
+
+\begin{theorem}[GNS construction]
+  Let $A$ be a $C^*$-algebra and $\rho \in S(A)$.
+  Then there exists a Hilbert space $L^2 (A, \varphi)$ and a unique (up to equivalence)
+  representation $\pi : A \to \mathcal{B} (L^2 (A, \varphi))$ and a unit cyclic vector $1_{\varphi}$
+  such that $$\varphi(x) = \langle \pi(x) 1_{\varphi} , 1_{\varphi} \rangle,\quad \forall x \in A.$$
+\end{theorem}
+
+\begin{myproof}
+  \begin{enumerate}
+    \item We start by defining $$N_\varphi = \{x \in A\ |\ \varphi(x^* x) = 0\}$$
+    whose elements we call nullvectors of $\varphi$. By Cauchy-Schwartz lemma, we have 
+    $$N_\varphi = \{x \in A\ |\ \varphi(yx) = 0,\ \forall y \in A\}.$$
+    Thus $N_\varphi$ is a closed subspace of $A$.
+    \item We prove that $N_\varphi$ is a left ideal: for $x \in N_\varphi$ and $a \in A$, we have $ax \in N_\varphi$.
+    Indeed, 
+    $$\varphi ((ax)^* ax) = \varphi ((x^* a^* a) x) = 0.$$
+    \item Now $\mathcal{H}_0 = \quot{A}{N_\varphi}$ is a vector space and we can endow it with the dot product 
+    $\langle [x], [y] \rangle := \varphi(y^* x)$ for $x, y \in A$. It can easily be checked that this is a well-defined dot product in $\mathcal{H}_0$.
+    We denote the completion of $\mathcal{H}_0$  by $L^2 (A, \varphi)$.
+    \item To an arbitrary $a \in A$, we associate the map 
+    $$\pi_0 (a) : \mathcal{H}_0 \to \mathcal{H}_0,\quad [x] \mapsto [ax].$$
+    Since $N_\varphi$ is a left ideal of $A$, $\pi_0 (a)$ is a well-defined linear map.
+    \begin{align*}
+      \| \pi_0 (a) [x]\|^2 &= \| [ax]\|^2\\
+      &= \langle [ax], [ax]\rangle\\
+      &= \varphi ((ax)^* ax)\\
+      &= \varphi(x^* a^* a x)\\
+      &\leq \| a\|^2 \cdot \varphi(x^* x) \leq \| a\|^2 \|x\|^2.
+    \end{align*}
+    Since $\pi_0 (a)$ is continuous, it exdends uniquely to $\pi (a) \in \mathcal{B}(L^2 (A, \varphi))$
+    with $\| \pi(a)\| \leq \| a\|$. Then we get $$\pi: A \to \mathcal{B} (L^2 (A, \varphi)),\quad a \mapsto \pi(a),$$
+    which is a homomorphism and has the property 
+    \begin{align*}
+      \langle [x] , \pi(a^*) [y]\rangle &= \langle [x], [a^* y]\rangle\\
+      &= \varphi((a^* y)^* x)\\
+      &= \varphi(y^* ax)\\
+      &= \langle [ax], [y] \rangle\\
+      &= \langle \pi(a) [x], [y]\rangle.
+    \end{align*}
+    So $\pi(a) ^* = \pi(a^*)$ and $\pi$ is a representation.
+    \item We define $1_\varphi := [1] \in \mathcal{H}_0 \subseteq L^2 (A, \varphi)$
+    and notice that 
+    $$\langle \pi(a) 1_\varphi, 1_\varphi \rangle = \langle \pi(a) [1], [1] \rangle = \langle[a], [1] \rangle = \varphi(a).$$
+    Since $\{\pi (a) 1_\varphi\ |\ a \in A\} = \mathcal{H}_0$, the vector $1_\varphi$ is cyclic for $\pi$.
+    \item Next we prove uniqueness: let $\rho: A \to \mathcal{B} (\mathcal{K})$ be a representation, $\mu \in \mathcal{K}$ a unit cyclic vector and 
+    assume $\varphi(a) = \langle \rho(a)\mu, \mu\rangle,\ \forall a \in A$.
+    We will prove that $\rho$ is equivalent to $\pi$. Define 
+    $$U_0 : \mathcal{H}_0 \to \mathcal{K},\quad [x] \mapsto \rho(x) \mu.$$
+    Then we have 
+    \begin{align*}
+      \langle U_0 [x], U_0 [y] \rangle_{\mathcal{K}} &= \langle \rho (x) \mu, \rho(y) \mu \rangle\\
+      &= \langle \rho(y) ^* \rho(x)\mu, \mu \rangle\\
+      &= \langle \rho (y^* x) \mu, \mu\rangle = \varphi(y^* x) = \langle [x], [y] \rangle_{L^2 (A, \varphi)},
+    \end{align*}
+    so $U_0$ really is a well-defined isometry. For all $a, x \in A$:
+    $$U_0 (\pi (a) [x]) = U_0 ([ax]) = \rho (ax) \mu = \rho(a) \rho(x) \mu = \rho(a) U_0 [x].$$
+    Therefore, $U_0$ induces an isometry $U: L^2 (A, \varphi) \to \mathcal{K}$
+    such that $U\pi(a) = \rho (a) U$ for all $a \in A$. Since $\mu$ is cyclic and $\rho(a) \mu \subseteq \im U$, it is dense in $\mathcal{K}$.
+    It is also closed since $U$ is isometric. We just proved that $U$ is isometric and onto, so it is unitary. \qedhere
+  \end{enumerate}
+\end{myproof}
+
+\begin{corollary}
+  Every $C^*$-algebra has a faithful (i.e. injective) representation. In particular, every $C^*$-algebra is isometrically *-isomorphic to a closed subalgebra of $\mathcal{B} (H)$
+  for some Hilbert space $\mathcal{H}$.
+\end{corollary}
+
+\begin{myproof}
+  Let $\pi$ be a direct sum of all representations from GNS construction over all states. Then the proposition \ref{prop:2} tells us that $\pi$ is injective. 
+  An injective *-monomorphism is isometric and we are done.
+\end{myproof}
+
+\begin{definition}
+  If $S \subseteq A$, then $$S' := \{x \in A\ |\ \forall s \in S:\ xs = sx\}$$
+  is a commutant.
+\end{definition}
+
+\begin{proposition}[Radon-Nikodym for linear functionals]
+  Let $\varphi, \psi$ be positive linear functionals on a $C^*$-algebra $A$ and $\varphi \in S(A)$.
+  Then $\varphi \leq \psi$ iff there exists a unique $y \in \pi_{\psi} (A)'$ such that $0 \leq y \leq 1$
+  and $$\varphi(a) = \langle \pi_{\psi} (a) y 1_{\psi}, 1_{\psi} \rangle,\quad \forall a \in A.$$
+\end{proposition}
+
+\begin{myproof}
+  Start with $(\Leftarrow)$. For $a \in A_+$ we have 
+  $$\pi_{\psi} (a) y = \pi_{\psi} (a)^{\frac{1}{2}} y \pi_{\psi} (a) ^{\frac{1}{2}} \leq \pi_{\psi} (a).$$
+  Then 
+  $$\varphi(a) = \langle \pi_{\psi} (a) y 1_{\psi}, 1_{\psi} \rangle \leq \langle \pi_{\psi} (a) 1_{\psi}, 1_{\psi}\rangle = \psi(a).$$
+  Now the opposite $(\Rightarrow)$. By Cauchy-Schwartz,
+  \begin{align*}
+    \varphi (b^* a)|^2 &\leq \varphi(a^* a) \varphi(b^* b)\\
+    &\leq \psi (a^* a) \psi (b^* b)\\
+    &= \| \pi_{\psi} (a) 1_{\psi} \|^2 \cdot \| \pi_{\psi} (b) 1_{\psi} \|^2.
+  \end{align*}
+  This means that $\langle \pi_{\psi} (a) 1_{\psi}, \pi_{\psi} (b) 1_{\psi}\rangle_{\varphi} := \varphi (b^* a)$ is a nonnegative sesquilinear form on 
+  $\pi_{\varphi} (A) 1_{\psi}^{\mathrm{dense}} \subseteq L^2 (A, \psi)$, which is bounded by $1$.
+  This further implies that it is continuous and we can extend it to $L^2 (A, \psi)$.
+  By Riesz, there exists $y \in \mathcal{B} (L^2 (A, \psi))$ such that 
+  $$\varphi(b^* a) = \langle y \pi_{\psi} (a) 1_{\psi} , \pi_{\psi} (b) 1_{\psi} \rangle,\quad \forall a, b \in A$$
+  and $0 \leq y \leq 1$. For $a, b, c \in A$ we have 
+  \begin{align*}
+    \langle y \pi_{\psi} (a) \pi_{\psi} (b) 1_{\psi}, \pi_{\psi} (c) 1_{\psi}\rangle &= \langle y \pi_{\psi} (ab) 1_{\psi}, \pi_{\psi} (c) 1_{\psi} \rangle\\
+    &= \varphi(c^* \cdot ab) = \varphi ((a^* c)^* b)\\
+    &= \langle y \pi_{\psi} (b) 1_{\psi}, \pi_{\psi} (a^*) \pi_{\psi} (c) 1_{\psi}\rangle\\
+    &= \langle \pi_{\psi} (a) y \pi_{\psi} (b) 1_{\psi}, \pi_{\psi} (c) 1_{\psi}\rangle,
+  \end{align*}
+  so $y \pi_{\psi} (a) = \pi_{\psi} (a) y$ for all $a \in A$ and $y \in \pi_{\psi} (A) '$.
+  Finally, the uniqueness. Say that there exists a $z \in \pi_{\psi} (A)'$ such that $0 \leq z \leq 1$ and 
+  $$\langle \pi_{\psi} (a) y 1_{\psi}, 1_{\psi} \rangle = \langle \pi_{\psi} (a) z 1_{\psi}, 1_{\psi} \rangle,\quad \forall a \in A.$$
+  Then 
+  \begin{align*}
+    \langle \pi_{\psi} (b^* a) z 1_{\psi}, 1_{\psi} \rangle &= \langle \pi_{\psi} (b^* a) y 1_{\psi}, 1_{\psi} \rangle \\
+    &= \langle y \pi_{\psi} (a) 1_{\psi}, \pi_{\psi} (b) 1_{\psi} \rangle\\
+    &= \langle z \pi_{\psi} (a) 1_{\psi}, \pi_{\psi} (b) 1_{\psi} \rangle,  
+  \end{align*}
+  which implies $y = z$.
+\end{myproof}
+
+\begin{proposition}
+  Suppose that $A$ is a separable $C^*$-algebra. Then $A$ has a faithful
+  cyclic representation on a separable Hilbert space.
+\end{proposition}
+
+\begin{myproof}
+  If $A$ is separable, then it has a dense subset $\{a_i\}_{i = 1} ^\infty$.
+  We can embed $S(A)$ into a space $\prod_{i = 1} ^\infty \overline{B_1 (0)}$, where $\overline{B_1 (0)}$
+  is a closed unit ball in $\C$. The latter topological space is metrizable by metric $\rho (x, y) = \sum_{i = 1} ^\infty \frac{\rho_i (x_i, y_i)}{2^i (\rho_i (x_i, y_i) + 1)}$,
+  and so is $S(A)$. Therefore, $S(A)$ with the weak-* topology is a metrizable compact, therefore separable.
+  Let $\{f_i\}_i ^{\infty}$
+  countable weak-* dense subset of $S(A)$. Then 
+  $$f(a) := \sum_{i = 1} ^{\infty} 2^{-i} f_i (a)$$
+  defines a faithful ($f(a^* a) = 0$ iff $a = 0$) state on $A$.
+  Then the GNS construction $\pi_f$ is faithful: if $\pi_f (a) = 0$, then 
+  $$f(b^* a^* a b) = \langle \pi_f (a) [b], \pi_f (a) [b] \rangle = 0$$
+  for every $b \in A$. In particular for $b = 1$, we get $f(a^* a) = 0$ and so $a = 0$.
+  Since $a \mapsto [a]$ is 
+a continuous map of $A$ onto a dense subspace of some Hilbert space $\mathcal{H}_f$ (induced by $\pi_f : A \to \mathcal{B}(\mathcal{H}_f)$), the latter space is
+separable.
+\end{myproof}
+
+\begin{proposition}
+  Every representation of a $C^*$-algebra is equivalent to a direct sum of cyclic representations.
+\end{proposition}
+
+\begin{myproof}
+  Let $\pi: A \to \bh$ be some representation of $A$.
+  Let $\mathcal{E}$ be the collection of all subsets $E$ of nonzero vectors in $\mathcal{H}$
+  such that $\pi(A) e \perp \pi(A)f$ for any $e, f \in E$. If we order $\mathcal{E}$ by inclusion, 
+  then Zorn's lemma tells us that $\mathcal{E}$ has a maximal element $E_0$.
+  Let $\mathcal{H}_0 = \bigoplus_{e \in E_0} \overline{\pi(A) e}$. Take $h \in \mathcal{H}_0 ^{\perp}$ in $\mathcal{H}$.
+  Then for any $a, b \in A$ and $e \in E_0$ we have 
+  $$\langle \pi(a) e, \pi(b) h \rangle = \langle \pi(b) ^* \pi (a) e, h \rangle = \langle \pi(b^* a) e, h\rangle = 0,$$
+  so $\pi(A)e \perp \pi(A)h$ for each $e \in E_0$. By maximality, $h = 0$ and $\mathcal{H} = \mathcal{H}_0$.
+  For $e \in E_0$, define $\mathcal{H}_e := \overline{\pi(A) e}$.
+  Obviously, $\mathcal{H}_e$ is invariant for $\pi$, so $\pi_e := \pi\big|_{\mathcal{H}_e}$ is a cyclic representation of $A$.
+  Clearly, $\pi = \bigoplus_{e\in E_0} \pi_e$.
+\end{myproof}
+
+\subsection{Pure states and irregular representations}
+
+\begin{definition}
+  A state $\varphi \in S(A)$ is called pure if it's an extreme point of $S(A)$.
+\end{definition}
+
+\begin{proposition}
+  A state $\varphi \in S(A)$ is pure iff GNS $\pi_{\varphi}: A \to \mathcal{B} (L^2 (A, \varphi))$
+  with a cyclic vector $1_{\varphi}$ is irreducible.
+\end{proposition}
+
+\begin{myproof}
+  \begin{itemize}
+    \item[$(\Rightarrow)$] Let $\mathcal{K} \leq L^2 (A, \varphi)$ be a closed invariant subspace.
+    Then $\mathcal{K}^{\perp}$ is also a closed invariant subspace: for $a \in A$, $x \in \mathcal{K}^{\perp}$ and $k \in \mathcal{K}$ we have 
+    $$\langle \pi_\varphi (a) x, k\rangle = \langle x, \pi_\varphi (a^*) k \rangle = 0.$$
+    Since $L^2 (A, \varphi) = \mathcal{K} \oplus \mathcal{K}^\perp$ we write $1_\varphi = \underbrace{\mu_1}_{\in \mathcal{K}} + \underbrace{\mu_2}_{\in \mathcal{K}^\perp}$
+    and form 
+    $$\varphi_j := \frac{\langle \pi_\varphi (x) \mu_j, \mu_j \rangle}{\| \mu_j\|^2},\quad j = 1, 2.$$
+    These are states and so is 
+    $$\varphi(x) = \| \mu_1 \|^2 \varphi_1 (x) + \| \mu_2 \|^2 \varphi_2 (x)$$
+    because $1 = \|1_\varphi\|^2 = \| \mu_1\|^2 + \|\mu_2\|^2$. Since $\varphi \in \ext S(A)$, we either have 
+    $\mu_1 = 0$ or $\mu_2 = 0$, which implies that $\mathcal{K}$ is either $(0)$ or $\mathcal{H}$.
+    \item[$(\Leftarrow)$] Suppose $\varphi = \frac{1}{2} (\varphi_1 + \varphi_2)$ for $\varphi_1, \varphi_2 \in S(A)$.
+    Define a linear map 
+    $$U: L^2 (A, \varphi) \to L^2 (A, \varphi_1) \oplus L^2 (A, \varphi_2),\quad \pi_\varphi(x) 1_\varphi \mapsto \frac{1}{\sqrt{2}} \pi_{\varphi_1}(x) 1_{\varphi_1} \oplus \frac{1}{\sqrt{2}} \pi_{\varphi_2} (x) 1_{\varphi_2}.$$
+    First we notice that $U$ preserves scalar product:
+    \begin{align*}
+      \langle \pi_\varphi (x) 1_\varphi, \pi_\varphi (y) 1_\varphi \rangle &= \varphi (x^* y)\\
+      &= \frac{1}{2} \varphi_1(x^* y) + \frac{1}{2} \varphi_2 (x^* y)\\
+      &= \langle \frac{1}{\sqrt{2}} \pi_{\varphi_1} (x) 1_{\varphi_1} \oplus \frac{1}{\sqrt{2}} \pi_{\varphi_2} (x) 1_{\varphi_2}, \frac{1}{\sqrt{2}} \pi_{\varphi_1} (y) 1_{\varphi_1} \oplus \frac{1}{\sqrt{2}} \pi_{\varphi_2} (y) 1_{\varphi_2} \rangle\\
+      &= \langle U \pi_\varphi (x) 1_\varphi, U \pi_\varphi (y) 1_\varphi \rangle
+    \end{align*}
+    Additionally, $U$ intertwines: for all $x \in A$, we have
+    \begin{align*}
+      U \pi_{\varphi}(x) (\pi_{\varphi} (y) 1_{\varphi}) &= U \pi_{\varphi} (xy) 1_{\varphi}\\
+      &= \frac{1}{\sqrt{2}} \pi_{\varphi_1} (xy) 1_{\varphi_1} \oplus \frac{1}{\sqrt{2}} \pi_{\varphi_2} (xy) 1_{\varphi_2}\\
+      &= \left(\pi_{\varphi_1} (x) \oplus \pi_{\varphi_2} (x)\right) (\pi_{\varphi_1} (y) 1_{\varphi_1} \oplus \pi_{\varphi_2} (y) 1_{\varphi_2})\\
+      &= \left(\pi_{\varphi_1} (x) \oplus \pi_{\varphi_2} (x)\right) U (\pi_{\varphi} (y) 1_{\varphi}).
+    \end{align*}
+    If we star the intertwining identity, we get 
+    \begin{equation*}
+      \pi_{\varphi}(x^*) U^* = U^* \left(\pi_{\varphi_1} (x^*) \oplus \pi_{\varphi_2} (x^*)\right),\quad \forall x^* \in A.
+    \end{equation*}
+    If we plug in $x$ instead of $x^*$, we get 
+    \begin{equation*}
+      \pi_{\varphi}(x) U^* = U^* \left(\pi_{\varphi_1} (x) \oplus \pi_{\varphi_2} (x)\right),\quad \forall x \in A.
+    \end{equation*}
+    Now let $$p_1 \in \mathcal{B} (L^2 (A, \varphi_1) \oplus L^2 (A, \varphi_2))$$
+    be orthogonal projection onto the first factor.
+    Clearly, we have
+    \begin{equation*}
+      p_1 \left(\pi_{\varphi_1} (x) \oplus \pi_{\varphi_2} (x)\right) = \left(\pi_{\varphi_1} (x) \oplus \pi_{\varphi_2} (x)\right) p_1 
+    \end{equation*}
+    Putting it all together, we get 
+    \begin{align*}
+      \pi_{\varphi} (x) U^* p_1 U &= U^* (\pi_{\varphi_1} (x) \oplus \pi_{\varphi_2} (x)) p_1 U\\
+      &= U^* p_1 (\pi_{\varphi_1} (x) \oplus \pi_{\varphi_2} (x)) U\\
+      &= U^* p_1 U (\pi_{\varphi_1} (x) \oplus \pi_{\varphi_2} (x))
+    \end{align*}
+    so $U^* p_1 U$ commutes with $\pi_{\varphi} (x)$ for all $x \in A$.
+    If $\sigma(U^* p_1 U)$ has more than one element, then $\exists t \in (0, 1]$
+    such that $\sigma(U^* p_1 U - t)$ has both positive and negative elements.
+    By CFC, we can write $U^* p_1 U = a - b$ for positive $0 \neq a, b$ such that $ab = ba = 0$.
+    Then $a, b$ commute with $\pi_{\varphi} (A)$, so $\ker a \neq 0$ is an closed subspace of $L^2 (A, \varphi)$ that is invariant under $\pi_{\varphi} (x)$, which is a contradiction.
+    So $U^* p_1 U$ has a single element spectrum $\{\alpha\}$ and since $U^* p_1 U$ is normal (because it is positive), so is $U^* p_1 U - \alpha I.$
+    But now we can write 
+    $$\| U^* p_1 U - \alpha I\| = r(U^* p_1 U) = 0,$$
+    which proves that $U^* p_1 U = \alpha I$.
+    Then
+    \begin{align*}
+      \alpha &= \alpha \varphi(1) = \varphi(\alpha)\\
+      &= \langle \alpha 1_{\varphi}, 1_{\varphi} \rangle\\
+      &= \langle U^* p_1 U 1_\varphi, 1_\varphi\rangle \\
+      &= \left\langle \frac{1}{\sqrt{2}} 1_{\varphi_1} \oplus 0, \frac{1}{\sqrt{2}} 1_{\varphi_1} \oplus \frac{1}{\sqrt{2}} 1_{\varphi_2}\right\rangle \\
+      &= \left\langle \frac{1}{\sqrt{2}} 1_{\varphi_1}, \frac{1}{\sqrt{2}} 1_{\varphi_1} \right\rangle _{\varphi_1} = \frac{1}{2}.
+    \end{align*}
+    This means that we can write 
+    $$\left({\sqrt{2}} p_1 U \right)^* \left({\sqrt{2}} p_1 U \right) = 1,$$
+    so $$u_1 = \frac{1}{\sqrt{2}} p_1 U : L^2 (A, \varphi) \to L^2 (A, \varphi_1)$$
+    is an isometry. We also have the identities
+    $$u_1 1_{\varphi} = 1_{\varphi_1},\quad u_1 \pi_{\varphi} (x) = \pi_{\varphi_1} (x) u_1.$$
+    It follows that 
+    \begin{align*}
+      \varphi(x) &= \langle \pi_{\varphi} (x) 1_{\varphi}, 1_\varphi \rangle\\
+      &= \langle u_1 ^* u_1 \pi_\varphi (x) 1_\varphi, 1_\varphi\rangle\\
+      &= \langle u_1 ^* \pi_{\varphi_1} (x) u_1 1_\varphi, 1_\varphi\rangle\\
+      &= \langle \pi_{\varphi_1} (x) u_1 1_\varphi, u_1 1_\varphi\rangle\\
+      &= \langle \pi_{\varphi_1} (x) 1_{\varphi_1}, 1_{\varphi_1} \rangle = \varphi_1(x)
+    \end{align*}
+    and we are done. \qedhere
+  \end{itemize}
+\end{myproof}
+
+\begin{theorem}
+  A representation $\pi: A \to \bh$ if irreducible iff $\pi(A)' = \C \cdot \id$.
+\end{theorem}
+
+\begin{myproof}
+  Start with $(\Leftarrow)$. Suppose there exists a closed invariant subspace $(0) \neq \mathcal{K} \lneqq \mathcal{H}$.
+  Let $p \in \bh$ be the orthogonal projection onto $\mathcal{K}$.
+  Then $p \notin \C \cdot \id$. Now we prove that $p \in \pi(A)'$.
+  let $a \in A$. For $\mu \in \mathcal{K}$, we have 
+  $$(p \pi(a)) \mu = p(\pi(a) \mu) = \pi(a) \mu = \pi(a) (p \mu) = (\pi (a) p) \mu.$$
+  Now for $\mu \in \mathcal{K}^\perp$, we get 
+  $$(p \pi(a)) \mu = p(\pi(a) \mu) = 0 = \pi(a) (0) = \pi(a) (p \mu) = (\pi(a) p) \mu.$$
+  For the converse $(\Rightarrow)$, suppose there exists a non-scalar self-adjoint $h \in \pi(A)'$.
+  Then $\sigma(h)$ has at least two elements. By CFC, there exist nonzero $f, g \in C(\sigma(h))$
+  such that $fg = 0$. Then $f(h) \neq 0$ since $f \neq 0$.
+  Then also $\mathcal{K} := \overline{\im f(h)} \leq \mathcal{H}$ is nonzero.
+  Also, $g(h) \neq 0$ and $g(h)\big|_{\mathcal{K}} = 0$ since $g(h) \cdot f(h) = 0$.
+  in particular, $\mathcal{K} \subsetneqq \mathcal{H}$. From $h \in \pi(A)'$, we deduce $f(h) \in \pi(A)'$.
+  We claim that $\mathcal{K}$ is invariant; it's enough to show that $\im f(h)$ is invariant.
+  For $a \in A, \mu \in \mathcal{H}$ we have  
+  $$\pi (a) (f(h) \mu) = \pi(a) f(h) \mu = f(h) \pi(a) \mu \in \im f(h).$$
+  In general, if $q \in \pi(A)'$, then $q^* \in \pi(A)'$ and we can reduce the problem to self-adjoint case above.
+\end{myproof}
+
+\begin{corollary}
+  Irreps of abelian $C^*$-algebras are $1$-dimensional.
+\end{corollary}
+
+\begin{myproof}
+  Let $A$ be an abelian $C^*$-algebra and $\pi: A \to \bh$ an irrep.
+  Then by theorem, $\pi(A)' = \C$. Moreover,
+  \begin{equation*}
+    \pi(A) = Z(\pi(A)) = \pi(A)' \cap \pi(A) = \C \cdot \id.\qedhere
+  \end{equation*}
+\end{myproof}
+
+\begin{corollary}
+  If $A$ is an abelian $C^*$-algebra, then $\ext S(A) = \sigma(A)$.
+\end{corollary}
+
+\begin{myproof}
+  Let $\sigma \in \sigma(A)$. Then $\sigma$ is $1$-dimensional (therefore irreducible) representation and so $\sigma \in \ext S(A)$.
+  For the converse, take $\varphi \in \ext S(A)$. Then the GNS construction $\pi_{\varphi}$ is irreducible, therefore $1$-dimensional. So 
+  $L^2 (A, \varphi) = \C$ with the standard scalar product and $\varphi (x) = \langle \pi_{\varphi}(x) 1_\varphi, 1_{\varphi}\rangle = \pi_{\varphi}(x)$.
+\end{myproof}
+
+\begin{proposition}
+  Let $A$ be a $C^*$-algebra. Then $\co \ext S(A)$ is weak-* dense in $S(A)$.
+\end{proposition}
+
+\begin{myproof}
+  We know that $S(A)$ is compact Hausdorff wrt the weak-* topology. The conclusion follows from Krein-Milman.
+\end{myproof}
+
+\begin{corollary}
+  Let $A$ be a $C^*$-algebra and $x \in A\setminus (0)$. Then there exist an irrep $\pi: A \to \bh$
+  such that $\pi(x) \neq 0$.
+\end{corollary}
+
+\begin{myproof}
+  By proposition, there exists $\varphi \in S(A)$ such that $\varphi(x) \neq 0$.
+  by previous proposition (Krein-Milman), there exists a $\tau \in \ext S(A)$ such that $\tau (x) \neq 0$.
+  Then apply GNS: $\pi_{\tau}$ is irreducible and $\pi_{\tau} (x) \neq 0$.
+\end{myproof}
+
+\begin{theorem}[Jordan decomposition for linear functionals]
+  Let $A$ be a $C^*$-algebra and $\varphi \in A^*$ hermitian. Then there exist (unique - without proof)
+  positive linear functionals $\varphi_+, \varphi_- \in A^*$ such that $\varphi = \varphi_+ - \varphi_-$
+  and $\| \varphi\| = \|\varphi_+\| = \| \varphi_-\|$.
+\end{theorem}
+
+\begin{myproof}
+  WLOG $\| \varphi\| = 1$. Let $\Sigma$ denote the set of positive linear functionals with norm $ \leq 1$.
+  By Banach-Alaoglu, $\Sigma$ is weak-* compact and Hausdorff.
+  Consider $$\gamma: A \to C(\Sigma),\quad a \mapsto (\psi \mapsto \psi(a)).$$
+  This is an isometry and $\gamma(A_+) \subseteq C(\Sigma)_+$.
+  By Hahn-Banach, there exists a $\widetilde{\varphi}: C(\Sigma) \to \C$ such that $\| \widetilde{\varphi} \| = \| \varphi\|$
+  and $\varphi = \widetilde{\varphi} \circ \gamma$.
+  Assume $\widetilde{\varphi}$ is hermitian (otherwise, we can it by  $\frac{\widetilde{\varphi} + \widetilde{\varphi}^*}{2}$).
+  By Riesz-Markoff, there exists a regular Radon Measure $\mu$ on $\Sigma$ such that $\widetilde{\varphi} (f) = \int f\, d\mu$ for all $f \in C(\Sigma)$.
+  Then we use Jordan decomposition for measures to obtain $\mu_+, \mu_-$
+  such that $\mu = \mu_+ - \mu_-$ and $\| \mu \| = \| \mu_+ \| = \| \mu_- \|$.
+  Now we just define $\varphi_{\pm} (a) := \int a \, d\mu_{\pm}$.
+\end{myproof}
+
+\begin{corollary}
+  For a $C^*$-algebra $A$, $A^*$ is the span of positive linear functionals on $A$.
+\end{corollary}
+
+\begin{corollary}
+  Let $A$ be a $C^*$-algebra and $\varphi \in A^*$. Then there exists a representation $\pi: A \to \bh$
+  and $\mu, \theta \in \mathcal{H}$ such that $\varphi(a) = \langle \pi(a) \theta, \mu \rangle$.
+\end{corollary}
+
+\begin{myproof}
+  Unite $\varphi = \sum_{i = 1} ^n \alpha_i \psi_i$ for some $\psi_j \in S(A)$.
+  Let $\pi_i$ be the GNS representation of $\psi_i$. Define $\pi := \bigoplus_i \pi_i$,
+  $\theta := \bigoplus_i \alpha_i 1_{\psi_i}$ and $\mu = \bigoplus_i 1_{\psi_i}$.
+  The result then follows immediately.
+\end{myproof}
+
+\subsection{Examples of $C^*$-algebras}
+
+\begin{example}
+  The most canonical example of a $C^*$-algebra is $\bh$.
+  Similarly, the algebra of compact operators $\mathcal{K}(\mathcal{H})$ is a $C^*$-algebra 
+  (if $\dim \mathcal{H} = \infty$, it is non-unital).
+\end{example}
+
+\begin{example}
+  If $\dim \mathcal{H} = \infty$, then $\quot{\bh}{\mathcal{K}(\mathcal{H})}$ is a so-called Calkin algebra.
+  It is simple and it does not have a separable representation.
+\end{example}
+
+\begin{example}
+  The algebra of matrices $M_n (\C) = \mathcal{B}(\C^n)$ is a $C^*$-algebra.
+\end{example}
+
+\begin{proposition}[Artin-Wedderburn for $C^*$-algebras]
+  Every finite-dimensional $C^*$-algebra $A$ is 
+  $$ A \cong M_{n_1} (\C) \oplus \dots \oplus M_{n_r} (\C)$$
+  for uniquely determined $n_1, \dots, n_r$.
+\end{proposition}
+
+\begin{myproof}
+  Since $A$ is a finite-dimensional algebra over $\C$, it is artinian. It is enough to prove that it is $J$-semisimple.
+  Denote $J = \rad A$, which is finitely-generated.
+  By artinian property, the sequence 
+  $$J \supseteq J^2 \supseteq J^3 \supseteq \dots$$
+  has to stabilize somewhere, so assume $J^n = J^{n + 1}$.
+  By Nakayama's lemma, we have $J \cdot J^{n} = J^n$, which implies $J^n = (0)$, so $J$ is nilpotent.
+  Take any $a \in J$. Then $a^* a \in J$ and so $(a^* a)^n = 0$. Then we have 
+  \begin{align*}
+    0 = \| (a^* a)^{2^n} \| = \| a^* a\|^{2^n} = \| a\|^{2^{n + 1}}
+  \end{align*}
+  and $a = 0$. So $A$ is artinian and $J$-semisimple, therefore semisimple. Now we use Artin-Wedderburn for algebras,
+  together with the fact that $\C$ is an algebraically-closed field, so any finite-dimensional division algebra over $\C$ is $\C$ itself.
+\end{myproof}
+
+Let $G$ be a group. Then the (complex) group algebra $\C [G]$ is the algebra with basis 
+$\{u_g\ |\ g \in G\}$ and multiplication given by $u_g \cdot u_h = u_{gh}$.
+Then $\C [G]$ has the involution 
+$$\left(\sum_{g \in G} ^{\mathrm{finite}} a_g u_g\right)^* = \sum_g \overline{a_g} u_{g^{-1}}.$$
+Multiplication is convolutive:
+\begin{align*}
+  \left(\sum_g a_g u_g\right) \left(\sum_h b_h u_h \right) &= \sum_{g, h} a_g b_h u_g u_h\\
+  &= \sum_{g, h} a_g b_h u_{gh}\\
+  &= \sum_k \left(\sum_g a_g b_{g^{-1} k}\right) u_k.
+\end{align*}
+To introduce norms on $\C[G]$ we use representations $\pi: \C [G] \to \bh$.
+In such a case, we define the $C^*$-algebra 
+$$C_{\pi} ^* (G) := \overline{\pi(\C [G])} \subseteq \bh.$$
+For $g \in G$, we get 
+\begin{align*}
+  \pi(u_g) \pi(u_g) ^* &= \pi(u_g) \cdot \pi(u_g ^*)\\
+  &= \pi(u_g) \cdot \pi(u_{g^{-1}})\\
+  &= \pi(u_g \cdot u_{g^{-1}}) = \pi(u_e) = 1.
+\end{align*}
+Similarly, $\pi(u_g) ^* \pi(u_g) = 1$. Under any representation of $\C[G]$,
+each $u_g$ is mapped to a unitary.
+
+\begin{example}
+  Take $\mathcal{H} = \ell^2 (G)$ (this is a Hilbert space with ONB $\{\delta_g\ |\ g \in G\}$).
+  Then $$\lambda : \C [G] \to \mathcal{B} (\ell^2 (G)),\quad u_g \mapsto (\delta_h \mapsto \delta_{gh})$$
+  is a faithful representation. We call it the left regular representation of $G$.
+  The induced group $C^*$-algebra $C_r ^* (G) := \overline{\lambda(\C[G])} \subseteq \mathcal{B}(\ell^2 (G))$.
+\end{example}
+
+\begin{definition}
+  Universal (or full) group $C^*$-algebra is $\C[G]$ where the norm of an element $a \in \C[G]$
+  is $\| a\|_u = \sup \{\| \pi(a)\|\ |\ \textrm{$\pi$ rep of $\C[G]$}\}$.
+\end{definition}
+
+\begin{lemma}
+  If $\pi$ is a representation of $\C[G]$ and $a = \sum_{g \in G} ^{\mathrm{finite}} a_g u_g \in \C [G]$,
+  then $\| \pi (a)\| \leq \sum |a_g|$.
+\end{lemma}
+
+\begin{myproof}
+  Then $\pi(a) = \sum a_g \cdot \pi(u_g)$. Then 
+  $$\| \pi (a) \| = \left\| \sum a_g \pi (u_g) \right\| \leq \sum |a_g| \cdot \| \pi (u_g)\| = \sum |a_g|.$$
+\end{myproof}
+
+This implies that $\| \cdot \|_u$ is a norm on $\C [G]$.
+The universal $C^*$-algebra of $G$ is $C^* (G)$ the completion of $\C[G]$
+wrt $\| \cdot \|_u$.
+
+\begin{remark}
+  Then $\C [G]$ is dense in both $C_{\lambda} ^* (G)$ and $C^* (G)$.
+\end{remark}
+
+\begin{theorem}[Universal property]
+  For each representation $\pi$ of $\C [G]$ there exists a surjective *-homomorphism 
+  $\widehat{\pi}: C^* (G) \to C_{\pi} ^* (G)$ such that 
+  \[\begin{tikzcd}
+    {\mathbb{C} [G]} & {C_{\pi} ^* (G)} \\
+    {C^* (G)}
+    \arrow["\pi", from=1-1, to=1-2]
+    \arrow[hook', from=1-1, to=2-1]
+    \arrow["{\exists !\widehat{\pi}}"', dashed, two heads, from=2-1, to=1-2]
+  \end{tikzcd}\]
+\end{theorem}
+
+\begin{myproof}
+  Define first $\widehat{\pi}$ on $\C [G] \subseteq C^* G$ by $\widehat{\pi} (a) := \pi(a) \in C_{\pi} ^* (G)$.
+  Then $\widehat{\pi}$ on $\C [G]$. Firstly, $\widehat{\pi}$ on $\C [G]$ is contractive:
+  $$\|\widehat{\pi} (a)\| = \| \pi(a) \| \leq \| a\|_u.$$
+  By density, $\widehat{\pi}$ uniquely extends to a continuous *-homomorphism $\widehat{\pi} : C^* (G) \to C_{\pi} ^* (G)$.
+  This $\widehat{\pi}$ is contractive and $\im \pi$ is dense, so $\widehat{\pi}$ is onto.
+\end{myproof}
+
+\begin{example}
+  Let $G$ be abelian and $|G| = n$. Then $\C [G] = \C^{|G|}$ as vector space.
+  Hence $C^* G = \C[G] = C_r ^* (G)$. Further, $\C[G]$ is commutative, so by structure theorem 
+  $$\C [G] \cong \underbrace{\C \oplus \dots \oplus \C}_{\textrm{$n$ times}}.$$
+  For instance, $\C \left[\quot{\Z}{2\Z} \times \quot{\Z}{4\Z}\right] = \C \left[\quot{\Z}{4 \Z}\right].$
+\end{example}
+
+\begin{example}
+  Let $G = S_3$. Then $|G| = 6$ and once again $C^* (G) = \C [G] = C_r ^* (G)$.
+  By structure theorem, $\C [G] \cong M_2 (\C) \oplus \C \oplus \C$ (otherwise it would be commutative).
+\end{example}
+
+\begin{example}
+  Let $G = S_4$. Again, $C^* (G) = \C [G] = C_r ^* (G)$. By Maschke's theorem, $\C [G]$ is semisimple, therefore it is a direct sum of matrix algebras over $\C$.
+  Since $S_4$ has five conjugacy classes, there are five factors\footnote{Pierre Antoine Grillet, \emph{Abstract algebra}, theorem IX.7.9.}.
+  Adding up all the dimensions, the only combination that works is $9 + 9 + 4 + 1 + 1 = 24$, therefore 
+  $$\C [G] = M_3 (\C) \oplus M_3 (\C) \oplus M_2 (\C) \oplus \C \oplus \C.$$
+\end{example}
+
+\begin{example}
+  What is $C^* (\Z)$? Representations $\pi(\C [Z]) \to \bh$ are determined by choice of unitary $U \in \bh$ such that $\pi (u_1) = U$.
+  By universal property, for every $\mathcal{H}$ and $U \in \bh$ there exists a unique *-homomorphism 
+  $$\widehat{\pi}: C^* (\Z) \to C^* (\{U\}),$$ where the latter is a $C^*$-subalgebra of $\bh$, generated by $U$. 
+  We call $C^* (\Z)$ the universal $C^*$-algebra, generated by a unitary.
+\end{example}
+
+\subsection{Abelian group $C^*$-algebras}
+
+If $G$ is abelian, then $\C [G]$ is commutative and $C_r ^* (G)$ is abelian.
+By Gelfand, there exists a compact hausdorff space $\widehat{G}$ such that $C_r ^* (G) \cong C(\widehat{G})$
+and $\widehat{G} = \sigma(C_r ^* (G))$.
+
+\begin{definition}
+  To each abelian group $G$ we associate its Pontryagin dual 
+  $$\widehat{G} = \{\textrm{$w: G \to \mathbb{T}$ group homomorphism}\}.$$
+\end{definition}
+
+Then $\widehat{G}$ is a group under pointwise multiplication. We endow $\widehat{G}$
+with the topology induced from $\widehat{G} \subseteq \mathbb{T} ^G$.
+The basis sets for this topology are 
+$$B_{\varepsilon, F} (w) = \{\eta \in \widehat{G}\ |\ |\eta (h) - w(h)| < \varepsilon,\ \forall h \in F\}$$
+for $\varepsilon > 0$, $w \in \widehat{G}$ and $F \subseteq G$ finite.
+Notice that a net $(w_i)_{i \in I} \subseteq \widehat{G}$ is Cauchy iff 
+$(w_i (g))_{i \in I} \subseteq \mathbb{T}$ is Cauchy for all $g \in G$.
+
+\begin{theorem}
+  The map 
+  $$h: \widehat{G} \to \sigma(C_r ^* (G)),\quad w \mapsto \left(\sum a_g u_g \mapsto \sum a_g w(g)\right)$$
+  is a homeomorphism.
+\end{theorem}
+
+\begin{myproof}
+  First, we prove that $h(w) \in \sigma (C_r ^* (G))$ for all $w \in \widehat{G}$.
+  We begin by showing $h(w): \C [G] \to \C$ is a homomorphism. Take $b = \sum b_k u_k \in \C [G]$.
+  Then $$h(w) (a \cdot b) = \sum_g \left(\sum_h a_h b_{h^{-1} g}\right) \cdot w(g)$$
+  and $$h(w) (a) \cdot h(w) (b) = \left(\sum_g a_g w(g)\right) \cdot \left(\sum_h b_h w(h)\right) = \sum_k \left(\sum_h a_{k h^{-1}} b_h\right) w(k),$$
+  so $h(w)$ is multiplicative. To extend it to $C_r ^*$, we must prove that $| h(w) a| \leq \| a\|_r$ for all $a \in \C [G]$.
+  To $\chi \in \sigma(C_r ^* (G))$ and $a \in \C[G]$ we associate 
+  $$\widetilde{a} = \sum a_g w(g) \cdot \overline{\chi(u_g)} u_g,$$
+  so $h(w) a = \chi(\widetilde{a})$. By Gelfand, 
+  $$\| \widetilde{a} \|_r = \sup \{| \mu (\widetilde{a}) |\ |\ \mu \in \sigma (C_r ^* (G))\} \geq |\chi(\widetilde{a})| = |h(w) a|.$$
+  Next, we show that $\| \widetilde{a} \|_r = \| a \|_r$: to $\theta \in \ell^2 (G)$ assign $\widetilde{\theta}$ by 
+  $\widetilde{\theta_h} := \chi(u_{h^{-1}}) \overline{w(h)} \theta_h.$
+  Then $\| \theta\|_2 = \| \widetilde{\theta} \|_2$. Further,
+  $\| \lambda (\widetilde{a}) \widetilde{\theta} \|_2 = \| \lambda (a) \theta\|_2$ (short calculation), so 
+  $$\| \widetilde{a} \|_r = \sup \{ \|\lambda(\widetilde{a}) \widetilde{\theta} \|\ |\ \| \widetilde{\theta} \|_2 = 1\} = \sup \{ \|\lambda(\widetilde{a}) {\theta} \|\ |\ \| {\theta} \|_2 = 1\} = \| a\|_r.$$
+  Next, we prove that $h$ is continuous. Suppose the net $(w_i)_{i \in I} \subseteq \widehat{G}$ is Cauchy.
+  We prove that for every $a \in C_r ^* (G)$ the net $(h(w_i) (a))_{i \in I}$ is Cauchy.
+  Pick $\varepsilon > 0$. There exists $J$ such that for every $i, j \geq J$, we have 
+  $$|w_i (g) - w_j (g)| < \frac{\varepsilon}{|\{g\ |\ a_g \neq 0\}|},\quad \forall g \in G.$$
+  Then for all $i, j \geq J$ we get $|h(w_i) (g) - h(w_j) (g)| < \varepsilon$.
+  For the general case $a \in C_r ^* (G)$, we can take $a$ as a limit of a sequence $(a_n)_n \subseteq \C G$,
+  approximate $a$ with $a_n$ and use the triangle inequality to establish that $(h(w_i) (a))_i$ is Cauchy.
+  Now on to bijectivity of $h$. It's enough to check that it is surjective: take $\phi \in \sigma(C_r ^* (G))$. Define 
+  $$w_{\phi} : G \to \C,\quad g \mapsto \phi(u_g).$$
+  Since $\phi$ is a *-homomorphism, $\im w_{\phi} \subseteq \mathbb{T}$.
+  We have to prove that $w_{\phi} \in \widehat{G}$. We just check the multiplicativity:
+  $$w_{\phi} (g) \cdot w_{\phi} (h) = \phi(u_g) \phi(u_h) = \phi(u_g u_h) = \phi(u_{gh}) = w_{\phi} (gh).$$
+  For every $w \in \widehat{G}$, we get $w_{h(w)} = w$. So $w_{\phi} = w_{h(w_\phi)}$,
+  which gives us $h(w_{\phi}) = \phi$. Now since $h$ is a bijective continuous map between compact and Hausdorff spaces, it is a homeomorphism.
+\end{myproof}
+
+\begin{example}
+  $\widehat{\quot{\Z}{n\Z}} = \quot{\Z}{n\Z}$, $\widehat{\R} = \R$, $\widehat{\Z} = \mathbb{T}$, $\widehat{\mathbb{T}} = \widehat{\Z}$.
+\end{example}
+
+\begin{theorem}[Pontryagin]
+  If $G$ is a locally compact abelian group (it's underlying topological space is locally compact Hausdorff),
+  then $G \cong \widehat{\widehat{G}}$.
+\end{theorem}
