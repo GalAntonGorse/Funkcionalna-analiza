@@ -3,19 +3,19 @@
 \subsection{Spectrum}
 
 Let $A$ be a complex algebra with a unit $1$ and 
-$$GL (A) = \{a \in A\ |\ \textrm{$a$ is invertible}\}.$$
+$$\gl (A) = \{a \in A\ |\ \textrm{$a$ is invertible}\}.$$
 If $x \in A$, we define the spectrum 
-$$\sigma_A (x) = \{\lambda \in \C\ |\ x - \lambda \cdot 1 \notin GL(A)\}.$$
-\begin{proposition}
+$$\sigma_A (x) = \{\lambda \in \C\ |\ x - \lambda \cdot 1 \notin \gl(A)\}.$$
+\begin{proposition}\label{prop:1}
   Let $A$ be a complex algebra with unity $1$ and $x, y \in A$. Then 
   $$\sigma_A (xy) \cup \{0\} = \sigma_A (yx) \cup \{0\}.$$
 \end{proposition}
 
 \begin{myproof}
-  Suppose $1 - xy \in GL(A)$. Formally, we can write 
+  Suppose $1 - xy \in \gl(A)$. Formally, we can write 
   $$(1 - xy)^{-1} = 1 + xy + (xy)^2 + \cdots$$
   and $$(1 - yx)^{-1} = 1 + yx + (yx)^2 + \cdots = 1 + y(1 - xy)^{-1} x.$$
-  From this, we claim that indeed $1 - yx \in GL (A)$ and 
+  From this, we claim that indeed $1 - yx \in \gl (A)$ and 
   $$(1 - yx)^{-1} = 1 + y(1 - xy)^{-1} x.$$ 
   The proof is straightforward: we have
   \begin{align*}
@@ -25,20 +25,20 @@ $$\sigma_A (x) = \{\lambda \in \C\ |\ x - \lambda \cdot 1 \notin GL(A)\}.$$
   \end{align*} 
   and 
   \begin{align*}
-    (1 - yx) (1 + y(1 - xy)^{-1} x) &= (1 - yx) + (y - yxy) (1 - xy)^{-1} x
+    (1 - yx) (1 + y(1 - xy)^{-1} x) &= (1 - yx) + (y - yxy) (1 - xy)^{-1} x\\
     &= (1 - yx) + y(1 - xy) (1 - xy)^{-1} x\\
     &= (1 - yx) + yx = 1.
   \end{align*}
   Now the proof of the statement is at hand: if $\lambda \in \sigma_A (xy) \setminus \{0\}$,
   then \begin{align*}
-    \lambda - xy \notin GL (A) \Rightarrow 1 - \frac{x}{\lambda} y \notin GL (A) \Rightarrow 1 - y \frac{x}{\lambda} \notin GL (A) \Rightarrow \lambda - yx \notin GL (A).
+    \lambda - xy \notin \gl (A) \Rightarrow 1 - \frac{x}{\lambda} y \notin \gl (A) \Rightarrow 1 - y \frac{x}{\lambda} \notin \gl (A) \Rightarrow \lambda - yx \notin \gl (A).
   \end{align*}
   Thus, $\lambda \in \sigma_A (yx)$.
   Similarly, if $\lambda \in \sigma_A (yx) \setminus \{0\}$, then $\lambda \in \sigma_A (xy)$.
 \end{myproof}
 
 \begin{example}
-  Let $S, S^* \in \mathcal{B}(\ell^2)$ be right and left shift operators, respectively.
+  Let $S, S^* \in \mathcal{B}(\ell^2)$ be the right and left shift operators, respectively.
   Then $S S^* = I$, but $$S S^* (x_1, x_2, \dots) = (0, x_1, x_2, \dots).$$
   This implies that $0 \in \sigma (S S^*)$, but $0 \notin \sigma (S^* S)$.
 \end{example}
@@ -51,28 +51,48 @@ $$\sigma_A (x) = \{\lambda \in \C\ |\ x - \lambda \cdot 1 \notin GL(A)\}.$$
     If a Banach algebra has a unit $1$, we also demand $\|1\| = 1$.
     \item An involution on a Banach algebra $A$ is a skew-linear map $$*: A \to A,\quad a \mapsto a^*$$
     satisfying $$(xy)^* = y^* x^*,\quad (x^*)^* = x,\quad \|x^*\| = \|x\|.$$
-    A Banach $*$-algebra $A$ that also satisfies $\|x^* x\| = \|x\|^2$ for all $x \in A$ is a $C^*$-algebra.
+    A $C^*$-algebra is a Banach $*$-algebra $A$ that also satisfies $\|x^* x\| = \|x\|^2$ for all $x \in A$.
   \end{itemize}
 \end{definition}
 
-All algebras in this section are unital.
-
+Unless otherwise mentioned, all algebras in this section are unital.
+\marginpar{\tiny Are all our Banach algebras complex? We probably need that for nonempty spectra.}
 \begin{proposition}
-  We collect some basic properties of $C^*$-algebras.
+  We collect some basic properties of Banach algebras.
   \begin{enumerate}
     \item If $A$ is a Banach $*$-algebra, then 
-    $(x^*)^{-1} = (x^{-1})^*$ and $\sigma_A (x^*) = \overline{\sigma_A (x)}.$
-    \item Let $A$ be a Banach algebra. If $\|x\| < 1$, then $1 - x \in GL (A)$ and 
-    $$(1 - x)^{-1} = 1 + x + x^2 + \cdots$$ As a consequence, if $\| 1 - x\| < 1$, then $x \in GL (A)$.
-    \item Let $A$ be a Banach algebra. Then $GL(A) \subseteq A$ is open, and the map $x \mapsto x^{-1}$ is continuous on $GL (A)$.
+    $(x^*)^{-1} = (x^{-1})^*$ and $\sigma_A (x^*) = (\sigma_A (x))^*.$
+    \item Let $A$ be a Banach algebra. If $\|x\| < 1$, then $1 - x \in \gl (A)$ and 
+    $$(1 - x)^{-1} = 1 + x + x^2 + \cdots$$ As a consequence, if $\| 1 - x\| < 1$, then $x \in \gl (A)$.
+    \item Let $A$ be a Banach algebra. Then $\gl(A) \subseteq A$ is open, and the map $x \mapsto x^{-1}$ is continuous on $\gl (A)$.
     \item If $A$ is a Banach algebra and $x \in A$, then $\sigma_A (x)$ is a nonempty compact set.
   \end{enumerate}
 \end{proposition}
 
 \begin{myproof}
-  We will prove the third item. Let $y \in GL (A)$. If $\|x - y\| \leq \frac{1}{\|y^{-1}\|}$, 
+  \begin{enumerate}
+    \item Suppose that the inverse $(x^*)^{-1}$ exists. Then 
+    $(x^*)^{-1} \cdot (x^*) = 1$, so starring gives us $(x^*)^* \cdot ((x^*)^{-1})^* = 1$ and $x \cdot ((x^*)^{-1})^* = 1$.
+    Similarly, we have $(x^*) \cdot (x^*)^{-1} = 1$, which implies $((x^*)^{-1})^* \cdot x = 1$. This means that 
+    $x$ is invertible and $((x^*)^{-1})^* = x^{-1}$. Starring this equation now gives us $(x^*)^{-1} = (x^{-1})^*$.
+    For the opposite direction, suppose that $x$ is invertible. Then 
+    $$(x^{-1})^* \cdot x^* = (x \cdot x^{-1})^* = 1^* = 1$$
+    and $$x^* \cdot (x^{-1})^* = (x^{-1} \cdot x)^* = 1^* = 1,$$
+    which means that $x^*$ is invertible and $(x^*)^{-1} = (x^{-1}) ^*$.
+    The rest is a matter of simple computation:
+    \begin{align*}
+      \lambda \in \sigma_A (x^*) &\Leftrightarrow x^* - \lambda \notin \gl (A) \Leftrightarrow (x - \overline{\lambda})^* \notin \gl (A)\\
+      &\Leftrightarrow (x - \overline{\lambda}) \notin \gl (A) \Leftrightarrow \overline{\lambda} \in \sigma_A (x)\\
+      &\Leftrightarrow \lambda \in (\sigma_A (x))^*.
+    \end{align*}
+  \end{enumerate}
+  \item If $\| x \| \leq 1$, then the series $\sum_{n = 0} ^\infty x^n$ converges in norm to some $x'$.
+  Since multiplication between elements of a Banach algebra is norm-continuous, we get
+  we get $$(1 - x) x' = (1 - x) \cdot \lim_{k \to \infty} \sum_{n = 1} ^k x^n = \lim_{k \to \infty} (1 - x) \cdot \sum_{n = 1} ^k x^n = \lim_{k \to \infty} 1 - x^{k + 1} = 1$$
+  and similarly for $x' (1 - x)$.
+  \item Let $y \in \gl (A)$. If $\|x - y\| \leq \frac{1}{\|y^{-1}\|}$, 
   then $$\| 1 - xy^{-1}\| = \| (y - x) y^{-1}\| \leq \| y - x\| \|y^{-1}\| \leq 1,$$
-  which implies that $xy^{-1} \in GL (A)$, and thus $x = xy^{-1} \cdot y \in GL (A)$. We have shown that $GL(A)$ is open.
+  which implies that $xy^{-1} \in \gl (A)$, and thus $x = xy^{-1} \cdot y \in \gl (A)$. We have shown that $\gl(A)$ is open.
   Using the same notation and noting that $(xy^{-1})^{-1} = (1-(1 - xy^{-1}))^{-1}$, we get 
   $$\|(xy^{-1})^{-1}\| \leq \sum_{n = 0} ^\infty \| (1 - xy^{-1}) \|^n \leq \sum_{n = 0} ^\infty \| y^{-1} \|^n \|x - y \|^n \leq \frac{1}{1 - \|y^{-1}\| \cdot \|x - y\|}.$$
   Now,
@@ -83,6 +103,28 @@ All algebras in this section are unital.
     &\leq \frac{\| y^{-1}\|^2}{1 - \|y^{-1}\| \cdot \|x - y\|} \| y - x\|.
   \end{align*}
   Since the function $t \mapsto \frac{\| y^{-1}\|^2}{1 - \|y^{-1}\| \cdot t} t$ is continuous at $t = 0$, the map $x \mapsto x^{-1}$ is continuous.
+  \item First, we prove compactness by showing that $\sigma_A (x)$ is bounded and closed. 
+  Suppose there exists $\lambda \in \sigma_A (x)$, such that $|\lambda| > \| x\|$.
+  Then $\left(1 - \frac{x}{\lambda}\right)$ is invertible by (2.), so $(- \lambda) \cdot \left(1 - \frac{x}{\lambda}\right) = x - \lambda$
+  is invertible as well. But this contradicts the fact that $\lambda \in \sigma_A (x)$, so we have shown that 
+  $\sigma_A (x) \subseteq \overline{B(0, \| x\|)}$.
+  Next, we prove that the spectrum is closed.
+  Define a continuous map $$\C \to A,\quad \lambda \mapsto x - \lambda$$
+  and notice that the inverse image of $\gl (A)$ (which is open by (3.)) is exactly $\C \setminus \sigma_A (x)$.
+  This means that $\C \setminus \sigma_A (x)$ is open and $\sigma_A (x)$ is closed.
+  For non-emptyness, we have to employ some standard Banach algebra techniques.
+  We say that a function from $f$ from a domain $\Omega \subseteq \C$ to a Banach space $X$ is analytical 
+  if there exists a limit $$f'(z_0) := \lim_{h \to 0} \frac{f(z_0 + h) - f(z_0)}{h}$$
+  for every $z_0 \in \Omega$ and the function $f'$ is continuous on $\Omega$.
+  A lot of theory for complex analytic functions also applies to Banach space-valued analytic functions; 
+  in particular, we have Cauchy's integral formula, Liouville's theorem and the fact that every vector valued analytic function 
+  can be locally expressed as a power series with coefficients in $X$. Now we can define the resolvent function 
+  $$F: \C \setminus \sigma_A (x) \to A,\quad F(z) = (z - x)^{-1}.$$
+  It's routine to show that $F$ is analytic and its derivative is $F'(z) = (z - x)^{-2}$. Now for 
+  $z \in \C \setminus \overline{B(0, \| x\|)}$, we have $F(z) = z^{-1} \cdot (1 - a/z)$,
+  which goes to $0$ as $z \to \infty$. Now if $\sigma_A (x) = \emptyset$,
+  then $F$ would be an entire function that vanishes at $\infty$.
+  By Liouville's theorem, $F$ is constant and so $F' = 0$. This is a contradiction.
 \end{myproof}
 
 \begin{theorem}[Gelfand-Mazur]
@@ -90,7 +132,7 @@ All algebras in this section are unital.
 \end{theorem}
 
 \begin{myproof}
-  Let $x \in A$ and $\lambda \in \sigma_A (x)$. Then $x - \lambda \cdot 1 \notin GL(A)$, implying
+  Let $x \in A$ and $\lambda \in \sigma_A (x)$. Then $x - \lambda \cdot 1 \notin \gl(A)$, implying
   $x - \lambda = 0$, hence $x = \lambda \in \C$.
 \end{myproof}
 
@@ -115,7 +157,7 @@ All algebras in this section are unital.
   For the converse inclusion $(\supseteq)$, assume $\mu \notin f(\sigma_A (a))$. We factor 
   $$f(x) - \mu = a_n (x - \lambda_1) \cdots (x - \lambda_n).$$
   Since $f(\lambda) - \mu \neq 0$ for any $\lambda \in \sigma_A (a)$, it follows that $\lambda_i \notin \sigma_A (a)$ for all $i$.
-  Therefore, $f(a) - \mu \in GL(A)$.
+  Therefore, $f(a) - \mu \in \gl(A)$.
 \end{myproof}
 
 \begin{definition}
@@ -124,10 +166,10 @@ All algebras in this section are unital.
 \end{definition}
 
 \begin{remark}
-  It is trivial to see that $r(xy) = r(yx)$.
+  By proposition \ref{prop:1}, we have $r(xy) = r(yx)$.
 \end{remark}
 
-In UFA course, we proved the following.
+In the introductory course, we proved the following.
 
 \begin{theorem}[Spectral radius formula]
   Let $A$ be a Banach algebra and $x \in A$. Then $\lim_{n \to \infty} \|x^n\|^{\frac{1}{n}}$ exists 
@@ -137,22 +179,23 @@ In UFA course, we proved the following.
 \begin{definition}
   Let $A$ be a Banach $*$-algebra and $x \in A$.
   \begin{itemize}
-    \item $x$ is normal iff $x x^* = x^* x$.
-    \item $x$ is self-adjoint iff $x = x^*$.
-    \item $x$ is skew self-adjoint iff $x = - x^*$.
+    \item $x$ is \emph{normal} iff $x x^* = x^* x$.
+    \item $x$ is \emph{self-adjoint} iff $x^* = x$.
+    \item $x$ is \emph{skew self-adjoint} iff $x^* = - x$.
   \end{itemize}
+  The set of all self-adjoint operators is denoted as $A_{\sa}$.
 \end{definition}
 
 \begin{remark}
   Every $a \in A$ can be uniquely expressed as a sum of a self-adjoint and skew self-adjoint element:
   $$a = \frac{a + a^*}{2} + \frac{a - a^*}{2}.$$
   Alternatively, we can uniquely write it in the form of
-  $$\left(\frac{a + a^*}{2} \right) + i \cdot \left(\frac{a - a^*}{2i}\right)$$
+  $$a = \left(\frac{a + a^*}{2} \right) + i \cdot \left(\frac{a - a^*}{2i}\right)$$
   where both terms in parentheses are self-adjoint.
 \end{remark}
 
 \begin{corollary}
-  Let $A$ be a Banach $*$-algebra and $x \in X$ normal.
+  Let $A$ be a Banach $*$-algebra and $x \in A$ normal.
   Then $r(x^* x) \leq r(x)^2$. If $A$ is a $C^*$-algebra, then $r(x^* x) = r(x)^2$.
 \end{corollary}
 
@@ -190,14 +233,14 @@ In UFA course, we proved the following.
 
 \begin{myproof}
   Clearly, $\Phi$ maps invertible elements to invertible elements,
-  so $\Phi (GL (A)) \subseteq GL (B)$. This implies $\sigma_B (\Phi(x)) \subseteq \sigma_A (x)$,
+  so $\Phi (\gl (A)) \subseteq \gl (B)$. This implies $\sigma_B (\Phi(x)) \subseteq \sigma_A (x)$,
   hence $r(\Phi(x)) \leq r(x)$. Then 
   \begin{align*}
     \| \Phi(x)\|^2 &= \| \Phi(x) \Phi(x)^*\| = \| \Phi(x) \Phi(x^*)\|\\
     &= \|\Phi(x x^*)\| = r(\Phi(x x^*))\\
     &\leq r(x x^*) = \| x x^*\| = \|x\|^2.
   \end{align*}
-  If $\Phi$ is a $*$-isomorphism, we apply the same logic to its inverse, which implies that it must be an isometry.
+  If $\Phi$ is a $*$-isomorphism, we apply the same reasoning to its inverse, which implies that $\Phi$ must be an isometry.
 \end{myproof}
 
 \begin{corollary}
@@ -211,7 +254,7 @@ In UFA course, we proved the following.
   it is a $*$-isomorphism, so it preserves the norm by the previous corollary.
 \end{myproof}
 
-\begin{lemma}
+\begin{lemma}\label{lem:1}
   Let $A$ be a $C^*$-algebra and $x \in A$ self-adjoint. Then $\sigma_A (x) \subseteq \R$.
 \end{lemma}
 
@@ -228,15 +271,15 @@ In UFA course, we proved the following.
 \end{myproof}
 
 \begin{lemma}
-  Let $A$ be a Banach algebra and $x \notin GL(A)$.
-  If $(x_n)_n \subseteq GL(A)$ satisfies $x_n \to x$, then $\|x_n ^{-1}\| \to \infty$.
+  Let $A$ be a Banach algebra and $x \notin \gl(A)$.
+  If $(x_n)_n \subseteq \gl(A)$ satisfies $x_n \to x$, then $\|x_n ^{-1}\| \to \infty$.
 \end{lemma}
 
 \begin{myproof}
   If the sequence $\|x_n^{-1}\|$ is bounded, then 
   $$\| 1 - x x_n^{-1}\| = \| (x_n - x) x_n^{-1}\| \leq \| x_n - x\| \cdot \|x_n^{-1}\| \to 0.$$
   In particular, there exists some $n \in \N$ such that $\| 1 - xx_n^{-1}\| < 1$,
-  which implies $x x_n^{-1} \in GL (A)$ and therefore $x = (x x_n^{-1}) x_n \in GL(A)$, contradiction.
+  which implies $x x_n^{-1} \in \gl (A)$ and therefore $x = (x x_n^{-1}) x_n \in \gl(A)$, a contradiction.
 \end{myproof}
 
 \begin{proposition}
@@ -245,18 +288,18 @@ In UFA course, we proved the following.
 \end{proposition}
 
 \begin{myproof}
-  Obviously, $GL (A) \subseteq GL(B)$. For a self adjoint $x \in A \setminus GL(A)$, we have
+  Obviously, $\gl (A) \subseteq \gl(B)$. For a self adjoint $x \in A \setminus \gl(A)$, we have
   $it \notin \sigma_A (x)$ for $t \in \R$. So there exists $(x - it)^{-1} \in A$.
-  Clearly, $$x - it \in GL(A) \xrightarrow[t \to 0]{} x \notin GL(A),$$
+  Clearly, $$x - it \in \gl(A) \xrightarrow[t \to 0]{} x \notin \gl(A),$$
   thus $\| (x - it)^{-1}\| \to \infty$. Since the inverse function is continuous,
-  this immediately yields $x \notin GL (B)$.
-  For general $x \in A$: if $x \in GL(B)$, then $x^* x \in GL(B)$ 
-  is self-adjoint. By the first part of the proof, $x^* x \in GL(A)$.
+  this immediately yields $x \notin \gl (B)$.
+  For general $x \in A$: if $x \in \gl(B)$, then $x^* x \in \gl(B)$ 
+  is self-adjoint. By the first part of the proof, $x^* x \in \gl(A)$.
   It follows that 
   \begin{equation*}
     x^{-1} = (x^* x)^{-1} x^* \in A,
   \end{equation*}
-  so $x \in GL(A)$.
+  so $x \in \gl(A)$.
 \end{myproof}
 
 \begin{example}
@@ -273,7 +316,7 @@ In UFA course, we proved the following.
 
 \begin{example}
   Let $(X, \mu)$ be a measure space.
-  Then $L^\infty (X, \mu)$, the set of essentially bounded functions endowed with the essential supremum norm, is a unital abelian $C^*$-algebra.
+  Then $L^\infty (X, \mu)$, the set of essentially bounded functions on $X$ endowed with the essential supremum norm, is a unital abelian $C^*$-algebra.
 \end{example}
 
 \begin{example}
@@ -284,7 +327,7 @@ In UFA course, we proved the following.
 \begin{example}
   If $\Gamma$ is a group, we define 
   $$\ell^1 (\Gamma) = \{(\alpha_s)_{s \in \Gamma}\ |\ \alpha_s \in \C,\ \sum_{s \in \Gamma} |\alpha_s| < \infty\}.$$
-  We can then introduce the convolution multiplication on $\ell^1 \Gamma$:
+  We can then introduce the convolution multiplication on $\ell^1 (\Gamma)$:
   $$(\alpha * \beta)_s = \sum_{t \in \Gamma} \alpha_{st} \beta_{t^{-1}}.$$
   This is a Banach algebra; it is even a Banach $*$-algebra with involution 
   $(\alpha^*)_s = \overline{\alpha_{s^{-1}}}$. However, it is not a $ C^*$-algebra if the group $\Gamma$ has more than one element. 
@@ -310,18 +353,18 @@ In UFA course, we proved the following.
     &= \sum_{s \in \Gamma} \sum_{t \in \Gamma} \left| \alpha_{st} {\alpha_{t}} \right| = \sum_{t \in \Gamma}|{\alpha_{t}}| \cdot \sum_{s \in \Gamma}  \left| \alpha_{st}  \right|\\
     &= \sum_{t \in \Gamma} \left|  {\alpha_{t}} \right| \cdot \sum_{s \in \Gamma} |\alpha_{s}| = \| \alpha\|^2.
   \end{align*}
-  Therefore, $\ell^1 (G)$ is not a $C^*$-algebra if $G$ has order greater than one.
+  Therefore, $\ell^1 (\Gamma)$ is not a $C^*$-algebra if $\Gamma$ has order greater than one.
 \end{example}
 
 \subsection{Gelfand transform}
 
 \begin{definition}
-  Let $A$ be an abelian Banach algebra. The spectrum of $A$ is defined as
+  Let $A$ be an abelian Banach algebra. The \emph{spectrum} of $A$ is defined as
   $$\sigma (A) := \{\varphi: A \to \C\ |\ \textrm{$\varphi \neq 0$ continuous algebra homomorphism}\} \subseteq A^*$$
-  endowed with a weak-* topology. Its elements are called characters.
+  endowed with a weak-* topology. Its elements are called \emph{characters}.
 \end{definition}
 
-If $\varphi \in \sigma (A)$, then $\ker \varphi \cap GL(A) = \emptyset.$
+If $\varphi \in \sigma (A)$, then $\ker \varphi \cap \gl(A) = \emptyset.$
 For $x \in A$, we have 
 \begin{align*}
   \varphi(x - \varphi(x)) &= \varphi(x) - \varphi(\varphi(x) \cdot 1)\\
@@ -340,9 +383,13 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
     \item $h(a) \in \R$ for self-adjoint $a$;
     \item $h(a^*) = \overline{h(a)}$ for all $a \in A$;
     \item $h(a a^*) \geq 0$ for all $a \in A$;
-    \item if $u \in U(A)$, then $|h(u)| = 1$. 
+    \item if $u u^* = 1$ or $u^* u$, then $|h(u)| = 1$. 
   \end{enumerate}
 \end{proposition}
+
+\begin{remark}
+  The first three item also hold for non-unital algebras.
+\end{remark}
 
 \begin{myproof}
   \begin{enumerate}
@@ -369,8 +416,8 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
   from $1 - \frac{x}{\varphi(x)} \in \ker \varphi$. From there, it follows that 
   $$1 = \left(1 - \frac{x}{\varphi(x)}\right) + \frac{1}{\varphi(x)} \cdot x \in I.$$
   Hence, $\ker \varphi$ is a maximal ideal.
-  Conversely, let $I \lhd A$ be a maximal ideal. Then $I \cap GL(A) = \emptyset$
-  and since $GL(A)$ is open, we also have $\overline{I} \cap GL(A) = \emptyset$.
+  Conversely, let $I \lhd A$ be a maximal ideal. Then $I \cap \gl(A) = \emptyset$
+  and since $\gl(A)$ is open, we also have $\overline{I} \cap \gl(A) = \emptyset$.
   Thus, $\overline{I} \lhd A$ and $1 \notin \overline{I}$, so $I \subseteq \overline{I} \subsetneq A$.
   By maximality, $\overline{I} = I$. Then $\quot{A}{I}$ is a Banach algebra and since $I$ is maximal,
   every nonzero element in $\quot{A}{I}$ is invertible. By Gelfand-Mazur, $\quot{A}{I} \cong \C$.
@@ -378,13 +425,13 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
 \end{myproof}
 
 \begin{corollary}\label{cor:1}
-  Let $A$ be an abelian Banach algebra and $x \in A \setminus GL(A)$.
+  Let $A$ be an abelian Banach algebra and $x \in A \setminus \gl(A)$.
   Then there exists $\varphi \in \sigma(A)$ such that $\varphi(x) = 0$.
   In particular, $\sigma(A) \neq 0$.
 \end{corollary}
 
 \begin{myproof}
-  If $x \notin GL(A)$, then it generates an ideal $\langle x \rangle \subsetneq A$.
+  If $x \notin \gl(A)$, then it generates an ideal $\langle x \rangle \subsetneq A$.
   By Zorn's lemma, $\langle x \rangle$ has to be included in some maximal ideal $I \lhd A$.
   By the previous proposition, there exists a character $\varphi: A \to \C$ in $\sigma (A)$
   such that $x \in I = \ker \varphi$.
@@ -392,7 +439,7 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
 
 \begin{theorem}[Stone-Čech]
   Let $X$ be a topological space. For $x \in X$, let $\beta_x: C_b (X) \to \C$
-  be an evaluation homomorphism $f \mapsto f(x)$. Then 
+  be the evaluation homomorphism $f \mapsto f(x)$. Then 
   $$\beta: X \to \sigma (C_b (X)),\quad x \mapsto \beta_x$$
   is a continuous map whose image is dense in the codomain and has the following universal property:
   if $\pi: X \to K^{T_2,\ \textrm{compact}}$ is continuous, then there exists a unique continuous mapping  
@@ -410,19 +457,19 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
 
 \begin{myproof}
   \begin{enumerate}
-    \item First, we prove that $\beta$ is continuous. If $(x_i)_i$ is a net in $X$ and $x_i \to x$,
+    \item First, we prove that $\beta$ is continuous. Let $(x_i)_i$ ibes a net in $X$ and $x_i \to x$,
     then for all $f \in C_b (X)$ we have $\beta_{x_i} = f(x_i) \to f(x) = \beta_x (f)$.
     Hence $\beta_{x_i} \to \beta_x$ in the weak-* topology.
-    \item Next, we prove that $\im \beta$ is dense. Assume otherwise and pick $\varphi \in \sigma(C_b (X)) \setminus \overline{\beta (x)}$.
-    Define $I := \ker \varphi$. For all $\psi \in \overline{\beta (x)}$, there exists $f_{\psi} \in I$ such that $f_{\psi} \in \ker \psi$.
+    \item Next, we prove that $\im \beta$ is dense. Assume otherwise and pick $\varphi \in \sigma(C_b (X)) \setminus \overline{\beta (X)}$.
+    Define $I := \ker \varphi$. For all $\psi \in \overline{\beta (X)}$, there exists $f_{\psi} \in I$ such that $f_{\psi} \in \ker \psi$.
     Hence, there exists $c_\psi$ and a neighborhood $U_{\psi}$ of $\psi$ such that $| \widetilde{\psi} (f)| > c_{\psi}$ for all $\widetilde{\psi} \in U_{\psi}$.
-    Thus, $\overline{\beta (x)} \subseteq U_{\psi \in \overline{\beta (x)}} U_{\psi}$.
-    By compactness, there exists a finite subcovering of $\overline{\beta x}$, so $\overline{\beta x} \subseteq \bigcup_{i = 1} ^n U_{\psi_j}$.
+    Thus, $\overline{\beta (X)} \subseteq U_{\psi \in \overline{\beta (X)}} U_{\psi}$.
+    By compactness, there exists a finite subcovering of $\overline{\beta (X)}$, so $\overline{\beta (X)} \subseteq \bigcup_{i = 1} ^n U_{\psi_j}$.
     Then there exist $f_{\psi_1}, \dots, f_{\psi_n} \in I$ and $c > 0$ such that 
-    $$\sum_{i = 1} ^n \psi (|f_{\psi_i}|^2) > c,\quad \forall \psi \in \overline{\beta x}.$$
-    Hence, $$\sum_{i = 1} ^n |f_{\psi_i}|^2 (x) = \sum_{i = 1} ^n \beta x (|f_{\psi_i}|^2) > c,\quad \forall x \in X.$$
+    $$\sum_{i = 1} ^n \psi (|f_{\psi_i}|^2) > c,\quad \forall \psi \in \overline{\beta (X)}.$$
+    Hence, $$\sum_{i = 1} ^n |f_{\psi_i}|^2 (x) = \sum_{i = 1} ^n \beta (x) (|f_{\psi_i}|^2) > c,\quad \forall x \in X.$$
     It follows that $\sum_{i = 1} ^n |f_{\psi_i} |^2 \in I$ and $(\sum |f_{\psi_i}|^2)^{-1} \in C_b (X)$. As a result, $I = C_b (X)$.
-    \item If $X$ is compact and Hausdorff, then $\beta$ is surjective since $\im \beta$ is dense and compact.
+    \item If $X$ is compact and Hausdorff, then $\beta$ is surjective since $\beta (X)$ is dense and compact.
     Also, $\beta$ is injective since $C_b (X)$ separates points. In that case, $\beta$ is a continuous bijection between compact Hausdorff spaces, and therefore a homeomorphism.
     \item For the universal property: let $\pi: X \to K$, where $K$ is compact Hausdorff.
     Then there exists a continuous map $$\pi^*: C(K) \rightarrow C_b (X),\quad f \mapsto f \circ \pi.$$
@@ -443,7 +490,7 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
 
 \begin{theorem}
   Let $A$ be an abelian Banach algebra. Then $\Gamma$ is a homomorphism, contraction and for 
-  $x \in A$ we have $$\Gamma(x) \in GL(C(\sigma (A))) \Leftrightarrow x \in GL(A).$$
+  $x \in A$ we have $$\Gamma(x) \in \gl(C(\sigma (A))) \Leftrightarrow x \in \gl(A).$$
 \end{theorem}
 
 \begin{myproof}
@@ -453,7 +500,7 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
   \end{align*}
   Next, we prove the equivalence. The right implication $(\Rightarrow)$ is trivial, since 
   $$\Gamma(x^{-1}) \Gamma(x) = \Gamma(x^{-1} x) = \Gamma(1) = 1.$$
-  Now the converse $(\Leftarrow)$: if $x \notin GL(A)$,
+  Now the converse $(\Leftarrow)$: if $x \notin \gl(A)$,
   then by corollary \ref{cor:1} there exists $\varphi \in \sigma(A)$ such that $\varphi(x) = 0$.
   Then $\Gamma(x) (\varphi) = \varphi(x) = 0$, so the continuous map $\Gamma(x)$ is not invertible.
 \end{myproof}
@@ -483,7 +530,7 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
 \end{myproof}
 
 \begin{remark}
-  Let $A$ be a $C^*$-algebra. If $x \in A$ is normal, then it generates an abelian $C^*$-algebra
+  Let $A$ be a $C^*$-algebra. If $x \in A$ is normal, then it generates an abelian $C^*$-subalgebra of $A$:
   $$C^* (x) = \overline{\{p(x, x^*)\ |\ p \in \C[x, y]\}}.$$
 \end{remark}
 
@@ -492,17 +539,17 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
 \end{corollary}
 
 \begin{myproof}
-  Let $\Gamma: A \to C(\sigma(A))$ be a Gelfand transform.
+  Let $\Gamma: A \to C(\sigma(A))$ be the Gelfand transform.
   Define $$\tau: \sigma(A) \to \sigma(x),\quad \varphi \mapsto \varphi(x) = \Gamma(x) (\varphi).$$
   Clearly, $\tau$ is well-defined since $\varphi(x) \in \sigma (x)$ for all $\varphi \in \sigma (A)$.
   Next we show that $\tau$ is onto. For $\lambda \in \sigma(x)$ we have
-  $x - \lambda \notin GL(A)$, so there exists $\psi \in \sigma(A)$ such that $\psi(x) - \psi (\lambda) = \psi (x - \lambda) = 0$.
+  $x - \lambda \notin \gl(A)$, so there exists $\psi \in \sigma(A)$ such that $\psi(x) - \psi (\lambda) = \psi (x - \lambda) = 0$.
   We show that $\tau$ is injective. Let $\tau (\varphi_1) = \tau(\varphi_2)$.
   Then $\varphi_1(x) = \varphi_2(x)$. Since 
   $$\varphi_j (x^*) = \Gamma(x^*) (\varphi_j) = \overline{\Gamma(x)(\varphi_j)} = \overline{\varphi_j(x)},$$
   we have $\varphi_1(x^*) = \varphi_2(x^*)$. Hence $\varphi_1 (p(x, x^*)) = \varphi_2(p(x, x^*))$ for every polynomial $p \in \C [x, y]$.
   Since $\{p(x, x^*)\ |\ \textrm{$p$ polynomial}\}$ is dense in $A$, we have $\varphi_1 = \varphi_2$.
-  Finally, we prove the continuity of $\tau$. Let $(\varphi_\alpha)_{\alpha}$ is a net in $\sigma(A)$ such that $\varphi_\alpha \to \varphi$.
+  Finally, we prove the continuity of $\tau$. Let $(\varphi_\alpha)_{\alpha}$ be a net in $\sigma(A)$ such that $\varphi_\alpha \to \varphi$.
   Then $\varphi_\alpha(y) \to \varphi(y)$ for all $y \in A$, so in particular $\varphi_\alpha (x) \to \varphi(x)$,
   which proves that $\tau (\varphi_\alpha) \to \tau(\varphi)$. Since $\tau$ is a continuous bijection between compact
   Hausdorff spaces, it is a homeomorphism.
@@ -514,9 +561,12 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
   we get $\Gamma (p(x, x^*)) = p \circ \tau$.
 \end{remark}
 
-If $\tau$ is defined as in the previous proof, then $$\tau^{\#}: C(\sigma(x)) \to C(\sigma(A)),\quad f \mapsto f \circ \tau$$
-is a $*$-isomorphism and an isometry. We know that $A = C^*(x)$ is closure of $\{p(x, x^*)\ |\ \textrm{$p (z, \overline{z})$ polynomial}\}$
-and $\Gamma (p(x, x^*)) = \tau^{\#} (p)$. Define a map $\rho = \Gamma^{-1} \circ \tau^{\#}: C(\sigma(x)) \to C^*(x)$.
+\subsection{Continuous functional theorem}
+
+Now let $A$ be any $C^*$-algebra and $x \in A$ normal. 
+Then $C^* (x)$ is an abelian $C^*$-subalgebra of $A$. Since $\sigma (x) = \sigma_{C^* (x)}$, we have the map 
+$$\tau^{\#}: C(\sigma (x)) \to C(C^* (x)),\quad f \mapsto f \circ \tau,$$
+which is a $*$-isomorphism and an isometry. Define a map $\rho = \Gamma^{-1} \circ \tau^{\#}: C(\sigma(x)) \to C^*(x)$.
 \[\begin{tikzcd}
 	{C^*(x)} && {C(\sigma(A))} \\
 	& {C(\sigma(x))}
@@ -524,40 +574,36 @@ and $\Gamma (p(x, x^*)) = \tau^{\#} (p)$. Define a map $\rho = \Gamma^{-1} \circ
 	\arrow["\rho", from=2-2, to=1-1]
 	\arrow["\Gamma", from=1-1, to=1-3]
 \end{tikzcd}\]
-This map is called the continuous functional calculus.
+We know that $C^*(x) = \overline{\{p(x, x^*)\ |\ \textrm{$p (z, \overline{z})$ polynomial}\}}$
+and $\Gamma (p(x, x^*)) = \tau^{\#} (p)$, which means that $\rho (p) = p(x, x^*)$ for any polynomial $p \in \C[x, y]$.
+This map $\rho: C(\sigma(x)) \to C^*(x) \subseteq A$ is called the continuous functional calculus.
+We use the notation $f(x) := \rho(f)$. 
 
-\subsection{Continuous functional theorem}
-
-If $A$ is any $C^*$-algebra and $x \in A$ is normal, then $C^*(x)$
-is an abelian $C^*$-algebra contained in $A$. Since the spectrum $\sigma(x)$
-is independent of the $C^*$ algebra $C^*(x)$ or $A$, we can define a function
-$\rho: C(\sigma(x)) \to C^*(x) \subseteq A$ and use the notation $f(x) := \rho(f)$.
-
-\begin{theorem}
+\begin{theorem}[Continuous functional calculus]
   Let $A, B$ be $C^*$-algebras and let $x \in A$ be normal.
   \begin{enumerate}
-    \item $f \mapsto f(x)$ is a $*$-homomorphism $C(\sigma(x)) \to A$ and if 
+    \item $f \mapsto f(x)$ is an isometric $*$-isomorphism $C(\sigma(x)) \to A$ and if 
     $$f = \sum_{j, k = 0} ^n a_{jk} z^j \overline{z}^k$$ is a polynomial, then 
     $$f(x) = \sum_{j, k = 0} ^n a_{jk} x^j (x^*)^k.$$
     In particular, if $f(z) = z$ is the identity polynomial, then $f(x) = x$.
     \item For $f \in C(\sigma(x))$, we have $\sigma(f(x)) = f(\sigma(x))$.
-    \item If $\Phi: A \to B$ is a $*$-homomorphism, then $\Phi(f(x)) = f(\Phi(x))$.
+    \item \textbf{(Spectral mapping theorem)} If $\Phi: A \to B$ is a $*$-homomorphism, then $\Phi(f(x)) = f(\Phi(x))$.
     \item Let $(x_n)_n$ be a sequence of normal elements of $A$ that converge to $x$,
-    $\Omega$ a compact neighborhood of $\sigma(x)$, and $f \in C(\Omega)$. Then for a 
+    $\Omega$ a compact neighborhood of $\sigma(x)$, and $f \in C(\Omega)$. Then for any
     sufficiently large $n$, we have $\sigma(x_n) \subseteq \Omega$ and $\|f(x_n) - f(x)\| \to 0$.
   \end{enumerate}
 \end{theorem}
 
 \begin{myproof}
-  The points (1) and (2) follow directly from Gelfand theorem and properties of continuous functions  
-  on compact sets. The point (3) is obvious for polynomials $f$ and the general case follows from Stone-Weierstrass.
-  We prove the point (4). Let $C = \sup_n \|x_n\| < \infty$. First we need to show that 
+  The items (1) and (2) follow directly from Gelfand theorem and properties of continuous functions  
+  on compact sets. The item (3) is obvious for polynomials $f$ and the general case follows from Stone-Weierstrass.
+  We prove the item (4). Let $C = \sup_n \|x_n\| < \infty$. First we need to show that 
   $\sigma(x_n) \subseteq \Omega$ for large enough $n$. If that wasn't the case, then for every $n \in \N$ there would exist $N_n > n$
   such that there exists $\lambda_n \in \sigma(x_{N_n}) \setminus \Omega \subseteq \overline{B_C (0)}$.
   Thus there exists a convergent subsequence $(\lambda_{n_k})_k$ such that $\lambda_{n_k} \to \lambda \in U$,
   where $U$ is an open neighborhood of $\sigma(x)$
-  and $\lambda \notin \sigma(x)$. But then $$\underbrace{x_{n_k} - \lambda_{n_k}}_{\notin GL(A)} \to \underbrace{x - \lambda}_{\in GL(A)},$$
-  which contradicts the openness of $GL(A)$. For every $\varepsilon > 0$ there exists a polynomial $g: \Omega \to \C$ such that $\|f - g\|_{\infty} < \varepsilon$.
+  and $\lambda \notin \sigma(x)$. But then $$\underbrace{x_{n_k} - \lambda_{n_k}}_{\notin \gl(A)} \to \underbrace{x - \lambda}_{\in \gl(A)},$$
+  which contradicts the openness of $\gl(A)$. For every $\varepsilon > 0$ there exists a polynomial $g: \Omega \to \C$ such that $\|f - g\|_{\infty} < \varepsilon$.
   Now \begin{align*}
     \limsup_{n} \|f(x_n) - g(x_n)\| &+ \|g(x_n) - g(x)\| + \|g(x) - f(x)\|\\
      &\leq 2 \cdot C \cdot \varepsilon + \limsup_{n} \|g(x_n) - g(x)\| \\
@@ -601,11 +647,11 @@ The argument in this proof is very common. We first approximate some function on
 \begin{definition}
   Let $A$ be a $C^*$-algebra and $x \in A$.
   \begin{itemize}
-    \item $x$ is positive if $x = y^* y$ for some $y \in A$ (i.e., $x$ is a hernitian square). The set of positive elements is denoted $A_+$.
-    \item $x$ is a projection if $x^2 = x^* = x$.
-    \item $x$ is unitary if $x x^* = x^* x = 1$. The set of positive elements is denoted $U(A)$.
-    \item $x$ is an isometry if $x^* x = 1$.
-    \item $x$ is a partial isometry if $x^* x$ is a projection.
+    \item $x$ is \emph{positive} if $x = y^* y$ for some $y \in A$ (i.e., $x$ is a hernitian square). The set of positive elements is denoted $A_+$.
+    \item $x$ is a \emph{projection} if $x^2 = x^* = x$.
+    \item $x$ is \emph{unitary} if $x x^* = x^* x = 1$. The set of positive elements is denoted $U(A)$.
+    \item $x$ is an \emph{isometry} if $x^* x = 1$.
+    \item $x$ is a \emph{partial isometry} if $x^* x$ is a projection.
   \end{itemize}
 \end{definition}
 
@@ -613,25 +659,29 @@ The argument in this proof is very common. We first approximate some function on
   The first three are automatically normal (the first two are even self-adjoint).
 \end{remark}
 
-The set $A_+$ induces a partial ordering on $A_{\sa}$: for two elements $a, b \in A_{\sa}$
+The set of all positive operators (denoted as $A_+$) induces a partial ordering on $A_{\sa}$: for two elements $a, b \in A_{\sa}$
 we define $$a \leq b \Leftrightarrow b - a \in A_+.$$
 We notice that $x^* A_+ x \subseteq A_+$ for every $x \in A$.
 For any $a, b \in A_{\sa}$ and $x \in A$, we have 
 $$a \leq b \Rightarrow x^* a x \leq x^* b x.$$
 
-\begin{proposition}
+\begin{proposition}\label{prop:2}
   Let $A$ be a $C^*$-algebra and $x \in A$. Then $x$ is a linear combination of four unitaries.
 \end{proposition}
 
 \begin{myproof}
   Since $x = \real x + i \imag x$, where $\real x, \imag x \in A_{\sa}$,
-  it's enough to show that every self-adjoint is a linear combination of two unitaries.
+  it's enough to show that every self-adjoint element is a linear combination of two unitaries.
   Without loss of generality, assume $\| x\| \leq 1$, so $\sigma(x) \subseteq [-1, 1]$.
   Consider the continuous function $$f: [-1, 1] \to \mathbb{T},\quad z \mapsto z + i(1 - z^2)^{\frac{1}{2}}.$$
-  Since $f \cdot \overline{f} \equiv 1$ on $[-1, 1]$, it follows from continuous functional theorem that
+  Since $f \cdot \overline{f} \equiv 1$ on $[-1, 1]$, it follows from continuous functional calculus that
   $$f(x) f(x)^* = f(x)^* f(x) = 1.$$
-  Consequently, $f(x) = u$ is unitary and $x = \frac{1}{2} (x + x^*)$ is a linear combination of two unitaries. 
+  Consequently, $f(x) = u$ is unitary and $x = \frac{1}{2} (f(x) + f(x)^*)$ is a linear combination of two unitaries. 
 \end{myproof}
+
+\begin{remark}
+  We use the notation $\mathbb{T} = \{z \in \C\ |\ |z| = 1\}$.
+\end{remark}
 
 \begin{definition}
   Let $x \in A_{\sa}$. Then $\sigma(x) \subseteq \R$ and we can define 
@@ -639,6 +689,7 @@ $$a \leq b \Rightarrow x^* a x \leq x^* b x.$$
   Then $\sigma(x_+), \sigma(x_- ) \subseteq [0, \infty)$, $x = x_+ - x_-$
   and $x_+ x_- = x_- x_+ = 0$.
 \end{definition}
+\marginpar{\color{blue} \small ADD A PICTURE}
 
 \begin{lemma}
   Suppose $x, y \in A_{\sa}$ satisfy $\sigma(x), \sigma(y) \subseteq [0, \infty)$.
@@ -659,9 +710,9 @@ $$a \leq b \Rightarrow x^* a x \leq x^* b x.$$
 \end{myproof}
 
 \begin{theorem}
-  Let $A$ be a $C^*$-algebra and $x \in A$ normal.
+  Let $A$ be a $C^*$-algebra and $x \in A$ normal. Then:
   \begin{enumerate}
-    \item $x = x^* \Leftrightarrow \sigma(x) \subseteq \R$;
+    \item $x \in A_{\sa} \Leftrightarrow \sigma(x) \subseteq \R$;
     \item $x \in A_+ \Leftrightarrow \sigma (x) \subseteq [0, \infty)$;
     \item $x \in U(A) \Leftrightarrow \sigma(x) \subseteq \mathbb{T}$;
     \item $x^2 = x^* = x \Leftrightarrow \sigma(x) \subseteq \{0, 1\}$.
@@ -669,17 +720,38 @@ $$a \leq b \Rightarrow x^* a x \leq x^* b x.$$
 \end{theorem}
 
 \begin{myproof}
-  We prove item (2). For the implication $(\Leftarrow)$, apply the function $\sqrt{\cdot}: [0, \infty) \to \R$.
-  Then $$x = (\sqrt{x})^2 = (\sqrt{x})^* \cdot \sqrt{x} \in A_+.$$ Now for the converse $(\Rightarrow)$:
-  suppose $x = y^* y$ for some $y \in A$. Write $x = x_+ - x_-$ and let $z := y \cdot x_-$.
-  Then $$z^* z = x_- y^* y x_- = x_- x x_- = -x_-^3.$$
-  From there we get 
-  $$\sigma (z z^*) \subseteq \sigma(z^* z) \cup \{0\} \subseteq (-\infty, 0].$$
-  Let $z = a + ib$ for $a, b \in A_{\sa}$. Then 
-  $z z^* + z^* z = 2 a^2 + 2b^2$, which implies that $\sigma(z z^* + z^* z) \subseteq [0, \infty).$
-  It follows that $$\sigma (z^* z) = \sigma((2 a^2 + 2b^2) - z z^*) \subseteq [0, \infty).$$
-  As a result, $$\sigma(-x_-^3) = \sigma(z^* z) \subseteq \{0\},$$
-  so $x_-^3 = 0$ and $x_- = 0$. This proves that $x = x_+$ has nonnegative spectrum.
+  Throughout this proof, let $f(z) = z$ denote the identity polynomial.
+  \begin{enumerate}
+    \item \begin{align*}
+      x = x^* &\Leftrightarrow f(x) = \overline{f} (x)\\
+      &\Leftrightarrow \textrm{$f \equiv \overline{f}$ on $\sigma(x)$}\\
+      &\Leftrightarrow \textrm{$z = \overline{z}$ for all $z \in \sigma(x)$}\\
+      &\Leftrightarrow \sigma (x) \subseteq \R.
+    \end{align*}
+    \item $(\Rightarrow)$ Let $x = y^* y$ for some $y \in A$. Write $x = x_+ - x_-$ and let $z := y \cdot x_-$.
+    Then $$z^* z = x_- y^* y x_- = x_- x x_- = -x_-^3.$$
+    From there we get 
+    $$\sigma (z z^*) \subseteq \sigma(z^* z) \cup \{0\} \subseteq (-\infty, 0].$$
+    Let $z = a + ib$ for $a, b \in A_{\sa}$. Then 
+    $z z^* + z^* z = 2 a^2 + 2b^2$, which implies that $\sigma(z z^* + z^* z) \subseteq [0, \infty).$
+    It follows that $$\sigma (z^* z) = \sigma((2 a^2 + 2b^2) - z z^*) \subseteq [0, \infty).$$
+    As a result, $$\sigma(-x_-^3) = \sigma(z^* z) \subseteq \{0\},$$
+    so $x_-^3 = 0$ and $x_- = 0$. This proves that $x = x_+$ has nonnegative spectrum.
+    For the converse implication $(\Leftarrow)$, apply the function $\sqrt{\cdot}: [0, \infty) \to \R$.
+    Then $$x = (\sqrt{x})^2 = (\sqrt{x})^* \cdot \sqrt{x} \in A_+.$$
+    \item \begin{align*}
+      xx^* = 1 &\Leftrightarrow f(x) \cdot \overline{f} (x) = 1\\
+      &\Leftrightarrow \textrm{$f \cdot \overline{f} \equiv 1$ on $\sigma(x)$}\\
+      &\Leftrightarrow \textrm{$|z|^2 = 1$ for all $z \in \sigma(x)$}\\
+      &\Leftrightarrow \sigma (x) \subseteq \mathbb{T}.
+    \end{align*}
+    \item \begin{align*}
+      x^2 = x^* = x &\Leftrightarrow f(x) \cdot \overline{f} (x) = \overline{f} (x) = f(x)\\
+      &\Leftrightarrow \textrm{$f \cdot \overline{f} \equiv \overline{f} \equiv f$ on $\sigma(x)$}\\
+      &\Leftrightarrow \textrm{$|z|^2 = \overline{z} = z$ for all $z \in \sigma(x)$}\\
+      &\Leftrightarrow \sigma (x) \subseteq \{0, 1\}. \qedhere
+    \end{align*}
+  \end{enumerate}
 \end{myproof}
 
 \begin{corollary}
@@ -708,12 +780,12 @@ $$a \leq b \Rightarrow x^* a x \leq x^* b x.$$
   Let $A$ be a $C^*$-algebra and $x, y \in A_+$.
   \begin{enumerate}
     \item If $x \leq y$, then $\sqrt{x} \leq \sqrt{y}$.
-    \item If $x, y \in GL(A)$ and $x \leq y$, then $y^{-1} \leq x^{-1}$.
+    \item If $x, y \in \gl(A)$ and $x \leq y$, then $y^{-1} \leq x^{-1}$.
   \end{enumerate}
 \end{proposition}
 
 \begin{myproof}
-    Let us prove the second point first. Suppose $x, y \in GL(A)$.
+    Let us prove the second point first. Suppose $x, y \in \gl(A)$.
     Then we have $y^{-\frac{1}{2}} x y^{-\frac{1}{2}} \leq 1$ and 
     \begin{align*}
       x^{\frac{1}{2}} y^{-1} x^{\frac{1}{2}} &\leq \| x^{\frac{1}{2}} y^{-1} x^{\frac{1}{2}}\|\\
@@ -737,7 +809,7 @@ $$a \leq b \Rightarrow x^* a x \leq x^* b x.$$
     \end{align*}
     Multiplying on both sides by $y^{\frac{1}{4}}$, we get $y^{\frac{1}{2}} \leq x^{\frac{1}{2}}$.
     For general non-invertible $x \leq y$, pick $\varepsilon > 0$ and notice that 
-    $$0 \leq x + \varepsilon \leq y + \varepsilon.$$ However, since $x, y$ are positive, we also have $x + \varepsilon, y + \varepsilon \in GL(A)$.
+    $$0 \leq x + \varepsilon \leq y + \varepsilon.$$ However, since $x, y$ are positive, we also have $x + \varepsilon, y + \varepsilon \in \gl(A)$.
     We use the above calculation to obtain $(x + \varepsilon)^{\frac{1}{2}} \leq (y + \varepsilon)^{\frac{1}{2}}$. If we send $\varepsilon \to 0$,
     we get $x^{\frac{1}{2}} \leq y^{\frac{1}{2}}$.
 \end{myproof}
