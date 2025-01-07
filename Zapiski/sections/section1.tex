@@ -64,7 +64,7 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
     $$\forall i', i'' \in I:\ \exists i \in I:\ i \geq i', i \geq i''.$$
 \end{definition}
 
-\begin{example}\label{ex:1}
+\begin{example}\label{ex:1.1}
     \begin{enumerate}
         \item Every linearly ordered set is upwards-directed.
         \item Let $(X, \mathcal{T})$ be a topological space and $x_0 \in X$.
@@ -81,10 +81,10 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
     is upwards-directed and $x: I \to X$ is a function. We usually write $(x_i)_{i \in I}$ or $(x(i))_{i \in I}$.
 \end{definition}
 
-\begin{example}\label{ex:2}
+\begin{example}\label{ex:1.2}
     \begin{enumerate}
         \item Every sequence is a net.
-        \item Let $(X, \mathcal{T})$ be a topological space, $x_0 \in X$ and $\mathcal{U}$ a collection of all open sets which contain $x_0$ (see example \ref{ex:1}).
+        \item Let $(X, \mathcal{T})$ be a topological space, $x_0 \in X$ and $\mathcal{U}$ a collection of all open sets which contain $x_0$ (see example \ref{ex:1.1}).
         For each $U \in \mathcal{U}$ pick a $x_U \in U$. Then $(x_U)_{U \in \mathcal{U}}$ is a net.
     \end{enumerate}
 \end{example}
@@ -99,11 +99,11 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
 \end{definition}
 
 \begin{example}
-        Take the net $(x_U)_{U \in \mathcal{U}}$ from example \ref{ex:2}. It follows from the definition
+        Take the net $(x_U)_{U \in \mathcal{U}}$ from example \ref{ex:1.2}. It follows from the definition
         that $x_U \xrightarrow[U \in \mathcal{U}]{} x_0$.
 \end{example}
 
-\begin{proposition}\label{prop:1}
+\begin{proposition}\label{prop:1.1}
     \begin{enumerate}
         \item Let $X$ be a topological space and $A \subseteq X$. Then $x \in \overline{A}$ iff there exists a net $(a_i)_{i \in I}$ in $A$ such that $a_i \to x$.
         \item Let $X, Y$ be topological spaces and $f: X \to Y$. Then $f$ is continuous at $x_0 \in X$ iff $f(x_i) \to f(x_0)$ for every net $(x_i)_{i \in I}$ that converges to $x_0$.
@@ -149,13 +149,13 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
       We essentially have to prove that the sets
       $$f_{x_0, p}^{-1} (V),\ V^{\textrm{open}} \subseteq \R,\ x_0 \in X,\ p \in \mathcal{P}$$
       generate a subbasis for the seminorm topology of a LCS space.
-      Since $f_{p, x_0}$ are continuous functions (by the first item and Proposition \ref{prop:1}),
+      Since $f_{p, x_0}$ are continuous functions (by the first item and Proposition \ref{prop:1.1}),
       these are all open sets in the seminorm topology. But on the other hand, all subbasis sets $U(x_0, p, \varepsilon)$
       of the seminorm topology are of this type, so the above subbasis generates the seminorm topology, thus concluding our proof. \qedhere
     \end{itemize}
 \end{myproof}
 
-\begin{example}\label{ex:3}
+\begin{example}\label{ex:1.3}
     Let $X$ be a topological space.
         For every $K^\textrm{compact} \subseteq X$ we define a seminorm 
         $$p_K: C (X) \to \R,\quad f \mapsto \sup_{x \in K} |f(x)|.$$
@@ -168,7 +168,7 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
 
 \begin{example}
         Let $D^{\textrm{open}} \subseteq \C$ and let $\mathcal{H} (D)$ be the set of all holomorphic functions on $D$.
-        As in the example \ref{ex:3}, we define $\mathcal{P} = \{p_K\ |\ K^{\textrm{compact}} \subseteq D\}$.
+        As in the example \ref{ex:1.3}, we define $\mathcal{P} = \{p_K\ |\ K^{\textrm{compact}} \subseteq D\}$.
         This endows $\mathcal{H}(D)$ with a topology and makes $\mathcal{H}(D)$ into a LCS.
         Convergence in this topology concides with the uniform convergence on compacts in $D$.            
 \end{example} 
@@ -200,23 +200,23 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
 
     Let $X$ again be a normed space. To $x \in X$ we assign the seminorm $$p_x: X^* \to \R,\quad f \mapsto |f(x)|.$$
     The family $\{p_x\ |\ x \in X\}$ defines a topology in $X^*$ in which $X^*$ becomes a LCS.
-    This topology is called weak-* topology and is denoted by $\sigma (X^*, X)$.
+    This topology is called weak-$*$ topology and is denoted by $\sigma (X^*, X)$.
     We can easily check that $f_i \xrightarrow{w^*} f$ iff $f_i (x) \to f(x)$ for all $x \in X$.
-    We can compare weak-* topology on $X^*$ with its weak topology.
+    We can compare weak-$*$ topology on $X^*$ with its weak topology.
     As a consequence of Hahn-Banach, we have for every $x \in X$ $$\| x\| = \sup\{|f(x)||\ f \in X^*,\ \| f\| \leq 1\},$$
     which implies that the map $$\iota: X \hookrightarrow X^{**},\quad x \mapsto (f \mapsto f(x))$$
-    is an isometry and therefore injective. This means that every seminorm in the weak-* topology is also 
-    a seminorm in a weak topology on $X^*$, so the weak topology is finer (stronger) than the weak-* topology on $X^*$.
+    is an isometry and therefore injective. This means that every seminorm in the weak-$*$ topology is also 
+    a seminorm in a weak topology on $X^*$, so the weak topology is finer (stronger) than the weak-$*$ topology on $X^*$.
 
 \begin{remark}
-    Weak and weak-* topology can be defined even if $X$ is merely a LCS.
+    Weak and weak-$*$ topology can be defined even if $X$ is merely a LCS.
     In that case, $X^*$ is of course defined as the space of continuous linear functionals on $X$.
 \end{remark}
 
 \subsection{Banach-Alaoglu theorem}
 
 \begin{theorem}[Banach-Alaoglu]
-    Let $X$ be a normed space. Then the closed unit ball in $X^*$ (denoted by $(X^*)_1$) is compact in the weak-* topology in $X^*$.
+    Let $X$ be a normed space. Then the closed unit ball in $X^*$ (denoted by $(X^*)_1$) is compact in the weak-$*$ topology in $X^*$.
 \end{theorem}
 
 \begin{myproof}
@@ -227,7 +227,7 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
     $$\Phi: (X^*)_1 \to P,\quad f \mapsto (f(x))_{x \in X} \in P.$$
     Clearly, $\Phi$ is well-defined and injective. We start by proving that $\Phi$ is continuous.
     Let $(f_i)_{i \in I}$ be a net in $(X^*)_1$ that converges to $f \in X^*$
-    in the weak-* topology. Then $f_i(x) \to f(x)$ for each $x \in X$.
+    in the weak-$*$ topology. Then $f_i(x) \to f(x)$ for each $x \in X$.
     By the definition of the product topology in $P$, this means that $\Phi(f_i) \mapsto \Phi(f)$ in $P$.
     Hence $\Phi$ is continuous. Since $\Phi$ is injective, it induces an inverse map 
     $$\Phi^{-1}: \im (\Phi) \to (X^*)_1$$
@@ -247,7 +247,7 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
 \end{corollary}
 
 \begin{myproof}
-    Denote $K = (X^*)_1$ endowed with the weak-* topology. By the Banach-Alaoglu theorem, $K$ is compact and $T_2$.
+    Denote $K = (X^*)_1$ endowed with the weak-$*$ topology. By the Banach-Alaoglu theorem, $K$ is compact and $T_2$.
     We now define the map $$\Delta: X \to C(K),\quad x \mapsto (f \mapsto f(x)).$$
     First, we prove that $\Delta$ is isometric. By Hahn-Banach, for every $x \in X \setminus\{0\}$ there exists an $f \in X^*$
     such that $\|f\| = 1$ and $f(x) = \|x\|$. Then we have
@@ -634,8 +634,8 @@ If $X$ is a TVS, then $\overline{\co} A = \overline{\co A}$.
   so $v$ cannot be an extreme point of $(\mathcal{H})_1$.
 \end{example}
 
-\begin{example}
-  We have the identity 
+\begin{example}\label{ex:1.4}
+  It holds that
   $$\ext (\bh)_1 = \{V \in \bh\ |\ \textrm{$V$ or $V^*$ is an isometry}\}.$$
   Here, we will just prove the inclusion $(\supseteq)$.
   Let $V \in \bh$  be an isometry and suppose $V = tS + (1 - t)T$
@@ -653,12 +653,11 @@ If $X$ is a TVS, then $\overline{\co} A = \overline{\co A}$.
   For every $x \in \partial (\mathcal{H})_1 = \ext (\mathcal{H})_1$, we have 
   $$Vx = t \cdot Sx + (1 - t) Tx$$ and by the previous example that implies $Tx = Sx = Vx$,
   so we really have $S = T = V$. We use the same argument if $V^*$ is an isometry.
-  For now, we lack some tools to prove the reverse inclusion. However, we will later prove statement that is a generalization 
-  to $C^*$-algebras.
+  For now, we lack some tools to prove the reverse inclusion. We will prove the equality in Corollary .
 \end{example}
 
 \begin{example}
-  If $X$ be a Banach space, then $(X^*)_1$ is weak-* compact (by Banach-Alaoglu),
+  If $X$ be a Banach space, then $(X^*)_1$ is weak-$*$ compact (by Banach-Alaoglu),
   so Krein-Milman gives us $(X^*)_1 = \overline{\co} (\ext (X^*)_1)$. Hence $(X^*)_1$ has a lot of extreme points.
   As a corollary, $c_0$, $L^1 [0, 1]$ and $C[0, 1]$ are not duals of Banach spaces.
 \end{example}

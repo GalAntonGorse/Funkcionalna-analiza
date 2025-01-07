@@ -73,6 +73,78 @@ is a $\C$-algebra with norm $\|A\| = \sup_{\mu \in \mathcal{H}, \|\mu\| = 1} \|A
   $$\ker w = (\im y)^\perp = (\im |x|)^\perp$$ implies $w = v$.
 \end{myproof}
 
+Now we can also prove the statement in the Example \ref{ex:1.4}.
+
+\begin{proposition}
+  The extreme points of the unit ball of $\bh$ are exactly the elements $V \in \bh$ such that 
+  $$(1 - V V^*) \bh (1 - V^* V) = 0.$$ In particular, $V^* V$ and $V V^*$ are projections.
+\end{proposition}
+
+\begin{myproof}
+  Let $V \in A$ be an extreme point of the unit ball of $\bh$, so $\sigma (V) \subseteq [-1, 1]$. Write 
+  $$V = \frac{1}{2} V (2 - |V|) + \frac{1}{2} V |V|.$$
+  Since the functions $z \mapsto z (2 - |z|)$ and $z \mapsto |z| (2 - |z|)$ coincide and are both bounded above by $1$ on $\sigma(x)$,
+  we have $\| V (2 - |V|)\| = \| |V| (2 - |V|)\| \leq 1$ by continuous functional calculus.
+  This implies that $V (2 - |V|)$ is in the unit ball of $\bh$. The same can be said about $V |V|$ by the same argument.
+  Now since $V$ is an extreme point, we must have $V = V |V|$. Multiplying on the left with $V^*$, 
+  we get $|V|^2 = |V|^3$. This means that the functions $z \mapsto z^2$ and $z \mapsto z^3$ coincide on $\sigma (|V|)$,
+  which implies that $\sigma (|V|) \subseteq \{0, 1\}$. As a result, $|V|$ is a projection, so $P := |V| = |V|^2 = V^* V$.
+  The same can be said about $Q := V V^*$, since we know that $\sigma (V^* V) \setminus \{0\} = \sigma (V V^*) \setminus \{0\}$. 
+  This means that $V$ is a partial isometry. By the previous lemma, $P$ is a projection onto the initial space of 
+  $V$, so $QV = VP = V$. Now suppose $W := (1 - Q) Z (1 - P) \neq 0$ for some $Z$ in the unit ball.
+  Then 
+  \begin{align*}
+     \| V + W\|^2 &= \| QVP + (1 - Q)Z(1 - P) \|^2\\
+     &= \|( QVP + (1 - Q)Z(1 - P))^* ( QVP + (1 - Q)Z(1 - P))\|\\
+     &= \| (P V^* Q + (1 - P)Z^*(1 - Q)) (QVP + (1 - Q)Z(1 - P))\|\\
+     &= \| P V^* Q V P + (1 - P) Z^* (1 - Q) Z (1 - P)\|\\
+     &= \| P V^* V P + (1 - P) W^* W (1 - P)\|\\
+     &= \max \{\|V^* V\|, \|W^* W\|\}\\
+     &= \max \{\|V\|^2, \| W\|^2\} = 1
+  \end{align*}
+  and similarly $\| V - W\|^2 = 1$. Therefore we have a decomposition 
+  $$V = \frac{1}{2} (V + W) + \frac{1}{2} (V - W)$$
+  and $V$ is not an extreme point, leading to a contradiction. Conversely, suppose that 
+  $(1 - V V^*) \bh (1 - V^* V) = 0.$ Then we have 
+  $$0 = V^* (1 - V V^*) V (1 - V^* V) = V^* V (1 - V^* V)^2.$$
+  This implies that the function $z \mapsto z( 1 - z)^2$ must be zero on $\sigma (V^* V)$, so 
+  $\sigma (V^* V) \subseteq \{0, 1\}$ and $P := V^* V$ is a projection. By the same argument,
+  $$0 = (1 - V V^*) V (1 - V^* V)V^* =(1 - V V^*)^2  V V^*$$ and $Q := V V^*$ is a projection as well.
+  Assume that $V = \frac{1}{2} U + \frac{1}{2} W$ for $U, W$ in the unit ball. 
+  Again we have $V = VP = QV$, so $$V = \frac{1}{2} UP + \frac{1}{2} WP$$ and 
+  \begin{align*}
+    4 P &= 4 V^* V = P U^* U P + PW^* WP + P U^* W P + P W^* U P\\
+    &= 2 (P U^* U P + PW^* WP) - P (U - W)^* (U - W) P\\
+    &\leq 4P - P (U - W)^* (U - W) P.
+  \end{align*} 
+  This immediately implies that $(U - W)P = 0$. Similarly, we have $ Q(U - W) = 0.$ Now 
+  \begin{align*}
+    U - W &= Q (U - W) P + (1 - Q) (U - W) P \\
+    &+ Q (U - W) (1 - P) + (1 - Q) (U - W) (1 - P) = 0. \qedhere
+  \end{align*}
+\end{myproof}
+
+\begin{remark}
+  The above theorem holds for any $C^*$-algebra, not just $\bh$.
+  We can identify any general $C^*$-algebra with an algebra of operators on some Hilbert space
+  and then the above proof carries over verbatim. 
+\end{remark}
+
+\begin{corollary}
+  $$\ext (\bh)_1 = \{V \in \bh\ |\ \textrm{$V$ or $V^*$ is an isometry}\}.$$
+\end{corollary}
+
+\begin{myproof}
+  We need to prove the inclusion $(\subseteq)$. If $V$ is an extreme point, then $V^* V$ and $V V^*$ are projections
+  Therefore, $V$ is a partial isometry with the initial space $(\ker V)^\perp$ and 
+  $V^*$ is a partial isometry with the initial space $(\ker V^*)^\perp$.
+  Assume neither $V$ nor $V^*$ are full isometries, so their initial spaces are proper subspaces of $\mathcal{H}$.
+  This means that there exist vectors $0 \neq x \in \ker V$ and $0 \neq y \in \ker V^*$.
+  Define $P$ as a rank-one projection from $x$ to $y$. Then
+  $$(1 - V V^*) P (1 - V^* V) x = y \neq 0,$$
+  so $(1 - V V^*) P (1 - V^* V) \neq 0$, contradiction.
+\end{myproof}
+
 \subsection{Trace class operators}
 
 Recall that $A \in \bh$ has finite rank if $\rank A = \dim \overline{\im A} < \infty$.
