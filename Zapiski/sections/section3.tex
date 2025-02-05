@@ -503,7 +503,7 @@ separable.
 \end{theorem}
 
 \begin{myproof}
-  W.l.o.g. $\| \varphi\| = 1$. Let $\Sigma$ denote the set of positive linear functionals with norm $ \leq 1$.
+  W.l.o.g.~$\| \varphi\| = 1$. Let $\Sigma$ denote the set of positive linear functionals with norm $ \leq 1$.
   By Banach-Alaoglu, $\Sigma$ is weak-$*$ compact and Hausdorff.
   Consider $$\gamma: A \to C(\Sigma),\quad a \mapsto (\psi \mapsto \psi(a)).$$
   This is an isometry and $\gamma(A_+) \subseteq C(\Sigma)_+$.
@@ -549,11 +549,111 @@ separable.
   The algebra of matrices $M_n (\C) = \mathcal{B}(\C^n)$ is a $C^*$-algebra.
 \end{example}
 
-\begin{proposition}[Artin-Wedderburn for finite-dimensional $C^*$-algebras]
+\subsubsection{Structure theorem for finite-dimensional $C^*$-algebras}
+
+For finite-dimensional $C^*$-algebras, we have the Artin-Wedderburn type theorem.
+
+\begin{proposition}[Structure theorem for finite-dimensional $C^*$-algebras]
   Every finite-dimensional $C^*$-algebra $A$ is 
   $$ A \cong M_{n_1} (\C) \oplus \dots \oplus M_{n_r} (\C)$$
   for uniquely determined $n_1, \dots, n_r$.
 \end{proposition}
+
+To prove this, we need a few preliminary lemmas. 
+
+\begin{lemma}
+  Every finite-dimensional $C^*$-algebra is unital.
+\end{lemma}
+
+This fact, which we will not prove here, follows essentially from Krein-Milman theorem.
+\footnote{The reader should consult Misamichi Takesaki, \emph{Theory of Operator Algebras I}, Theorem I.10.2}
+
+\begin{corollary}
+  If $A$ is a finite-dimensional $C^*$-algebra, then every ideal in $A$ is of the form $I = A p$
+  for some central projection $p \in A$.
+\end{corollary}
+
+\begin{myproof}
+  If $I \lhd A$, then it is itself a (finite-dimensional) $C^*$-algebra, so it must have a unit $p$.
+  As a result, we have $I = Ip \subseteq Ap$, but since $I$ is an ideal we also have
+  $Ap \subseteq I$, so $Ap = I$. Since $p$ is a unit in $I$, we have $p^2 = p = p^*$, so $p$ is a projection.
+  For any $x \in A$, we get $xp \in I$ and so 
+  $p \cdot (xp) = xp$. By starring this equation, we get $p x^* p = p x^*$. Combining the
+  last two equations gives us 
+  $$x^* p = p \cdot (x^* p) = p x^* p = p x^*,$$
+  so $p$ commutes with $x^*$. As a result, $p$ commutes with the entire $A$.
+\end{myproof}
+
+\begin{lemma}
+  If $A$ is a finite-dimensional abelian $C^*$-algebra, then its spectrum is finite.
+\end{lemma}
+
+\begin{myproof}
+  We know that by Gelfand, $A \cong C(\sigma(A))$, where $\sigma(A)$ is a compact Hausdorff (and therefore normal) space. Suppose that $\sigma(A)$ is infinite.
+  \begin{enumerate}
+        \item   First, we will inductively construct an infinite subset $X = \{x_n\}_{n \in \N} \subseteq \sigma(A)$ that does not contain any of its accumulation points.
+      Pick any point $x \in \sigma(A)$. 
+      If $x$ is not an accumulation point of $\sigma(A)$ (so it is an isolated point),
+      then take $x_1 := x$ and choose any new point in $\sigma(A) \setminus \{ x_1\}$ to repeat this process.
+      Howevery, if $x$ is an accumulation point of $\sigma(A)$, then take any $x_1 \in \sigma(A) \setminus \{x\}$. Since $\sigma(A)$ is Hausdorff,
+      there exist disjoint open neighborhoods $V_1 \ni x, U_1 \ni x_1$. Now since $x$ is an accumulation point of $\sigma(A)$,
+      there must exist some $x_2 \in V_1$, such that $x_2 \neq x$. By Hausdorff property, there must exist open disjoint neighborhoods 
+      $V_2 \ni x, U_2 \ni x_2$ inside $V_1$. Now repeat this process indefinitely to obtain a set $\{x_n\}_{n \in \N}$
+      which does not contain its accumulation points.
+        \item Notice that from the previous item, every point $x_n$ has an open neighborhood $U_n$, where $U_n \cap U_m = \emptyset$ for any $n \neq m$.
+      By Uryssohn's lemma, there exists a continuous function $f_n: \sigma(A) \to [0, 1]$ for every $n \in \N$ such that $f_n (x_n) = 1$
+      and $f_n = 0$ on $\sigma(A) \setminus U_n$.
+        \item Finally, we have an infinite linearly independent set $\{f_n\}_{n \in \N}$ in $C(\sigma(A))$,
+        so the latter algebra must be infinite-dimensional. \qedhere
+  \end{enumerate}  
+\end{myproof}
+
+Let $A$ be any finite-dimensional $C^*$-algebra. Then its center, say $C$,
+is a finite-dimensional abelian $C^*$-algebra with spectrum $\{\omega_1, \dots, \omega_n\}$.
+Let $p_i \in C$ be an element that corresponds to characteristic function $\chi_{\{\omega_i\}} \in C(\sigma(C))$.
+It follows from Gelfand that $C \cong \C p_1 \oplus \cdots \oplus \C p_n,$
+so $p_1 + dots + p_n = 1$. As a result, 
+$$A \cong A p_1 \oplus \dots \oplus A p_n,$$
+where each of $A p_i$ has trivial center. By previous lemma, $A p_i$
+is a simple finite-dimensional $C^*$-algebra. So it suffices to prove the structure theorem for a simple finite-dimensional $C^*$-algebras.
+
+\begin{myproof}[Proof of the structure theorem]
+  Assume $A$ is simple and finite-dimensional. We first note that $aA b \neq \{0\}$ for any nonzero $a, b \in A$.
+  This follows from the observation that the set $A aA$ is an ideal of $A$ which must be the entire algebra $A$,
+  since it is nonzero. Let $B$ be a maximal abelian $*$-subalgebra of $A$ and let $\sigma(B) = \{\omega_1, \omega_2, \dots, \omega_n\}$
+  be its spectrum. Let $e_i \in B$ denote the projection, corresponding to the characteristic function $\chi_{\{\omega_i\}}$.
+  By our previous arguments, $e_i$ are orthogonal and $\sum_{i = 1} ^n e_i = 1$.
+  Furthermore, $B \cong \C e_1 \oplus \dots \oplus \C e_n$. It follows that $e_i A e_i$ commutes with every $e_j$.
+  Next, we prove that the $C^*$-algebra $e_i A e_i$ has dimension one. 
+  Take any normal element $x \in e_i A e_i$.
+  By Gelfand, $\sigma(x)$ is homeomorphic to the spectrum of a $C^*$-algebra, generated by $x$.
+  This $C^*$-algebra is finite-dimensional (since it lives inside the finite-dimensional $C^*$-algebra $e_i A e_i$),
+  so its spectrum must be finite and as a result, $\sigma(x)$ is finite (and discrete). 
+  Suppose that there exists a normal element $x \in e_i A e_i$ such that $\sigma(x)$ has at least two distinct elements $\lambda_1, \lambda_2$.
+  Then functional calculus gives us orthogonal projections $p = \chi_{\{\lambda_1\}} (x)$ and $q = \chi_{\{\lambda_2\}} (x)$ in $e_i A e_i$.
+  Then $C^* (p, q, e_2, \dots, e_n)$ is an abelian $C^*$-algebra in $A$ of dimension $n + 1$, which is in contradiction with assumption that 
+  $B$ is maximal abelian. This means that every normal element $x \in e_i A e_i$
+  has singleton spectrum $\sigma(x) = \lambda$, so it is of the form $x = \lambda \cdot e_i$ by functional calculus.
+  Since $e_i A e_i$ is the span of self-adjoint (which are normal) elements, we have $e_i A e_i = \C e_i \subseteq B$.
+  For fixed $i, j$, we know that $e_i A e_j \neq \{0\}$.
+  Choose a nonzero $x \in e_i A e_j$ and notice that $x = e_i x e_j$.
+  This implies that $x^* x = e_j x^* x e_j = \lambda e_j$ and 
+  $x x^* = e_i x x^* e_i = \mu e_j$ for some $\lambda, \mu \neq 0.$
+  But from $$\lambda = \| x^* x\| = \|x\|^2 = \|x^*\|^2 = \| x x^*\| = \mu$$
+  we get $\lambda = \mu > 0$. If we define $u = \lambda^{-\frac{1}{2}} x$, we get 
+  $u^* u = e_j$ and $u u^* = e_i$. For each $i$, let $u_i \in A$ be an element such that 
+  $u_i^* u_i = e_1 = u_i u_i^* = e_i$. Then, define $u_{i, j} = u_i u_j^*$.
+  From our arguments, the following has to be true:
+  $$u_{i, j}^* = u_{j, i},\quad \sum_{i = 1} ^n u_{i, i} = 1,\quad u_{i, j} u_{k, l} = \delta_{j, k} u_{i, l}$$
+  We claim that $e_i A e_j = \C u_{i, j}$. Indeed, if $x \in e_i A e_j$, then 
+  $x u_{i, j} \in e_i A e_i$, so $x u_{i, j} = \lambda e_i$ for some $\lambda \in \C$. Hence we get 
+  $$x = x e_j = x u_{j, i} u _{i, j} \lambda e_i u_{i, j} \lambda u_{i, j}.$$
+  For each $x \in A$, let $\lambda_{i, j} (x)$ be a scalar such that $e_i x e_j = \lambda_{i, j} (x) u_{i, j}$.
+  It follows that 
+  $$x = \sum_{i, j = 1} ^n e_i x e_j = \sum_{i, j = 1} ^n \lambda_{i, j} (x) u_{i, j}.$$
+  Now the map $$A \to M_n (\C) ,\quad x \mapsto (\lambda_{i, j} (x))_{i, j}$$
+  is a $*$-isomorphism of $A$ onto the algebra $M_n (\C)$, where $\dim A = n^2$.
+\end{myproof}
 
 \begin{comment}
 \begin{myproof}[Proof using Artin-Wedderburn theorem for semisimple algebras]
@@ -573,24 +673,20 @@ separable.
 
 \end{comment}
 
-\begin{myproof}
-  (TO DO)
-\end{myproof}
-
 \subsubsection{Group $C^*$-algebras}
 
-Let $G$ be a group. Then the (complex) group algebra $\C [G]$ is the algebra with basis 
+Let $G$ be a group. Then the (complex) group algebra $\C [G]$ is defined as the algebra with basis 
 $\{u_g\ |\ g \in G\}$ and multiplication given by $u_g \cdot u_h = u_{gh}$.
-Then $\C [G]$ has the involution 
-$$\left(\sum_{g \in G} ^{\mathrm{finite}} a_g u_g\right)^* = \sum_g \overline{a_g} u_{g^{-1}}.$$
 Multiplication is convolutive:
 \begin{align*}
-  \left(\sum_g a_g u_g\right) \left(\sum_h b_h u_h \right) &= \sum_{g, h} a_g b_h u_g u_h\\
+  \left(\sum_g ^{\mathrm{finite}} a_g u_g\right) \left(\sum_h ^{\mathrm{finite}} b_h u_h \right) &= \sum_{g, h} a_g b_h u_g u_h\\
   &= \sum_{g, h} a_g b_h u_{gh}\\
   &= \sum_k \left(\sum_g a_g b_{g^{-1} k}\right) u_k.
 \end{align*}
-To introduce norms on $\C[G]$ we use representations $\pi: \C [G] \to \bh$.
-Given such a $\pi_f$, we define the $C^*$-algebra 
+We can equip $\C [G]$ with an involution 
+$$\left(\sum_{g \in G} ^{\mathrm{finite}} a_g u_g\right)^* = \sum_g \overline{a_g} u_{g^{-1}}.$$
+Given a representation (homomorphism of $*$-algebras) $\pi: \C [G] \to \bh$,
+we define the $C^*$-algebra 
 $$C_{\pi} ^* (G) := \overline{\pi(\C [G])} \subseteq \bh.$$
 For $g \in G$, we get 
 \begin{align*}
@@ -598,7 +694,13 @@ For $g \in G$, we get
   &= \pi(u_g) \cdot \pi(u_{g^{-1}})\\
   &= \pi(u_g \cdot u_{g^{-1}}) = \pi(u_e) = 1.
 \end{align*}
-Similarly, $\pi(u_g) ^* \pi(u_g) = 1$. Under any representation of $\C[G]$,
+Similarly,
+\begin{align*}
+  \pi(u_g) ^* \pi(u_g) &= \pi(u_g ^*) \cdot \pi(u_g)\\
+  &=\pi(u_{g^{-1}}) \cdot \pi(u_g) \\
+  &= \pi(u_{g^{-1}} \cdot u_g) = \pi(u_e) = 1.
+\end{align*}
+We have thus proved that under any representation of $\C[G]$,
 each $u_g$ is mapped to a unitary.
 
 \begin{example}
@@ -620,14 +722,16 @@ each $u_g$ is mapped to a unitary.
 
 \begin{myproof}
   Then $\pi(a) = \sum a_g \cdot \pi(u_g)$. Then 
-  $$\| \pi (a) \| = \left\| \sum a_g \pi (u_g) \right\| \leq \sum |a_g| \cdot \| \pi (u_g)\| = \sum |a_g|.$$
+  \begin{equation*}
+    \| \pi (a) \| = \left\| \sum a_g \pi (u_g) \right\| \leq \sum |a_g| \cdot \| \pi (u_g)\| = \sum |a_g|. \qedhere
+  \end{equation*}
 \end{myproof}
 
 This implies that $\| \cdot \|_u$ is indeed a norm on $\C [G]$, making
 the universal $C^*$-algebra $C(G)$ of $G$ in Definition \ref{def:3.1} well-defined.
 
 \begin{remark}
-  The algebraic group algebra $\C [G]$ is dense in both $C_{\lambda} ^* (G)$ and $C^* (G)$.
+  The group algebra $\C [G]$ is dense in both $C_{\pi} ^* (G)$ and $C^* (G)$.
 \end{remark}
 
 \begin{theorem}[Universal property]
@@ -680,21 +784,24 @@ the universal $C^*$-algebra $C(G)$ of $G$ in Definition \ref{def:3.1} well-defin
 \subsection{Abelian group $C^*$-algebras}
 
 If $G$ is abelian, then $\C [G]$ is commutative and $C_r ^* (G)$ is abelian.
-By Gelfand, there exists a compact hausdorff space $\widehat{G}$ such that $C_r ^* (G) \cong C(\widehat{G})$
-and $\widehat{G} = \sigma(C_r ^* (G))$.
+By Gelfand, there exists a compact Hausdorff space $\Sigma$ such that $C_r ^* (G) \cong C(\Sigma)$
+and $\Sigma = \sigma(C_r ^* (G))$.
 
 \begin{definition}
-  To each abelian group $G$ we associate its Pontryagin dual 
+  To each abelian group $G$ we associate its \emph{Pontryagin dual} 
   $$\widehat{G} = \{\textrm{$w: G \to \mathbb{T}$ group homomorphism}\}.$$
 \end{definition}
 
 Then $\widehat{G}$ is a group under pointwise multiplication. We endow $\widehat{G}$
-with the topology induced from $\widehat{G} \subseteq \mathbb{T} ^G$.
-The basis sets for this topology are 
+with the compact-open topology induced from $\widehat{G} \subseteq \mathbb{T} ^G$.
+Recall that the basis sets for this topology are 
 $$B_{\varepsilon, F} (w) = \{\eta \in \widehat{G}\ |\ |\eta (h) - w(h)| < \varepsilon,\ \forall h \in F\}$$
 for $\varepsilon > 0$, $w \in \widehat{G}$ and $F \subseteq G$ finite.
-Notice that a net $(w_i)_{i \in I} \subseteq \widehat{G}$ is Cauchy iff 
+
+\begin{remark}
+  A net $(w_i)_{i \in I} \subseteq \widehat{G}$ is Cauchy iff 
 $(w_i (g))_{i \in I} \subseteq \mathbb{T}$ is Cauchy for all $g \in G$.
+\end{remark}
 
 \begin{theorem}
   The map 
@@ -733,11 +840,24 @@ $(w_i (g))_{i \in I} \subseteq \mathbb{T}$ is Cauchy for all $g \in G$.
   which gives us $h(w_{\phi}) = \phi$. Now since $h$ is a bijective continuous map between compact Hausdorff spaces, it is a homeomorphism.
 \end{myproof}
 
+  In operator algebras, we usually consider topological groups that are locally compact and Hausdorff.
+  For such groups, there exists a so-called \emph{Haar measure} $\mu$. This measure allows us to 
+  consider the $C^*$-algebras $L^2 (G)$, $C_r ^* (G)$ and $C^* (G)$ for general locally compact and Hausdorff topological groups.
+  If a group $G$ is equipped with a discrete topology, then these notions coincide with the ones from the previous subsection.  
+
 \begin{example}
-  $\widehat{\quot{\Z}{n\Z}} = \quot{\Z}{n\Z}$, $\widehat{\R} = \R$, $\widehat{\Z} = \mathbb{T}$, $\widehat{\mathbb{T}} = {\Z}$.
+  Let us present the Pontryagin duals of some locally compact Hausdorff abelian groups.
+  \begin{itemize}
+    \item $\widehat{\quot{\Z}{n\Z}} = \quot{\Z}{n\Z}$;
+    \item $\widehat{\R} = \R$;
+    \item $\widehat{\Z} = \mathbb{T}$;
+    \item $\widehat{\mathbb{T}} = {\Z}$.
+  \end{itemize}
+  We notice that for each of these groups, the dual of a dual is the original group.
+  This is not a coincidence.
 \end{example}
 
 \begin{theorem}[Pontryagin]
-  If $G$ is a locally compact abelian group (its underlying topological space is locally compact Hausdorff),
-  then $G \cong \widehat{\widehat{G}}$.
+  If $G$ is a locally compact Hausdorff abelian group,
+  then $G \approx \widehat{\widehat{G}}$.
 \end{theorem}

@@ -182,10 +182,17 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
         $$f: \linspan (x) \to \F,\quad f(\lambda x) = \lambda$$
          and extend it to $F: X \to \F$ using Hahn--Banach.
         Then $p_F (x) \neq 0$.
+        The induced topology is the \emph{weak topology} on $X$. We denote it as $\sigma(X, X^*)$. 
+        
+        \begin{proposition}
+          A net $(x_i)_{i \in I}$ converges to $x_0 \in X$ with respect to the weak topology iff $f(x_i) \to f(x_0),\ \forall f \in X^*.$          
+        \end{proposition}
+        
+\begin{remark}
+        We use the notation $x_i \xrightarrow{w} x_0$. Furthermore, a closure of a set $A \subseteq X$ in the weak topology
+        will be denoted by $\overline{A}^w$.  
+\end{remark}
 
-        The induced topology is the \emph{weak topology} on $X$. We denote it as $\sigma(X, X^*)$. A net $(x_i)_{i \in I}$ converges to $x_0 \in X$ with regards to the weak topology
-        iff $p_f (x_i - x_0) \to 0,\forall f \in X^*$ which is then equivalent to $f(x_i) \to f(x_0),\ \forall f \in X^*.$
-        We use the notation $x_i \xrightarrow{w} x_0$.
 
 \begin{remark}
   The closure of a set $A \subseteq X$ in the weak topology will be denoted as $\overline{A}^w$.
@@ -200,8 +207,18 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
 
     Let $X$ again be a normed space. To $x \in X$ we assign the seminorm $$p_x: X^* \to \R,\quad f \mapsto |f(x)|.$$
     The family $\{p_x\ |\ x \in X\}$ defines a topology in $X^*$ in which $X^*$ becomes a LCS.
-    This topology is called weak-$*$ topology and is denoted by $\sigma (X^*, X)$.
-    We can easily check that $f_i \xrightarrow{w^*} f$ iff $f_i (x) \to f(x)$ for all $x \in X$.
+    This topology is called the \emph{weak-$*$ topology} and is denoted by $\sigma (X^*, X)$.
+
+\begin{proposition}
+    A net $(f_i)_{i \in I}$ converges to $f \in X^*$ with respect to the weak-$*$ topology
+    iff $f_i (x)- f (x) \to 0,\forall x \in X$.  
+\end{proposition}
+
+\begin{remark}
+    We use the notation $f_i \xrightarrow{w^*} f$. Furthermore, a closure of a set $A \subseteq X^*$ in the weak-$*$ topology
+    will be denoted by $\overline{A}^{w^*}$.  
+\end{remark}
+
     We can compare weak-$*$ topology on $X^*$ with its weak topology.
     As a consequence of Hahn-Banach, we have for every $x \in X$ $$\| x\| = \sup\{|f(x)||\ f \in X^*,\ \| f\| \leq 1\},$$
     which implies that the map $$\iota: X \hookrightarrow X^{**},\quad x \mapsto (f \mapsto f(x))$$
@@ -324,7 +341,7 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
   which proves the equality. Lastly, we prove the $p$ is unique.
   Suppose there is some other seminorm $q$ such that 
   $$\{x \in X\ |\ p(x) < 1\} = \{x \in X\ |\ q(x) < 1\}.$$
-  Suppose $p \neq q$. W.l.o.g. there exists an $x \neq 0$ such that $p(x) > q(x)$.
+  Suppose $p \neq q$. W.l.o.g.~there exists an $x \neq 0$ such that $p(x) > q(x)$.
   By homogeneity, we can assume that $p(x) = 1 > q(x)$, contradicting our assumption.
 \end{myproof}
 
@@ -364,7 +381,7 @@ is a sublinear functional if $$p(x + y) \leq p(x) + p(y),\ \forall x, y \in X$$ 
   $$\exists \alpha, \beta \in \R:\ \forall a, b \in B:\ \real f(a) \leq \alpha < \beta \leq \real f(b).$$
 \end{corollary}
 
-\begin{theorem}
+\begin{theorem}\label{thm:1.1}
   Let $X$ be a LCS and $A \subseteq X$ convex. Then $\overline{A} = \overline{A}^w$.
 \end{theorem}
 
@@ -385,8 +402,8 @@ is a sublinear functional if $$p(x + y) \leq p(x) + p(y),\ \forall x, y \in X$$ 
   A convex set in a LCS is closed iff it is weakly closed.
 \end{corollary}
 
-\begin{proposition}
-  Let $X$ be a TVS and $f: X \to \F$ a linear functional. The following is equivalent:
+\begin{proposition}\label{prop:1.2}
+  Let $X$ be a TVS and $f: X \to \F$ a linear functional. The following are equivalent:
   \begin{enumerate}
     \item $f$ is continuous;
     \item $f$ is continuous in $0$;
@@ -529,7 +546,7 @@ $$\co A = \left\lbrace \sum_{i = 0}^n \alpha_i x_i\ |\ n \in \N, \alpha_i \geq 0
 If $X$ is a TVS, then $\overline{\co} A = \overline{\co A}$.
 
 \begin{lemma}
-  If $C \subseteq X$ is a convex subset of a vector space and $a \in C$, then the following is equivalent.
+  If $C \subseteq X$ is a convex subset of a vector space and $a \in C$, then the following are equivalent.
   \begin{itemize}
     \item[(a)] $a \in \ext C$.
     \item[(b)] If $x_1, x_2 \in C$ and $a = \frac{1}{2} (x_1 + x_2)$, then $x_1 = x_2 = a$.
@@ -548,7 +565,7 @@ If $X$ is a TVS, then $\overline{\co} A = \overline{\co A}$.
     Now if $a = t x_1 + (1 - t) x_2 \in \co \{x_1, x_2\}$, then $a = x_1 = x_2$, which contradicts our assumption. So $t x_1 + (1 - t) x_2 \in C \setminus \{a\}$
     and $C \setminus \{a\}$ is convex.
     \item[(d) $\Rightarrow$ (e)] If $x_1, \dots, x_n \in C \setminus \{a\}$, then $\co \{x_1, \dots, x_n\} \subseteq C \setminus \{a\}$ by convexity, contradiction. 
-    \item[(e) $\Rightarrow$ (b):] Suppose $a = \frac{1}{2} (x_1 + x_2)$. Then either $x_1 = a$ or $x_2 = a$ by our assumption. W.l.o.g. assume $x_1 = a$.
+    \item[(e) $\Rightarrow$ (b):] Suppose $a = \frac{1}{2} (x_1 + x_2)$. Then either $x_1 = a$ or $x_2 = a$ by our assumption. W.l.o.g.~assume $x_1 = a$.
     Then $a = \frac{1}{2} (a + x_2)$, which implies $a = x_2$. \qedhere
   \end{enumerate}
 \end{myproof}
@@ -597,7 +614,7 @@ If $X$ is a TVS, then $\overline{\co} A = \overline{\co A}$.
   \vspace*{0.5\baselineskip}
   We prove that $F_0 = \{p\}$ for some $p \in X$. Assume for a contradiction that there are distinct $x, y \in F_0$.
   By Hahn-Banach, there exists a $\Phi \in X^*$ such that $\Phi(x) \neq \Phi(y)$.
-  W.l.o.g. we assume that $\real \Phi(x) < \real \Phi(y)$. Define a set 
+  W.l.o.g.~we assume that $\real \Phi(x) < \real \Phi(y)$. Define a set 
   $$F_1 = \{z \in F_0\ |\ \real \Phi(z) = \min_{F_0} \real \Phi\}.$$
   Then $F_1 \subsetneq F_0$, since $y \notin F_0$. By the previous lemma,
   $F_1$ is a closed face in $F_0$, so it is a closed face in $C$, contradicting maximality of $F_0$.
@@ -653,7 +670,7 @@ If $X$ is a TVS, then $\overline{\co} A = \overline{\co A}$.
   For every $x \in \partial (\mathcal{H})_1 = \ext (\mathcal{H})_1$, we have 
   $$Vx = t \cdot Sx + (1 - t) Tx$$ and by the previous example that implies $Tx = Sx = Vx$,
   so we really have $S = T = V$. We use the same argument if $V^*$ is an isometry.
-  For now, we lack some tools to prove the reverse inclusion. We will prove the equality in Corollary .
+  For now, we lack some tools to prove the reverse inclusion. We will prove the equality in Corollary \ref{cor:4.1}.
 \end{example}
 
 \begin{example}

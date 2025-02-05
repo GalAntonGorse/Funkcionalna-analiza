@@ -303,15 +303,16 @@ In the introductory course, we proved the following.
 \end{myproof}
 
 \begin{example}
-  Let $X$ be a topological space and $C_b (X)$ be the set of continuous bounded complex functions on $X$,
-  endowed with the sup metric. Then $C_b (X)$ is a $C^*$-algebra (where $f^*(x) = \overline{f(x)}$).
-  If $X$ is compact, then $C(X)$ is also an $C^*$-algebra.
+  Let $X$ be a Hausdorff topological space and $C_b (X)$ be the set of continuous bounded complex functions on $X$,
+  endowed with the sup metric. Then $C_b (X)$ is a unital abelian $C^*$-algebra (where $f^*(x) = \overline{f(x)}$).
 \end{example}
 
 \begin{example}
-  Define $C_0 (X)$ as the subset of $f \in C_b (X)$
-  that vanish at infinity ($\forall \varepsilon > 0:\ \exists K \subseteq X$ compact, such that $\|f\big|_{X \setminus K}\| < \varepsilon$).
-  Then $C_0 (X)$ is a (possibly non-unital) $C^*$-subalgebra of $C_b (X)$. 
+  Let $X$ be a locally compact Hausdorff space and 
+  $$C_0 (X) = \{f \in C(X)\ |\ \forall\varepsilon > 0:\ \exists K^{\textrm{compact}} \subseteq X:\ |f(x)|\leq \varepsilon,\ \forall x \in X \setminus K\}$$ 
+  the set of all complex continuous functions on $X$ that vanish at infinity.
+  Then $C_0 (X)$ is an abelian $C^*$-algebra. In some sense, it is the natural abelian $C^*$-algebra.
+  The algebra $C_0 (X)$ is unital iff $X$ is compact -- in that case, $C_0 (X) = C_b (X) = C(X)$.
 \end{example}
 
 \begin{example}
