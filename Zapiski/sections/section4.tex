@@ -76,7 +76,7 @@ $$\|A\| = \sup_{\mu \in \mathcal{H}, \mu \neq 0} \frac{\| A\mu\|}{\| \mu\|} = \s
   $$\ker w = (\im y)^\perp = (\im |x|)^\perp$$ implies $w = v$.
 \end{myproof}
 
-Now we can also prove the statement in the Example \ref{ex:1.4}.
+Now we can also prove the statement in the example \ref{ex:1.4}.
 
 \begin{proposition}
   The extreme points of the unit ball of $\bh$ are exactly the elements $V \in \bh$ such that 
@@ -237,7 +237,7 @@ For $x, y \in \bh$ we have $$x (\alpha \otimes \overline{\beta}) y = (x \alpha) 
 
 \begin{myproof}
   Since $x \in \bh_+$, there exists a $y \in \bh$
-  such that $x = y^* y$. By Lemma \ref{lem:4.2}, we have 
+  such that $x = y^* y$. By lemma \ref{lem:4.2}, we have 
   \begin{align*}
     \trace (x) &= \trace (y^* y) = \trace (y y^*)\\
     &= \trace (u^* y^* y u) = \trace (u^* x u).
@@ -255,7 +255,7 @@ For $x, y \in \bh$ we have $$x (\alpha \otimes \overline{\beta}) y = (x \alpha) 
   $$\trace(x) := \sum_{i \in I} \langle x e_i, e_i \rangle.$$
 \end{definition}
 
-By Lemma \ref{lem:4.1} and the proof below, we get
+By lemma \ref{lem:4.1} and the proof below, we get
 \begin{align*}
   2 | \trace(x) | &\leq \sum_{i \in I} 2|\langle xe_i, e_i\rangle|\\
   &\leq \sum_{i \in I} \langle |x|e_i, e_i\rangle + \langle |x| v^* e_i, v^* e_i\rangle\\
@@ -422,7 +422,7 @@ By Lemma \ref{lem:4.1} and the proof below, we get
 \end{corollary}
 
 \begin{proof}
-  Same as that of Theorem \ref{thm:4.1}.
+  Same as that of theorem \ref{thm:4.1}.
 \end{proof}
 
 \begin{definition}
@@ -484,10 +484,10 @@ From the introductory course, we know the following statements about compact ope
   \end{enumerate}
 \end{myproof}
 
-\subsection{Hilbert-Schmidt operators}
+\subsection{Hilbert--Schmidt operators}
 
 \begin{definition}
-  An element $x \in \bh$ is a \emph{Hilbert-Schmidt operator} 
+  An element $x \in \bh$ is a \emph{Hilbert--Schmidt operator} 
   if $$|x|^2 = x^* x \in L^1 (\bh).$$
   The set of all such elements is denoted by $L^2 (\bh, \trace)$. 
 \end{definition}
@@ -552,12 +552,12 @@ From the introductory course, we know the following statements about compact ope
   \end{align*}
 \end{myproof}
 
-\subsection{Hilbert-Schmidt integral operators}
+\subsection{Hilbert--Schmidt integral operators}
 
 Let $(X, \mu)$ be a $\sigma$-finite measure space.
 This means that $X$ is a countable union of finite-measure sets:
 $$X = \bigcup_{j = 1} ^\infty A_j,\quad \mu(A_j) < \infty.$$
-For $K \in L^2 (X \times X, \mu \times \mu)$, we can define a Hilbert-Schmidt integral operator 
+For $K \in L^2 (X \times X, \mu \times \mu)$, we can define a Hilbert--Schmidt integral operator 
 with kernel $K$:
 $$T_K : L^2 (X, \mu) \to L^2 (X, \mu),\quad f \mapsto \left(y \mapsto \int_X K(x, y) f(y)\, d\mu (x)\right).$$
 Suppose $(\varphi_\alpha)_{\alpha}$ is an ONB for $L^2 (K, \mu)$.
@@ -622,7 +622,7 @@ Indeed,
   \end{enumerate}
 \end{myproof}
 
-\subsection{Hilbert-Schmidt operators $\mathcal{H} \to \mathcal{K}$ and tensor products}
+\subsection{Hilbert--Schmidt operators $\mathcal{H} \to \mathcal{K}$ and tensor products}
 
 Let $\mathcal{H}, \mathcal{K}$ be Hilbert spaces and $A \in \mathcal{B} (\mathcal{H}, \mathcal{K})$.
 We associate to $A$ the map 
@@ -632,8 +632,10 @@ $$\widetilde{A} = \begin{bmatrix}
   0 & 0\\
   A & 0
 \end{bmatrix}.$$
-We denote the set of Hilbert-Schmidt operators $\mathcal{H} \to \mathcal{K}$ as 
-$$HS (\mathcal{H}, \mathcal{K}) = \{A \in \mathcal{B} (\mathcal{H}, \mathcal{K})\ |\ \widetilde{A} \in L^2 (\mathcal{B}(\mathcal{H} \oplus \mathcal{K}))\} = \{A \in \mathcal{B} (\mathcal{H}, \mathcal{K})\ |\ A^* A \in L^1 (\mathcal{B}(\mathcal{H}))\}.$$
+We denote the set of Hilbert--Schmidt operators $\mathcal{H} \to \mathcal{K}$ as 
+$$HS (\mathcal{H}, \mathcal{K}) := \{A \in \mathcal{B} (\mathcal{H}, \mathcal{K})\ |\ \widetilde{A} \in L^2 (\mathcal{B}(\mathcal{H} \oplus \mathcal{K}))\}.$$ 
+It is trivial to show that this coincides with 
+$$\{A \in \mathcal{B} (\mathcal{H}, \mathcal{K})\ |\ A^* A \in L^1 (\mathcal{B}(\mathcal{H}))\}.$$
 With the usual scalar product $\langle A, B \rangle_{2} = \trace(B^* A)$, this becomes a Hilbert space.
 
 \begin{remark}
@@ -758,7 +760,7 @@ for $T \in \mathcal{B}(\mathcal{H})$ and $\varepsilon > 0$. The net $T_i$ conver
 
 \begin{myproof}
   The implications $(1) \Rightarrow (2) \Rightarrow (3)$ are obvious. Let us prove $(3) \Rightarrow (1)$.
-  By Proposition \ref{prop:1.2}, there exists a $K > 0$ and $v_1, \dots, v_n \in \mathcal{H}$
+  By proposition \ref{prop:1.2}, there exists a $K > 0$ and $v_1, \dots, v_n \in \mathcal{H}$
   such that 
   $$|\varphi(T)|^2 \leq K \cdot \sum_{i = 1} ^n \| Tv_i\|^2.$$
   Define $$\mathcal{H}_0 := \overline{\left\lbrace \bigoplus_{i = 1} ^n Tv_i\ |\ T \in \bh \right\rbrace} \leq \mathcal{H} ^{\bigoplus n}.$$
@@ -776,21 +778,21 @@ for $T \in \mathcal{B}(\mathcal{H})$ and $\varepsilon > 0$. The net $T_i$ conver
 
 \begin{corollary}
   If $K \subseteq \bh$ is convex, then 
-  $$\overline{(K, \textrm{WOT})} = \overline{(K, \textrm{SOT})}.$$
+  $$\overline{K}^{\textrm{WOT}} = \overline{K}^{\textrm{SOT}}.$$
 \end{corollary}
 
 \begin{myproof}
-  Consider $(\bh, \textrm{WOT})$. This is a LCS, so $\overline{(K, \textrm{WOT})}^w = \overline{(K, \textrm{WOT})}$ 
-  by Theorem \ref{thm:1.1}. Similarly, we have that $(\bh, \textrm{SOT})$ is a LCS and $\overline{(K, \textrm{SOT})}^w = \overline{(K, \textrm{SOT})}$.
+  Consider $\bh$, equipped with WOT topology. This is a LCS, so $\overline{K}^{w, \textrm{WOT}} = \overline{K}^{\textrm{WOT}}$ 
+  by theorem \ref{thm:1.1}. Similarly, we have that $\bh$ is a LCS when equipped with SOT topology, so $\overline{K}^{w, \textrm{SOT}} = \overline{K}^{\textrm{SOT}}$.
   Now 
   \begin{align*}
-    x \in \overline{(K, \textrm{WOT})}^w &\Leftrightarrow \textrm{$\exists$ a net $(x_\alpha)_\alpha \subseteq (K, \textrm{WOT})$, such that $x_\alpha \to x$ weakly}\\
+    x \in \overline{K}^{w, \textrm{WOT}} &\Leftrightarrow \textrm{$\exists$ a net $(x_\alpha)_\alpha \subseteq K$, such that $x_\alpha \to x$ WOT-weakly}\\
     &\Leftrightarrow \textrm{$f(x_\alpha) \to f(x)$ for all WOT-continuous functionals $f: \bh \to \C$}\\
     &\Leftrightarrow \textrm{$f(x_\alpha) \to f(x)$ for all SOT-continuous functionals $f: \bh \to \C$}\\
-    &\Leftrightarrow \textrm{$\exists$ a net $(x_\alpha)_\alpha \subseteq (K, \textrm{SOT})$, such that $x_\alpha \to x$ weakly}\\
-    &\Leftrightarrow x \in \overline{(K, \textrm{SOT})}^w. 
+    &\Leftrightarrow \textrm{$\exists$ a net $(x_\alpha)_\alpha \subseteq K$, such that $x_\alpha \to x$ SOT-weakly}\\
+    &\Leftrightarrow x \in \overline{K}^{w, \textrm{SOT}}. 
   \end{align*}
-  Therefore, $\overline{(K, \textrm{WOT})}^w = \overline{(K, \textrm{SOT})}^w$ and we are done.
+  Therefore, $\overline{K}^{w, \textrm{WOT}} = \overline{K}^{w, \textrm{SOT}}$ and we are done.
 \end{myproof}
 
 \begin{definition}
@@ -854,7 +856,7 @@ for $T \in \mathcal{B}(\mathcal{H})$ and $\varepsilon > 0$. The net $T_i$ conver
   As previously, the implication $(1) \Rightarrow (2) \Rightarrow (3)$ is obvious.
   Let us prove $(3) \Rightarrow (1)$. Assume $\varphi$ is $\sigma$-SOT continuous.
   By identifying $\bh$ via $\id \otimes 1$ with a subspace in $\mathcal{B} (\mathcal{H} \otimes \ell^2)$,
-  $\varphi$ is SOT-continuous on this subspace. By Hahn-Banach, $\varphi$ extends to a SOT-continuous 
+  $\varphi$ is SOT-continuous on this subspace. By Hahn--Banach, $\varphi$ extends to a SOT-continuous 
   linear functional on $\mathcal{B} (\mathcal{H} \otimes \ell^2)$.
   By the previous lemma, $\exists \alpha_1, \dots, \alpha_n, \beta_1, \dots, \beta_n \in \mathcal{H} \overline{\otimes} \ell^2$.
   $$\varphi(x) = \sum_{i = 1} ^n \langle (\id \otimes 1) (x) \alpha_i, \beta_i \rangle.$$
@@ -880,7 +882,7 @@ for $T \in \mathcal{B}(\mathcal{H})$ and $\varepsilon > 0$. The net $T_i$ conver
 
 \begin{myproof}
   $\sigma$-WOT on $\bh$ is the weak-$*$ topology from $L^1 (\bh)^* = \bh$.
-  The statement now follows from Banach-Alaoglu.
+  The statement now follows from Banach--Alaoglu.
 \end{myproof}
 
 \begin{corollary}\label{cor:4.3}

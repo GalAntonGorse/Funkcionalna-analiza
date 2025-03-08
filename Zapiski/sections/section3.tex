@@ -103,7 +103,7 @@ $$|\varphi(a)|^2 = |\varphi(b) + i\varphi(c)|^2 = \varphi(b)^2 + \varphi(c)^2 \l
   Define $$\varphi_0 : \C x+ \C 1 \to \C,\quad \alpha x + \beta \mapsto \alpha \cdot \lambda + \beta.$$
   Since $\varphi_0 (\alpha x + \beta) \in \sigma(\alpha x + \beta)$, we have
   $$\|\varphi_0 \| \leq 1 = \varphi_0 (1),$$
-  therefore $\|\varphi_0\| = 1$. Now we apply Hahn-Banach to get an extension $\varphi \in A^*$
+  therefore $\|\varphi_0\| = 1$. Now we apply Hahn--Banach to get an extension $\varphi \in A^*$
   such that $\varphi\big|_{\C x + \C 1} = \varphi_0$ and $\| \varphi \| = 1 = \varphi(1)$,
   so $\varphi \in S(A)$ by theorem \ref{thm:3.1}.
 \end{myproof}
@@ -133,11 +133,11 @@ $$|\varphi(a)|^2 = |\varphi(b) + i\varphi(c)|^2 = \varphi(b)^2 + \varphi(c)^2 \l
   \end{enumerate}
 \end{myproof}
 
-\subsection{Gelfand-Naimark-Segal (GNS) construction}
+\subsection{Gelfand-Naimark-Segal construction}
 
 \begin{definition}
   \begin{itemize}
-    \item A \emph{representation} of a $C^*$-algebra $A$ is a *-homomorphism $\pi: A \to \mathcal{B}(\mathcal{H})$
+    \item A \emph{representation} of a $C^*$-algebra $A$ is a $*$-homomorphism $\pi: A \to \mathcal{B}(\mathcal{H})$
   for some Hilbert space $\mathcal{H}$. 
     \item If $\mathcal{K}^{\mathrm{closed}} \leq \mathcal{H}$ and $\pi(x) \mathcal{K} \subseteq \mathcal{K},\ \forall x \in A$ (we say that $\mathcal{K}$ is \emph{invariant} under $\pi$),
   then the restriction of $\pi$ to $\mathcal{K}$ is a \emph{subrepresentation}.
@@ -235,13 +235,13 @@ $$|\varphi(a)|^2 = |\varphi(b) + i\varphi(c)|^2 = \varphi(b)^2 + \varphi(c)^2 \l
 \end{myproof}
 
 \begin{corollary}
-  Every $C^*$-algebra has a faithful (i.e. injective) representation. In particular, every $C^*$-algebra is isometrically *-isomorphic to a closed subalgebra of $\mathcal{B} (H)$
+  Every $C^*$-algebra has a faithful (i.e. injective) representation. In particular, every $C^*$-algebra is isometrically $*$-isomorphic to a closed subalgebra of $\mathcal{B} (H)$
   for some Hilbert space $\mathcal{H}$.
 \end{corollary}
 
 \begin{myproof}
-  Let $\pi$ be a direct sum of all representations from GNS construction over all states. Then the Proposition \ref{prop:3.1} tells us that $\pi$ is injective. 
-  An injective *-monomorphism is isometric and we are done.
+  Let $\pi$ be a direct sum of all representations from GNS construction over all states. Then the proposition \ref{prop:3.1} tells us that $\pi$ is injective. 
+  An injective $*$-monomorphism is isometric and we are done.
 \end{myproof}
 
 The preceding corollary enables us to view abstract $C^*$-algebras as concrete algebras of operators on some Hilbert space.
@@ -396,7 +396,7 @@ separable.
     so $U^* p_1 U$ commutes with $\pi_{\varphi} (x)$ for all $x \in A$.
     If $\sigma(U^* p_1 U)$ has more than one element, then $\exists t \in (0, 1]$
     such that $\sigma(U^* p_1 U - t)$ has both positive and negative elements.
-    By Definition \ref{def:2.1}, we can write $U^* p_1 U = a - b$ for positive $0 \neq a, b$ such that $ab = ba = 0$.
+    By definition \ref{def:2.1}, we can write $U^* p_1 U = a - b$ for positive $0 \neq a, b$ such that $ab = ba = 0$.
     Then $a, b$ commute with $\pi_{\varphi} (A)$, so $\ker a \neq 0$ is an closed subspace of $L^2 (A, \varphi)$ that is invariant under $\pi_{\varphi} (x)$, which is a contradiction.
     So $U^* p_1 U$ has a single element spectrum $\{\alpha\}$ and since $U^* p_1 U$ is normal (because it is positive), so is $U^* p_1 U - \alpha I.$
     But now we can write 
@@ -461,7 +461,7 @@ separable.
 
 \begin{myproof}
   Let $A$ be an abelian $C^*$-algebra and $\pi: A \to \bh$ an irrep.
-  Then by Theorem \ref{thm:3.2}, $\pi(A)' = \C$. Moreover,
+  Then by theorem \ref{thm:3.2}, $\pi(A)' = \C$. Moreover,
   \begin{equation*}
     \pi(A) = Z(\pi(A)) = \pi(A)' \cap \pi(A) = \C \cdot \id.\qedhere
   \end{equation*}
@@ -482,7 +482,7 @@ separable.
 \end{proposition}
 
 \begin{myproof}
-  We know that $S(A)$ is compact Hausdorff with respect to the weak-$*$ topology. The conclusion follows from Krein-Milman.
+  We know that $S(A)$ is compact Hausdorff with respect to the weak-$*$ topology. The conclusion follows from Krein--Milman.
 \end{myproof}
 
 \begin{corollary}
@@ -491,8 +491,8 @@ separable.
 \end{corollary}
 
 \begin{myproof}
-  By Proposition \ref{prop:3.1}, there exists $\varphi \in S(A)$ such that $\varphi(x) \neq 0$.
-  By the previous proposition (Krein-Milman), there exists a $\tau \in \ext S(A)$ such that $\tau (x) \neq 0$.
+  By proposition \ref{prop:3.1}, there exists $\varphi \in S(A)$ such that $\varphi(x) \neq 0$.
+  By the previous proposition (Krein--Milman), there exists a $\tau \in \ext S(A)$ such that $\tau (x) \neq 0$.
   Then apply GNS: $\pi_{\tau}$ is irreducible and $\pi_{\tau} (x) \neq 0$.
 \end{myproof}
 
@@ -504,13 +504,13 @@ separable.
 
 \begin{myproof}
   W.l.o.g.~$\| \varphi\| = 1$. Let $\Sigma$ denote the set of positive linear functionals with norm $ \leq 1$.
-  By Banach-Alaoglu, $\Sigma$ is weak-$*$ compact and Hausdorff.
+  By Banach--Alaoglu, $\Sigma$ is weak-$*$ compact and Hausdorff.
   Consider $$\gamma: A \to C(\Sigma),\quad a \mapsto (\psi \mapsto \psi(a)).$$
   This is an isometry and $\gamma(A_+) \subseteq C(\Sigma)_+$.
-  By Hahn-Banach, there exists a $\widetilde{\varphi}: C(\Sigma) \to \C$ such that $\| \widetilde{\varphi} \| = \| \varphi\|$
+  By Hahn--Banach, there exists a $\widetilde{\varphi}: C(\Sigma) \to \C$ such that $\| \widetilde{\varphi} \| = \| \varphi\|$
   and $\varphi = \widetilde{\varphi} \circ \gamma$.
   Assume $\widetilde{\varphi}$ is hermitian (otherwise, we can replace it by  $\frac{\widetilde{\varphi} + \widetilde{\varphi}^*}{2}$).
-  By Riesz-Markoff, there exists a regular Radon Measure $\mu$ on $\Sigma$ such that $\widetilde{\varphi} (f) = \int f\, d\mu$ for all $f \in C(\Sigma)$.
+  By Riesz--Markoff, there exists a regular Radon Measure $\mu$ on $\Sigma$ such that $\widetilde{\varphi} (f) = \int f\, d\mu$ for all $f \in C(\Sigma)$.
   Then we use Jordan decomposition for measures to obtain $\mu_+, \mu_-$
   such that $\mu = \mu_+ - \mu_-$ and $\| \mu \| = \| \mu_+ \| = \| \mu_- \|$.
   Now we just define $\varphi_{\pm} (a) := \int a \, d\mu_{\pm}$.
@@ -540,9 +540,31 @@ separable.
   (if $\dim \mathcal{H} = \infty$, it is non-unital).
 \end{example}
 
-\begin{example}
-  If $\dim \mathcal{H} = \infty$, then $\quot{\bh}{\mathcal{K}(\mathcal{H})}$ is a so-called \emph{Calkin algebra}.
-  Calkin algebra is simple and it does not have a separable representation. We will prove this later, when we have more tools at our disposal.
+\begin{definition}
+  A $C^*$-algebra $A$ is \emph{simple} if it has no closed two-sided ideals.
+\end{definition}
+
+The following results require some tools from nonunital $C^*$-algebras (namely, the approximate identity),
+so we state them without proofs. The reader can find additional information in the section VIII.4 of \cite{conway}.
+
+\begin{lemma}
+  Any closed ideal $I$ of a $C^*$-algebra $A$ is closed for involution: 
+  if $a \in I$, then $a^* \in I$.
+\end{lemma}
+
+\begin{proposition}
+  If $I$ is a closed ideal of a $C^*$-algebra $A$, then $\quot{A}{I}$
+  is a $C^*$-algebra for involution 
+  $$(a + I)^* := a^* + I$$
+  and the usual quotient norm.
+\end{proposition}
+
+\begin{example}\label{ex:3.1}
+  From the introductory course, we know that the set of compact operators $\mathcal{K}(\mathcal{H})$ on a Hilbert space forms a closed ideal
+  in $\bh$. If $\dim \mathcal{H} = \infty$, then $\quot{\bh}{\mathcal{K}(\mathcal{H})}$ is a \emph{Calkin algebra}.
+  If $\dim \mathcal{H} = |\N|$, then $\mathcal{K}(\mathcal{H})$ is the only proper nontrivial closed ideal in $\bh$
+  (a fact, later proved in corollary \ref{cor:6.1}). In that case, 
+  Calkin algebra is simple and it does not admit a separable representation.
 \end{example}
 
 \begin{example}
@@ -565,8 +587,8 @@ To prove this, we need a few preliminary lemmas.
   Every finite-dimensional $C^*$-algebra is unital.
 \end{lemma}
 
-This fact, which we will not prove here, follows essentially from Krein-Milman theorem.
-\footnote{The reader should consult Misamichi Takesaki, \emph{Theory of Operator Algebras I}, Theorem I.10.2}
+This fact, which we will not prove here, follows essentially from Krein--Milman theorem.
+The reader should consult theorem I.10.2 of \cite{takesaki}.
 
 \begin{corollary}
   If $A$ is a finite-dimensional $C^*$-algebra, then every ideal in $A$ is of the form $I = A p$
@@ -597,7 +619,7 @@ This fact, which we will not prove here, follows essentially from Krein-Milman t
       then take $x_1 := x$ and choose any new point in $\sigma(A) \setminus \{ x_1\}$ to repeat this process.
       Howevery, if $x$ is an accumulation point of $\sigma(A)$, then take any $x_1 \in \sigma(A) \setminus \{x\}$. Since $\sigma(A)$ is Hausdorff,
       there exist disjoint open neighborhoods $V_1 \ni x, U_1 \ni x_1$. Now since $x$ is an accumulation point of $\sigma(A)$,
-      there must exist some $x_2 \in V_1$, such that $x_2 \neq x$. By Hausdorff property, there must exist open disjoint neighborhoods 
+      there must exist some $x_2 \in V_1$, such that $x_2 \neq x$. By the Hausdorff property, there must exist open disjoint neighborhoods 
       $V_2 \ni x, U_2 \ni x_2$ inside $V_1$. Now repeat this process indefinitely to obtain a set $\{x_n\}_{n \in \N}$
       which does not contain its accumulation points.
         \item Notice that from the previous item, every point $x_n$ has an open neighborhood $U_n$, where $U_n \cap U_m = \emptyset$ for any $n \neq m$.
@@ -610,12 +632,12 @@ This fact, which we will not prove here, follows essentially from Krein-Milman t
 
 Let $A$ be any finite-dimensional $C^*$-algebra. Then its center, say $C$,
 is a finite-dimensional abelian $C^*$-algebra with spectrum $\{\omega_1, \dots, \omega_n\}$.
-Let $p_i \in C$ be an element that corresponds to characteristic function $\chi_{\{\omega_i\}} \in C(\sigma(C))$.
+Let $p_i \in C$ be an element that corresponds to the characteristic function $\chi_{\{\omega_i\}} \in C(\sigma(C))$.
 It follows from Gelfand that $C \cong \C p_1 \oplus \cdots \oplus \C p_n,$
-so $p_1 + dots + p_n = 1$. As a result, 
+so $p_1 + \dots + p_n = 1$. As a result, 
 $$A \cong A p_1 \oplus \dots \oplus A p_n,$$
-where each of $A p_i$ has trivial center. By previous lemma, $A p_i$
-is a simple finite-dimensional $C^*$-algebra. So it suffices to prove the structure theorem for a simple finite-dimensional $C^*$-algebras.
+where each of $A p_i$ has trivial center. By the previous lemma, $A p_i$
+is a simple finite-dimensional $C^*$-algebra. Therefore, it suffices to prove the structure theorem for simple finite-dimensional $C^*$-algebras.
 
 \begin{myproof}[Proof of the structure theorem]
   Assume $A$ is simple and finite-dimensional. We first note that $aA b \neq \{0\}$ for any nonzero $a, b \in A$.
@@ -728,14 +750,14 @@ each $u_g$ is mapped to a unitary.
 \end{myproof}
 
 This implies that $\| \cdot \|_u$ is indeed a norm on $\C [G]$, making
-the universal $C^*$-algebra $C(G)$ of $G$ in Definition \ref{def:3.1} well-defined.
+the universal $C^*$-algebra $C(G)$ of $G$ in definition \ref{def:3.1} well-defined.
 
 \begin{remark}
   The group algebra $\C [G]$ is dense in both $C_{\pi} ^* (G)$ and $C^* (G)$.
 \end{remark}
 
 \begin{theorem}[Universal property]
-  For each representation $\pi$ of $\C [G]$ there exists a surjective *-homomorphism 
+  For each representation $\pi$ of $\C [G]$ there exists a surjective $*$-homomorphism 
   $\widehat{\pi}: C^* (G) \to C_{\pi} ^* (G)$ such that the following diagram commutes.
   \[\begin{tikzcd}
     {\mathbb{C} [G]} & {C_{\pi} ^* (G)} \\
@@ -750,7 +772,7 @@ the universal $C^*$-algebra $C(G)$ of $G$ in Definition \ref{def:3.1} well-defin
   Define first $\widehat{\pi}$ on $\C [G] \subseteq C^* G$ by $\widehat{\pi} (a) := \pi(a) \in C_{\pi} ^* (G)$.
   Firstly, $\widehat{\pi}$ on $\C [G]$ is contractive:
   $$\|\widehat{\pi} (a)\| = \| \pi(a) \| \leq \| a\|_u.$$
-  By density, $\widehat{\pi}$ uniquely extends to a continuous *-homomorphism $\widehat{\pi} : C^* (G) \to C_{\pi} ^* (G)$.
+  By density, $\widehat{\pi}$ uniquely extends to a continuous $*$-homomorphism $\widehat{\pi} : C^* (G) \to C_{\pi} ^* (G)$.
   This $\widehat{\pi}$ is also contractive and $\im \pi$ is dense, so $\widehat{\pi}$ is onto.
 \end{myproof}
 
@@ -768,15 +790,18 @@ the universal $C^*$-algebra $C(G)$ of $G$ in Definition \ref{def:3.1} well-defin
 \end{example}
 
 \begin{example}
-  Let $G = S_4$. Again, $C^* (G) = \C [G] = C_r ^* (G)$. By Maschke's theorem, $\C [G]$ is semisimple, therefore it is a direct sum of matrix algebras over $\C$.
-  Since $S_4$ has five conjugacy classes, there are five factors\footnote{Pierre Antoine Grillet, \emph{Abstract algebra}, theorem IX.7.9.}.
+  Let $G = S_4$. Again, $C^* (G) = \C [G] = C_r ^* (G)$. By Maschke's theorem, $\C [G]$ is semisimple, therefore it is isomorphic (as an $\C$-algebra) to a direct sum of matrix algebras over $\C$.
+  This decomposition is unique.
+  Since $S_4$ has five conjugacy classes, there are five factors
+  (see, for example, theorem IX.7.9. in \cite{grillet}).
   Adding up all the dimensions, the only combination that works is $9 + 9 + 4 + 1 + 1 = 24$, therefore 
-  $$\C [G] \cong M_3 (\C) \oplus M_3 (\C) \oplus M_2 (\C) \oplus \C \oplus \C.$$
+  $$\C [G] \cong M_3 (\C) \oplus M_3 (\C) \oplus M_2 (\C) \oplus \C \oplus \C$$
+  as a $\C$-algebra. By the structure theorem, it is also isomorphic to this direct sum as a $C^*$-algebra.
 \end{example}
 
 \begin{example}
   What is $C^* (\Z)$? Representations $\pi(\C [Z]) \to \bh$ are determined by choice of unitary $U \in \bh$ such that $\pi (u_1) = U$.
-  By universal property, for every $\mathcal{H}$ and $U \in \bh$ there exists a unique *-homomorphism 
+  By universal property, for every $\mathcal{H}$ and $U \in \bh$ there exists a unique $*$-homomorphism 
   $$\widehat{\pi}: C^* (\Z) \to C^* (\{U\}),$$ where the latter is a $C^*$-subalgebra of $\bh$, generated by $U$. 
   We call $C^* (\Z)$ the universal $C^*$-algebra, generated by a unitary.
 \end{example}
@@ -802,6 +827,28 @@ for $\varepsilon > 0$, $w \in \widehat{G}$ and $F \subseteq G$ finite.
   A net $(w_i)_{i \in I} \subseteq \widehat{G}$ is Cauchy iff 
 $(w_i (g))_{i \in I} \subseteq \mathbb{T}$ is Cauchy for all $g \in G$.
 \end{remark}
+
+
+Let us calculate the Pontryagin dual of some very simple abelian groups.
+
+\begin{example}
+  Let us prove that $\widehat{\quot{\Z}{n\Z}} \cong \quot{\Z}{n\Z}$ as a topological group.
+  Take any $k \in \quot{\Z}{n\Z}$ and define a group homomorphism 
+  $$\varphi_k : \quot{\Z}{n\Z} \to \mathbb{T},\quad l \mapsto e^{\frac{2\pi ikl}{n}}.$$
+  Then $$\Phi: \quot{\Z}{n\Z} \to \widehat{\quot{\Z}{n\Z}},\quad k \mapsto \varphi_k$$
+  is easily seen to be a group isomorphism. Since both groups are obviously endowed with discrete topology,
+  the above map is also a homeomorphism, hence $\widehat{\quot{\Z}{n\Z}} \cong \quot{\Z}{n\Z}$ as topological groups.
+\end{example}
+
+\begin{example}
+  Next, we prove that $\widehat{\Z} \cong \mathbb{T}$. Take any $\xi \in \mathbb{T}$ and define 
+  $$\varphi_{\xi}: \Z \to \mathbb{T},\quad k \mapsto \xi^k.$$ 
+  Then $$\Phi: \mathbb{T}\to \widehat{\Z},\quad \xi \mapsto \varphi_{\xi}$$
+  is a group isomorphism. If $(\xi_i)_{i \in I}$ is a net in $\mathbb{T}$ such that $\xi_i \to \xi$,
+  then $\Phi \xi_i = \varphi_{\xi_i} \to \varphi_{\xi} = \Phi \xi$. As a result, $\Phi$ is continuous.
+  But since $\Phi$ maps from a compact to a Hausdorff space, it is also closed and thus a homeomorphism.
+\end{example}
+
 
 \begin{theorem}
   The map 
@@ -833,31 +880,47 @@ $(w_i (g))_{i \in I} \subseteq \mathbb{T}$ is Cauchy for all $g \in G$.
   approximate $a$ with $a_n$ and use the triangle inequality to establish that $(h(w_i) (a))_i$ is Cauchy.
   Now on to bijectivity of $h$. It's enough to check that it is surjective: take $\phi \in \sigma(C_r ^* (G))$. Define 
   $$w_{\phi} : G \to \C,\quad g \mapsto \phi(u_g).$$
-  Since $\phi$ is a *-homomorphism, $\im w_{\phi} \subseteq \mathbb{T}$.
+  Since $\phi$ is a $*$-homomorphism, $\im w_{\phi} \subseteq \mathbb{T}$.
   We have to prove that $w_{\phi} \in \widehat{G}$. We just check the multiplicativity:
   $$w_{\phi} (g) \cdot w_{\phi} (h) = \phi(u_g) \phi(u_h) = \phi(u_g u_h) = \phi(u_{gh}) = w_{\phi} (gh).$$
   For every $w \in \widehat{G}$, we get $w_{h(w)} = w$. So $w_{\phi} = w_{h(w_\phi)}$,
   which gives us $h(w_{\phi}) = \phi$. Now since $h$ is a bijective continuous map between compact Hausdorff spaces, it is a homeomorphism.
 \end{myproof}
 
-  In operator algebras, we usually consider topological groups that are locally compact and Hausdorff.
-  For such groups, there exists a so-called \emph{Haar measure} $\mu$. This measure allows us to 
+\begin{example}\label{ex:3.2}
+  We can now explicitly calculate Gelfand transform of a reduced group $C^*$-algebra $C_r ^* (\quot{\Z}{n\Z})$:
+  $$C_r ^* (\quot{\Z}{n\Z}) \xrightarrow{\Gamma} C (\sigma (C_r ^* (\quot{\Z}{n\Z}))) \to C(\widehat{\quot{\Z}{n\Z}}) \to C(\quot{\Z}{n\Z}) \cong \C^n,$$
+  which maps an element $\sum_{l = 0} ^{n - 1} a_l u_l \in C_r ^* (\quot{\Z}{n\Z})$ to
+  $$\begin{bmatrix}
+    \sum_{l = 0} ^{n - 1} a_l\\ \sum_{l = 0} ^{n - 1} a_l e^{\frac{2 \pi i l}{n}}\\ \vdots \\ \sum_{l = 0} ^{n - 1} a_l e^{\frac{2 \pi i (n - 1) l}{n}}.
+  \end{bmatrix}$$
+\end{example}
+
+\begin{example}\label{ex:3.3}
+  Similarly, we can explicitly calculate Gelfand transform of a reduced group algebra $C_r ^* (\Z)$:
+  $$C_r ^* (\Z) \xrightarrow{\Gamma} C(\sigma(C^* _r (\Z))) \to C(\widehat{\Z}) \to C(\mathbb{T}),$$
+  which maps $\sum_{l \in \Z} a_l u_l$ into a function $$f \in C(\mathbb{T}),\quad f(\xi) = \sum_{l \in \Z} a_l \xi^l.$$
+  Therefore, the inverse Gelfand transform maps a function $f \in C(\mathbb{T})$ into its Fourier series.
+\end{example}
+
+  In operator algebras, we usually consider topological groups $G$ that are locally compact and Hausdorff.
+  For such groups, there exists a so-called \emph{Haar measure} $\mu$ on $G$. This measure allows us to 
   consider the $C^*$-algebras $L^2 (G)$, $C_r ^* (G)$ and $C^* (G)$ for general locally compact and Hausdorff topological groups.
-  If a group $G$ is equipped with a discrete topology, then these notions coincide with the ones from the previous subsection.  
+  If a group $G$ is equipped with discrete topology, then these notions coincide with the ones from the previous subsection.  
 
 \begin{example}
-  Let us present the Pontryagin duals of some locally compact Hausdorff abelian groups.
+  It turns out that the Pontryagin dual of a locally compact Hausdorff abelian group is itself a locally compact Hausdorff abelian group.
+  As in the above examples, we can prove the following:
   \begin{itemize}
-    \item $\widehat{\quot{\Z}{n\Z}} = \quot{\Z}{n\Z}$;
-    \item $\widehat{\R} = \R$;
-    \item $\widehat{\Z} = \mathbb{T}$;
-    \item $\widehat{\mathbb{T}} = {\Z}$.
+    \item $\widehat{\mathbb{T}} = {\Z}$;
+    \item $\widehat{\R} = \R$.
   \end{itemize}
-  We notice that for each of these groups, the dual of a dual is the original group.
-  This is not a coincidence.
 \end{example}
+
+ We notice that for each of the groups that we have seen so far in the examples, the dual of a dual is the original group.
+This is not a coincidence.
 
 \begin{theorem}[Pontryagin]
   If $G$ is a locally compact Hausdorff abelian group,
-  then $G \approx \widehat{\widehat{G}}$.
+  then $G \cong \widehat{\widehat{G}}$.
 \end{theorem}

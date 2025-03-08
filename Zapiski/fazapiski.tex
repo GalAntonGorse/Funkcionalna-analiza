@@ -13,6 +13,7 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{enumitem}
+\usepackage{hyperref}
 %\usepackage{mdframed}
 %\usepackage{thmbox}
 
@@ -292,6 +293,8 @@
 
 \setlist[enumerate]{label=(\arabic*.)}
 
+\numberwithin{equation}{section}
+
 
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace\hspace{0pt}}m{#1}}
 
@@ -304,6 +307,8 @@
 \date{}
 \maketitle
 
+\tableofcontents
+
 \include{sections/section1}
 
 \include{sections/section2}
@@ -315,5 +320,8 @@
 \include{sections/section5}
 
 \include{sections/section6}
+
+\bibliographystyle{plain} 
+\bibliography{refs} 
 
 \end{document}

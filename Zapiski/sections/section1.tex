@@ -149,7 +149,7 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
       We essentially have to prove that the sets
       $$f_{x_0, p}^{-1} (V),\ V^{\textrm{open}} \subseteq \R,\ x_0 \in X,\ p \in \mathcal{P}$$
       generate a subbasis for the seminorm topology of a LCS space.
-      Since $f_{p, x_0}$ are continuous functions (by the first item and Proposition \ref{prop:1.1}),
+      Since $f_{p, x_0}$ are continuous functions (by the first item and proposition \ref{prop:1.1}),
       these are all open sets in the seminorm topology. But on the other hand, all subbasis sets $U(x_0, p, \varepsilon)$
       of the seminorm topology are of this type, so the above subbasis generates the seminorm topology, thus concluding our proof. \qedhere
     \end{itemize}
@@ -220,7 +220,7 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
 \end{remark}
 
     We can compare weak-$*$ topology on $X^*$ with its weak topology.
-    As a consequence of Hahn-Banach, we have for every $x \in X$ $$\| x\| = \sup\{|f(x)||\ f \in X^*,\ \| f\| \leq 1\},$$
+    As a consequence of Hahn--Banach, we have for every $x \in X$ $$\| x\| = \sup\{|f(x)||\ f \in X^*,\ \| f\| \leq 1\},$$
     which implies that the map $$\iota: X \hookrightarrow X^{**},\quad x \mapsto (f \mapsto f(x))$$
     is an isometry and therefore injective. This means that every seminorm in the weak-$*$ topology is also 
     a seminorm in a weak topology on $X^*$, so the weak topology is finer (stronger) than the weak-$*$ topology on $X^*$.
@@ -230,9 +230,9 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
     In that case, $X^*$ is of course defined as the space of continuous linear functionals on $X$.
 \end{remark}
 
-\subsection{Banach-Alaoglu theorem}
+\subsection{Banach--Alaoglu theorem}
 
-\begin{theorem}[Banach-Alaoglu]
+\begin{theorem}[Banach--Alaoglu]
     Let $X$ be a normed space. Then the closed unit ball in $X^*$ (denoted by $(X^*)_1$) is compact in the weak-$*$ topology in $X^*$.
 \end{theorem}
 
@@ -264,9 +264,9 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
 \end{corollary}
 
 \begin{myproof}
-    Denote $K = (X^*)_1$ endowed with the weak-$*$ topology. By the Banach-Alaoglu theorem, $K$ is compact and $T_2$.
+    Denote $K = (X^*)_1$ endowed with the weak-$*$ topology. By the Banach--Alaoglu theorem, $K$ is compact and $T_2$.
     We now define the map $$\Delta: X \to C(K),\quad x \mapsto (f \mapsto f(x)).$$
-    First, we prove that $\Delta$ is isometric. By Hahn-Banach, for every $x \in X \setminus\{0\}$ there exists an $f \in X^*$
+    First, we prove that $\Delta$ is isometric. By Hahn--Banach, for every $x \in X \setminus\{0\}$ there exists an $f \in X^*$
     such that $\|f\| = 1$ and $f(x) = \|x\|$. Then we have
     \begin{equation*}
         \| \Delta (x)\|_{\infty} = \sup_{g \in K} |g(x)| = \|x\|.
@@ -354,12 +354,12 @@ LCS generally aren't first-countable, so we need to go beyond the usual sequence
   Then $X$ is locally convex iff $\mathcal{U}$ is a basis for the neighborhood system at $0$.
 \end{corollary}
 
-\subsection{Applications of Hahn-Banach}
+\subsection{Applications of Hahn--Banach}
 
 Recall: if $X$ is a $\R$-vector space then $p: X \to \R$
 is a sublinear functional if $$p(x + y) \leq p(x) + p(y),\ \forall x, y \in X$$ and $$p(\alpha x) = \alpha x,\ \forall x \in X,\ \alpha > 0.$$
 
-\begin{theorem}[Hahn-Banach theorem]
+\begin{theorem}[Hahn--Banach theorem]
   \begin{itemize}
     \item[$\R$:] Suppose $X$ is a $\R$-vector space and $p: X \to \R$ is a sublinear functional.
     Given a linear functional $f$ on $Y \leq X$ such that $f(y) \leq p(y)$ for every $y \in Y$,
@@ -370,12 +370,12 @@ is a sublinear functional if $$p(x + y) \leq p(x) + p(y),\ \forall x, y \in X$$ 
   \end{itemize}
 \end{theorem}
 
-\begin{corollary}[Hahn-Banach extension theorem]
+\begin{corollary}[Hahn--Banach extension theorem]
   Let $X$ be a normed space, $f \in X^*$ and $Y \leq X$.
   Then there exists an $F \in X^*$ such that $F\big|_Y = f$ and $\|F\| = \| f\|$.
 \end{corollary}
 
-\begin{corollary}[Hahn-Banach separation theorem]
+\begin{corollary}[Hahn--Banach separation theorem]
   Suppose $X$ is a LCS and $A, B \subseteq X$ are disjoint closed convex sets.
   If $B$ is compact then there exists an $f \in X^*$ that seperates $A$ from $B$:
   $$\exists \alpha, \beta \in \R:\ \forall a, b \in B:\ \real f(a) \leq \alpha < \beta \leq \real f(b).$$
@@ -443,11 +443,11 @@ is a sublinear functional if $$p(x + y) \leq p(x) + p(y),\ \forall x, y \in X$$ 
   \end{equation*}
 \end{myproof}
 
-Recall the following theorem from measure theory.
+Recall the following theorem from measure theory (theorem 2.14 in \cite{rudin}).
 
-\begin{theorem}[Riesz-Markoff theorem]
+\begin{theorem}[Riesz--Markoff]
   Let $X$ be a compact $T_2$ space, $\Phi \in C(X)^*$.
-  Then there exists a regular Borel measure $\mu$ such that 
+  Then there exists a unique regular Borel measure $\mu$ such that 
   $$\Phi (f) = \int_X f\, d\mu,\ \forall f \in C(X).$$
   Further, $\| \Phi\| = \|\mu\| = |\mu| (X)$.
 \end{theorem}
@@ -485,7 +485,7 @@ As a corollary, we get the following proposition.
   $$L(\widetilde{g}) - L(\widetilde{\widetilde{g}}) = L(\widetilde{g} - \widetilde{\widetilde{g}}) = 0$$
   and $F$ really is well defined. It is also clearly linear, so we just need to check continuity:
   $$|F(g)| = |L(\widetilde{g})| \leq \alpha \cdot p_K (\widetilde{g}) = \alpha \cdot \|g\|_{\infty, K},$$
-  therefore $\|F\| \leq \alpha$ and $F$ is continuous. Lastly we apply Riesz-Markoff: there exists a regular Borel measure $\mu$ on $K$
+  therefore $\|F\| \leq \alpha$ and $F$ is continuous. Lastly we apply Riesz--Markoff: there exists a regular Borel measure $\mu$ on $K$
   so that $F(g) = \int_K g\, d\mu.$ If $f \in C(X)$, then $g := f\big|_K \in C(K)$
   and we have 
   \begin{equation*}
@@ -493,7 +493,7 @@ As a corollary, we get the following proposition.
   \end{equation*}
 \end{myproof}
 
-\subsection{Krein-Milman theorem}
+\subsection{Krein--Milman theorem}
 
 \begin{definition}
   Let $X$ be a vector space and $C \subseteq X$ a convex subset.
@@ -599,7 +599,7 @@ If $X$ is a TVS, then $\overline{\co} A = \overline{\co A}$.
   Not all closed convex faces are of this form. \marginpar{\color{blue} \small ADD A PICTURE}
 \end{remark}
 
-\begin{theorem}[Krein-Milman]
+\begin{theorem}[Krein--Milman]
   Let $X$ be a LCS and $C \subseteq X$ a nonempty compact convex subset.
   Then $C = \overline{\co} (\ext C)$. In particular, $\ext C \neq \emptyset.$
 \end{theorem}
@@ -613,7 +613,7 @@ If $X$ is a TVS, then $\overline{\co} A = \overline{\co A}$.
   
   \vspace*{0.5\baselineskip}
   We prove that $F_0 = \{p\}$ for some $p \in X$. Assume for a contradiction that there are distinct $x, y \in F_0$.
-  By Hahn-Banach, there exists a $\Phi \in X^*$ such that $\Phi(x) \neq \Phi(y)$.
+  By Hahn--Banach, there exists a $\Phi \in X^*$ such that $\Phi(x) \neq \Phi(y)$.
   W.l.o.g.~we assume that $\real \Phi(x) < \real \Phi(y)$. Define a set 
   $$F_1 = \{z \in F_0\ |\ \real \Phi(z) = \min_{F_0} \real \Phi\}.$$
   Then $F_1 \subsetneq F_0$, since $y \notin F_0$. By the previous lemma,
@@ -622,7 +622,7 @@ If $X$ is a TVS, then $\overline{\co} A = \overline{\co A}$.
   
   \vspace*{0.5\baselineskip}
   Since we have $C \supset \ext C$, we also have $C = \overline{\co} (C) \supseteq \overline{\co} (\ext C)$.
-  Suppose $x \in C \setminus \overline{\co} (\ext C)$. By Hahn-Banach, there exists a $\Psi \in X^*$
+  Suppose $x \in C \setminus \overline{\co} (\ext C)$. By Hahn--Banach, there exists a $\Psi \in X^*$
   such that $\real \Psi(x) < \min _{\overline{\co} (\ext C)} \real \Psi$.
   So the set 
   $$F = \{z \in C\ |\ \real \Psi (z) = \min_C \real \Psi\}$$
@@ -670,12 +670,12 @@ If $X$ is a TVS, then $\overline{\co} A = \overline{\co A}$.
   For every $x \in \partial (\mathcal{H})_1 = \ext (\mathcal{H})_1$, we have 
   $$Vx = t \cdot Sx + (1 - t) Tx$$ and by the previous example that implies $Tx = Sx = Vx$,
   so we really have $S = T = V$. We use the same argument if $V^*$ is an isometry.
-  For now, we lack some tools to prove the reverse inclusion. We will prove the equality in Corollary \ref{cor:4.1}.
+  For now, we lack some tools to prove the reverse inclusion. We will prove the equality in corollary \ref{cor:4.1}.
 \end{example}
 
 \begin{example}
-  If $X$ be a Banach space, then $(X^*)_1$ is weak-$*$ compact (by Banach-Alaoglu),
-  so Krein-Milman gives us $(X^*)_1 = \overline{\co} (\ext (X^*)_1)$. Hence $(X^*)_1$ has a lot of extreme points.
+  If $X$ be a Banach space, then $(X^*)_1$ is weak-$*$ compact (by Banach--Alaoglu),
+  so Krein--Milman gives us $(X^*)_1 = \overline{\co} (\ext (X^*)_1)$. Hence $(X^*)_1$ has a lot of extreme points.
   As a corollary, $c_0$, $L^1 [0, 1]$ and $C[0, 1]$ are not duals of Banach spaces.
 \end{example}
 

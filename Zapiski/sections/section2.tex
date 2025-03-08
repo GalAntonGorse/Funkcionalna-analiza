@@ -2,6 +2,10 @@
 
 \subsection{Spectrum}
 
+\begin{remark}
+  From here on, all algebras are over $\C$.
+\end{remark}
+
 Let $A$ be a complex algebra with a unit $1$ and 
 $$\gl (A) = \{a \in A\ |\ \textrm{$a$ is invertible}\}.$$
 If $x \in A$, we define the spectrum 
@@ -55,8 +59,7 @@ $$\sigma_A (x) = \{\lambda \in \C\ |\ x - \lambda \cdot 1 \notin \gl(A)\}.$$
   \end{itemize}
 \end{definition}
 
-Unless otherwise mentioned, all algebras in this section are unital.
-\marginpar{\tiny Are all our Banach algebras complex? We probably need that for nonempty spectra.}
+Unless otherwise mentioned, all algebras in this section will be unital.
 \begin{proposition}
   We collect some basic properties of Banach algebras.
   \begin{enumerate}
@@ -127,7 +130,7 @@ Unless otherwise mentioned, all algebras in this section are unital.
   By Liouville's theorem, $F$ is constant and so $F' = 0$. This is a contradiction.
 \end{myproof}
 
-\begin{theorem}[Gelfand-Mazur]
+\begin{theorem}[Gelfand--Mazur]
   If $A$ is Banach algebra that is also a division ring, then $A = \C$.
 \end{theorem}
 
@@ -375,7 +378,7 @@ For $x \in A$, we have
 which implies that $\varphi(x) \in \sigma_A(x)$.
 Consequently, $|\varphi(x)| \leq r(x)\leq \|x\|$, giving us the bound $\|\varphi\| \leq 1$.
 But since $\varphi(1) = 1$, we get $\|\varphi\| = 1$.
-We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compact Hausdorff space by Banach-Alaoglu.
+We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compact Hausdorff space by Banach--Alaoglu.
 
 \begin{proposition}
   Let $A$ be a $C^*$-algebra and $h: A \to \C$ a non-zero homomorphism (not necessarily a $*$-homomorphism). 
@@ -421,7 +424,7 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
   and since $\gl(A)$ is open, we also have $\overline{I} \cap \gl(A) = \emptyset$.
   Thus, $\overline{I} \lhd A$ and $1 \notin \overline{I}$, so $I \subseteq \overline{I} \subsetneq A$.
   By maximality, $\overline{I} = I$. Then $\quot{A}{I}$ is a Banach algebra and since $I$ is maximal,
-  every nonzero element in $\quot{A}{I}$ is invertible. By Gelfand-Mazur, $\quot{A}{I} \cong \C$.
+  every nonzero element in $\quot{A}{I}$ is invertible. By Gelfand--Mazur, $\quot{A}{I} \cong \C$.
   The projection $\pi: A \to \quot{A}{I} \cong \C$ is in $\sigma (A)$ and $\ker \pi = I$.
 \end{myproof}
 
@@ -438,7 +441,7 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
   such that $x \in I = \ker \varphi$.
 \end{myproof}
 
-\begin{theorem}[Stone-Čech]
+\begin{theorem}[Stone--Čech compactification]
   Let $X$ be a topological space. For $x \in X$, let $\beta_x: C_b (X) \to \C$
   be the evaluation homomorphism $f \mapsto f(x)$. Then 
   $$\beta: X \to \sigma (C_b (X)),\quad x \mapsto \beta_x$$
@@ -527,7 +530,7 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
   and $\Gamma$ is an isometry.
   In particular, $\Gamma$ is injective. We know that $\Gamma(A)$ is closed under $*$. Since $\Gamma$
   is isometric, the subalgebra $\Gamma(A) \subseteq C(\sigma(A))$ is complete in the norm, so it is closed. It can be easily checked that $\Gamma (A)$ separates points.
-  By Stone-Weierstrass, $\Gamma(A) = C(\sigma(A))$.
+  By Stone--Weierstrass, $\Gamma(A) = C(\sigma(A))$.
 \end{myproof}
 
 \begin{remark}
@@ -562,7 +565,7 @@ We know that $\sigma (A)$ is closed in $(A^*)_1$, making $\sigma(A)$ is a compac
   we get $\Gamma (p(x, x^*)) = p \circ \tau$.
 \end{remark}
 
-\subsection{Continuous functional theorem}
+\subsection{Continuous functional calculus}
 
 Now let $A$ be any $C^*$-algebra and $x \in A$ normal. 
 Then $C^* (x)$ is an abelian $C^*$-subalgebra of $A$. Since $\sigma (x) = \sigma_{C^* (x)}$, we have the map 
@@ -577,7 +580,7 @@ which is a $*$-isomorphism and an isometry. Define a map $\rho = \Gamma^{-1} \ci
 \end{tikzcd}\]
 We know that $C^*(x) = \overline{\{p(x, x^*)\ |\ \textrm{$p (z, \overline{z})$ polynomial}\}}$
 and $\Gamma (p(x, x^*)) = \tau^{\#} (p)$, which means that $\rho (p) = p(x, x^*)$ for any polynomial $p \in \C[x, y]$.
-This map $\rho: C(\sigma(x)) \to C^*(x) \subseteq A$ is called the continuous functional calculus.
+This map $\rho: C(\sigma(x)) \to C^*(x) \subseteq A$ is called the \emph{continuous functional calculus}.
 We use the notation $f(x) := \rho(f)$. 
 
 \begin{theorem}[Continuous functional calculus]
@@ -596,8 +599,8 @@ We use the notation $f(x) := \rho(f)$.
 \end{theorem}
 
 \begin{myproof}
-  The items (1) and (2) follow directly from Gelfand theorem and properties of continuous functions  
-  on compact sets. The item (3) is obvious for polynomials $f$ and the general case follows from Stone-Weierstrass.
+  The items (1) and (2) follow directly from Gelfand's theorem and properties of continuous functions  
+  on compact sets. The item (3) is obvious for polynomials $f$ and the general case follows from Stone--Weierstrass.
   We prove the item (4). Let $C = \sup_n \|x_n\| < \infty$. First we need to show that 
   $\sigma(x_n) \subseteq \Omega$ for large enough $n$. If that wasn't the case, then for every $n \in \N$ there would exist $N_n > n$
   such that there exists $\lambda_n \in \sigma(x_{N_n}) \setminus \Omega \subseteq \overline{B_C (0)}$.
@@ -626,7 +629,7 @@ We illustrate the use of continuous functional calculus to obtain the strengthen
     Suppose that $\sigma_B (\Phi (a)) \neq \sigma_A (a)$.
     Since $\sigma_B (\Phi (a))$ is compact, it is closed in $\sigma_A (a)$. This implies that $U := \sigma_A (a) \setminus \sigma_B (\Phi (a))$
     is a nonempty open set. It follows that there exists a function $f$ which is zero on $\sigma_B (\Phi (a))$, but not identically zero on $\sigma_A (a)$
-    (take for example any bump function on $U$). Then $f(\Phi(a)) = 0$, but $f(a) \neq 0$. By Stone-Weierstrass,
+    (take for example any bump function on $U$). Then $f(\Phi(a)) = 0$, but $f(a) \neq 0$. By Stone--Weierstrass,
     we can approximate $f$ uniformly on $\sigma_A (a)$ by polynomials $\{ p_n \}_{n \in \N}$.
     Thus $p_n (a) \to f(a)$ and $p_n (\Phi (a)) \to f(\Phi (a)) = 0$.
     On the other hand, $ p_n (\Phi(a)) = \Phi (p_n (a)) \to \Phi (f(a))$,
@@ -640,10 +643,10 @@ We illustrate the use of continuous functional calculus to obtain the strengthen
 \end{myproof}
 
 The argument in this proof is very common. We first approximate some function on the spectrum with polynomials 
-    using Stone-Weierstrass. Then we observe that the CFC of a polynomial has desired properties 
-    and deduce the same for the CFC of the original function.
+    using Stone--Weierstrass. Then we observe that the continuous functional calculus of a polynomial has desired properties 
+    and deduce the same for the continuous functional calculus of the original function.
 
-\subsection{Application of the continuous functional theorem}
+\subsection{Applications of the continuous functional calculus}
 
 \begin{definition}
   Let $A$ be a $C^*$-algebra and $x \in A$.
