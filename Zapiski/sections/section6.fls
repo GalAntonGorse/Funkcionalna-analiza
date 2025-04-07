@@ -1,8 +1,0 @@
-PWD c:\Users\galfi\Documents\Fakulteta\Magisterij\Funkcionalna_analiza\Zapiski\sections
-INPUT C:\Users\galfi\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\galfi\Documents\Fakulteta\Magisterij\Funkcionalna_analiza\Zapiski\sections\section6.tex
-OUTPUT section6.log
-INPUT C:\Users\galfi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
-OUTPUT section6.pdf
-INPUT C:\Users\galfi\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
-INPUT C:\Users\galfi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
