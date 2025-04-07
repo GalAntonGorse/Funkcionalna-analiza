@@ -25,7 +25,7 @@
 \contentsline {subsection}{\numberline {4.2}Trace class operators}{59}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Hilbert--Schmidt operators}{67}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Hilbert--Schmidt integral operators}{68}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Hilbert--Schmidt operators $\mathcal {H} \to \mathcal {K}$ and tensor products}{70}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.5}Tensor products of Hilbert spaces}{70}{subsection.4.5}%
 \contentsline {subsection}{\numberline {4.6}Locally convex topologies on $\bh $}{71}{subsection.4.6}%
 \contentsline {section}{\numberline {5}von Neumann algebras}{78}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Bicommutant theorem}{78}{subsection.5.1}%
@@ -37,5 +37,9 @@
 \contentsline {subsubsection}{\numberline {5.4.3}Compressions}{87}{subsubsection.5.4.3}%
 \contentsline {section}{\numberline {6}Spectral theorem and Borel functional calculus}{89}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Spectral theorem}{89}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Borel functional calculus}{95}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Abelian vNa's}{98}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.2}Borel functional calculus}{96}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Abelian vNa's}{99}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Completely positive maps}{106}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Dilations}{106}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Stinespring and Choi theorems}{108}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Arveson extension theorem}{115}{subsection.7.3}%

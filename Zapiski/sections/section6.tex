@@ -192,8 +192,7 @@ $$\int_X \chi_S\, dE_{\alpha, \beta} = E_{\alpha, \beta} (S) = \langle E(S) \alp
 \end{myproof}
 
 \begin{remark}
-  The map $\Phi$ is not necessarily isometric.
-  However, it induces an isometric $*$-isomorphism $\widetilde{\Phi}: L^\infty (X, \mu) \to \bh$.
+  The map $\Phi$ is not necessarily isometric. In fact, it is not injective in general.
 \end{remark}
 
 Recall that for an abelian $C^*$-algebra $A$, the Gelfand transform 
@@ -207,6 +206,44 @@ is an isometric $*$-isomorphism.
   $$x = \int_{\sigma(A)} \Gamma (x)\, dE$$
   for all $x \in A$.
 \end{theorem}
+
+In the proof, we will need the following lemma.
+
+\begin{lemma}\label{lem:6.1}
+  Let $X$ be a compact Hausdorff space and $\mu$ a regular finite Borel measure on $X$. Then 
+  the space of continuous functions $C(X)$ is weak-$*$ dense in $L^\infty (X, \mu)$.
+\end{lemma}
+
+Recall the classic result from measure theory (we refer to, for example, theorem 2.24 in \cite{rudin}).
+
+\begin{theorem}[Luzin]
+  Let $\mu$ be a regular finite Borel measure on $X$ and $f: X \to \C$ measurable.
+  Then, for any $\varepsilon > 0$, there exists a $g \in C(X)$ such that 
+  $$\mu (\{x \in X\ |\ f(x) \neq g(x)\}) < \varepsilon$$
+  and $$\sup_{x \in X} |g(x)| \leq \sup_{x \in X} |f(x)|.$$
+\end{theorem}
+
+\begin{remark}
+  Luzin's theorem may be stated in greater generality for $X$ locally compact Hausdorff and $\mu$ a Radon measure.
+\end{remark}
+
+\begin{myproof}[Proof of lemma]
+  Take any $f \in L^\infty (X, \mu)$. Then for any
+  $n \in \N$, there exists $f_n \in C(X)$ such that $\| f_n \|_\infty \leq \| f\|_{\infty}$ and 
+  $\mu (\{x \in X\ |\ f(x) \neq f_n(x)\}) < \frac{1}{n}$. We prove that $f_n  \to f$ in weak-$*$ topology.
+  Take any $g \in L^1 (X, \mu)$. 
+  \begin{enumerate}
+    \item In the first step, we will show that for any $\varepsilon > 0$, there exists $N \in \N$ such that for any Borel set 
+    $B \subseteq X$ with $\mu (B) < \frac{1}{N}$, we have $\int_B |g| \, d\mu < \varepsilon$.
+    First of all, there exists a step function $\phi$ such that $0 \leq \phi \leq |g|$ and 
+    $\int |g|\, d\mu - \int \phi\, d\mu < \frac{\varepsilon}{2}$. Take $M := \sup \phi$ 
+    and $\delta := \frac{\varepsilon}{2M}$. Then for any Borel $B \subseteq X$ with $\mu (B)< \delta$, we have 
+    $$\int_B |g|\, d\mu \leq \int_B \phi\, d\mu + \int (|g| - \phi)\, d\mu < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.$$
+    \item For any $n \geq N$, we have 
+    $$\int |(f - f_n)g|\, d\mu \leq 2 \cdot \| f\|_\infty \cdot \varepsilon$$
+    and we are done. \qedhere
+  \end{enumerate}
+\end{myproof}
 
 
 \begin{myproof}
@@ -247,8 +284,20 @@ is an isometric $*$-isomorphism.
     &= \langle E(S) \alpha, \beta\rangle,
   \end{align*}
   so $E(S) = E(S)^*$.
-  We now show that $E$ is a projection-valued measure. Using the weak-$*$ density of $C(\sigma(A))$ in $B(\sigma(A))$, we obtain
-  $$E(S)E(T) = E(S \cap T).$$
+  We now show that $E$ is a projection-valued measure. Using the weak-$*$ density of $C(\sigma(A))$ in $L^\infty (\sigma(A), \mu)$, we have that for any $T \in \mathcal{B}_{\sigma(A)}$,
+  there exists a net $(f_i)_{i} \subseteq C(\sigma(A))$ such that $f_i \xrightarrow{w^*} \chi_T$,
+  which in turn implies that $\Gamma^{-1} (f_i)$ converge to $E(T)$ in SOT.
+  Now for any $\alpha, \beta \in \mathcal{H}$, we have 
+  \begin{align*}
+    \langle E(T) E(S) \alpha, \beta\rangle &= \lim_i \langle \Gamma^{-1} (f_i) E(S) \alpha, \beta\rangle\\
+    &= \lim_i \int_{\sigma(A)} \chi_S f_i \, d\mu_{\alpha, \beta}\\
+    &= \int_{\sigma(A)} \chi_S \cdot \chi_T\, d\mu_{\alpha, \beta}\\
+    &= \int_{\sigma(A)} \chi_{S \cap T}\, d\mu_{\alpha, \beta}\\
+    &= \langle E(S \cap T)\alpha, \beta\rangle.
+  \end{align*}
+  As a result, we have
+  $$E(S)E(T) = E(S \cap T)$$
+  for any $S, T \in \mathcal{B}_{\sigma(A)}$.
   This shows that $E(S)$ is a projection.
   Further, 
   $$E(\sigma(A)) = 1,$$
@@ -266,6 +315,7 @@ is an isometric $*$-isomorphism.
   Thus, $E_{\alpha, \beta} = E_{\alpha, \beta} '$ in $C(\sigma(A))^*$, which implies $E = E'$.
 \end{myproof}
 
+\begin{comment}
 \begin{lemma}[Goldstine's theorem]
   Let $X$ be a Banach space. Then the image of 
   $$\iota: X \to X^{**},\quad x \mapsto (f \mapsto f(x))$$
@@ -283,6 +333,7 @@ is an isometric $*$-isomorphism.
   $$\Phi(x_0) = (\beta(f_1), \dots, \beta(f_r)),$$
   hence $\iota (x_0) \in U \cap \iota (X)$.
 \end{myproof}
+\end{comment}
 
 \subsection{Borel functional calculus}
 
@@ -290,7 +341,7 @@ Let $x \in \bh$ be normal and $A := C^* (x) \subseteq \mathcal{B}(\mathcal{H})$ 
 By the spectral theorem, there exists a PVM $E$ for $(\sigma(A), \mathcal{B}_{\sigma(A)}, \mathcal{H})$ 
 and 
 $$\Phi: B (\sigma(A)) \to \bh,\quad f \mapsto \int_{\sigma(A)} f\, dE$$
-is a $*$-homomorphism and a contraction by proposition \ref{prop:6.1}
+is a $*$-homomorphism and a contraction by proposition \ref{prop:6.1}.
 Since $\sigma(x) = \sigma_{C^* (x)}$, we have the homeomorphism $\tau: \sigma(C^* (x)) \to \sigma(x)$, which induces
 the isometric $*$-isomorphism 
 $$\tau^{\#}: B(\sigma(x)) \to B(C^* (x)),\quad f \mapsto f \circ \tau.$$
@@ -310,10 +361,10 @@ Indeed, for $f \in C(\sigma(x))$, we have
 $$\rho (f) = \int_{\sigma(x)} f\, dE = \int_{\sigma(A)} \tau^{\#}(f)\, dE = \Gamma^{-1} (\tau^{\#}(f)) = (\Gamma^{-1} \circ \tau^{\#})(f),$$
 which implies that $\rho$, when restricted to $C(\sigma(x))$, coincides with the continuous functional calculus.
 As a corollary, if $f = \id \in B(\sigma(x))$, then 
-$$\rho (\id) = \int_{\sigma (x)} \id \, dE = x.$$
+$$\rho (\id) = \int_{\sigma (x)} z \, dE = x.$$
 Since $\rho$ extends continuous functional calculus, we have by the second item of proposition \ref{prop:6.1}
 $$\rho (B(\sigma(x))) = \Phi (B(\sigma(A))) \subseteq \Phi (C(\sigma(A)))'' = \rho (C(\sigma(x)))'' = A''.$$
-By the Bicommutant theorem, we have $A'' = W^*(x)$, where $W^* (x)$ is the vNa, generated by $x$.
+By the bicommutant theorem, we have $A'' = W^*(x)$, where $W^* (x)$ is the vNa, generated by $x$.
 
 \begin{theorem}[Spectral mapping theorem]
   Let $A \subseteq \bh$ be a vNa and let $x \in A$ be normal.
@@ -382,7 +433,7 @@ We can now prove the statement in example \ref{ex:3.1}. We begin with a lemma.
 \end{myproof}
 
 \begin{corollary}\label{cor:6.1}
-  If $\mathcal{H}$ is separable and and $I$ is an ideal of $\bh$ that contains a noncompact operator, then $I = \bh$.
+  If $\mathcal{H}$ is separable and $I$ is an ideal of $\bh$ that contains a noncompact operator, then $I = \bh$.
 \end{corollary}
 
 \begin{myproof}
@@ -417,8 +468,8 @@ We can now prove the statement in example \ref{ex:3.1}. We begin with a lemma.
   \begin{enumerate}
     \item If $\alpha \in \mathcal{H}$ is cyclic for $A$, then it is separating for $A'$.
     \item Assume $A$ is a $*$-subalgebra. Then, if $\alpha$ is separating for $A'$, it is cyclic for $A$.
-    \item Suppose $W \subseteq \bh$ is a vNa. Then $\alpha$ is cyclic for $M$ iff it is separating for $M'$,
-    and separating for $M$ iff it is cyclic for $M'$.
+    \item Suppose $W \subseteq \bh$ is a vNa. Then $\alpha$ is cyclic for $W$ iff it is separating for $W'$,
+    and separating for $W$ iff it is cyclic for $W'$.
   \end{enumerate}
 \end{proposition}
 
@@ -436,7 +487,7 @@ We can now prove the statement in example \ref{ex:3.1}. We begin with a lemma.
     But since $A$ is $*$-closed, $\mathcal{K}$ is reducing, and by lemma \ref{lem:5.2}, $p \in A'$.
     Of course, $\alpha \in A \alpha$ and $p\alpha = 0$. Now we use the fact that $\alpha$ is 
     separating for $A'$, and therefore $p = 0$. This implies $\mathcal{K} = (0)$.
-    \item This follows immediately from $M = M''$ and the previous two points. \qedhere
+    \item This follows immediately from $W = W''$ and the previous two points. \qedhere
   \end{enumerate}
 \end{myproof}
 
@@ -463,7 +514,23 @@ We can now prove the statement in example \ref{ex:3.1}. We begin with a lemma.
 Recall from example \ref{ex:5.1} that for a $\sigma$-finite measure on $X$, the map 
 $$M: L^\infty (X, \mu) \to \mathcal{B} (L^2 (X, \mu))$$
 is an isometric $*$-isomorphism onto its image. In the remainder of this chapter, we will identify 
-$L^\infty(X, \mu)$ as the image in $\mathcal{B} (L^2 (X, \mu))$.
+$L^\infty(X, \mu)$ as the image in $\mathcal{B} (L^2 (X, \mu))$. Also note that the WOT on $L ^\infty (X, \mu)$
+is generated by seminorms 
+$$f \mapsto |\langle M_f \alpha, \beta \rangle| = \left| \int_{X} f \alpha \beta\, d\mu \right|$$
+for any $\alpha, \beta \in L^2 (X, \mu)$. 
+Now recall the well-known theorem from measure theory (theorem 6.16 in \cite{rudin}).
+
+\begin{theorem}\label{thm:6.3}
+  Suppose $1 \leq p < \infty$ and $\mu$ is a $\sigma$-finite positive measure on $X$,
+  and $\Phi$ is a bounded linear functional on $L^p(X, \mu)$.
+  Then there is a unique $g \in L^q(X, \mu)$, where $\frac{1}{p} + \frac{1}{q} = 1$, such that 
+  $$\Phi(f) = \int_X f g\, d\mu.$$ Moreover, $\|\Phi\| = \|g\|_q$.
+\end{theorem}
+
+Theorem \ref{thm:6.3} tells us that the weak-$*$ topology on $L^\infty (X, \mu)$
+is generated by the seminorms 
+$$f \mapsto \left|\int_{X} fg\, d\mu \right|$$
+for all $g \in L^1 (X, \mu)$. By Hölder's inequality, WOT and weak-$*$ topologies coincide on $L^\infty (X, \mu)$.
 
 \begin{theorem}[Classification of abelian vNa's]\label{thm:6.2}
   Let $A \subseteq \mathcal{B}(\mathcal{H})$ be an abelian vNa with a cyclic vector $\alpha_0 \in \mathcal{H}$.
@@ -479,16 +546,6 @@ $L^\infty(X, \mu)$ as the image in $\mathcal{B} (L^2 (X, \mu))$.
   $$ L^{\infty} (\sigma(A), \mu) = \widetilde{\Gamma} (A) = C(\sigma(A)).$$
 \end{remark}
 
-We begin with the following lemma.
-
-\begin{lemma}
-  $C(\sigma(A_0))$ is weak-$*$ dense in $L^{\infty} (\sigma(A_0), \mu)$.
-\end{lemma}
-
-\begin{myproof}
-  For any bounded measurable function $f \in B(\sigma(A_0))$, there exists a net $(f_i)_i \subseteq C(\sigma(A_0))$
-  such that $f_i \xrightarrow{\textrm{weak-$*$}} f$ by Goldstine (see the proof of theorem \ref{thm:6.1}).
-\end{myproof}
 \begin{myproof}
   Since $A_0$ is an abelian $C^*$-algebra, the Gelfand transform $\Gamma: A_0 \to C(\sigma(A_0))$ is an isometric $*$-isomorphism. Define $\varphi_0: A \to \C$ by $x \mapsto \langle x \alpha_0, \alpha_0\rangle$. Then $\varphi_0 \Gamma^{-1} : C(\sigma(A_0)) \to \C$ is a bounded linear functional, so by the Riesz--Markoff theorem, there exists a regular Borel measure $\mu$ on $\sigma(A_0)$ such that
   $$ \varphi_0 \Gamma^{-1} (f) = \int_{\sigma(A_0)} f\, d\mu. $$
@@ -525,41 +582,41 @@ We begin with the following lemma.
   \end{align*}
   and since $C(\sigma (A_0))$ is dense in $L^2 (\sigma(A_0), \mu)$, we get $\widetilde{\Gamma}(x) = M_{\Gamma(x)}$. It follows that 
   $$ \widetilde{\Gamma} (A_0) = C(\sigma (A_0)) \subseteq L^\infty (\sigma(A_0), \mu). $$
-  Then we use the fact that $\widetilde{\Gamma}$ is SOT-continuous (by definition) and that $L^\infty$ is a vNa to get
+  Then we use the fact that $\widetilde{\Gamma}$ is SOT-continuous (by definition) and that $L^\infty (X, \mu)$ is a vNa to get
   $$ \widetilde{\Gamma} (A) = \widetilde{\Gamma} (\overline{A_0}^{\mathrm{SOT}}) \subseteq \overline{\widetilde{\Gamma} (A_0)}^{\mathrm{SOT}} \subseteq \overline{L^\infty (\sigma(A_0), \mu)}^{\mathrm{SOT}} = L^\infty (\sigma(A_0), \mu). $$
-  The reverse inclusion is proved by nets. Suppose $(\widetilde{\Gamma} (x_i))_i \subseteq \widetilde{\Gamma} (A_0)$ WOT-converges to $T \in B(L^2 (\sigma(A_0), \mu))$. Then for all $\beta \mu \in \mathcal{H}$ we have 
+  The reverse inclusion is proved by nets. Suppose $(\widetilde{\Gamma} (x_i))_i \subseteq \widetilde{\Gamma} (A_0)$ WOT-converges to $T \in B(L^2 (\sigma(A_0), \mu))$. Then, for all $\beta, \mu \in \mathcal{H}$, we have 
   \begin{align*}
     \langle TU \beta, U\mu\rangle &= \lim_{i} \langle \widetilde{\Gamma} (x_i) U\beta, U\mu\rangle \\
     &= \lim_i \langle Ux_i U^* U \beta, U\mu \rangle \\
     &= \lim_i \langle x_i \beta, \mu \rangle
   \end{align*} 
   and $(x_i)_i \xrightarrow{\mathrm{WOT}} U^* T U \in \mathcal{B}(\mathcal{H})$. Since $\overline{A_0}^{\mathrm{WOT}} = A$, we get $x = U^* T U \in A$ and $\widetilde{\Gamma}(x) = T$, so $\overline{\widetilde{\Gamma} (A_0)}^{\mathrm{WOT}} \subseteq \widetilde{\Gamma} (A)$.
-  Finally, we ask: what is $\overline{C(\sigma(A_0))}^{\mathrm{WOT}}$? The WOT on that set is generated by seminorms 
-  $$ |\langle M_g \alpha, \beta \rangle| = \left| \int_{\sigma(A_0)} g \alpha \beta\, d\mu \right|, $$
-  where $g \in C(\sigma(A_0))$ and $\alpha, \beta \in L^2 (\sigma(A_0), \mu)$. By theorem \ref{thm:6.3}, the weak-$*$ topology on $L^\infty (\sigma(A_0), \mu)$ is generated by seminorms 
-  $$ \left| \int_{\sigma(A_0)} g \gamma\, d\mu \right|, $$
-  where $\mu \in L^1 (\sigma(A_0), \mu)$. By Hölder's inequality, an $L^1$ function is a product of two $L^2$ functions, so these two topologies coincide.
-  By the lemma above, $C(\sigma(A_0))$ is weak-$*$ dense in $L^\infty (\sigma(A_0), \mu)$. Therefore, we have 
-  $$ L^\infty (\sigma(A_0), \mu) = \overline{C(\sigma(A_0))}^{\mathrm{WOT}} = \overline{\widetilde{\Gamma} (A_0)}^{\mathrm{WOT}} \subseteq \widetilde{\Gamma} (A) $$
+  Finally, we ask: what is $\overline{C(\sigma(A_0))}^{\mathrm{WOT}}$? 
+  By lemma \ref{lem:6.1}, $C(\sigma(A_0))$ is weak-$*$ dense in $L^\infty (\sigma(A_0), \mu)$, so 
+  we have 
+  $$ L^\infty (\sigma(A_0), \mu) = \overline{C(\sigma(A_0))}^{w^*} = \overline{C(\sigma(A_0))}^{\mathrm{WOT}} = \overline{\widetilde{\Gamma} (A_0)}^{\mathrm{WOT}} \subseteq \widetilde{\Gamma} (A) $$
   and finally $\widetilde{\Gamma} (A) = L^\infty (\sigma(A_0), \mu)$.
 \end{myproof}
 
-In the proof, we used the well known theorem from measure theory (theorem 6.16 in \cite{rudin}).
+\begin{remark}
+  In the above proof, we also showed that 
+  $$\widetilde{\Gamma}: (A, \textrm{WOT}) \to (L^\infty (\sigma(A_0), \mu), w^*)$$
+  is a homeomorphism.
+\end{remark}
 
-\begin{theorem}\label{thm:6.3}
-  Suppose $1 \leq p < \infty$ and $\mu$ is a $\sigma$-finite positive measure on $X$,
-  and $\Phi$ is a bounded linear functional on $L^p(X, \mu)$.
-  Then there is a unique $g \in L^q(X, \mu)$, where $\frac{1}{p} + \frac{1}{q} = 1$, such that 
-  $$\Phi(f) = \int_X f g\, d\mu.$$ Moreover, $\|\Phi\| = \|g\|_q$.
-\end{theorem}
-
-How crucial is the cyclicity assumption?
-Let $A \subseteq \mathcal{B}(\mathcal{H})$ be an abelian vNa. Pick $0 \neq \alpha \in \mathcal{H}$.
-Define $\mathcal{K} := \overline{A \alpha}$ and let $p: \mathcal{H} \to \mathcal{K}$ be an orthogonal 
-projection. By the reducibility of $\mathcal{K}$, we get $p \in A'$. Therefore, $p A p = A p \subseteq \mathcal{B}(\mathcal{H})$
-is an abelian vNa with a cyclic vector $\alpha \in \mathcal{K}$.
-Then, again by the theorem, $A p \cong L^\infty(X, \mu)$ for some $(X, \mu)$.
-By Zorn's lemma, $A \cong L^\infty(Y, \nu)$ for some disjoint union of measure spaces $(Y, \nu)$.
+How crucial was the cyclicity assumption in the previous theorem?
+Let $A \subseteq \mathcal{B}(\mathcal{H})$ be an abelian vNa. 
+Let $\{\alpha_i\ |\ i \in I\}$ be a maximal set of nonzero vectors in $\mathcal{H}$
+such that $\overline{A \alpha_i} \perp \overline{A \alpha_j}$ for $i \neq j$ (such a set must exist by Zorn's lemma).
+For every $i \in I$, define the orthogonal projection $p_i: \mathcal{H} \to \overline{A \alpha_i} =: \mathcal{K}_i$.
+By maximality, we must have $\bigoplus_{i \in I} \mathcal{K}_i = \mathcal{H}$.
+Due to the reducibility of $\mathcal{K}_i$, we get $p_i \in A'$. Therefore, $p_i A p_i = A p_i \subseteq \mathcal{B}(\mathcal{K}_i)$
+is an abelian vNa with a cyclic vector $\alpha_i \in \mathcal{K}_i$. Also, 
+$A \cong \bigoplus_{i \in I} A p_i$.
+For every $i \in I$, we have by theorem \ref{thm:6.2} $A p_i \cong L^\infty(X_i, \mu_i)$ for some Borel measure space $(X_i, \mu_i)$.
+Therefore, we have 
+$$A \cong \bigoplus_{i \in I} L^\infty(X_i, \mu_i).$$
+However, if $\mathcal{H}$ is assumed to be separable, we have even stronger results.
 
 \begin{proposition}\label{prop:6.2}
   Let $\mathcal{H}$ be a separable Hilbert space and $A \subseteq \mathcal{B}(\mathcal{H})$
@@ -596,6 +653,69 @@ By Zorn's lemma, $A \cong L^\infty(Y, \nu)$ for some disjoint union of measure s
   is $*$-isomorphic to $A$, has cyclic vector $\alpha$, and the above theorem applies.
 \end{myproof}
 
+As a corollary, if $\mathcal{H}$ is a separable Hilbert space and $x \in \bh$ is a normal element, then
+$W^* (x)$ has a cyclic vector $\alpha_0$ and
+there exists 
+a finite regular positive Borel measure $\mu$ on $\sigma(x)$ such that $$W^* (x) \cong L^\infty (\sigma(x), \mu).$$
+Following the proof of theorem \ref{thm:6.2}, we notice that the measure $\mu$ is exactly $E_{\alpha_0, \alpha_0}$,
+where $E$ is the PVM from theorem \ref{thm:6.1}.
+
+\begin{proposition}
+  \begin{enumerate}
+    \item If $S \in \mathcal{B}_{\sigma(x)}$, then $\mu (S) = 0$ iff $E(S) = 0$.
+    \item If $f \in B(\sigma (x))$, then $f = 0$ a.e.~w.r.t.~$\mu$ iff $\int_{\sigma(x)} f\, dE = 0$.
+    \item If $f \in L^\infty (\sigma(x), \mu)$, then $\widetilde{\Gamma}^{-1} (f) = \int_{\sigma(x)} f\, dE$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{myproof}
+  \begin{enumerate}
+    \item If $\mu (S) = 0$, then $\langle E(S) \alpha_0, \alpha_0 \rangle = \| E(S) \alpha_0 \|^2 = 0$ and hence $E(S) \alpha_0 = 0$.
+    Since $\alpha_0$ is a separating vector for $W^* (x)$, we have $E(S) = 0$. The converse implication is trivial.
+    \item If $f = 0$ a.e., then $f = f \chi_S$ for $\mu (S) = 0$. By the spectral theorem, we get $$\int_{\sigma(x)} f\, dE = \int_{\sigma(x)} f \chi_S\, dE = E(S) \int_{\sigma(x)} f\, dE = 0.$$
+    Conversely, let $\int_{\sigma(x)} f\, dE = 0$ and define the Borel set $S = \{f \neq 0\}$. Then 
+    $$E(S) = \int_{\sigma(x)} \chi_S\, dE = \int_{\sigma(x)}f \cdot \frac{1}{f} \chi_S\, dE = \int_{\sigma(x)} f\, dE \cdot \int_{\sigma(x)} \frac{1}{f} \chi_S\, dE = 0,$$
+    so $\mu(S) = 0$.
+    \item By the second item, every function $f$ from the same equivalence class in $L^\infty (X, \mu)$
+    defines the same operator $\int_{\sigma(x)} f\, dE$, which means that the Borel functional calculus  
+    $$L^\infty (X, \mu) \to W^* (x),\quad f \mapsto \rho (f)$$ is well-defined.
+    To show that $\widetilde{\Gamma}^{-1} (f) = \rho (f)$, it suffices to prove that 
+    \begin{equation}\label{eq:6.1}
+      \langle \widetilde{\Gamma}^{-1} (f) \alpha, \beta \rangle = \left\langle \rho(f) \alpha, \beta \right\rangle
+    \end{equation}
+    for all $\alpha, \beta \in \mathcal{H}$.
+    Since $\alpha_0$ is cyclic for $W^*(x)$ and $C^* (x)$ is WOT-dense in $W^* (x)$, it is also cyclic for $C^* (x)$.
+    Therefore, $C^*(x) \alpha_0$ is dense in $\mathcal{H}$.  
+    So it is enough to prove the equation \eqref{eq:6.1} for $\alpha = g(x) \alpha_0$ and $\beta = h(x) \alpha_0$,
+    where $g, h \in C(\sigma(x))$. Now use the proof of theorem \ref{thm:6.1} to get
+    \begin{align*}
+      \langle \widetilde{\Gamma}^{-1} (f) \alpha, \beta \rangle &= \langle \widetilde{\Gamma}^{-1} (f) \widetilde{\Gamma}^{-1} (g) \alpha_0, \widetilde{\Gamma}^{-1} (h) \alpha_0\rangle\\
+      &= \langle \widetilde{\Gamma}^{-1} (\overline{h} f g) \alpha_0, \alpha_0\rangle\\
+      &= \int_{\sigma(x)} \overline{h} f g\, d\mu\\
+      &= \int_{\sigma(x)} \overline{h} f g\, dE_{\alpha_0, \alpha_0}\\
+      &= \int_{\sigma(x)} f\, dE_{\Gamma^{-1}(g) \alpha_0, \Gamma^{-1}(h) \alpha_0}\\
+      &= \left\langle \rho(f) \Gamma^{-1}(g) \alpha_0, \Gamma^{-1}(h) \alpha_0 \right\rangle\\
+      &= \left\langle \rho(f) \alpha, \beta \right\rangle. \qedhere
+    \end{align*}
+  \end{enumerate}
+\end{myproof}
+
+In the preceding proposition, we proved that the Borel functional calculus
+$$L^\infty(\sigma(x), \mu) \to W^* (x),\quad f \mapsto \rho (f)$$
+is an isometric $*$-isomorphism. Even further, it is a homeomorphism 
+$$(L^\infty (\sigma(x), \mu), w^*) \to (W^* (x), \textrm{WOT})$$
+and $$W^* (x) = \{\rho (f)\ |\ f \in L^\infty (X, \mu)\} = \{\rho (f)\ |\ f \in B(\sigma(x))\}.$$
+We have another easy corollary of theorem \ref{thm:6.2}, which is also known as the spectral theorem.
+
+\begin{theorem}
+  Let $\mathcal{H}$ be a separable Hilbert space.
+  If $x \in \bh$ is a normal operator, then there exists a measure space $(Y, \nu)$, a function $\varphi \in L^\infty (Y, \nu)$
+  and a unitary $U: \mathcal{H} \to L^2(Y, \nu)$ such that 
+  $$x = U^* M_{\varphi} U,$$
+  where $M_{\varphi} \in L^\infty (Y, \nu) \subseteq \mathcal{B}(L^2 (Y, \nu))$
+  is the multiplication operator.
+\end{theorem}
+
 We can use theorem \ref{thm:6.2} to find $VN(G)$ of an abelian group $G$.
 Recall that by definition, $C_r ^* (G)$ is a SOT-dense $C^*$-subalgebra in $VN(G)$.
 Moreover, $VN(G)$ has a cyclic vector $\delta_0 \in \ell^2 (G)$.
@@ -629,7 +749,7 @@ Therefore, there exists a positive Borel measure $\mu$ on $\sigma_r ^* (G)$ such
   $$\langle x \delta_0, \delta_0 \rangle = \int_{\mathbb{T}} \Gamma (x)\, d\mu$$
   for any $x = \sum_{l \in \Z} a_l u_l \in C_r ^* (\Z)$. Now the LHS of the above equation equals $a_0$,
   while the RHS is equal, by example \ref{ex:3.3}, to 
-  $$\int_{\mathbb{T}} \sum_{l \in \Z} a_l \xi^l\, d\mu = \sum_{l \in \Z} \int_{\mathbb{T}} a_l \xi^l \, d\mu$$
+  $$\int_{\mathbb{T}} \sum_{l \in \Z} a_l \xi^l\, d\mu = \sum_{l \in \Z}  a_l \int_{\mathbb{T}} \xi^l \, d\mu$$
   (here, we used Lebesgue's dominated convergence theorem).
   If we set $\mu$ to be the normalized Lebesgue measure $m$ on $\mathbb{T}$, then the above sum equals $a_0$.
   Therefore, we have 

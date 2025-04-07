@@ -13,13 +13,15 @@ Reallocating 'name_of_file' (item size: 1) to 22 items.
 A level-1 auxiliary file: sections/section5.aux
 Reallocating 'name_of_file' (item size: 1) to 22 items.
 A level-1 auxiliary file: sections/section6.aux
+Reallocating 'name_of_file' (item size: 1) to 22 items.
+A level-1 auxiliary file: sections/section7.aux
 Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: plain.bst
 Reallocating 'name_of_file' (item size: 1) to 5 items.
 Database file #1: refs.bib
 You've used 5 entries,
             2118 wiz_defined-function locations,
-            531 strings with 4555 characters,
+            532 strings with 4576 characters,
 and the built_in function-call counts, 1229 in all, are:
 = -- 124
 > -- 35

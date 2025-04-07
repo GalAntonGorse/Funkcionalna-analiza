@@ -1,0 +1,643 @@
+\section{Completely positive maps}
+
+\subsection{Dilations}
+
+\begin{definition}
+    The \emph{dilation} of $T \in \bh$ is an operator $S \in \mathcal{B}(\mathcal{K})$, where 
+    $\mathcal{H}$ is a subspace of Hilbert space $\mathcal{K}$, $P_{\mathcal{H}}: \mathcal{H} \hookrightarrow \mathcal{K}$ and $T = P_{\mathcal{H}} S\big|_{\mathcal{H}}$.
+    We say that $T$ is a \emph{compression} of $S$.
+\end{definition}
+
+If we write $\mathcal{K} = \mathcal{H} \oplus \mathcal{H}^\perp$, the operator $S$ has matrix form 
+$$S = \begin{bmatrix}
+    T & *\\
+    * & *
+\end{bmatrix}.$$
+
+\begin{example}\label{ex:7.1}
+    We can show that every isometry has a unitary dilation. 
+    Indeed, let $V \in \bh$ be an isometry and $P := I - V V^*$
+    a projection onto $(\im V)^\perp$. Now let $\mathcal{K} := \mathcal{H} \oplus \mathcal{H}$ and 
+    define $U \in \mathcal{B}(\mathcal{K})$ as 
+    $$U := \begin{bmatrix}
+        V & P\\
+        0 & V^*
+    \end{bmatrix}.$$
+    Obviously, $U$ is a dilation of $V$. To show that it is unitary, simply calculate 
+    \begin{align*}
+        U^* U &= \begin{bmatrix}
+            V^* & 0\\
+            P & V
+        \end{bmatrix} \begin{bmatrix}
+            V & P\\
+            0 & V^*
+        \end{bmatrix}\\
+        &= \begin{bmatrix}
+            V^* V &  V^* P\\
+            PV & P^2 + V V^*
+        \end{bmatrix}\\
+        &= \begin{bmatrix}
+            I & 0\\
+            0 & I
+        \end{bmatrix}.
+    \end{align*}
+    Similarly, we get $U U^* = I$ and $U$ is a unitary dilation of $V$. In fact, even more is true:
+    $U$ is a \emph{power dilation} of $V$. This means that for any $n \in \N$, the operator 
+    $$U^n = \begin{bmatrix}
+        V^n & *\\
+        0 & (V^*) ^n
+    \end{bmatrix}$$
+    is a dilation of $V^n$.
+\end{example}
+
+\begin{example}\label{ex:7.2}
+    We can go even further and show that every contraction has an isometric dilation.
+    Indeed, take $T \in \bh$ with $\| T\| \leq 1$. Then 
+    $$D_T := (I - T^* T)^{\frac{1}{2}} \in \bh$$ and for every $h \in \mathcal{H}$, we have 
+    \begin{align*}
+        \| T h \|^2 + \| D_T h\|^2 &= \langle Th, Th \rangle + \langle D_T h, D_T h \rangle\\
+        &= \langle T^* T h, h\rangle + \langle D_T ^2 h, h\rangle\\
+        &= \langle T^* T h, h\rangle + \langle (I - T^* T) h, h\rangle\\
+        &= \langle h, h \rangle = \| h\|^2.
+    \end{align*}
+    Define the Hilbert space $\mathcal{K} := \bigoplus_{n \in \N} \mathcal{H}$, which is the sequence space
+    $$\{(h_1, h_2, \dots)\ |\ h_n \in \mathcal{H},\ \sum_{n = 1} ^\infty \| h_n\|^2 < \infty\}$$
+    with the scalar product 
+    $$\langle (h_1, h_2, \dots), (k_1, k_2, \dots) \rangle := \sum_{n = 1} ^\infty \langle h_i, k_i \rangle.$$
+    Now define the operator 
+    $$V: \mathcal{K} \to \mathcal{K},\quad (h_1, h_2,h_3, \dots) \mapsto (T h_1, D_T h_2, h_3, \dots),$$
+    which is an isometry, since 
+    $$\| V(h_1, h_2, h_3, \dots)\|^2 = \| T h_1\|^2 + \| D_T h_2\|^2 + \sum_{n = 3} ^\infty \| h_n\|^2 = \sum_{n = 1} ^\infty \| h_n\|^2 = \| (h_1, h_2, h_3, \dots )\|^2.$$
+    If we identify $\mathcal{H}$ with $\mathcal{H} \oplus 0 \oplus 0 \oplus \cdots \subseteq \mathcal{K}$, then 
+    $$T^n = P_{\mathcal{H}} V^n \big|_{\mathcal{H}}$$
+    for all $n \in \N$.
+\end{example}
+
+By combining the examples \ref{ex:7.1} and \ref{ex:7.2}, we obtain the following theorem.
+
+\begin{theorem}[Sz.-Nagy]
+    Let $T \in \bh$ be a contraction. Then there exists a Hilbert space $\mathcal{K} \supseteq \mathcal{H}$ 
+    and $U \in \mathcal{B}(\mathcal{K})$ unitary such that 
+    $$T^n = P_{\mathcal{H}} U^n \big|_{\mathcal{H}}$$
+    for all $n \in \N$.
+\end{theorem}
+
+Sz.-Nagy theorem allows us to effectively reduce a statement about contractions to a statement about unitary operators.
+As an example of this approach, we prove the following corollary.
+
+\begin{corollary}[von Neumann inequality]
+    Let $T \in \bh$ be a contraction and $p \in \C [z]$ a complex polynomial. Then we have 
+    $$\| p(T)\| \leq \sup \{|p(z)|\ |\ z \in \mathbb{T}\}.$$
+\end{corollary}
+
+\begin{myproof}
+    Let $U$ be a power dilation of $T$, so $T^n = P_{\mathcal{H}} U^n \big|_{\mathcal{H}}$
+    for all $n \in \N \cup\{0\}$. Then $p(T) = P_{\mathcal{H}} p(U)\big|_{\mathcal{H}}$
+    and so $\| p(T)\| \leq \| p(U)\|$. Note that $U$ is normal, so by the spectral theorem, 
+    we have $$\| p(U) \| = \sup \{|p(\lambda)|\ |\ \lambda \in \sigma(U)\}.$$
+    But since $U$ is unitary, we have $\sigma(U) \subseteq \mathbb{T}$ and so
+    $$\sup \{|p(\lambda)|\ |\ \lambda \in \sigma(U)\} \leq \sup \{|p(\lambda)|\ |\ \lambda \in \mathbb{T}\}.$$
+    By combining all of this, we get 
+    \begin{equation*}
+        \| p(T)\| \leq \| p(U)\| = \sup \{|p(\lambda)|\ |\ \lambda \in \sigma(U)\} \leq \sup \{|p(\lambda)|\ |\ \lambda \in \mathbb{T}\}. \qedhere
+    \end{equation*} 
+\end{myproof}
+
+\subsection{Stinespring and Choi theorems}
+
+In general, dilations allow us to prove a statement about not-so-nice operators by focusing on the nicer ones.
+The machinery of completely bounded maps provides necessary and sufficient conditions for the existence of dilations.
+
+If $A$ is a $*$-star algebra, then the set $M_n (A)$ of $n \times n$ square matrices with elements in $A$ is a $*$-algebra 
+under regular matrix addition and multiplication, together with an involution 
+$[a_{ij}]_{i,j} ^* = [a_{ji} ^*]_{i,j}.$
+
+\begin{definition}
+    Let $A, B$ be $*$-algebras and $\varphi: A \to B$ a linear map.
+    For any $n \in \N$, we define the $n$-th \emph{ampliation} of $\varphi$ as 
+    $$\varphi^{(n)}: M_n (A) \to M_n (B),\quad [a_{ij}]_{i, j} \mapsto [\varphi(a_{ij})]_{i, j}.$$
+\end{definition}
+
+Let $A$ be a $C^*$-algebra. By GNS, there exists a Hilbert space $\mathcal{H}$ and a faithful representation
+$\pi: A \to \bh$, which induces an injective $*$-homomorphism 
+$$\pi^{(n)}: M_n (A) \to M_n (\bh)$$ for every $n \in \N$.
+Recall that $M_n (\bh)$ is isomorphic as a $*$-algebra to $\mathcal{B} (\mathcal{H}^n)$,
+which induces a (unique) norm on $M_n (\bh)$ that makes it a $C^*$-algebra (see also: proof of the bicommutant theorem).
+Therefore, we can identify $M_n (\mathcal{A})$ as a $*$-subalgebra of a $C^*$-algebra $M_n (\bh)$.
+Furthermore, it is trivial to show that the image of $\pi^{(n)}$ is closed in $M_n (\bh)$,
+so $M_n (A)$ is a closed $*$-subalgebra of $M_n (\bh)$. As a result, $M_n (A)$ is itself a $C^*$-algebra.
+Since every $*$-algebra admits at most one norm that makes it into a $C^*$-algebra, 
+our norm on $M_n (A)$ is completely independent on the chosen GNS representation $\pi$.
+We see that every $C^*$-algebra $A$ carries along this extra ``baggage''
+of canonically defined norms on $M_n (A)$. Keeping track of how this extra structure behaves yields additional information about the original $C^*$-algebra $A$.
+
+\begin{definition}
+    Let $A, B$ be $C^*$-algebras and $\varphi: A \to B$ a linear map.
+    \begin{enumerate}
+        \item $\varphi$ is \emph{positive} if $\varphi (A_+) \subseteq B_+$.
+        \item $\varphi$ is \emph{$n$-positive} if $\varphi^{(n)}$ is positive.
+        \item $\varphi$ is \emph{completely positive} (cp) if it is $n$-positive for all $n \in \N$.
+    \end{enumerate} 
+\end{definition}
+
+\begin{lemma}
+    Every positive linear functional $\varphi$ on a $C^*$-algebra $A$ is cp.
+\end{lemma}
+
+\begin{myproof}
+    Take any $n \in \N$. We attempt to show that the map
+    $$\varphi^{(n)} : M_n (A) \to M_n (\C)$$
+    is positive. Take any $[a_{ij}]_{i, j} \in M_n (A)_+$ and $\alpha \in \C^n$.
+    Since $[a_{ij}]_{i, j} \geq 0$, we have 
+    $$\begin{bmatrix}
+        \alpha_1 & 0 & \cdots & 0\\
+        \vdots & \vdots & \ddots & \vdots\\
+        \alpha_n & 0 & \cdots & 0
+    \end{bmatrix}^* \begin{bmatrix}
+        a_{11} & \cdots & a_{1n}\\
+        \vdots & \ddots & \vdots\\
+        a_{n1} & \cdots & a_{nn}
+    \end{bmatrix} \begin{bmatrix}
+        \alpha_1 & 0 & \cdots & 0\\
+        \vdots & \vdots & \ddots & \vdots\\
+        \alpha_n & 0 & \cdots & 0
+    \end{bmatrix} = \begin{bmatrix}
+        \sum_{i, j = 1} ^n \overline{\alpha_i} \alpha_j a_{ij} & 0 & \cdots & 0\\
+        \vdots & \vdots & \ddots & \vdots\\
+        0 & 0 & \cdots & 0 
+    \end{bmatrix} \geq 0$$
+    and so $\sum_{i, j = 1} ^n \overline{\alpha_i} \alpha_j a_{ij} \geq 0$ in $A$.
+    By positivity of $\varphi$, we get 
+    \begin{align*}
+        \langle \varphi^{(n)} ([a_{ij}]_{i, j}) \alpha, \alpha \rangle &= \langle [\varphi(a_{ij})]_{i, j} \alpha, \alpha \rangle\\
+        &= \left\langle \begin{bmatrix}
+            \sum_{j = 1} ^n \varphi(a_{1j}) \alpha_j\\
+            \vdots\\
+            \sum_{j = 1} ^n \varphi(a_{nj}) \alpha_j
+        \end{bmatrix}, \begin{bmatrix}
+            \alpha_1\\
+            \vdots\\
+            \alpha_n
+        \end{bmatrix} \right\rangle\\
+        &= \sum_{i, j} \overline{\alpha_i} \alpha_j \varphi(a_{ij})\\
+        &= \varphi \left(\sum_{i, j} \overline{\alpha_i} \alpha_j a_{ij}\right) \geq 0,
+    \end{align*}
+    which implies that $\varphi^{(n)} ([a_{ij}]_{i, j}) \geq 0$.
+\end{myproof}
+
+\begin{lemma}
+    If $\varphi: A \to B$ is positive, then it is \emph{$*$-linear}, i.e. 
+    $$\varphi(a^*) = \varphi(a) ^*,\quad \forall a \in A.$$
+\end{lemma}
+
+\begin{myproof}
+    Obviously, this lemma holds for $a \in A_+$.
+    Let us first prove the statement for $a \in A_{\sa}$. We know from continuous functional calculus 
+    that $a = a_+ - a_-$ for some $a_+, a_- \in A_+$, so we have 
+    \begin{align*}
+        \varphi (a)^* &= \varphi(a_+ - a_-)^*\\
+        &= \varphi(a_+)^* - \varphi(a_-)^*\\
+        &= \varphi(a_+) - \varphi(a_-)\\
+        &= \varphi(a_+ - a_-)\\
+        &= \varphi(a) = \varphi(a^*).
+    \end{align*}
+    Now, for a general $a \in A$, we have 
+    \begin{align*}
+        \varphi(a)^* &= \varphi(\real a + i \cdot \imag a)^*\\
+        &= \varphi(\real a)^* - i \varphi(\imag a)^*\\
+        &= \varphi(\real a) - i \varphi (\imag a)\\
+        &= \varphi(\real a - i \cdot \imag a) = \varphi(a^*). \qedhere
+    \end{align*}
+\end{myproof}
+
+\begin{example}
+    Every $*$-homomorphism $\varphi: A \to B$ is positive.
+    Furthermore, for each $n \in \N$ the map $\varphi^{(n)}: M_n (A) \to M_n (B)$
+    is a $*$-homomorphism (and therefore positive as well).
+    As a result, every $*$-homomorphism between $C^*$-algebras is cp.
+\end{example}
+
+\begin{example}
+    Let us construct a positive map that is not cp. 
+    Define $$\varphi: M_2 (\C) \to M_2 (\C),\quad A \mapsto A^\top.$$
+    This map is positive, however it is not cp. Indeed, the $2$-nd ampliation 
+    $$\varphi^{(2)}:  M_4 (\C) \to M_4 (\C),\quad \begin{bmatrix}
+        A_{11} & A_{12}\\
+        A_{21} & A_{22}
+    \end{bmatrix} \mapsto \begin{bmatrix}
+        A_{11}^\top & A_{12}^\top\\
+        A_{21}^\top & A_{22}^\top
+    \end{bmatrix}$$ maps a positive matrix 
+    $$\begin{bmatrix}
+        1 & 0 & 0 & 1\\
+        0 & 0 & 0 & 0\\
+        0 & 0 & 0 & 0\\
+        1 & 0 & 0 & 1
+    \end{bmatrix} = \begin{bmatrix}
+        1 \\ 0 \\ 0 \\ 0
+    \end{bmatrix} \begin{bmatrix}
+        1 \\ 0 \\ 0 \\ 0
+    \end{bmatrix}^* \geq 0$$
+    into a matrix 
+    $$\begin{bmatrix}
+        1 & 0 & 0 & 0\\
+        0 & 0 & 1 & 0\\
+        0 & 1 & 0 & 0\\
+        0 & 0 & 0 & 1
+    \end{bmatrix},$$
+    which has a negative eigenvalue $-1$ (and hence cannot be positive).
+\end{example}
+
+\begin{example}
+    Let $\psi: A \to B$ be cp and $b \in B$.
+    Define $$\varphi :A \to B ,\quad a \mapsto b^* \psi(a) b.$$
+    Then $\varphi$ is cp. Indeed, for any $n \in \N$ and $[a_{ij}]_{i, j} \in M_n (A)_+$,
+    we have 
+    \begin{align*}
+        \varphi^{(n)} ([a_{ij}]_{i, j}) &= [\varphi(a_{ij})]_{i, j} = \begin{bmatrix}
+            b^* \psi (a_{11})  b & \cdots & b^* \psi (a_{1n}) b\\
+            \vdots & \ddots & \vdots\\
+            b^* \psi (a_{n1})  b & \cdots & b^* \psi (a_{nn}) b
+        \end{bmatrix}\\
+        &= \begin{bmatrix}
+            b & & \\
+             & \ddots & \\
+              & & b
+        \end{bmatrix}^* (\psi^{(n)} [(a_{ij})]_{i, j}) \begin{bmatrix}
+            b & & \\
+              & \ddots & \\
+              & & b
+        \end{bmatrix} \geq 0.
+    \end{align*}
+\end{example}
+
+The next theorem proves that every completely positive map $\varphi : A \to \bh$
+is of this form.
+
+\begin{theorem}[Stinespring]
+    Let $A$ be a $C^*$-algebra and $\varphi: A \to \bh$ cp.
+    Then there exists a Hilbert space $\mathcal{K}$, a bounded operator $V \in \mathcal{B} (\mathcal{H}, \mathcal{K})$
+    and a representation 
+    $\pi: A \to \mathcal{B} (\mathcal{K})$ such that 
+    $$\varphi(a) = V^* \pi(a) V,\quad \forall a \in A.$$
+\end{theorem}
+
+\begin{myproof}
+    Consider the algebraic tensor product of vector spaces $A \otimes \mathcal{H}$.
+    Define a form on this vector space by
+    $$\langle x \otimes \alpha, y \otimes \beta \rangle = \langle \varphi(y^* x) \alpha, \beta\rangle$$
+    and extend it linearly. For any $u = \sum_{j = 1} ^n x_j \otimes \alpha_j \in A \otimes \mathcal{H}$, we have 
+    \begin{align*}
+        \langle u, u \rangle &= \sum_{i, j} ^n \langle \varphi(x_i ^* x_j) \alpha_j, \alpha_i \rangle\\
+        &= \left\langle \varphi^{(n)} \left(\begin{bmatrix}
+            x_1 \\ \vdots \\ x_n
+        \end{bmatrix}^* \begin{bmatrix}
+            x_1 \\ \vdots \\ x_n
+        \end{bmatrix}\right) \begin{bmatrix}
+            \alpha_1 \\ \vdots \\ \alpha_n
+        \end{bmatrix}, \begin{bmatrix}
+            \alpha_1 \\ \vdots \\ \alpha_n
+        \end{bmatrix} \right\rangle \geq 0,
+    \end{align*}
+    which means that $\langle \cdot, \cdot \rangle$ is positive definite on $A \otimes \mathcal{H}$. To each $x \in A$, we assign the map 
+    $$\pi_0 (x): A \otimes \mathcal{H} \to A \otimes \mathcal{H},\quad \sum_{j = 1} ^n x_j \otimes \alpha_j \mapsto \sum_{j = 1} ^n x x_j \otimes \alpha_j.$$
+    This map has the following property: for $u = \sum_{j = 1} ^n x_j \otimes \alpha_j$ and $u = \sum_{i = 1} ^m y_i \otimes \beta_i$, we have
+    \begin{align}
+        \langle u, \pi_0 (x) v \rangle &= \langle \sum_{j = 1} ^n x_j \otimes \alpha_j, \sum_{i = 1} ^n x_j \otimes \alpha_j, \sum_{i = 1} ^m x y_i \otimes \beta_i \rangle \nonumber\\ 
+        &= \sum_{i, j} \langle \varphi((x y_i)^* x_j)\alpha_j, \beta_i \rangle \nonumber\\
+        &= \sum_{i, j} \langle \varphi (y_i ^* x^* x_j ^*) \alpha_j, \beta_i \rangle \nonumber\\
+        &= \langle \pi_0 (x^*) u, v \rangle. \label{eq:7.1}
+    \end{align}
+    Define $$\mathcal{N} := \{u \in A \otimes \mathcal{H}\ |\ \langle u, u \rangle = 0\}.$$
+    By Cauchy-Schwartz, $\mathcal{N}$ is a subspace in $A \otimes \mathcal{H}$ and $\langle \cdot, \cdots \rangle$
+    induces a scalar product on $\quot{A \otimes \mathcal{H}}{\mathcal{N}}$. Upon completion, we obtain a Hilbert space $\mathcal{K}$.
+    For any $u \in A \otimes \mathcal{A}$, $f(x) := \langle \pi_0 (x) u, u \rangle$ is a positive linear functional on $A$ by \eqref{eq:7.1}:
+    \begin{align*}
+        f(x^* x) &= \langle \pi_0 (x^* x) u, u \rangle\\
+        &= \langle \pi_0 (x^*) \pi_0 (x) u, u\rangle \\
+        &= \langle \pi_0 (x) u, \pi_0 (x) u\rangle \geq 0.
+    \end{align*}
+    But from our discussion on states, we know that 
+    $$\langle \pi_0 (x) u, \pi_0 (x) u\rangle = f(x^* x) \leq \| x^* x\| \cdot f(1) = \| x\|^2 \cdot \langle u, u \rangle.$$
+    As a result, we get $\pi_0 (x) (\mathcal{N}) \subseteq \mathcal{N}$ and so $\pi_0 (x)$ induces a bounded operator on $\quot{A \otimes \mathcal{H}}{\mathcal{N}}$,
+    which can be extended to a bounded operator on $\mathcal{K}$. Therefore, $\pi_0$ induces a map (which is also a $*$-homomorphism) $\pi: A \to \mathcal{B}(\mathcal{K})$ such that  
+    $$\pi (x) (u + \mathcal{N}) = \pi_0 (x)u + \mathcal{N}.$$
+    Lastly, define $$V: \mathcal{H} \to \mathcal{K},\quad \alpha \mapsto 1 \otimes \alpha + \mathcal{N}.$$
+    Since $$\| V \alpha \|^2 = \langle 1 \otimes \alpha, 1 \otimes \alpha \rangle_{\mathcal{K}} = \langle \varphi (1) \alpha, \alpha \rangle_{\mathcal{H}} \leq \| \varphi (1)\| \cdot \| \alpha \|^2,$$
+    $V$ is a bounded operator. For any $\alpha, \beta \in \mathcal{H}$ and $x \in A$, we have 
+    \begin{align*}
+        \langle V \alpha, x \otimes \beta + \mathcal{N} \rangle &= \langle 1 \otimes \alpha + \mathcal{N}, x \otimes \beta + \mathcal{N}\rangle\\
+        &= \langle \varphi (x^*) \alpha, \beta \rangle\\
+        &= \langle \alpha, \varphi (x^*)^* \beta \rangle\\
+        &= \langle \alpha, \varphi(x) \beta \rangle,
+    \end{align*}
+    which directly implies that $V^* (x \otimes \beta + \mathcal{N}) = \varphi(x) \beta$. But now 
+    $$V^* \pi(x) V \beta = V^* \pi (x) (1 \otimes \beta + \mathcal{N}) = V^* (x \otimes \beta + \mathcal{N}) = \varphi(x) \beta,$$
+    which concludes our proof.
+\end{myproof}
+
+Note that if $\psi$ is unital ($\psi (I) = I$), then $V$ is an isometry and we may identify $\mathcal{H}$
+with the subspace $V \mathcal{H} \leq \mathcal{K}$.
+Under this identification, $V^*$ becomes the projection $P_{\mathcal{H}}$ of $\mathcal{K}$
+to $\mathcal{H}$. Thus, we see that 
+$$\varphi(a) = P_{\mathcal{H}} \pi (a)$$
+
+\begin{remark}
+    Stinespring's theorem is a natural generalization of GNS representation of states.
+    Indeed, if we take $\mathcal{H} = \C$, then $\mathcal{B} (\mathcal{C}) \cong \C$ and $A \otimes \mathcal{C} = A$,
+    so the isometry $V : \C  \to \mathcal{K}$ is determined by $V (1) = x$.
+    Therefore, we have 
+    $$\varphi(a) = \varphi(a) (1) \cdot 1 = V^* \pi(a) V (1) \cdot 1 = \langle \pi (a) V(1), V(1) \rangle_{\mathcal{K}} = \langle \pi(a) x, x \rangle.$$
+    In fact, if we take $\mathcal{H} = \C$, then the above proof is a proof of GNS. 
+\end{remark}
+
+\begin{theorem}[Choi--Kraus]
+    Let $\varphi: M_n (\C) \to M_m (\C)$ cp.
+    Then there exists $r \leq m \cdot n$ and $n \times m$ complex matrices $V_1, \dots, V_r$,
+    such that $$\varphi(A) = \sum_{k = 1} ^r V_k ^* A V_k,\quad \forall A \in M_n (\C).$$
+\end{theorem}
+
+\begin{lemma}\label{lem:7.1}
+    Let $A$ be a $C^*$-algebra. Then every positive element of $M_n (A)$
+    is a sum of $n$ positive elements of the form $[a_i ^* a_j]_{i, j}$ for some $\{a_1, \dots, a_n\} \subseteq A$.
+\end{lemma}
+
+\begin{myproof}
+    Let $R$ be the element of $M_n (A)$ whose $k$-th row is $$\begin{bmatrix}
+        a_1 & \cdots & a_n
+    \end{bmatrix}$$
+    and whose other entries are zero, then $[a_i ^* a_j]_{i, j}$, so such an element is positive.
+    Now if $P \in M_n (A)$ is positive, then it is of the form $P = B^* B$ for $B \in M_n (A)$.
+    Then write $B = R_1 + \cdots + R_n$, where $R_k$ is the $k$-th row of $B$ and $0$ elsewhere.
+    Now notice that $R_i ^* R_j = 0$ for $i \neq j$, yielding 
+    \begin{align*}
+        P = B^* B = (R_1 ^* + \cdots + R_n ^*) (R_1 + \cdots + R_n) = R_1 ^* R_1 + \cdots + R_n ^* R_n
+    \end{align*}
+    and we are done.
+\end{myproof}
+
+\begin{myproof}[Proof of Choi--Kraus]
+    Let $E_{ij} \in M_n (\C)$ be the standard matrix units.
+    First, we prove that 
+    $$[E_{ij}]_{i, j} \in M_n (M_n (\C)) = M_{n^2} (\C)$$ is positive.
+    Notice that $E_{ij} = e_i e_j^*$.
+    Take any $x_1, \dots, x_n \in \C ^{n}$ and let $x_i = \sum_{j = 1} ^n \lambda_{ij} e_j$. Then  
+    \begin{align*}
+        \sum_{i, j} \langle E_{ij} x_j, x_i \rangle &= \sum _{i, j} \langle e_j ^* x_j, e_i ^* x_i \rangle\\
+        &= \sum_{i = 1} ^n \sum_{j = 1} ^n \lambda_{jj} \lambda_{ii}\\
+        &= \left(\sum_{i = 1} ^n \lambda_{ii} \right) \left( \sum_{j = 1} ^n \lambda_{jj} \right) \geq 0.
+    \end{align*}
+    Since $\varphi$ is cp, the \emph{Choi matrix} 
+    $[\varphi(E_{ij})]_{i, j} = \varphi^{(n)} ([E_{ij}]_{i, j}) \in M_{mn}(\C)$ is positive.
+    By the lemma \ref{lem:7.1}, there exists $r \leq n \cdot m$ and rows $v_1, \dots, v_r \in \C^{1 \times mn}$ such that 
+    $$[\varphi (E_{ij})]_{i, j} = \sum_{k = 1} ^r v_k ^* v_k \in M_n (M_m (\C)) = M_{mn} (\C).$$
+    To each row 
+    $$v_k = \begin{bmatrix}
+        x_1 ^{(k)}  & \cdots & x_n ^{(k)}
+    \end{bmatrix} \in \C^{1 \times mn},\quad x_j ^{(k)} \in \C^{1 \times m},$$
+    assign the $n \times m$ matrix
+    $$V_k = \begin{bmatrix}
+        x_1 ^{(k)} \\
+         \vdots \\
+         x_n ^{(k)}
+    \end{bmatrix}$$
+    and notice that 
+    $$[V_k ^* E_{ij} V_k ]_{1 \leq i, j \leq n} = [{x_i ^{(k)}} ^* x_j ^{(k)}]_{i, j} = v_k ^* v_k.$$
+    Therefore, $$[\varphi(E_{ij})]_{i, j} = \sum_{k = 1} ^r [V_k ^* E_{ij} V_k].$$
+    Now for any $A = \sum_{i, j = 1} ^n a_{ij} E_{ij} \in M_{n^2} (\C)$, we get 
+    \begin{align*}
+        \varphi (A) &= \varphi \left(\sum_{i, j = 1} ^n a_{ij} E_{ij}\right)\\
+        &= \sum_{i, j = 1} ^n a_{ij} \varphi \left(E_{ij}\right)\\
+        &= \sum_{i, j = 1} ^n a_{ij} \sum_{k = 1}^{r} V_k ^* E_{ij} V_k\\
+        &= \sum_{k = 1}^{r} \sum_{i, j = 1} ^n a_{ij} V_k ^* E_{ij} V_k\\
+        &= \sum_{k = 1}^{r} V_k ^* \left( \sum_{i, j = 1} ^n a_{ij} E_{ij} \right) V_k\\
+        &= \sum_{k = 1}^{r} V_k ^* A V_k. \qedhere
+    \end{align*}
+\end{myproof}
+
+The following proposition gives a neat characterization of positive linear maps from the matrix space to an arbitrary $C^*$-algebra.
+
+\begin{proposition}
+    Let $B$ be a $C^*$-algebra and $\varphi: M_n (\C) \to B$ a linear map. The following statements are equivalent:
+    \begin{enumerate}
+        \item $\varphi$ is cp;
+        \item $\varphi$ is $n$-positive;
+        \item the Choi matrix $[\varphi (E_{ij})]_{i, j} \in M_n (B)$ is positive.
+    \end{enumerate}
+\end{proposition}
+
+\begin{myproof}
+    We only need to prove the implication $(3.) \Rightarrow (1.)$.
+    By GNS, we can reduce this statement to the $C^*$-algebra $B = \bh$.
+    The majority of work was already done in the preceding proof, so we just follow the argument with minor adjustments.
+    Take any positive matrix $A \in M_k (M_n (\C)) =M_{kn} (\C)$,
+    which can be expressed (by lemma \ref{lem:7.1}) as a sum of $k$ matrices of the form 
+    $[B_i ^* B_j]_{1 \leq i, j  \leq k}$ for $B_1, \dots, B_k \in M_n (\C)$.
+    It suffices to prove that $\varphi^{(k)} ([B_i ^* B_j]_{i, j})$ is positive.
+    Now let $B_l = \sum_{r, s = 1} ^n b_{r, s, l} E_{r, s}$ and
+    \begin{align*}
+        B_i ^* B_j = \sum_{r, s, t = 1} ^n \overline{b}_{r, s, l} b_{r, t, j} E_{r, s}.
+    \end{align*}
+    Define $y_{t, r} = \sum_{j = 1} ^k b_{r, t, j} x_j$ and then
+    \begin{align*}
+        \sum_{i, j} ^n \langle \varphi (B_i ^* B_j) x_j, x_i \rangle &= \sum_{r = 1} ^n \sum_{s, t = 1} ^n \left\langle \varphi (E_{st}) \left(\sum_{i, j} \overline{b}_{r, s, i} b_{r, t, j} x_j\right), x_i \right\rangle\\
+        &= \sum_{r = 1} ^n \sum_{s, t = 1} ^n \left\langle \varphi (E_{st}) y_{t, r}, y_{s, r} \right\rangle
+    \end{align*}
+    is a sum of $r$ positive numbers, so it has to be positive.
+\end{myproof}
+
+\subsection{Arveson extension theorem}
+
+Let $M$ be a vector subspace of a $C^*$-algebra $A$.
+Let $\varphi: M \to M_n (\C)$ be a linear map. Define a linear functional 
+$$s_{\varphi}: M_n (M) \to \C,\quad s_{\varphi} ([a_{ij}]_{1 \leq i, j \leq n}) = \frac{1}{n} \sum_{i, j} ^n \varphi (a_{i, j}).$$
+Equivalently, if $e := (e_1, \dots, e_n) \in \underbrace{\C^n \oplus \cdots \oplus \C^n}_{n} = \C^{n^2}$, then 
+$$s_{\varphi} ([a_{ij}]_{i, j}) = \frac{1}{n} \langle \varphi^{(n)} ([a_{ij}]_{i, j}) e, e \rangle.$$
+Thus, we get a linear map $$\mathcal{L} (M, M_n (\C)) \to \mathcal{L} (M_n (M), \C),\quad \varphi \mapsto s_{\varphi}.$$
+\begin{remark}
+    If $1 \in M$ and $\varphi(1) = 1$, then $s_{\varphi} (1) = 1$.
+\end{remark}
+Conversely, if $s: M_n (M) \to \C$ is linear, then we define 
+$$\varphi_s : M \to M_n (\C),\quad \varphi_s (a) _{ij} = n \cdot s(a \otimes E_{ij}).$$
+This induces a linear map 
+$$\mathcal{L} (M_n (M), \C) \to \mathcal{L} (M, M_n (\C)) ,\quad s \mapsto {\varphi}_s,$$
+which is inverse to $\varphi \mapsto s_{\varphi}$ as defined above.
+
+\begin{definition}
+    Let $A$ be a $C^*$-algebra. A vector subspace $S \subseteq A$ with $S^* \subseteq S$ and $1 \in S$
+    is called an \emph{operator system}.
+\end{definition}
+
+\begin{theorem}[Krein--Riesz]
+    Let $S$ be an operator system in a $C^*$-algebra $A$ and let $\varphi_0: S \to \C$
+    be a linear functional such that $\varphi (S \cap A_+) \subseteq [0, \infty)$.
+    Then there exists an extension of $\varphi_0$ to a positive linear functional $\varphi: A \to \C$.
+\end{theorem}
+
+\begin{myproof}
+    The functional $\varphi_0$ is positive, hence $*$-linear, i.e. $\varphi_0 (s^*) = \overline{\varphi_0 (s)} $.
+    This implies that is determined by $\varphi_0\big|_{S \cap A_{sa}}: S \cap A_{\sa} \to \R$. 
+    We with to extend $\varphi_0 \big|_S \cap A_{\sa}$ to $\varphi: A_{\sa} \to \R$.
+    Similar to the proof of Hahn--Banach, it suffices to extend $\varphi_0 \big|_{S \cap A_{\sa}}$ to
+    $S \cap A_{\sa} + \R \cdot x_0$ for $x_0 \in A_{\sa} \setminus S$. Define 
+    $$C := \{y \in S \cap A_{\sa}\ |\ y \leq x_0\},\quad D := \{y \in S \cap A_{\sa}\ |\ y \geq x_0\}.$$
+    Since $1 \in S \cap A_{\sa}$, none of the above sets are empty.
+    For each $y' \in C$ and $Y'' \in D$, we have 
+    $$y'' - y' = \underbrace{(y'' - x_0)}_{\geq 0} + \underbrace{(x_0 - y')}_{\geq 0} \geq 0,$$
+    so $\varphi_0 (y'') - \varphi_0 (y') = \varphi_0 (y'' - y') \geq 0$.
+    Therefore, there must exist a constant $\alpha \in \R$ such that
+    $$\sup \{\varphi_0 (y')\ |\ y' \in C\} \leq \alpha \leq \inf \{\varphi_0 (y'')\ |\ y'' \in D\}.$$
+    Define $\varphi'$ on $(S \cap A_{\sa}) + \R \cdot x_0$ as 
+    $$y + t \cdot x_0 \mapsto \varphi_0 (y) + t \cdot \alpha.$$
+    We have to prove that this map is positive. Let $y + t x_0 \geq 0$.
+    If $t > 0$, then $x_0 \geq -\frac{1}{t} y$ and $-\frac{1}{t} y \in C$.
+    But then $\varphi_0 \left(-\frac{1}{t} y\right) \leq \alpha$ and $\varphi' (y + t x_0) \geq 0$.
+    However, if $t < 0$, then $x_0 \leq -\frac{1}{t} y$ and $-\frac{1}{t} y \in D$.
+    This implies $\varphi_0 \left(-\frac{1}{t} y\right) \geq \alpha$ and again $\varphi' (y + t x_0) \geq 0$.
+\end{myproof}
+
+\begin{proposition}
+    Let $A$ be a $C^*$-algebra and $S \subseteq A$ an operator system.
+    Suppose that $\varphi: S \to M_n (\C)$ is linear map. Then the following statements are equivalent:
+    \begin{enumerate}
+        \item $\varphi$ is cp;
+        \item $\varphi$ is $n$-positive;
+        \item $s_\varphi$ is a positive linear functional.
+    \end{enumerate}
+\end{proposition}
+
+\begin{myproof}
+    The only nontrivial implication is $(3.) \Rightarrow (1.)$.
+    Take $s_\varphi : M_n (S) \to \C$ and notice that $M_n (S)$ is an operator system in $M_n (A)$.
+    By Krein--Riesz, we can extend $s_{\varphi}$ to the positive functional $s: M_n (A) \to \C$.
+    Then we have $\varphi_s : A \to M_n (\C)$ such that $s_{\varphi_s} = s$.
+    Also, $\varphi_s$ extends $\varphi$. It suffices to show that $\varphi_s$ is cp.
+    Take any $m \in \N$, let $a_1, \dots, a_m \in A$ and $x_1, \dots, x_m \in \C^m$, where 
+    $x_j = \sum_{k = 1} ^n \lambda_{jk} e_k$. Also, define $A_i \in M_n (\C)$ which has the first row 
+    $\lambda_{i1}, \dots, \lambda_{in}$ and zero everywhere else.
+    Then $$A_i ^* A_j = \sum_{k, l = 1} ^n \lambda_{jk} \overline{\lambda_{il}} E_{lk}.$$
+    Now we have 
+    \begin{align*}
+        \sum_{i, j} ^n \langle \varphi_s (a_i ^* a_j) x_j, x_i \rangle &= \sum_{i, j, k, l}^{n} \lambda_{jk} \overline{\lambda_{il}} \langle \varphi_s (a_i ^* a_j) e_{k}, e_l \rangle\\
+        &= \sum_{i, j, k, l}^{n} \lambda_{jk} \overline{\lambda_{il}} s (a_i ^* a_j \otimes E_{lk})\\
+        &= \sum_{i, j} ^n s(a_i ^* a_j \otimes A_i ^* A_j)\\
+        &= s \left( (\sum_i a_i \otimes A_i)^* (\sum_j a_j \otimes A_j)\right) \geq 0. \qedhere
+    \end{align*}
+\end{myproof}
+
+\begin{corollary}\label{cor:7.1}
+    Let $A$ be a $C^*$-algebra, $S \leq A$ an operator system and $\varphi: S \to M_n (\C)$ cp.
+    Then there exists a cp map $\psi: A \to M_n (\C)$ that extends $\varphi$.
+\end{corollary}
+
+Let $X, Y$ be Banach spaces. We wish to introduce a weak-$*$ topology on $\mathcal{B}(X, Y^*)$, so we need to find 
+a Banach space $Z$ such that $Z^*$ is isomorphic to $\mathcal{B}(X, Y^*)$.
+For any $x \in X$ and $y \in Y$, define a linear functional on $\mathcal{B}(X, Y^*)$ by 
+$$x \otimes y (L) := L(x) (y).$$ Notice that $$| x \otimes y (L)| \leq \| L\| \cdot \| x\| \cdot \| y\|,$$
+which implies that $\| x \otimes y\| \leq \| x\| \cdot \| y\|$ and $x \otimes y \in \mathcal{B} (X, Y^*)^*$.
+Furthermore, we have $\| x \otimes y \| = \| x\| \cdot \| y\|$. To see this, use Hahn--Banach to obtain a linear functional 
+$\varphi_x \in X^*$ such that $\varphi_x (x) = \| x\|$ and $\| \varphi_x \| = 1$. Similarly, 
+define $\varphi_y \in Y^*$ such that $\varphi_y (y) = \| y\|$ and $\| \varphi_y \| = 1$. Now define $L_{x, y} \in \mathcal{B}(X, Y^*)$
+by $L_{x, y}(\cdot) = \varphi_x (\cdot) \varphi_y$ and notice that $\| L_{x, y}\| = 1$.
+Finally, 
+$$x \otimes y (L_{x, y}) = \| x\| \cdot \| y\| = \| x\| \cdot \| y\| \cdot \| L_{x, y} \|$$
+and the maximum is obtained, hence $\| x \otimes y\| = \| x\| \cdot \| y\|$. 
+Define the space 
+$$Z := \overline{\linspan \{x \otimes y\ |\ x \in X, y \in Y\}} \leq \mathcal{B} (X, Y^*)^*.$$
+\begin{lemma}
+    $\mathcal{B} (X, Y^*)$ is isometrically isomorphic to $Z^*$ via the map 
+    $$\Phi: \mathcal{B}(X, Y^*) \to Z^*,\quad L \mapsto (x \otimes y \mapsto x \otimes y (L)).$$
+\end{lemma}
+
+\begin{myproof}
+    Firstly, we prove that $\Phi$ is an isometry. Take any $L \in \mathcal{B}(X, Y^*)$.
+    For any $x \otimes y \in Z$, we get 
+    \begin{align*}
+        | \Phi (L) (x \otimes y)| &= | x \otimes y (L)|\\
+        &= | L(x) (y) |\\
+        &\leq \| L(x)\| \cdot \| y\|\\
+        &\leq \| L\| \cdot \| x\| \cdot \| y\|\\
+        &= \| L \| \cdot \| x \otimes y\|,
+    \end{align*}
+    which shows that $\| \Phi(L) \| \leq \| L\|$. But on the other hand, we have 
+    \begin{align*}
+        \| L\| &= \sup_{\| x\| = 1} \| L(x) \| \\
+        &= \sup_{\| x\| = 1} \sup_{\| y\| = 1} | L(x) (y)|\\
+        &= \sup_{\| x\| = 1} \sup_{\| y\| = 1} | x \otimes y (L)|\\
+        &= \sup_{\| x\| = 1} \sup_{\| y\| = 1} | \Phi (L) (x \otimes y)|\\
+        &\leq \sup_{\| x \otimes y\| = 1} |\Phi (L) (x \otimes y)\| = \| \Phi (L)\|. 
+    \end{align*}
+    Secondly, we prove surjectivity. Take any $f \in Z^*$.
+    For all $x \in X$, we define 
+    $$f_x : Y \to \C,\quad y \mapsto f(x \otimes y).$$
+    Since $| f_x (y)| \leq \| f\| \cdot \| x\| \cdot \| y\|$, this is a bounded functional and so $f_x \in Y^*$.
+    Now define $$L : X \to Y^*,\quad L(x) = f_x.$$
+    This is a bounded map and $\Phi(L) = f$. 
+\end{myproof}
+
+By identifying $\mathcal{B} (X, Y^*)$ with $Z^*$, we can endow the former space with the weak-$*$ topology.
+This topology is called the \emph{bounded weak (BW) topology}.
+
+\begin{lemma}
+    Let $(L_\lambda)_{\lambda}$ be a bounded net in $\mathcal{B}(X, Y^*)$.
+    Then $L_\lambda \xrightarrow{BW} L$ iff $L_\lambda (x) \xrightarrow{w^*} L(x)$ for all $x \in X$.
+\end{lemma}
+
+\begin{myproof}
+    First, we prove $(\Rightarrow)$. If $L_\lambda \to L$ in BW topology, then 
+    $$L_\lambda (x) (y) = \Phi (L_\lambda) (x \otimes y) \to \Phi (L) (x \otimes y) = L(x) (y)$$
+    for all $x \in X$ and $y \in Y$, so $L_\lambda (x) \to L (x)$ in the weak-$*$ topology on $Y^*$. 
+    Conversely $(\Leftarrow)$, if $L_\lambda (x) \xrightarrow{w^*} L(x)$ for all $x \in X$, then
+    $$\Phi (L_\lambda) (x \otimes y) = L_\lambda (x) (y) \to L(x) (y) = \Phi (L) (x \otimes y)$$
+    for all $x \otimes y$. Hence $\Phi (L_\lambda)(z) \to \Phi(L) (z)$ for $z$ in the linear span of $x \otimes y$, which is (by definition)
+    a dense subset of $Z$. But since $(L_\lambda)_\lambda$ is norm bounded, so is $(\Phi (L_\lambda))_\lambda$ and
+    therefore $\Phi (L_\lambda) (z)\to \Phi (L) (z)$ for all $z \in Z$.
+\end{myproof}
+
+Since $\bh$ is a dual of $L^1 (\bh)$, we can equip $\mathcal{B} (X, \bh)$ with a BW topology for any 
+Banach space $X$. Now if $(L_\lambda)_\lambda \subseteq \mathcal{B} (X, Y^*)$ is a bounded net,
+then $L_\lambda \to L$ in a BW topology iff for all $x \in X$ and $h, k \in \mathcal{H}$, we have 
+$\langle L_\lambda (x) h, k \rangle \to \langle L(x) h, k \rangle$.
+
+\begin{lemma}\label{lem:7.2}
+    Let $A$ be a $C^*$-algebra and $S \subseteq A$ a closed operator system. Then 
+    $$CP_r (S, \bh) := \{L \in \mathcal{B} (S, \bh)\ |\ \textrm{$L$ cp and $\| L\| \leq r$}\}$$
+    is a compact set in BW topology.
+\end{lemma}
+
+\begin{myproof}
+    We know that 
+    $$B_r (S, \bh) := \{L \in \mathcal{B} (S, \bh)\ |\ \| L\| \leq r\}$$
+    is a compact set in BW by Banach--Alaoglu. We have to show that $CP_r$ is closed in $B_r$.
+    Let $(L_\lambda)_\lambda$ be a net in $CP_r$ that converges to some $L \in L \in B_r$.
+    We have to show that $L$ is also cp. Fix $n \in \N$ and take any positive $[a_{ij}]_{i, j} \in M_n (S)$ and $x_1, \dots, x_n \in \mathcal{H}$.
+    Then $$\sum_{i, j} ^n \langle L_\lambda ^{(n)} ([a_{ij}]_{i, j})x_j, x_i \rangle \to \sum_{i, j} ^n \langle L ^{(n)} ([a_{ij}]_{i, j}) x_j, x_i \rangle$$
+    and since the sum on the left is positive for every $\lambda$, so too must be the sum on the right.
+\end{myproof}
+
+\begin{theorem}[Arveson extension theorem]
+    Let $A$ be a $C^*$-algebra, $S \subseteq A$ an operator system and $\varphi: S \to \bh$ a cp map.
+    Then there exists a cp map $\psi: A \to \bh$ that is an extension of $\varphi$.
+\end{theorem}
+
+\begin{myproof}
+    W.l.o.g.~assume that $S$ is closed. Let $\mathcal{F} \leq \mathcal{H}$ be a finite-dimensional subspace.
+    Define $$\varphi_{\mathcal{F}}: S \to \mathcal{B}(\mathcal{F}),\quad a \mapsto P_{\mathcal{F}} \varphi(a)\big|_{\mathcal{F}},$$
+    where $P_\mathcal{F}: \mathcal{H} \to \mathcal{F}$ is a projection.
+    Since $\dim (\mathcal{F}) = n < \infty$, then $\mathcal{B} (\mathcal{F}) = M_n (\C)$.
+    By corollary \ref{cor:7.1}, there exists a cp map $\psi_\mathcal{F}$ that is an extension of $\varphi_{\mathcal{F}}$.
+    Define a map $\psi_\mathcal{F} '$ such that $\psi' _\mathcal{F} = \psi_{\mathcal{F}}$ on $\mathcal{F}$ and zero on $\mathcal{F}^\perp$.
+    It's trivial to see that this map is also cp.
+    Since $\{\mathcal{F} \leq \mathcal{H}\ |\ \dim \mathcal{F} < \infty\}$ is a directed set, $(\psi_\mathcal{F} ')_{\mathcal{F}}$ is a net in $PP_{\| \varphi\|} (A, \bh)$.
+    By the lemma \ref{lem:7.2}, there exists a subnet that converges to $\psi \in PP_{\| \varphi\|} (A, \bh)$.
+    Now we just have to prove that $\psi$ is the desired extension.
+    Take any $a \in S$ and $x, y \in \mathcal{H}$. Define $\mathcal{F} := \linspan \{x, y\}$.
+    Now for all finite-dimensional $\mathcal{F}_1 \supseteq \mathcal{F}$, we have 
+    $$\langle \varphi(a) x, y \rangle = \langle \psi_{\mathcal{F}_1} ' (a) x, y \rangle.$$
+    But there exists a subnet such that $\langle \psi_{\mathcal{F}_1} ' (a) x, y \rangle \to \langle \psi(a)x, y \rangle.$
+    Therefore, we have $\langle \varphi(a) x, y\rangle = \langle \psi (a)x, y\rangle$ for all $x, y \in \mathcal{H}$.
+    Hence, $\varphi(a) = \psi(a)$ for all $a \in S$.
+\end{myproof}
+
+
+

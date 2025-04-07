@@ -465,7 +465,7 @@ From the introductory course, we know the following statements about compact ope
     \item $\id: X \to X$ is compact;
     \item $(X)_1$ is compact;
     \item $\dim X < \infty$.
-  \end{enumerate}
+  \end{enumerate}states
   The equivalence of the last two items is also known as the \emph{Riesz lemma}.
 \end{proposition}
 
@@ -478,7 +478,7 @@ From the introductory course, we know the following statements about compact ope
 
 \begin{myproof}
   \begin{enumerate}
-    \item If $x \in L^1 (\bh)$ then there exists $(x_n)_n$ in $\mathcal{F} (\mathcal{H})$ such that $\|x_n - x\|_1 \to 0$.
+    \item If $x \in L^1 (\bh)$, then there exists $(x_n)_n$ in $\mathcal{F} (\mathcal{H})$ such that $\|x_n - x\|_1 \to 0$.
     Since $\| \cdot \| \leq \| \cdot \|_1$, we get $\|x_n - x \| \to 0$ and $x \in \overline{(\mathcal{F}, \| \cdot\|)} = \mathcal{K} (\mathcal{H})$.
     \item This follows from $\trace |K| = \sum \sigma_n$ for $K$ as in \eqref{eq:4.1}. \qedhere
   \end{enumerate}
@@ -554,10 +554,15 @@ From the introductory course, we know the following statements about compact ope
 
 \subsection{Hilbert--Schmidt integral operators}
 
-Let $(X, \mu)$ be a $\sigma$-finite measure space.
-This means that $X$ is a countable union of finite-measure sets:
-$$X = \bigcup_{j = 1} ^\infty A_j,\quad \mu(A_j) < \infty.$$
-For $K \in L^2 (X \times X, \mu \times \mu)$, we can define a Hilbert--Schmidt integral operator 
+In this section, we will make use of the following result from measure theory 
+(see, for example, theorem 8.8 in \cite{rudin}).
+
+\begin{theorem}[Fubini's theorem]
+  If $(X, \mu), (Y,\lambda)$ are $\sigma$-finite measure spaces and $\int_{X \times Y} |f|\, d(\mu \times \lambda) (x, y) < \infty$, then 
+  $$\int_{X \times Y} f \, d(\mu \times \lambda)(x, y)= \int_Y \left(\int_X f\, d\mu(x)\right)\, d\lambda(y) = \int_X \left(\int_Y f\, d\lambda(y)\right)\, d\mu(x).$$
+\end{theorem}
+
+For $K \in L^2 (X \times X, \mu \times \mu)$, we define a \emph{Hilbert--Schmidt integral operator} 
 with kernel $K$:
 $$T_K : L^2 (X, \mu) \to L^2 (X, \mu),\quad f \mapsto \left(y \mapsto \int_X K(x, y) f(y)\, d\mu (x)\right).$$
 Suppose $(\varphi_\alpha)_{\alpha}$ is an ONB for $L^2 (K, \mu)$.
@@ -584,11 +589,6 @@ Indeed,
   &= \int_X f(x) \cdot \left(\overline{\int_Y \overline{K(x, y)} g(y)\, d\mu(y)}\right)\, d\mu (x)\\ 
   &= \langle f, T_{K^*} g \rangle.
 \end{align*}
-
-\begin{remark}[Fubini's theorem]
-  If $(X, \mu), (Y,\lambda)$ are $\sigma$-finite measure spaces and $\int_{X \times Y} |f|\, d(\mu \times \lambda) (x, y) < \infty$, then 
-  $$\int_{X \times Y} f \, d(\mu \times \lambda)(x, y)= \int_Y \left(\int_X f\, d\mu(x)\right)\, d\lambda(y) = \int_X \left(\int_Y f\, d\lambda(y)\right)\, d\mu(x).$$
-\end{remark}
 
 \begin{theorem}
   \begin{enumerate}
@@ -622,9 +622,18 @@ Indeed,
   \end{enumerate}
 \end{myproof}
 
-\subsection{Hilbert--Schmidt operators $\mathcal{H} \to \mathcal{K}$ and tensor products}
+\subsection{Tensor products of Hilbert spaces}
 
-Let $\mathcal{H}, \mathcal{K}$ be Hilbert spaces and $A \in \mathcal{B} (\mathcal{H}, \mathcal{K})$.
+Recall the usual construction of tensor product of Hilbert spaces: for Hilbert spaces 
+$\mathcal{H}, \mathcal{K}$, we first form the algebraic tensor product of vector spaces $\mathcal{H} \otimes \mathcal{K}$
+and then equip it with a scalar product 
+$$\langle h_1 \otimes k_1, h_2 \otimes k_2 \rangle_{\mathcal{H} \otimes \mathcal{K}} := \langle h_1, h_2 \rangle_{\mathcal{H}} \cdot \langle k_1, k_2 \rangle_{\mathcal{K}},$$
+which we then extend linearly. Finally, we take the completion of $\mathcal{H} \otimes \mathcal{K}$ w.r.t.~the above scalar product and denote it by $\mathcal{H} \overline{\otimes} \mathcal{K}$.
+Then $\mathcal{H} \otimes \mathcal{K}$ is the \emph{tensor product of Hilbert spaces}.
+However, the machinery of Hilbert--Schmidt operators allows us to explicitly construct the tensor product of Hilbert spaces, 
+without appealing to the metric space completion.
+
+Let $A \in \mathcal{B} (\mathcal{H}, \mathcal{K})$.
 We associate to $A$ the map 
 $$\widetilde{A} \in \mathcal{B} (\mathcal{H} \oplus \mathcal{K}, \mathcal{H} \oplus \mathcal{K}),\quad \alpha \oplus \beta \mapsto 0 \oplus A \alpha,$$
 or in matrix form,
@@ -636,9 +645,9 @@ We denote the set of Hilbert--Schmidt operators $\mathcal{H} \to \mathcal{K}$ as
 $$HS (\mathcal{H}, \mathcal{K}) := \{A \in \mathcal{B} (\mathcal{H}, \mathcal{K})\ |\ \widetilde{A} \in L^2 (\mathcal{B}(\mathcal{H} \oplus \mathcal{K}))\}.$$ 
 It is trivial to show that this coincides with 
 $$\{A \in \mathcal{B} (\mathcal{H}, \mathcal{K})\ |\ A^* A \in L^1 (\mathcal{B}(\mathcal{H}))\}.$$
-With the usual scalar product $\langle A, B \rangle_{2} = \trace(B^* A)$, this becomes a Hilbert space.
+With the usual scalar product $\langle A, B \rangle_{2} = \trace(B^* A)$, $HS (\mathcal{H}, \mathcal{K})$ becomes a Hilbert space.
 
-\begin{remark}
+\begin{example}
   By Riesz's representation theorem, every functional in $\mathcal{H}^*$
   is of the form $\overline{\alpha}: x \mapsto \langle x, \alpha \rangle,$
   where $\alpha \in \mathcal{H}$. 
@@ -646,10 +655,10 @@ With the usual scalar product $\langle A, B \rangle_{2} = \trace(B^* A)$, this b
   $\langle \overline{\alpha}, \overline{\beta} \rangle_{\mathcal{H}^*} := \langle \beta, \alpha \rangle_{\mathcal{H}}.$
   This scalar product induces the usual operator norm on $\mathcal{H}^*$, so it makes $\mathcal{H}^*$
   into a Hilbert space. 
-\end{remark}
+\end{example}  
 
 \begin{example}
-  The dual $\mathcal{H}^*$ is isomorphic as a Hilbert space to $HS(\mathcal{H}, \C)$. To prove this, it's enough to compare the scalar products.
+  Now we show that the dual $\mathcal{H}^*$ is isomorphic as a Hilbert space to $HS(\mathcal{H}, \C)$. To prove this, it's enough to compare the scalar products.
   For any $\overline{\alpha}, \overline{\beta} \in \mathcal{H}^*$, we have 
   \begin{align*}
     \langle \overline{\alpha}, \overline{\beta} \rangle &= \trace (\overline{\beta}^* \overline{\alpha})\\
@@ -660,16 +669,13 @@ With the usual scalar product $\langle A, B \rangle_{2} = \trace(B^* A)$, this b
   \end{align*}
 \end{example}
 
-\begin{definition}
-  We define the \emph{tensor product of Hilbert spaces} as $\mathcal{H} \overline{\otimes} \mathcal{K} := HS (\mathcal{K}^*, \mathcal{H})$. 
-\end{definition}
-
-\begin{remark}
-  For any $\alpha \in \mathcal{H}$ and $\beta \in \mathcal{K}$, we define the elementary tensors as 
-  $$\alpha \otimes \beta: \mathcal{H}^* \to \mathcal{K},\quad f \mapsto f(\alpha) \beta.$$
-  The span of these operators is the usual algebraic tensor product of vector spaces $\mathcal{H} \otimes \mathcal{K}$ and
-  consists of all the finite-rank operators in $\mathcal{H} \overline{\otimes} \mathcal{K}$.
-\end{remark}
+We can now explicitly define the {tensor product of Hilbert spaces} as $\mathcal{H} \overline{\otimes} \mathcal{K}$ as the Hilbert space $HS (\mathcal{H}^*, \mathcal{K})$. 
+It's not hard to show that $HS (\mathcal{H}^*, \mathcal{K})$ is isomorphic as a Hilbert space to our previous definition of $\mathcal{H} \overline{\otimes} \mathcal{K}$.
+The elementary tensors which span the algebraic tensor product $\mathcal{H} \otimes \mathcal{K}$ correspond to operators
+$$\alpha \otimes \beta: \mathcal{H}^* \to \mathcal{K},\quad f \mapsto f(\alpha) \beta,$$
+where $\alpha \in \mathcal{H}$ and $\beta \in \mathcal{K}$.
+The linear span of operators $\alpha \otimes \beta$
+consists of all the finite-rank operators in $\mathcal{B} (\mathcal{H}^*, \mathcal{K})$.
 
 \subsection{Locally convex topologies on $\bh$}
 
@@ -715,7 +721,7 @@ for $T \in \mathcal{B}(\mathcal{H})$ and $\varepsilon > 0$. The net $T_i$ conver
 \begin{example}
   The multiplication 
   $$\bh \times \bh \to \bh,\quad (A, B) \mapsto A \cdot B$$
-  is not jointly continuous with regards to SOT or WOT. Indeed, if $S: \ell^2 \to \ell^2$ is the right shift (and $S^*$ the left shift),
+  is not jointly continuous with respect to SOT or WOT. Indeed, if $S: \ell^2 \to \ell^2$ is the right shift (and $S^*$ the left shift),
   then $S^n \to 0$ and $(S^*)^n \to 0$ in SOT and WOT, but $(S^*)^n S^n = I$. However,
   multiplication is WOT- and SOT-continuous in each factor separately.
   Suppose that $(x_\alpha)_\alpha \to x$ in WOT and $y \in \bh$.
@@ -763,7 +769,7 @@ for $T \in \mathcal{B}(\mathcal{H})$ and $\varepsilon > 0$. The net $T_i$ conver
   By proposition \ref{prop:1.2}, there exists a $K > 0$ and $v_1, \dots, v_n \in \mathcal{H}$
   such that 
   $$|\varphi(T)|^2 \leq K \cdot \sum_{i = 1} ^n \| Tv_i\|^2.$$
-  Define $$\mathcal{H}_0 := \overline{\left\lbrace \bigoplus_{i = 1} ^n Tv_i\ |\ T \in \bh \right\rbrace} \leq \mathcal{H} ^{\bigoplus n}.$$
+  Define $$\mathcal{H}_0 := \overline{\left\lbrace \bigoplus_{i = 1} ^n Tv_i\ |\ T \in \bh \right\rbrace} \leq \mathcal{H} ^{n}.$$
   The map 
   $$\mathcal{H}_0 \ni \bigoplus_{i = 1} ^n T v_i \mapsto \varphi(T) \in \C$$
   is a well-defined and bounded linear functional, which by continuity extends to $\mathcal{H}_0 \to \C$.
@@ -908,7 +914,7 @@ for $T \in \mathcal{B}(\mathcal{H})$ and $\varepsilon > 0$. The net $T_i$ conver
   Let us define the following topologies on $\bh$.
   \begin{enumerate}
     \item Weak Banach topology is $\sigma(\bh, \bh^*)$.
-    \item Ultrastrong-$*$ topology is the weakest topology stronger than $\sigma$-SOT such that $*$ is continuous.
+    \item Ultrastrong-$*$ topology is the weakest topology that is stronger than $\sigma$-SOT such that $*$ is continuous.
     \item Strong-$*$ topology is generated by seminorms $x \mapsto \|x\alpha\|$ and $x \mapsto \|x^* \alpha\|$ for $\alpha \in \mathcal{H}$.
   \end{enumerate}
 \end{remark}
